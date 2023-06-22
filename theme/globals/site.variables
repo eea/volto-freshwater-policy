@@ -1,0 +1,9 @@
+/*******************************
+         Site Settings
+*******************************/
+
+@import '@eeacms/volto-freshwater-policy/../theme/tokens/tokens';
+
+/*-------------------
+    Brand Colors
+--------------------*/
