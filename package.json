@@ -16,6 +16,9 @@
     "type": "git",
     "url": "git@github.com:eea/volto-freshwater-policy.git"
   },
+  "resolutions": {
+    "react-countup/countup.js": "2.5.0"
+  },
   "addons": [
     "@eeacms/volto-datablocks",
     "@eeacms/volto-block-style",
@@ -25,15 +28,15 @@
     "@eeacms/volto-eea-website-theme"
   ],
   "dependencies": {
-    "@eeacms/volto-openlayers-map": "*",
     "@eeacms/volto-arcgis-block": "0.1.16",
     "@eeacms/volto-block-style": "^3.3.0",
     "@eeacms/volto-datablocks": "*",
     "@eeacms/volto-eea-design-system": "*",
     "@eeacms/volto-eea-website-theme": "*",
+    "@eeacms/volto-openlayers-map": "*",
+    "react-lazy-load-image-component": "^1.4.0",
     "react-slick": "^0.24.0",
-    "slick-carousel": "^1.8.1",
-    "react-lazy-load-image-component": "^1.4.0"
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
     "@cypress/code-coverage": "^3.10.0",
