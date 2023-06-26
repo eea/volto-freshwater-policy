@@ -20,13 +20,17 @@
     "@eeacms/volto-datablocks",
     "@eeacms/volto-block-style",
     "@eeacms/volto-arcgis-block",
-    "@eeacms/volto-openlayers-map"
+    "@eeacms/volto-openlayers-map",
+    "@eeacms/volto-eea-design-system",
+    "@eeacms/volto-eea-website-theme"
   ],
   "dependencies": {
     "@eeacms/volto-openlayers-map": "*",
     "@eeacms/volto-arcgis-block": "0.1.16",
     "@eeacms/volto-block-style": "^3.3.0",
     "@eeacms/volto-datablocks": "*",
+    "@eeacms/volto-eea-design-system": "*",
+    "@eeacms/volto-eea-website-theme": "*",
     "react-slick": "^0.24.0",
     "slick-carousel": "^1.8.1",
     "react-lazy-load-image-component": "^1.4.0"
