@@ -16,6 +16,22 @@
     "type": "git",
     "url": "git@github.com:eea/volto-freshwater-policy.git"
   },
+  "addons": [
+    "@eeacms/volto-plotlycharts",
+    "@eeacms/volto-datablocks",
+    "@eeacms/volto-block-style",
+    "@eeacms/volto-arcgis-block",
+    "@eeacms/volto-openlayers-map"
+  ],
+  "dependencies": {
+    "@eeacms/volto-openlayers-map": "*",
+    "@eeacms/volto-arcgis-block": "0.1.16",
+    "@eeacms/volto-block-style": "^3.3.0",
+    "@eeacms/volto-datablocks": "*",
+    "react-slick": "^0.24.0",
+    "slick-carousel": "^1.8.1",
+    "react-lazy-load-image-component": "^1.4.0"
+  },
   "devDependencies": {
     "@cypress/code-coverage": "^3.10.0",
     "@plone/scripts": "*",
