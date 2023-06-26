@@ -27,7 +27,37 @@ import installCaseStudyExplorer from './components/Blocks/CaseStudyExplorer';
 
 import customBlockTemplates from './components/Blocks/CustomBlockTemplates/customBlockTemplates';
 
+import freshwaterLogo from '@eeacms/volto-freshwater-policy/../theme/assets/images/Header/freshwater_logo.svg';
+import freshwaterWhiteLogo from '@eeacms/volto-freshwater-policy/../theme/assets/images/Header/freshwater_logo_white.svg';
+
 const applyConfig = (config) => {
+  // Multi-lingual
+  config.settings.isMultilingual = false;
+  config.settings.defaultLanguage =
+    config.settings.eea?.defaultLanguage || 'en';
+
+  // EEA customizations
+  config.settings.eea = {
+    ...(config.settings.eea || {}),
+    headerOpts: {
+      ...(config.settings.eea?.headerOpts || {}),
+      logo: freshwaterLogo,
+      logoWhite: freshwaterWhiteLogo,
+    },
+    headerSearchBox: [
+      {
+        isDefault: true,
+        path: '/advanced-search',
+        placeholder: 'Search Freshwater...',
+        description:
+          'Looking for more information? Try searching the full EEA website content',
+        buttonTitle: 'Go to advanced search',
+        buttonUrl: 'https://www.eea.europa.eu/en/advanced-search',
+      },
+    ],
+    logoTargetUrl: '/',
+  };
+
   // Content type views
   config.views.contentTypesViews = {
     ...config.views.contentTypesViews,
