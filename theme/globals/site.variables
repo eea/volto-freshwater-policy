@@ -7,3 +7,6 @@
 /*-------------------
     Brand Colors
 --------------------*/
+
+@primaryColor: @blue-5;
+@secondaryColor: @blue-3;
