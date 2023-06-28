@@ -2,7 +2,6 @@ import {
   DatabaseItemView,
   MetadataListingView,
   SimpleListingView,
-  HorizontalTocView,
   FavBoardView,
   FavBoardListingView,
   CaseStudyView,
@@ -100,20 +99,6 @@ const applyConfig = (config) => {
         title: 'Simple Listing',
         template: SimpleListingView,
         isDefault: false,
-      },
-    ],
-  };
-
-  // Table of contents custom view
-  config.blocks.blocksConfig.toc = {
-    ...config.blocks.blocksConfig.toc,
-    variations: [
-      ...config.blocks.blocksConfig.toc.variations,
-      {
-        id: 'horizontalTocView',
-        title: 'FW horizontal menu',
-        view: HorizontalTocView,
-        schemaExtender: null,
       },
     ],
   };

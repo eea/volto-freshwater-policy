@@ -1,27 +1,30 @@
-export DatabaseItemView from './theme/DatabaseItemView/DatabaseItemView';
-export MetadataListingView from './theme/MetadataListingView/MetadataListingView';
-export MetadataHeader from './theme/MetadataListingView/MetadataHeader';
-export SimpleListingView from './theme/SimpleListingView/SimpleListingView';
-export ItemMetadata from './theme/ItemMetadata/ItemMetadata';
 export ItemTitle from './theme/ItemMetadata/ItemTitle';
 export MapPreview from './theme/ItemMetadata/MapPreview';
+export ItemMetadata from './theme/ItemMetadata/ItemMetadata';
 export ItemMetadataSnippet from './theme/ItemMetadata/ItemMetadataSnippet';
-export TableauDownload from './theme/Tableau/TableauDownload';
+
 export TableauShare from './theme/Tableau/TableauShare';
+export TableauDownload from './theme/Tableau/TableauDownload';
 export TableauFullscreen from './theme/Tableau/TableauFullscreen';
-export MapFullscreen from './theme/Webmap/MapFullscreen';
+
 export MapShare from './theme/Webmap/MapShare';
-export FavBoardListingView from './theme/FavBoard/FavBoardListingView';
-export FavBoardComments from './theme/FavBoard/FavBoardComments';
-export FavItemToolbar from './theme/FavBoard/FavItemToolbar';
-export FavBoardView from './theme/FavBoard/FavBoardView';
+export MapFullscreen from './theme/Webmap/MapFullscreen';
+
 export FavButton from './theme/FavBoard/FavButton';
-export HorizontalTocView from './theme/TocView/HorizontalTocView';
-export CaseStudyView from './theme/CaseStudyView/CaseStudyView';
-export MeasureView from './theme/MeasureView/MeasureView';
+export FavBoardView from './theme/FavBoard/FavBoardView';
+export FavItemToolbar from './theme/FavBoard/FavItemToolbar';
+export FavBoardComments from './theme/FavBoard/FavBoardComments';
+export FavBoardListingView from './theme/FavBoard/FavBoardListingView';
+
 export SourceView from './theme/SourceView/SourceView';
+export MeasureView from './theme/MeasureView/MeasureView';
+export CaseStudyView from './theme/CaseStudyView/CaseStudyView';
+export DatabaseItemView from './theme/DatabaseItemView/DatabaseItemView';
+export SimpleListingView from './theme/SimpleListingView/SimpleListingView';
+export MetadataHeader from './theme/MetadataListingView/MetadataHeader';
+export MetadataListingView from './theme/MetadataListingView/MetadataListingView';
 
 export Card from './Blocks/CustomCardsBlock/templates/PresentationCards/Card';
-export CarouselCardsView from './Blocks/CustomCardsBlock/templates/PresentationCards/CarouselCardsView';
-export GroupCardsView from './Blocks/CustomCardsBlock/templates/PresentationCards/GroupCardsView';
 export CaseStudyExplorer from './Blocks/CaseStudyExplorer/CaseStudyExplorerView';
+export GroupCardsView from './Blocks/CustomCardsBlock/templates/PresentationCards/GroupCardsView';
+export CarouselCardsView from './Blocks/CustomCardsBlock/templates/PresentationCards/CarouselCardsView';
