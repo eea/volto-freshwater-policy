@@ -3,7 +3,8 @@
 -----------------------*/
 
 /* Logo */
-@computerLogoMaxWidth: 285px;
+@computerLogoMaxWidth: 252px;
+@computerLogoMarginTop: 0;
 
 
 /* Main menu */
