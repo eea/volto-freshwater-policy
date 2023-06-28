@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { compose } from 'redux';
-import { Grid, Button, Input } from 'semantic-ui-react';
+import { Button, Input } from 'semantic-ui-react';
 import { Icon } from '@plone/volto/components';
 import { groupBy } from 'lodash';
 import jwtDecode from 'jwt-decode';
