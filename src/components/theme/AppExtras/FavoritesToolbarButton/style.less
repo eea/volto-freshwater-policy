@@ -3,19 +3,8 @@
 
 @import (multiple, reference, optional) '../../theme.config';
 
-#divider {
-  width: 0px;
-  height: 24px;
-  border-left: 1px solid @purpleBackground;
-  margin-left: 10px;
-}
-
 .basket {
   padding: 0 1em;
-}
-
-.fav-basket-menu {
-  height: auto;
 }
 
 .fav-toolbar-menu {
@@ -36,10 +25,10 @@
 }
 
 .fav-basket-menu {
-  position: relative;
+  position: fixed;
   z-index: 3;
-  display: flex;
-  align-items: center;
+  right: 1.25rem;
+  bottom: 1.25rem;
 }
 
 .fav-basket-menu header {
@@ -66,25 +55,40 @@
   background-color: transparent !important;
 }
 
-.basket-btn {
+.ui.button.basket-btn.full-basket {
+  animation: count-pulse 2s;
+  animation-iteration-count: 10;
+
+  .icon {
+    margin-right: 7px !important;
+  }
+}
+
+.ui.button.basket-btn {
   position: relative;
+  width: 50px;
+  height: 50px;
   padding: 0 !important;
-  margin: 0 !important;
-  background-color: transparent !important;
+  background-color: @blue-3;
+  border-radius: 50%;
+
+  .icon {
+    margin: 0 !important;
+    color: @white;
+  }
+
+  &:hover {
+    background-color: @blue-3;
+  }
 
   .basket-count {
     position: absolute;
-    top: 10px;
-    right: -6px;
+    top: 21px;
+    right: 2px;
     display: block;
     width: 18px;
     height: 18px;
     margin-bottom: 0px;
-    animation: count-pulse 2s;
-    animation-iteration-count: 10;
-    background: #0099bb;
-    border-radius: 50%;
-    box-shadow: 0 0 0 0 rgb(52 172 224);
     color: @white;
     font-size: 10px;
 
@@ -105,7 +109,7 @@
     box-shadow: 0 0 0 10px rgba(52, 172, 224, 0);
   }
 
-  100% {
+  130% {
     box-shadow: 0 0 0 0 rgba(52, 172, 224, 0);
   }
 }
@@ -113,10 +117,11 @@
 .fav-menu {
   position: absolute;
   z-index: 3;
-  top: 14px;
-  right: 15px;
+  // top: 14px;
+  right: 75px;
+  bottom: 0;
   display: block;
-  width: 320px;
+  width: 380px;
   height: auto;
   background-color: @white;
   background-color: @white;
@@ -261,12 +266,12 @@ ul.boards-list {
   margin-left: 5px;
 }
 
-.fav-board-save {
+.ui.button.fav-board-save {
   display: block !important;
   padding: 10px !important;
   margin: 1em 0 !important;
   margin-bottom: 0 !important;
-  background-color: @blue !important;
+  background-color: @primaryColor !important;
   color: @white !important;
 }
 

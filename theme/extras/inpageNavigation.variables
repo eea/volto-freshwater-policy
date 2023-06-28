@@ -1,0 +1,7 @@
+ /*******************************
+        Inpage Navigation
+*******************************/
+
+
+@navBottom            : 5.25rem;
+@navRight             : @largeGap;

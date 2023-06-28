@@ -81,9 +81,9 @@ const BasketPopup = (props) => {
 
   return (
     <div className="fav-menu pastanaga-menu">
-      <header>
+      {/* <header>
         <h2>Boards basket</h2>
-      </header>
+      </header> */}
       <div className="fav-menu-content">
         <div className="fav-boards-list">
           <div className="basket-menu-title">Selected items: </div>
@@ -177,30 +177,27 @@ const BasketPopup = (props) => {
         <div className="fav-group-title">
           <div className="basket-menu-title">Create a new board:</div>
 
-          <Grid>
+          {/* <Grid>
             <Grid.Row>
               <Grid.Column width={3}>
-                <label htmlFor="field-title">Board Name</label>
+                <label htmlFor="field-title">Name</label>
               </Grid.Column>
 
-              <Grid.Column width={9}>
-                <div className="ui input">
-                  <Input
-                    id="field-title"
-                    name="title"
-                    type="text"
-                    value={boardTitle}
-                    onChange={(e) => setBoardTitle(e.target.value)}
-                  />
-                </div>
-              </Grid.Column>
+              <Grid.Column width={9}></Grid.Column>
             </Grid.Row>
-          </Grid>
+          </Grid> */}
+
+          <Input
+            id="field-title"
+            name="title"
+            type="text"
+            value={boardTitle}
+            onChange={(e) => setBoardTitle(e.target.value)}
+          />
 
           {boardCreated && <p className="board-created-info">Board created.</p>}
 
           <Button
-            primary
             size="mini"
             className="fav-board-save"
             disabled={basket.items.length === 0}
