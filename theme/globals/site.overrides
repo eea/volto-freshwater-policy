@@ -1,0 +1,7 @@
+.grid .nine.wide.content-body {
+  .full-width {
+    @media only screen and (min-width: @largestMobileScreen) {
+      left: 67% !important;
+    }
+  }
+}

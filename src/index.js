@@ -29,6 +29,8 @@ import customBlockTemplates from './components/Blocks/CustomBlockTemplates/custo
 import freshwaterLogo from '@eeacms/volto-freshwater-policy/../theme/assets/images/Header/freshwater_logo.svg';
 import freshwaterWhiteLogo from '@eeacms/volto-freshwater-policy/../theme/assets/images/Header/freshwater_logo_white.svg';
 
+import './slate-styles.less';
+
 const applyConfig = (config) => {
   // Multi-lingual
   config.settings.isMultilingual = false;
@@ -169,6 +171,28 @@ const applyConfig = (config) => {
     config = installExpressMiddleware(config);
   }
 
+  // Slate styles
+  config.settings.slate.styleMenu = config.settings.slate.styleMenu || {};
+  config.settings.slate.styleMenu.inlineStyles = [
+    ...(config.settings.slate.styleMenu?.inlineStyles || []),
+    { cssClass: 'blue-text', label: 'Blue text' },
+    { cssClass: 'blue-chart-text', label: 'Blue plot-chart text' },
+    { cssClass: 'green-chart-text', label: 'Green plot-chart text' },
+    { cssClass: 'yellow-chart-text', label: 'Yellow plot-chart text' },
+    { cssClass: 'orange-chart-text', label: 'Orange plot-chart text' },
+    { cssClass: 'blue-circle text-circle', label: 'Blue circle' },
+    { cssClass: 'green-circle text-circle', label: 'Green circle' },
+    { cssClass: 'orange-circle text-circle', label: 'Orange circle' },
+    { cssClass: 'yellow-circle text-circle', label: 'Yellow circle' },
+    { cssClass: 'grey-circle text-circle', label: 'Grey circle' },
+    { cssClass: 'grey-text', label: 'Grey text' },
+    { cssClass: 'black-text', label: 'Black text' },
+  ];
+
+  // enable plotly
+  if (config.blocks.blocksConfig.plotly_chart)
+    config.blocks.blocksConfig.plotly_chart.restricted = false;
+
   const final = [
     installEmbedContentBlock,
     installDashboardTabsBlock,
@@ -182,6 +206,7 @@ const applyConfig = (config) => {
     installCaseStudyExplorer,
   ].reduce((acc, apply) => apply(acc), config);
 
+  // console.log('final', final);
   return final;
 };
 
