@@ -1,7 +1,15 @@
+.ui.button.primary {
+  background-color: @primaryColor !important;
+}
+
 .grid .nine.wide.content-body {
   .full-width {
     @media only screen and (min-width: @largestMobileScreen) {
       left: 67% !important;
     }
   }
+}
+
+.sidebar-container-enter-done {
+  z-index: 10000 !important;
 }
