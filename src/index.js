@@ -1,3 +1,4 @@
+import { defineMessages } from 'react-intl';
 import {
   DatabaseItemView,
   MetadataListingView,
@@ -29,7 +30,26 @@ import customBlockTemplates from './components/Blocks/CustomBlockTemplates/custo
 import freshwaterLogo from '@eeacms/volto-freshwater-policy/../theme/assets/images/Header/freshwater_logo.svg';
 import freshwaterWhiteLogo from '@eeacms/volto-freshwater-policy/../theme/assets/images/Header/freshwater_logo_white.svg';
 
+import linkSVG from '@plone/volto/icons/link.svg';
+import { makeInlineElementPlugin } from '@plone/volto-slate/elementEditor';
+import { LINK } from '@plone/volto-slate/constants';
+import { LinkElement } from '@plone/volto-slate/editor/plugins/AdvancedLink/render';
+import { withLink } from '@plone/volto-slate/editor/plugins/AdvancedLink/extensions';
+import { linkDeserializer } from '@plone/volto-slate/editor/plugins/AdvancedLink/deserialize';
+import LinkEditSchema from '@plone/volto-slate/editor/plugins/AdvancedLink/schema';
+
 import './slate-styles.less';
+
+const messages = defineMessages({
+  edit: {
+    id: 'Edit link',
+    defaultMessage: 'Edit link',
+  },
+  delete: {
+    id: 'Remove link',
+    defaultMessage: 'Remove link',
+  },
+});
 
 const applyConfig = (config) => {
   // Multi-lingual
@@ -199,6 +219,33 @@ const applyConfig = (config) => {
     { cssClass: 'grey-circle text-circle', label: 'Grey circle' },
     { cssClass: 'black-text', label: 'Black text' },
   ];
+
+  // Slate advanced link config
+  const { slate } = config.settings;
+
+  slate.toolbarButtons = [...(slate.toolbarButtons || []), LINK];
+  slate.expandedToolbarButtons = [
+    ...(slate.expandedToolbarButtons || []),
+    LINK,
+  ];
+
+  slate.htmlTagsToSlate.A = linkDeserializer;
+
+  const opts = {
+    title: 'Link',
+    pluginId: LINK,
+    elementType: LINK,
+    element: LinkElement,
+    isInlineElement: true,
+    editSchema: LinkEditSchema,
+    extensions: [withLink],
+    hasValue: (formData) => !!formData.link,
+    toolbarButtonIcon: linkSVG,
+    messages,
+  };
+
+  const [installLinkEditor] = makeInlineElementPlugin(opts);
+  config = installLinkEditor(config);
 
   // enable plotly
   if (config.blocks.blocksConfig.plotly_chart)
