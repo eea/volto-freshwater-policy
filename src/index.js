@@ -105,6 +105,18 @@ const applyConfig = (config) => {
     ],
   };
 
+  // Custom block styles
+  config.settings.pluggableStyles = [
+    ...(config.settings.pluggableStyles || []),
+    {
+      id: 'uiContainer',
+      title: 'Container',
+      viewComponent: (props) => {
+        return <div className="ui container">{props.children}</div>;
+      },
+    },
+  ];
+
   // API expanders
   config.settings.apiExpanders = [
     ...config.settings.apiExpanders,
@@ -185,7 +197,6 @@ const applyConfig = (config) => {
     { cssClass: 'orange-circle text-circle', label: 'Orange circle' },
     { cssClass: 'yellow-circle text-circle', label: 'Yellow circle' },
     { cssClass: 'grey-circle text-circle', label: 'Grey circle' },
-    { cssClass: 'grey-text', label: 'Grey text' },
     { cssClass: 'black-text', label: 'Black text' },
   ];
 
