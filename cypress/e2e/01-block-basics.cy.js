@@ -5,6 +5,7 @@ describe('Blocks Tests', () => {
   afterEach(slateAfterEach);
 
   it('Add Block: Empty', () => {
+    console.log('hello');
     // Change page title
     cy.clearSlateTitle();
     cy.getSlateTitle().type('My Add-on Page');
