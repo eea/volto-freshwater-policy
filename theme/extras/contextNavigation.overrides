@@ -1,0 +1,5 @@
+.context-navigation {
+  .item a img {
+    display: none !important;
+  }
+}

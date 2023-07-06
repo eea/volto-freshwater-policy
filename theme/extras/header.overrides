@@ -1,0 +1,41 @@
+/*******************************
+            Header
+*******************************/
+
+/*----------------------------------------------------------------------------
+   HEADER MAIN BAR
+----------------------------------------------------------------------------*/
+
+.eea.header {
+  .main.bar {
+    @media only screen and (min-width: 992px) {
+      .ui.grid > .row > [class*='four wide computer'].column,
+      .ui.grid > .column.row > [class*='four wide computer'].column,
+      .ui.grid > [class*='four wide computer'].column,
+      .ui.column.grid > [class*='four wide computer'].column {
+        width: 25% !important;
+
+        > div {
+          display: flex;
+          height: 100%;
+        }
+      }
+    }
+    @media only screen and (min-width: 992px) {
+      .ui.grid > .row > [class*='eight wide computer'].column,
+      .ui.grid > .column.row > [class*='eight wide computer'].column,
+      .ui.grid > [class*='eight wide computer'].column,
+      .ui.column.grid > [class*='eight wide computer'].column {
+        width: 75% !important;
+      }
+    }
+
+    .logo {
+      align-self: center;
+    }
+
+    .ui.container .ui.text.menu {
+      width: 100% !important;
+    }
+  }
+}

@@ -1,0 +1,11 @@
+/*-----------------------
+   HEADER MAIN SECTION
+-----------------------*/
+
+/* Logo */
+@computerLogoMaxWidth: 252px;
+@computerLogoMarginTop: 0;
+
+
+/* Main menu */
+@megaMenuBackgroundColor: @primaryColor;
