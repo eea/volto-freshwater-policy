@@ -93,6 +93,9 @@ const applyConfig = (config) => {
     },
   };
 
+  config.settings.eea.footerOpts.contacts = [];
+  config.settings.eea.footerOpts.social = [];
+
   // Content type views
   config.views.contentTypesViews = {
     ...config.views.contentTypesViews,
