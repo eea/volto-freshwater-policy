@@ -37,6 +37,7 @@ import { LinkElement } from '@plone/volto-slate/editor/plugins/AdvancedLink/rend
 import { withLink } from '@plone/volto-slate/editor/plugins/AdvancedLink/extensions';
 import { linkDeserializer } from '@plone/volto-slate/editor/plugins/AdvancedLink/deserialize';
 import LinkEditSchema from '@plone/volto-slate/editor/plugins/AdvancedLink/schema';
+import ecLogo from '@eeacms/volto-freshwater-policy/../theme/assets/images/Header/logo-ec.svg';
 
 import './slate-styles.less';
 
@@ -77,6 +78,19 @@ const applyConfig = (config) => {
       },
     ],
     logoTargetUrl: '/',
+  };
+
+  config.settings.eea.footerOpts.logosHeader = 'Managed by';
+  config.settings.eea.footerOpts.managedBy[1] = {
+    url: 'https://commission.europa.eu',
+    src: ecLogo,
+    alt: 'European commission Logo',
+    className: 'commission logo',
+    columnSize: {
+      mobile: 6,
+      tablet: 12,
+      computer: 4,
+    },
   };
 
   // Content type views
