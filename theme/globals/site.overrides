@@ -13,3 +13,14 @@
 .sidebar-container-enter-done {
   z-index: 10000 !important;
 }
+
+.blue-text {
+  color: @primaryColor;
+}
+
+.grey-text {
+  color: @grey;
+  font-size: 12px !important;
+  font-weight: 400;
+  text-transform: uppercase;
+}
