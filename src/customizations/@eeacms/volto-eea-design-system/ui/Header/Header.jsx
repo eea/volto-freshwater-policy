@@ -13,11 +13,9 @@ import closeIcon from '@eeacms/volto-eea-design-system/../theme/themes/eea/asset
 import searchIcon from '@eeacms/volto-eea-design-system/../theme/themes/eea/assets/images/Header/search-line.svg';
 import burgerIcon from '@eeacms/volto-eea-design-system/../theme/themes/eea/assets/images/Header/menu-line.svg';
 
-import HeaderSearchPopUp from './HeaderSearchPopUp';
-import HeaderMenuPopUp from './HeaderMenuPopUp';
+import HeaderSearchPopUp from '@eeacms/volto-freshwater-policy/customizations/@eeacms/volto-eea-design-system/ui/Header/HeaderSearchPopUp';
+import HeaderMenuPopUp from '@eeacms/volto-freshwater-policy/customizations/@eeacms/volto-eea-design-system/ui/Header/HeaderMenuPopUp';
 import PropTypes from 'prop-types';
-
-import { isInternalURL } from '@plone/volto/helpers';
 
 Header.propTypes = {
   transparency: PropTypes.bool,
@@ -106,29 +104,6 @@ const TopDropdownMenu = ({
   );
 };
 
-// disable sticky until it's more stable
-// const useScrollingUp = () => {
-//   let prevScroll;
-//
-//   if (process.browser) {
-//     prevScroll = window.pageYOffset;
-//   }
-//   const [scrollingUp, setScrollingUp] = React.useState(false);
-//   const handleScroll = () => {
-//     const currScroll = window.pageYOffset;
-//     const isScrolled = prevScroll > currScroll;
-//     setScrollingUp(isScrolled);
-//     prevScroll = currScroll;
-//   };
-//   React.useEffect(() => {
-//     window.addEventListener('scroll', handleScroll, { passive: true });
-//     return () => {
-//       window.removeEventListener('scroll', handleScroll, { passive: true });
-//     };
-//   });
-//   return scrollingUp;
-// };
-
 const Main = ({
   logo,
   menuItems,
@@ -139,7 +114,6 @@ const Main = ({
   transparency,
   inverted,
   hideSearch,
-  isMultilingual,
 }) => {
   const history = useHistory();
   const [activeItem, setActiveItem] = React.useState(pathname);
@@ -147,24 +121,16 @@ const Main = ({
   const [searchIsActive, setSearchIsActive] = React.useState(false);
   const [burger, setBurger] = React.useState('');
   const searchInputRef = React.useRef(null);
-  const [isClient, setIsClient] = React.useState();
-
-  React.useEffect(() => setIsClient(true), []);
 
   React.useEffect(() => {
     setMenuIsActive(false);
     setSearchIsActive(false);
     setBurger('');
     // remove active menu when we have no pathname which means we hit logo to go home
-    //remove the lang route in order to check if empty
-    //setActiveItem as pathname when pathname changed
-    if (
-      !pathname ||
-      (isMultilingual === true && !pathname?.split('/')?.slice(2)?.join('/'))
-    ) {
+    if (!pathname) {
       setActiveItem('');
-    } else setActiveItem(pathname);
-  }, [isMultilingual, pathname]);
+    }
+  }, [pathname]);
 
   React.useEffect(() => {
     if (searchIsActive) {
@@ -215,11 +181,7 @@ const Main = ({
     if (item.items.length) {
       setMenuIsActive(true);
     } else {
-      if (isInternalURL(item.url)) {
-        history.push(item.url);
-      } else if (isClient) {
-        window.location.replace(item.url);
-      }
+      history.push(item.url);
     }
   };
 
@@ -282,7 +244,7 @@ const Main = ({
           <Grid.Column mobile={4} tablet={4} computer={8}>
             <div className={inverted ? 'main-menu inverted' : 'main-menu'}>
               {menuItems && (
-                <ul
+                <div
                   className="ui text eea-main-menu tablet or lower hidden menu"
                   ref={desktopMenuRef}
                   id={'navigation'}
@@ -291,7 +253,6 @@ const Main = ({
                     <Menu.Item
                       name={item['@id'] || item.url}
                       key={item['@id'] || item.url}
-                      as={'li'}
                       active={
                         activeItem.indexOf(item['@id']) !== -1 ||
                         activeItem.indexOf(item.url) !== -1
@@ -302,7 +263,7 @@ const Main = ({
                       })}
                     </Menu.Item>
                   ))}
-                </ul>
+                </div>
               )}
               {!hideSearch && (
                 <button

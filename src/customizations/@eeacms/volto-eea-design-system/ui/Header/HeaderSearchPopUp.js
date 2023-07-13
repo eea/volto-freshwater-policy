@@ -23,14 +23,13 @@ function HeaderSearchPopUp({
   const headerSearchViews = headerSearchBox || [];
   const defaultView = headerSearchViews.filter((v) => v.isDefault);
   const localView = headerSearchViews.filter((v) =>
-    location.pathname.match(v.matchpath ? v.matchpath : v.path),
+    location.pathname.includes(v.path),
   );
   const activeView = localView.length > 0 ? localView[0] : defaultView[0];
 
   const {
     path = '',
     buttonTitle,
-    buttonUrl,
     description,
     placeholder = 'Search',
     searchSuggestions,
@@ -116,7 +115,7 @@ function HeaderSearchPopUp({
             <Container>
               <div>{description}</div>
               <a
-                href={buttonUrl || defaultView[0].path}
+                href={defaultView[0].path}
                 className="ui button white inverted"
                 title="Advanced search"
               >
