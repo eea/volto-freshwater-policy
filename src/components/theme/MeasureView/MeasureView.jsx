@@ -4,7 +4,7 @@ import { BodyClass } from '@plone/volto/helpers';
 import {
   ItemMetadataSnippet,
   CaseStudyExplorer,
-} from '@eeacms/volto-freshwater/components';
+} from '@eeacms/volto-freshwater-policy/components';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import './style.less';
 
