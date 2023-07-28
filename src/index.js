@@ -283,7 +283,6 @@ const applyConfig = (config) => {
     installCaseStudyExplorer,
   ].reduce((acc, apply) => apply(acc), config);
 
-  // console.log('final', final);
   return final;
 };
 
