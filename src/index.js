@@ -58,6 +58,8 @@ const applyConfig = (config) => {
   config.settings.defaultLanguage =
     config.settings.eea?.defaultLanguage || 'en';
 
+  config.settings.useQuantaToolbar = false;
+
   // EEA customizations
   config.settings.eea = {
     ...(config.settings.eea || {}),
@@ -281,7 +283,6 @@ const applyConfig = (config) => {
     installCaseStudyExplorer,
   ].reduce((acc, apply) => apply(acc), config);
 
-  // console.log('final', final);
   return final;
 };
 

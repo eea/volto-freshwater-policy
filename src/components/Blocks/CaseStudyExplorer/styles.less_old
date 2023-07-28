@@ -93,12 +93,9 @@
 
     &.active {
       button span {
-        //   box-shadow: 0 5px 0 #ffffff, 0 0 4px rgba(0, 0, 0, 0.25);
+        // box-shadow: 0 0 4px #aaa !important;
+        box-shadow: 0 5px 0 #ffffff, 0 0 4px rgba(0, 0, 0, 0.25);
         color: #0099bb;
-      }
-
-      button {
-        box-shadow: 0 5px 0 #ffffff, 0 0 4px rgba(0, 0, 0, 0.25) !important;
       }
 
       .filter-inputs-wrapper {
@@ -111,25 +108,15 @@
     }
 
     .ui.basic.button.facet-btn {
-      position: relative !important;
-      z-index: 99999;
-      display: inline-block;
-      overflow: hidden;
-      padding: 0.5em 1em;
       margin: 0 0.25em 0.25em 0;
-      background-color: white !important;
-      color: #3d5265 !important;
 
       &:active {
         background: white !important;
       }
 
-      // &:hover,
-      // &:focus {
-      //   color: rgba(0, 0, 0, 0.6) !important;
-      // }
-      &:hover {
-        box-shadow: none;
+      &:hover,
+      &:focus {
+        color: rgba(0, 0, 0, 0.6) !important;
       }
 
       span {
@@ -147,7 +134,7 @@
       z-index: 1;
       display: none;
       padding: 1em;
-      margin-top: -3px;
+      margin-top: -6px;
       background-color: #fff;
       box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.25);
       color: #4f4f4f;
