@@ -39,6 +39,7 @@ const FavButton = (props) => {
         </Button>
       ) : (
         <Button
+          basic
           className="add-fav-btn"
           title="Save to Board"
           onClick={() => {
