@@ -19,7 +19,6 @@ import installCountriesListingBlock from './components/Blocks/CountriesListingBl
 import installEmbedContentBlock from './components/Blocks/Content';
 import installDashboardTabsBlock from './components/Blocks/DashboardTabsBlock';
 import installCustomCardsBlock from './components/Blocks/CustomCardsBlock';
-import installSearchBlock from './components/Blocks/SearchBlock';
 import installAppExtras from './components/theme/AppExtras';
 import installSlatePopup from './components/Blocks/SlatePopup';
 import installCaseStudyExplorer from './components/Blocks/CaseStudyExplorer';
@@ -273,7 +272,6 @@ const applyConfig = (config) => {
     installEmbedContentBlock,
     installDashboardTabsBlock,
     installCustomCardsBlock,
-    installSearchBlock,
     installCountryHeaderDataBlock,
     installCountriesListingBlock,
     installAppExtras,
