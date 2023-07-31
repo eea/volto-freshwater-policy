@@ -19,10 +19,10 @@
     display: block;
     width: 100% !important;
     max-width: 1525px !important;
-    // padding-right: 40px !important;
-    // padding-left: 40px !important;
     margin-right: auto !important;
     margin-left: auto !important;
+    background-color: #F2F2F2;
+    padding: 30px 0;
 
     .image-flexbox {
       display: flex;
@@ -35,7 +35,7 @@
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
-      padding: 0 1em 1em 0em;
+      padding-right: 1em;
     }
 
     .image-title,
@@ -48,11 +48,20 @@
   .field--label-inline {
     .field__label {
       display: inline-block;
-      width: 210px;
-      padding: 5px 10px;
+      padding: 5px 8px;
       margin-bottom: 2px;
-      background-color: #d6dce5;
     }
+  }
+
+  .header_info {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+  }
+
+  .header_source {
+    order: 1;
+    font-size: smaller;
   }
 
   .field--label-above {
@@ -64,7 +73,6 @@
   .field--label-inline,
   .field--label-above {
     .field__label {
-      margin-right: 5px;
       color: #004050;
       font-weight: bold;
     }
@@ -85,7 +93,8 @@
       }
 
       td {
-        padding-top: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
       }
 
       border-collapse: collapse;
@@ -105,35 +114,29 @@
         margin-right: 0.5em;
         content: '\2022'; /* Bullet point character */
       }
-
-      .field--name-field-level {
-        width: 100px;
-      }
-
-      .high {
-        background-color: #70ad47;
-      }
-
-      .medium {
-        background-color: #a9e18e;
-      }
-
-      .low {
-        background-color: #c5e0b4;
-      }
-
-      .field--name-field-level {
-        font-size: 0;
-      }
-
-      .show-level {
-        padding-left: 7px;
-        color: #375623;
-        font-size: initial;
-        font-weight: 500;
-        text-transform: uppercase;
-      }
     }
+  }
+
+  .field--name-field-level {
+    width: 100px;
+    padding-left: 7px;
+    color: #375623;
+    font-size: initial;
+    font-weight: 500;
+    text-transform: uppercase;
+    padding: 10px;
+  }
+
+  .high {
+    background-color: #70ad47;
+  }
+
+  .medium {
+    background-color: #a9e18e;
+  }
+
+  .low {
+    background-color: #c5e0b4;
   }
 
   // Copy from DatabseItemView
@@ -150,7 +153,6 @@
 
     h1 {
       padding-bottom: 10px;
-      border-bottom: 1px solid #e7e7e7;
       margin-top: 0 !important;
       margin-bottom: 10px;
     }
