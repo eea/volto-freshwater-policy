@@ -13,13 +13,13 @@ const TableauShare = (props) => {
   const tableau_url = props.data.url;
 
   const embedContent = () => {
-    var pathArray = tableau_url.split('/');
-    var t_siteRoot = '/' + pathArray[3] + '/' + pathArray[4];
-    var t_name = pathArray[6] + '/' + pathArray[7].split('?')[0];
-    var t_filter = pathArray[7].split('?')[1];
+    let pathArray = tableau_url.split('/');
+    let t_siteRoot = '/' + pathArray[3] + '/' + pathArray[4];
+    let t_name = pathArray[6] + '/' + pathArray[7].split('?')[0];
+    let t_filter = pathArray[7].split('?')[1];
     t_filter = t_filter.split('&:')[0];
 
-    var embed =
+    const embed =
       "<script type='text/javascript'" +
       "src='https://tableau.discomap.eea.europa.eu/javascripts/api/viz_v1.js'></script>" +
       "<div class='tableauPlaceholder' style='width: 100%; height: 850px;'>" +
