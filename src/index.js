@@ -14,7 +14,6 @@ import { basket, boards } from './reducers';
 import CopyrightWidget from './components/Widgets/CopyrightWidget';
 import TokenWidget from '@plone/volto/components/manage/Widgets/TokenWidget';
 
-import installArcgisBlock from './components/Blocks/ArcgisBlock';
 import installCountryHeaderDataBlock from './components/Blocks/CountryHeaderDataBlock';
 import installCountriesListingBlock from './components/Blocks/CountriesListingBlock';
 import installEmbedContentBlock from './components/Blocks/Content';
@@ -277,7 +276,6 @@ const applyConfig = (config) => {
     installSearchBlock,
     installCountryHeaderDataBlock,
     installCountriesListingBlock,
-    installArcgisBlock,
     installAppExtras,
     installSlatePopup,
     installCaseStudyExplorer,
