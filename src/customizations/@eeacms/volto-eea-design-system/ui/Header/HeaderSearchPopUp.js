@@ -1,8 +1,10 @@
 import React, { useEffect } from 'react';
 import { Container, Input, List } from 'semantic-ui-react';
 import { withRouter, Link } from 'react-router-dom';
-import { useClickOutside } from '@eeacms/volto-eea-design-system/helpers';
-import { handleEnterKeyPress } from '@eeacms/volto-eea-design-system/helpers';
+import {
+  useClickOutside,
+  handleEnterKeyPress,
+} from '@eeacms/volto-eea-design-system/helpers';
 
 const getRandomItems = (arr, max) => {
   return (
