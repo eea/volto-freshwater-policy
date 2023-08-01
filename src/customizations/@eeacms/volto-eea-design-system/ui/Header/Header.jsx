@@ -286,7 +286,7 @@ const Main = ({
                 onClick={mobileBurgerOnClick}
                 ref={mobileMenuBurgerRef}
               >
-                <Image
+                <LazyLoadImage
                   src={burger === 'open' ? `${closeIcon}` : `${burgerIcon}`}
                   alt="menu icon open/close"
                 />
