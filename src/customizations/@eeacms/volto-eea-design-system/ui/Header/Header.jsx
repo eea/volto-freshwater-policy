@@ -6,7 +6,7 @@
 import React from 'react'; // , { Component }
 import { useHistory } from 'react-router-dom';
 import cx from 'classnames';
-import { Container, Image, Menu, Grid, Dropdown } from 'semantic-ui-react'; // Dropdown,
+import { Container, Menu, Grid, Dropdown } from 'semantic-ui-react'; // Dropdown,
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import closeIcon from '@eeacms/volto-eea-design-system/../theme/themes/eea/assets/images/Header/close-line.svg';
