@@ -1,10 +1,9 @@
 import React from 'react';
 import { compose } from 'redux';
-import { connect } from 'react-redux';
+import { connect, useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Item, Grid } from 'semantic-ui-react';
 import { flattenToAppURL, getBaseUrl } from '@plone/volto/helpers';
-import { useSelector, useDispatch } from 'react-redux';
 import { searchContent } from '@plone/volto/actions';
 import config from '@plone/volto/registry';
 import './style.less';

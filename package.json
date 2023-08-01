@@ -1,6 +1,6 @@
 {
   "name": "@eeacms/volto-freshwater-policy",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "@eeacms/volto-freshwater-policy: Volto add-on",
   "main": "src/index.js",
   "author": "European Environment Agency: IDM2 A-Team",
@@ -22,13 +22,11 @@
   "addons": [
     "@eeacms/volto-datablocks",
     "@eeacms/volto-block-style",
-    "@eeacms/volto-arcgis-block",
     "@eeacms/volto-openlayers-map",
     "@eeacms/volto-eea-design-system",
     "@eeacms/volto-eea-website-theme"
   ],
   "dependencies": {
-    "@eeacms/volto-arcgis-block": "0.1.16",
     "@eeacms/volto-block-style": "^3.3.0",
     "@eeacms/volto-datablocks": "*",
     "@eeacms/volto-eea-design-system": "*",

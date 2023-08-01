@@ -45,6 +45,14 @@
 .item-metadata-modal {
   margin: 3.5rem auto !important;
 
+  .header a {
+    color: #004050;
+
+    &:hover {
+      color: #0099bb;
+    }
+  }
+
   .header {
     border-bottom: 1px solid @lightGrey !important;
 
@@ -80,16 +88,6 @@
   line-height: 18px;
 }
 
-.item-metadata-modal {
-  .header a {
-    color: #004050;
-
-    &:hover {
-      color: #0099bb;
-    }
-  }
-}
-
 .listing-body {
   position: relative;
   margin-top: 1.7em;
@@ -98,6 +96,7 @@
     position: absolute;
     top: 4px;
     left: -23px;
+    padding: 0;
     margin: 0;
     box-shadow: none !important;
 

@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Transition } from 'semantic-ui-react';
-import { Container, Grid, List, Icon, Accordion } from 'semantic-ui-react';
+import {
+  Transition,
+  Container,
+  Grid,
+  List,
+  Icon,
+  Accordion,
+} from 'semantic-ui-react';
 
 import { cloneDeep } from 'lodash';
 

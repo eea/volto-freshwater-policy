@@ -1,8 +1,7 @@
 import React from 'react';
 import { Card, Message } from 'semantic-ui-react';
 import config from '@plone/volto/registry';
-import { Icon } from '@plone/volto/components';
-import { UniversalLink } from '@plone/volto/components';
+import { Icon, UniversalLink } from '@plone/volto/components';
 import { BodyClass } from '@plone/volto/helpers';
 import { serializeNodes } from '@plone/volto-slate/editor/render';
 import { CommonCardsSchemaExtender } from '../CommonAssets/schema';
@@ -131,7 +130,7 @@ const ColoredCards = (props) => {
               >
                 {(cards || []).map((card, index) => (
                   <CardItem
-                    key={index}
+                    key={`card-${index}`}
                     {...card}
                     background_color={data.background_color}
                     border_color={data.border_color}
