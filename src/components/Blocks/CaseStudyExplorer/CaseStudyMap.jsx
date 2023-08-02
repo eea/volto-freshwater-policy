@@ -106,21 +106,9 @@ function clusterStyle(feature) {
   }
 
   if (size === 1) {
-    let color = feature.values_.features[0].values_['color'];
-    // let imgUrl = '';
+    // let color = feature.values_.features[0].values_['color'];
+    let color = '#50B0A4'; // '#0083E0'
 
-    // if (feature.values_.features[0].values_['nwrm_type'] === 'Light') {
-    //   color = '#50B0A4'; // green-3 eea color palette
-    //   // imgUrl = iconLight;
-    // } else {
-    //   // imgUrl = iconDepth;
-    //   color = '#0083E0'; // blue-3 eea color palette
-    // }
-
-    // return new ol.style.Style({
-    //   image: new ol.style.Icon({
-    //     src: imgUrl,
-    //   }),
     return new ol.style.Style({
       image: new ol.style.Circle({
         radius: 6,
