@@ -198,9 +198,7 @@ export function ActiveFilters(props) {
                         removeFilter('nwrms_implemented', filterCode);
                       }}
                       role="button"
-                      // aria-checked="false"
                       className="close icon"
-                      // filter-code={filterCode}
                     ></i>
                   </div>
                 );
@@ -212,12 +210,23 @@ export function ActiveFilters(props) {
           {activeFilters.sectors.length > 0 ? (
             <div className="filter-wrapper">
               <div className="filter-label">Sector:</div>
-              {activeFilters.sectors.map((filter) => (
-                <div className="ui basic label filter-value">
-                  <span>{filter}</span>
-                  <i className="close icon"></i>
-                </div>
-              ))}
+              {activeFilters.sectors.map((filterCode) => {
+                const filterLabel = filters.sectors[filterCode];
+                return (
+                  <div className="ui basic label filter-value">
+                    <span>{filterLabel}</span>
+                    <i
+                      tabIndex="0"
+                      onKeyPress={() => {}}
+                      onClick={() => {
+                        removeFilter('sectors', filterCode);
+                      }}
+                      role="button"
+                      className="close icon"
+                    ></i>
+                  </div>
+                );
+              })}
             </div>
           ) : (
             ''
