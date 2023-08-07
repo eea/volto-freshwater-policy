@@ -45,10 +45,37 @@
   .table-responsive {
     table {
       border-collapse: collapse;
+      margin-top: 10px;
+
+      tr:first-child td {
+        border-top: none;
+      }
+      
+      tr:last-child td {
+        border-bottom: none;
+      }
+      
+      tr td:first-child {
+        border-left: none;
+      }
+      
+      tr td:last-child {
+        border-right: none;
+      }
+
+      th {
+        color: #fff;
+        background-color: #2471c0;
+        padding: 10px;
+      }
 
       th,
       td {
-        border: 1px solid #333;
+        border: 1px solid #2471c0;
+
+        .field__item {
+          padding: 10px;
+        }
       }
     }
   }
@@ -63,11 +90,9 @@
   }
 
   .metadata-header {
-    margin-top: 2em;
 
     h1 {
       padding-bottom: 10px;
-      border-bottom: 1px solid #e7e7e7;
       margin-top: 0 !important;
       margin-bottom: 10px;
     }
@@ -123,6 +148,44 @@
       position: relative;
       top: 5px;
       margin-right: 8px;
+    }
+  }
+
+  .page-header {
+    background-color: #f2f2f2;
+
+    .header-info {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .second-column {
+      font-size: smaller;
+    }
+    }
+
+    .header-title-info {
+      padding: 60px 0 20px 0;
+    }
+  }
+
+  .body {
+    .field--label-inline.field-with-margin {
+      .field__label {
+        margin-top: 30px;
+      }
+    }
+  
+    .field--label-above.field-with-margin {
+      .field__label {
+        display: block;
+        margin-top: 30px;
+      }
+    }
+
+    .field__label a {
+      color: #004050;
     }
   }
 }
