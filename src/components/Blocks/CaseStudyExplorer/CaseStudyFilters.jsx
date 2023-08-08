@@ -129,8 +129,6 @@ export function CaseStudyFilters(props) {
 
 export function ActiveFilters(props) {
   const { filters, activeFilters, setActiveFilters } = props;
-  console.log('filters', filters);
-  console.log('activeFilters', activeFilters);
   const hasActiveFilters = Object.entries(activeFilters).some(
     ([filterName, filterList]) => {
       if (filterList.length > 0) {
