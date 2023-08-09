@@ -241,6 +241,9 @@ const applyConfig = (config) => {
   config.settings.slate.styleMenu = config.settings.slate.styleMenu || {};
   config.settings.slate.styleMenu.inlineStyles = [
     ...(config.settings.slate.styleMenu?.inlineStyles || []),
+    { cssClass: 'primary-big-text', label: 'Big text' },
+    { cssClass: 'medium-text', label: 'Medium text' },
+    { cssClass: 'small-text', label: 'Small text' },
     { cssClass: 'blue-text', label: 'Blue text' },
     { cssClass: 'blue-chart-text', label: 'Blue plot-chart text' },
     { cssClass: 'green-chart-text', label: 'Green plot-chart text' },
