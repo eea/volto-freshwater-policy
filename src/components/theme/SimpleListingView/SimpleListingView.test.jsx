@@ -1,5 +1,7 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
+import { createMemoryHistory } from 'history';
+import { Router } from 'react-router-dom';
 import '@testing-library/jest-dom/extend-expect';
 
 import SimpleListingView from './SimpleListingView';
@@ -31,9 +33,11 @@ describe('SimpleListingView', () => {
         '@type': 'File',
       },
     ];
-
+    const history = createMemoryHistory();
     const { container, getByText } = render(
-      <SimpleListingView items={mockContent} isEditMode={false} />,
+      <Router history={history}>
+        <SimpleListingView items={mockContent} isEditMode={false} />
+      </Router>,
     );
 
     expect(getByText('Item 2')).toBeInTheDocument();
@@ -44,5 +48,7 @@ describe('SimpleListingView', () => {
     });
 
     expect(container.querySelector('.simple-listing-item')).toBeInTheDocument();
+    const itemToOpenModal = container.querySelector('.simple-listing');
+    fireEvent.click(itemToOpenModal);
   });
 });

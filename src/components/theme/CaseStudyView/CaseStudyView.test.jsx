@@ -1,11 +1,12 @@
-import CaseStudyView from './CaseStudyView';
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
+
+import CaseStudyView from './CaseStudyView';
 
 describe('CaseStudy', () => {
   it('should match the snapshot', () => {
-    const { container } = render(
+    const { container, getByText } = render(
       <CaseStudyView
         content={{
           title: 'Case Study Test Title',
@@ -60,5 +61,10 @@ describe('CaseStudy', () => {
     expect(container.querySelector('.field--label-inline')).toBeInTheDocument();
     expect(container.querySelector('.field__label')).toBeInTheDocument();
     expect(container.querySelector('.accordion')).toBeInTheDocument();
+    const firstItem = getByText('Sources');
+    fireEvent.click(firstItem);
+    fireEvent.click(firstItem);
+    const secondItem = getByText('Performance');
+    fireEvent.click(secondItem);
   });
 });
