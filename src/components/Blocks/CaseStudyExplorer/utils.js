@@ -31,20 +31,20 @@ export function getFeatures(cases) {
 
 export function filterCases(cases, activeFilters, caseStudiesIds) {
   const data = cases.filter((_case) => {
-    let flag_type = false;
+    // let flag_type = false;
     let flag_implemented = false;
     let flag_sectors = false;
     let flag_case = caseStudiesIds
       ? caseStudiesIds.includes(_case.properties.url.split('/').pop())
       : true;
 
-    if (!activeFilters.nwrm_type.length) {
-      flag_type = true;
-    } else {
-      activeFilters.nwrm_type.forEach((filter) => {
-        if (_case.properties.nwrm_type === filter) flag_type = true;
-      });
-    }
+    // if (!activeFilters.nwrm_type.length) {
+    //   flag_type = true;
+    // } else {
+    //   activeFilters.nwrm_type.forEach((filter) => {
+    //     if (_case.properties.nwrm_type === filter) flag_type = true;
+    //   });
+    // }
 
     if (!activeFilters.nwrms_implemented.length) {
       flag_implemented = true;
@@ -70,7 +70,7 @@ export function filterCases(cases, activeFilters, caseStudiesIds) {
       });
     }
 
-    return flag_case && flag_type && flag_implemented && flag_sectors
+    return flag_case && flag_implemented && flag_sectors // && flag_type
       ? _case
       : false;
   });
@@ -79,15 +79,19 @@ export function filterCases(cases, activeFilters, caseStudiesIds) {
 }
 
 export function getFilters(cases) {
-  let _filters = { nwrm_type: {}, nwrms_implemented: {}, sectors: {} };
+  let _filters = {
+    // nwrm_type: {},
+    nwrms_implemented: {},
+    sectors: {},
+  };
 
   for (let key of Object.keys(cases)) {
     const _case = cases[key];
-    let typeName = _case.properties.nwrm_type;
+    // let typeName = _case.properties.nwrm_type;
 
-    if (!_filters.nwrm_type.hasOwnProperty(typeName)) {
-      _filters.nwrm_type[typeName] = typeName;
-    }
+    // if (!_filters.nwrm_type.hasOwnProperty(typeName)) {
+    //   _filters.nwrm_type[typeName] = typeName;
+    // }
 
     let nwrms_implemented = _case.properties.measures;
     nwrms_implemented.map((item) => {

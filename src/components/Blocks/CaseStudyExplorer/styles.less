@@ -85,6 +85,7 @@
 #cse-filter {
   display: flex;
   flex-direction: row;
+  margin-top: 1em;
   font-family: sans-serif;
   // gap: 3em;
 
@@ -115,7 +116,7 @@
       z-index: 99999;
       display: inline-block;
       overflow: hidden;
-      padding: 0.5em 1em;
+      padding: 0.5em 0em;
       margin: 0 0.25em 0.25em 0;
       background-color: white !important;
       color: #3d5265 !important;
@@ -210,5 +211,89 @@
     color: #fff;
     cursor: pointer;
     font-size: 14px;
+  }
+}
+
+.active-filter-list {
+  border: 1px solid #e6e7e8;
+  background-color: #f9f9f9 !important;
+
+  .filter-list-header {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+
+    h4 {
+      margin: 0;
+      color: #3d5265;
+    }
+  }
+
+  .filter-list-content {
+    padding: 1em 0 0;
+    background-color: transparent;
+
+    .filter {
+      display: flex;
+      flex-wrap: wrap;
+      font-size: 15px;
+
+      .filter-wrapper {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: baseline;
+        padding: 8px 15px;
+        margin-top: 10px;
+        margin-right: 11px;
+        background-color: #ebebeb;
+        gap: 1em;
+
+        .filter-label {
+          font-weight: 500;
+        }
+
+        .filter-value {
+          position: relative;
+          display: flex;
+          align-items: center;
+          padding: 0;
+          border: none;
+          margin: 0;
+          background-color: transparent;
+          font-size: 15px;
+
+          .close.icon {
+            position: relative;
+            width: 16px;
+            height: 16px;
+            padding: 3px;
+            border: 1px solid #007b6c !important;
+            border-radius: 2px;
+            color: #2e3e4c;
+            opacity: 1;
+
+            &:before,
+            &:after {
+              position: absolute;
+              top: 2px;
+              left: 7px;
+              width: 1px;
+              height: 9px;
+              background-color: #007b6c !important;
+              content: ' ';
+            }
+
+            &:before {
+              transform: rotate(45deg);
+            }
+
+            &:after {
+              transform: rotate(-45deg);
+            }
+          }
+        }
+      }
+    }
   }
 }

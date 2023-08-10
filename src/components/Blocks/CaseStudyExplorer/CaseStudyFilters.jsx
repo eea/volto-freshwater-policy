@@ -83,7 +83,7 @@ const CaseStudyFilter = (props) => {
   );
 };
 
-export default function CaseStudyFilters(props) {
+export function CaseStudyFilters(props) {
   const { filters, activeFilters, setActiveFilters } = props;
 
   React.useEffect(() => {
@@ -100,13 +100,13 @@ export default function CaseStudyFilters(props) {
 
   return (
     <>
-      <CaseStudyFilter
+      {/* <CaseStudyFilter
         filterTitle="Light or In-depth"
         filterName="nwrm_type"
         filters={filters}
         activeFilters={activeFilters}
         setActiveFilters={setActiveFilters}
-      />
+      /> */}
 
       <CaseStudyFilter
         filterTitle="NWRMs implemented"
@@ -124,5 +124,115 @@ export default function CaseStudyFilters(props) {
         setActiveFilters={setActiveFilters}
       />
     </>
+  );
+}
+
+export function ActiveFilters(props) {
+  const { filters, activeFilters, setActiveFilters } = props;
+  const hasActiveFilters = Object.entries(activeFilters).some(
+    ([filterName, filterList]) => {
+      if (filterList.length > 0) {
+        return true;
+      }
+      return false;
+    },
+  );
+
+  const clearFilters = () => {
+    const filterInputs = document.querySelectorAll(
+      '#cse-filter .filter-input input',
+    );
+    for (let i = 0; i < filterInputs.length; i++) {
+      filterInputs[i].checked = false;
+    }
+    setActiveFilters({ nwrms_implemented: [], sectors: [] });
+  };
+
+  const removeFilter = (filterName, filterCode) => {
+    const temp = JSON.parse(JSON.stringify(activeFilters));
+    temp[filterName] = temp[filterName].filter((value) => {
+      if (value !== filterCode) return value;
+      return null;
+    });
+
+    const filterInputs = document.querySelectorAll(
+      '#cse-filter .filter-input input',
+    );
+
+    for (let i = 0; i < filterInputs.length; i++) {
+      if (filterInputs[i].value === filterCode) {
+        filterInputs[i].checked = false;
+      }
+    }
+
+    setActiveFilters(temp);
+  };
+
+  return hasActiveFilters ? (
+    <div className="ui segment active-filter-list">
+      <div className="filter-list-header">
+        <h4 className="filter-list-title">Active filters</h4>
+        <button
+          onClick={clearFilters}
+          className="ui mini basic compact button clear-btn"
+        >
+          clear all
+        </button>
+      </div>
+      <div className="filter-list-content">
+        <div className="filter">
+          {activeFilters.nwrms_implemented.length > 0 ? (
+            <div className="filter-wrapper">
+              <div className="filter-label">NWRMs implemented:</div>
+              {activeFilters.nwrms_implemented.map((filterCode) => {
+                const filterLabel = filters.nwrms_implemented[filterCode];
+                return (
+                  <div className="ui basic label filter-value">
+                    <span>{filterLabel}</span>
+                    <i
+                      tabIndex="0"
+                      onKeyPress={() => {}}
+                      onClick={() => {
+                        removeFilter('nwrms_implemented', filterCode);
+                      }}
+                      role="button"
+                      className="close icon"
+                    ></i>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            ''
+          )}
+          {activeFilters.sectors.length > 0 ? (
+            <div className="filter-wrapper">
+              <div className="filter-label">Sector:</div>
+              {activeFilters.sectors.map((filterCode) => {
+                const filterLabel = filters.sectors[filterCode];
+                return (
+                  <div className="ui basic label filter-value">
+                    <span>{filterLabel}</span>
+                    <i
+                      tabIndex="0"
+                      onKeyPress={() => {}}
+                      onClick={() => {
+                        removeFilter('sectors', filterCode);
+                      }}
+                      role="button"
+                      className="close icon"
+                    ></i>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            ''
+          )}
+        </div>
+      </div>
+    </div>
+  ) : (
+    ''
   );
 }

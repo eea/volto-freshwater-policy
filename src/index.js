@@ -122,6 +122,23 @@ const applyConfig = (config) => {
     { id: 'freshwater_addons', title: 'Freshwater' },
   ];
 
+  // Move blocks to freshwater group
+  const blocksToUpdate = [
+    'arcgis_block',
+    'imagecards',
+    'countryFlag',
+    'tableau_block',
+    'use_cases_block',
+  ];
+  const updatedGroup = { group: 'freshwater_addons' };
+
+  blocksToUpdate.forEach((blockId) => {
+    config.blocks.blocksConfig[blockId] = {
+      ...config.blocks.blocksConfig[blockId],
+      ...updatedGroup,
+    };
+  });
+
   // Search block metadata listing view
   config.blocks.blocksConfig.listing = {
     ...config.blocks.blocksConfig.listing,

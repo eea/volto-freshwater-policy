@@ -3,7 +3,7 @@ import { Grid } from 'semantic-ui-react'; // Dropdown,
 import { addAppURL } from '@plone/volto/helpers';
 
 import CaseStudyMap from './CaseStudyMap';
-import CaseStudyFilters from './CaseStudyFilters';
+import { ActiveFilters, CaseStudyFilters } from './CaseStudyFilters';
 
 import { filterCases, getFilters } from './utils';
 import { useCases } from './hooks';
@@ -19,7 +19,7 @@ export default function CaseStudyExplorerView(props) {
   const mapColumnSize = hideFilters ? 12 : 8;
 
   const [activeFilters, setActiveFilters] = React.useState({
-    nwrm_type: [],
+    // nwrm_type: [],
     nwrms_implemented: [],
     sectors: [],
   });
@@ -32,7 +32,7 @@ export default function CaseStudyExplorerView(props) {
     setFilters(_filters);
   }, [
     cases,
-    activeFilters.nwrm_type,
+    // activeFilters.nwrm_type,
     activeFilters.nwrms_implemented,
     activeFilters.sectors,
     activeItems.length,
@@ -48,6 +48,15 @@ export default function CaseStudyExplorerView(props) {
 
   return (
     <div>
+      <Grid.Row>
+        {hideFilters ? null : (
+          <ActiveFilters
+            filters={filters}
+            activeFilters={activeFilters}
+            setActiveFilters={setActiveFilters}
+          />
+        )}
+      </Grid.Row>
       <Grid.Row
         // mobile={3}
         // tablet={3}
