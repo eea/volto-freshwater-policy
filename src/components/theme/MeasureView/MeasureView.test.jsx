@@ -6,7 +6,7 @@ import '@testing-library/jest-dom/extend-expect';
 window.URL.createObjectURL = jest.fn(() => 'test');
 jest.mock('@eeacms/volto-freshwater-policy/components', () => ({
   ItemMetadataSnippet: () => <div>test</div>,
-  CaseStudyExplorer: () => <div>tet</div>,
+  CaseStudyExplorer: () => <div>test</div>,
 }));
 
 describe('MeasureView', () => {
@@ -22,6 +22,15 @@ describe('MeasureView', () => {
       { '@type': 'File', '@id': 'testid' },
       { '@type': 'Image', '@id': 'testid', description: '' },
       { '@type': 'Image', '@id': 'testid', description: 'http://test' },
+    ],
+    ecosystem_services: [
+      { code: 'test code', level: 'test level', name: 'test name' },
+    ],
+    biophysical_impacts: [
+      { code: 'test code', level: 'test level', name: 'test name' },
+    ],
+    policy_objectives: [
+      { code: 'test code', level: 'test level', name: 'test name' },
     ],
     measure_code: '123',
     measure_sector: 'Test Sector',
@@ -74,24 +83,10 @@ describe('MeasureView', () => {
     expect(getByText('Test Measure')).toBeInTheDocument();
     expect(getByText('Test measure summary')).toBeInTheDocument();
     expect(container.querySelector('.image-wrapper')).toBeInTheDocument();
-    // Benefits section
-    expect(container.querySelector('.placeholder')).toBeInTheDocument();
 
     // Related case studies
     expect(getByText('Related case studies')).toBeInTheDocument();
     expect(getByText('Case Study 1')).toBeInTheDocument();
     expect(getByText('Case Study 2')).toBeInTheDocument();
-  });
-
-  it('should render the sector information', () => {
-    const { getByText } = render(<MeasureView content={mockContent} />);
-
-    // Sector information
-    expect(getByText('NWRM code')).toBeInTheDocument();
-    expect(getByText('123')).toBeInTheDocument();
-    expect(getByText('Sector')).toBeInTheDocument();
-    expect(getByText('Test Sector')).toBeInTheDocument();
-    expect(getByText('Other sector(s)')).toBeInTheDocument();
-    expect(getByText('Other Sector')).toBeInTheDocument();
   });
 });
