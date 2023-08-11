@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Grid, Accordion } from 'semantic-ui-react';
 import { BodyClass } from '@plone/volto/helpers';
+import { Icon } from '@plone/volto/components';
 import {
   ItemMetadataSnippet,
   CaseStudyExplorer,
@@ -8,17 +9,46 @@ import {
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import './style.less';
 
+import downSVG from '@plone/volto/icons/down-key.svg';
+import upSVG from '@plone/volto/icons/up-key.svg';
+
+import Slider from 'react-slick';
+
 const level2 = {
-  'Regulatory and maintenance': ['ES5', 'ES6', 'ES7', 'ES8', 'ES9'],
-  'Mechanism of Water Retention': ['BP2', 'BP5', 'BP6', 'BP7', 'BP11'],
-  'Biophysical Impacts Resulting from Water Retention': ['BP10', 'BP17'],
+  Provisioning: ['ES1', 'ES2', 'ES3'],
+  'Regulatory and maintenance': ['ES4', 'ES5', 'ES6', 'ES7', 'ES8', 'ES9'],
+  Cultural: ['ES10', 'ES11'],
+  Abiotic: ['ES12', 'ES13', 'ES14'],
+  'Mechanism of Water Retention': [
+    'BP1',
+    'BP2',
+    'BP3',
+    'BP4',
+    'BP5',
+    'BP6',
+    'BP7',
+  ],
+  'Biophysical Impacts Resulting from Water Retention': [
+    'BP8',
+    'BP9',
+    'BP10',
+    'BP11',
+    'BP12',
+    'BP13',
+    'BP14',
+    'BP15',
+    'BP16',
+    'BP17',
+  ],
 };
 
 const level3 = {
-  'Slowing and reducing runoff': ['BP2'],
+  'Slowing and reducing runoff': ['BP1', 'BP2', 'BP3', 'BP4'],
   'Reducing runoff': ['BP5', 'BP6', 'BP7'],
+  'Reducing pollution': ['BP8', 'BP9'],
   'Soil conservation': ['BP10', 'BP11'],
-  'Climate alteration': ['BP17'],
+  'Creating habitat': ['BP12', 'BP13', 'BP14'],
+  'Climate alteration': ['BP15', 'BP16', 'BP17'],
 };
 
 // Compare alphanumeric strings, used for sorting both lexicographically and numerically
@@ -78,6 +108,8 @@ const sortByLevel = (data) => {
 const MeasureView = (props) => {
   const { content } = props;
   const [activeIndices, setActiveIndices] = useState([0, 1]);
+  const [activeImage, setActiveImage] = useState(0);
+  const imageItems = content.items.filter((item) => item['@type'] === 'Image');
 
   sortByLevel(content.ecosystem_services);
   sortByLevel(content.biophysical_impacts);
@@ -122,26 +154,8 @@ const MeasureView = (props) => {
           <div className="metadata-header">
             <ItemMetadataSnippet {...props} item={content} />
             <div>
-              <div className="images-container">
+              <div className="images-container content-box">
                 <div className="image-flexbox">
-                  <div>
-                    {content.items.map(
-                      (item) =>
-                        item['@type'] === 'Image' && (
-                          <div className="image-wrapper">
-                            <div>
-                              <a href={item['@id'] + '/@@images/image'}>
-                                <LazyLoadImage
-                                  src={item['@id'] + '/@@images/image/preview'}
-                                  title={item.title}
-                                  alt={item.title}
-                                />
-                              </a>
-                            </div>
-                          </div>
-                        ),
-                    )}
-                  </div>
                   <div className="header_info">
                     <div>
                       <h1>{content.title}</h1>
@@ -161,7 +175,6 @@ const MeasureView = (props) => {
 
                       {content.other_sector && (
                         <>
-                          <br />
                           <div className="field--label-inline">
                             <div className="field__label">Other sector(s)</div>
                             <div className="field__item">
@@ -200,6 +213,27 @@ const MeasureView = (props) => {
                     <br />
                   </div>
                 </div>
+                <Slider
+                  className="carousel"
+                  arrows={true}
+                  initialSlide={activeImage}
+                  afterChange={(currentSlide) => {
+                    setActiveImage(currentSlide);
+                  }}
+                >
+                  {imageItems.map((item, index) => (
+                    <div key={`image-${index}`}>
+                      <LazyLoadImage
+                        className={`image-slide ${
+                          activeImage === index ? 'current' : ''
+                        } ${imageItems.length === 1 && 'one-image'}`}
+                        src={item['@id'] + '/@@images/image/preview'}
+                        title={item['@id'].title}
+                        alt={item['@id'].title}
+                      />
+                    </div>
+                  ))}
+                </Slider>
               </div>
             </div>
 
@@ -225,9 +259,11 @@ const MeasureView = (props) => {
                   index={0}
                   onClick={() => handleAccordionClick(0)}
                 >
-                  <h4>
-                    Ecosystem service {activeIndices.includes(0) ? '–' : '+'}
-                  </h4>
+                  <h4>Ecosystem service</h4>
+                  <Icon
+                    size="30px"
+                    name={activeIndices.includes(0) ? upSVG : downSVG}
+                  />
                 </Accordion.Title>
                 <Accordion.Content active={activeIndices.includes(0)}>
                   <div className="field__items">
@@ -268,7 +304,11 @@ const MeasureView = (props) => {
                   index={1}
                   onClick={() => handleAccordionClick(1)}
                 >
-                  <h4>Biophysical {activeIndices.includes(1) ? '–' : '+'}</h4>
+                  <h4>Biophysical</h4>
+                  <Icon
+                    size="30px"
+                    name={activeIndices.includes(1) ? upSVG : downSVG}
+                  />
                 </Accordion.Title>
                 <Accordion.Content active={activeIndices.includes(1)}>
                   <div className="field__items">
@@ -316,9 +356,11 @@ const MeasureView = (props) => {
                   index={2}
                   onClick={() => handleAccordionClick(2)}
                 >
-                  <h4>
-                    Policy Objectives {activeIndices.includes(2) ? '–' : '+'}
-                  </h4>
+                  <h4>Policy Objectives</h4>
+                  <Icon
+                    size="30px"
+                    name={activeIndices.includes(2) ? upSVG : downSVG}
+                  />
                 </Accordion.Title>
                 <Accordion.Content active={activeIndices.includes(2)}>
                   <div className="field__items">
