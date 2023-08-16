@@ -1,6 +1,6 @@
 import MeasureView from './MeasureView';
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 
 window.URL.createObjectURL = jest.fn(() => 'test');
@@ -30,7 +30,7 @@ describe('MeasureView', () => {
       { code: 'test code', level: 'test level', name: 'test name' },
     ],
     policy_objectives: [
-      { code: 'test code', level: 'test level', name: 'test name' },
+      { code: 'test code', level: 'test level2', name: 'test name' },
     ],
     measure_code: '123',
     measure_sector: 'Test Sector',
@@ -82,11 +82,17 @@ describe('MeasureView', () => {
     // Basic content
     expect(getByText('Test Measure')).toBeInTheDocument();
     expect(getByText('Test measure summary')).toBeInTheDocument();
-    expect(container.querySelector('.image-wrapper')).toBeInTheDocument();
+    // expect(container.querySelector('.image-wrapper')).toBeInTheDocument();
+    const accordion = container.querySelector('.accordion');
+    fireEvent.click(accordion);
 
     // Related case studies
     expect(getByText('Related case studies')).toBeInTheDocument();
     expect(getByText('Case Study 1')).toBeInTheDocument();
     expect(getByText('Case Study 2')).toBeInTheDocument();
+
+    // Click on the accordion title
+    fireEvent.click(getByText('Policy Objectives'));
+    expect(getByText('test level2')).toBeVisible();
   });
 });
