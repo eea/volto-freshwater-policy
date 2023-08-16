@@ -2,8 +2,6 @@ import { getFeatures } from './utils';
 
 export default function CaseStudyList(props) {
   const { activeItems, selectedCase, onSelectedCase } = props;
-  console.log('activeItems', activeItems);
-  console.log('selectedCase', selectedCase);
 
   return activeItems.length === 0 ? (
     <>
