@@ -139,6 +139,12 @@ const applyConfig = (config) => {
     };
   });
 
+  // Move Tableau block to  Data Visualizations
+  config.blocks.blocksConfig['tableau_block'] = {
+    ...config.blocks.blocksConfig['tableau_block'],
+    group: 'data_visualizations',
+  };
+
   // Search block metadata listing view
   config.blocks.blocksConfig.listing = {
     ...config.blocks.blocksConfig.listing,
