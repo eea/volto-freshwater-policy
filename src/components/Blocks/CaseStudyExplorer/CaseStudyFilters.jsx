@@ -109,16 +109,16 @@ export function CaseStudyFilters(props) {
       /> */}
 
       <CaseStudyFilter
-        filterTitle="NWRMs implemented"
-        filterName="nwrms_implemented"
+        filterTitle="Sectors"
+        filterName="sectors"
         filters={filters}
         activeFilters={activeFilters}
         setActiveFilters={setActiveFilters}
       />
 
       <CaseStudyFilter
-        filterTitle="Sectors"
-        filterName="sectors"
+        filterTitle="NWRMs implemented"
+        filterName="nwrms_implemented"
         filters={filters}
         activeFilters={activeFilters}
         setActiveFilters={setActiveFilters}

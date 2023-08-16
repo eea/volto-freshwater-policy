@@ -17,6 +17,7 @@ export function getFeatures(cases) {
         image: c.properties.image,
         nwrm_type: c.properties.nwrm_type,
         nwrms_implemented: c.properties.measures,
+        description: c.properties.description,
         sectors: c.properties.sectors,
         index: index,
         path: c.properties.path,

@@ -10,10 +10,10 @@ export default function FeatureDisplay({ feature }) {
           </a>
         </strong>
       </h3>
-      <div>
+      {/* <div>
         <h4>Light or In-depth</h4>
         <span>{feature.nwrm_type}</span>
-      </div>
+      </div> */}
       <div>
         <h4>NWRMs implemented</h4>
         <ul>

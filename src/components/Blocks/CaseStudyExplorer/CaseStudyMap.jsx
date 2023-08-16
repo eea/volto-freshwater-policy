@@ -13,8 +13,13 @@ import { getFeatures } from './utils';
 const styleCache = {};
 
 export default function CaseStudyMap(props) {
-  const { items, activeItems, hideFilters } = props;
-  const [selectedCase, onSelectedCase] = React.useState();
+  const {
+    items,
+    activeItems,
+    hideFilters,
+    selectedCase,
+    onSelectedCase,
+  } = props;
 
   const features = getFeatures(items); //console.log('Features list', features);
 
@@ -92,7 +97,7 @@ function clusterStyle(feature) {
         }),
         fill: new ol.style.Fill({
           // 309ebc blue 3 + green 3 mix
-          color: '#309ebc',
+          color: '#309ebc', // #006BB8 #309ebc
         }),
       }),
       text: new ol.style.Text({
@@ -107,7 +112,7 @@ function clusterStyle(feature) {
 
   if (size === 1) {
     // let color = feature.values_.features[0].values_['color'];
-    let color = '#50B0A4'; // '#0083E0'
+    let color = '#50B0A4'; // #0083E0 #50B0A4
 
     return new ol.style.Style({
       image: new ol.style.Circle({
