@@ -16,10 +16,10 @@
   }
 
   .images-container {
-    display: block;
+    display: flex !important;
     width: 100% !important;
     max-width: 1525px !important;
-    padding: 30px 0;
+    justify-content: space-between;
     margin-right: auto !important;
     margin-left: auto !important;
     background-color: #f2f2f2;
@@ -28,6 +28,83 @@
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 30px 0;
+    }
+
+    .carousel {
+      display: block;
+      width: 500px;
+      margin: 0;
+
+      .one-image {
+        display: flex;
+        justify-content: flex-end;
+        padding: 20px;
+      }
+
+      .slick-slider {
+        display: flex;
+        align-items: center;
+      }
+
+      .slick-track {
+        display: flex;
+        align-items: center;
+      }
+
+      .slick-slide.slick-active.slick-current {
+        display: flex;
+        justify-content: center;
+        padding-top: 20px;
+      }
+
+      .slick-next {
+        right: 0;
+        left: 420px;
+      }
+
+      .slick-next:before {
+        color: white;
+        font-size: 30px;
+        opacity: 1;
+      }
+
+      .slick-prev:before {
+        color: white;
+        font-size: 30px;
+        opacity: 1;
+      }
+
+      .slick-prev {
+        z-index: 2;
+        left: 50px;
+      }
+    }
+
+    .arrow {
+      display: flex;
+      align-items: center;
+      border: none;
+      background: none;
+      cursor: pointer;
+    }
+
+    .arrow-left {
+      z-index: 1;
+      margin-right: -100px;
+    }
+
+    .arrow-right {
+      z-index: 1;
+      margin-left: -50px;
+    }
+
+    .image-container {
+      display: flex;
+      flex-grow: 1;
+      align-items: center;
+      justify-content: center;
     }
 
     .image-wrapper {
@@ -35,7 +112,6 @@
       display: flex;
       flex-direction: column;
       flex-wrap: wrap;
-      padding-right: 1em;
     }
 
     .image-title,
@@ -128,15 +204,15 @@
   }
 
   .high {
-    background-color: #70ad47;
+    background-color: #006bb8;
   }
 
   .medium {
-    background-color: #a9e18e;
+    background-color: #0a99ff;
   }
 
   .low {
-    background-color: #c5e0b4;
+    background-color: #a0d7ff;
   }
 
   // Copy from DatabseItemView
