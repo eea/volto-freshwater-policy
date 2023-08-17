@@ -52,6 +52,7 @@ export default function FeatureInteraction({
     // condition: ol.condition.click,
     style: hideFilters ? null : selectStyle,
   });
+  console.log('hello');
 
   if (selectedCase) {
     select.getFeatures().push(selectedCase);
@@ -96,6 +97,7 @@ export default function FeatureInteraction({
     });
 
     return () => map.removeInteraction(select);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [map, selectStyle, onFeatureSelect, hideFilters]);
 
   return null;

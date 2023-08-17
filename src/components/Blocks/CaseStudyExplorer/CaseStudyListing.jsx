@@ -1,12 +1,8 @@
 import React from 'react';
-import { getFeatures } from './utils';
 
 export default function CaseStudyList(props) {
-  const { activeItems, selectedCase, onSelectedCase, pointsSource } = props;
+  const { selectedCase, onSelectedCase, pointsSource } = props;
   // console.log('activeItems', activeItems);
-  console.log('selectedCase', selectedCase);
-  console.log('pointsSource', pointsSource.getFeatures(selectedCase));
-
   // React.useEffect(() => {
   //   if (activeItems) {
   //     pointsSource.clear();
