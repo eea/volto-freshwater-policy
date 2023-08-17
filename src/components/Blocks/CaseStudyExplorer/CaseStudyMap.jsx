@@ -5,6 +5,7 @@ import { openlayers as ol } from '@eeacms/volto-openlayers-map';
 
 import InfoOverlay from './InfoOverlay';
 import FeatureInteraction from './FeatureInteraction';
+import CaseStudyList from './CaseStudyListing';
 
 import { getFeatures } from './utils';
 // import iconLight from './images/icon-light.png';
@@ -13,10 +14,14 @@ import { getFeatures } from './utils';
 const styleCache = {};
 
 export default function CaseStudyMap(props) {
-  const { items, activeItems, hideFilters } = props;
-  const [selectedCase, onSelectedCase] = React.useState();
-
-  const features = getFeatures(items); //console.log('Features list', features);
+  const {
+    items,
+    activeItems,
+    hideFilters,
+    selectedCase,
+    onSelectedCase,
+  } = props;
+  const features = getFeatures(items);
 
   const [tileWMSSources] = React.useState([
     new ol.source.TileWMS({
@@ -51,31 +56,46 @@ export default function CaseStudyMap(props) {
   }, [activeItems, pointsSource]);
 
   return features.length > 0 ? (
-    <Map
-      view={{
-        center: ol.proj.fromLonLat([10, 50]),
-        showFullExtent: true,
-        zoom: 4,
-      }}
-      pixelRatio={1}
-      // controls={ol.control.defaults({ attribution: false })}
-    >
-      <Controls attribution={false} />
-      <Layers>
-        <InfoOverlay
-          selectedFeature={selectedCase}
-          onFeatureSelect={onSelectedCase}
-          layerId={tileWMSSources[0]}
-          hideFilters={hideFilters}
+    <>
+      <Map
+        view={{
+          center: ol.proj.fromLonLat([10, 50]),
+          showFullExtent: true,
+          zoom: 4,
+        }}
+        pixelRatio={1}
+        // controls={ol.control.defaults({ attribution: false })}
+      >
+        <Controls attribution={false} />
+        <Layers>
+          <InfoOverlay
+            selectedFeature={selectedCase}
+            onFeatureSelect={onSelectedCase}
+            layerId={tileWMSSources[0]}
+            hideFilters={hideFilters}
+          />
+          <FeatureInteraction
+            onFeatureSelect={onSelectedCase}
+            hideFilters={hideFilters}
+            selectedCase={selectedCase}
+          />
+          <Layer.Tile source={tileWMSSources[0]} zIndex={0} />
+          <Layer.Vector
+            style={clusterStyle}
+            source={clusterSource}
+            zIndex={1}
+          />
+        </Layers>
+      </Map>
+      {hideFilters ? null : (
+        <CaseStudyList
+          activeItems={activeItems}
+          selectedCase={selectedCase}
+          onSelectedCase={onSelectedCase}
+          pointsSource={pointsSource}
         />
-        <FeatureInteraction
-          onFeatureSelect={onSelectedCase}
-          hideFilters={hideFilters}
-        />
-        <Layer.Tile source={tileWMSSources[0]} zIndex={0} />
-        <Layer.Vector style={clusterStyle} source={clusterSource} zIndex={1} />
-      </Layers>
-    </Map>
+      )}
+    </>
   ) : null;
 }
 
@@ -92,7 +112,7 @@ function clusterStyle(feature) {
         }),
         fill: new ol.style.Fill({
           // 309ebc blue 3 + green 3 mix
-          color: '#309ebc',
+          color: '#309ebc', // #006BB8 #309ebc
         }),
       }),
       text: new ol.style.Text({
@@ -107,7 +127,7 @@ function clusterStyle(feature) {
 
   if (size === 1) {
     // let color = feature.values_.features[0].values_['color'];
-    let color = '#50B0A4'; // '#0083E0'
+    let color = '#50B0A4'; // #0083E0 #50B0A4
 
     return new ol.style.Style({
       image: new ol.style.Circle({

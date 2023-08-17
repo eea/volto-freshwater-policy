@@ -4,6 +4,7 @@ import { addAppURL } from '@plone/volto/helpers';
 
 import CaseStudyMap from './CaseStudyMap';
 import { ActiveFilters, CaseStudyFilters } from './CaseStudyFilters';
+// import CaseStudyList from './CaseStudyListing';
 
 import { filterCases, getFilters } from './utils';
 import { useCases } from './hooks';
@@ -15,8 +16,9 @@ const cases_url = '@@case-studies-map.arcgis.json';
 export default function CaseStudyExplorerView(props) {
   let cases = useCases(addAppURL(cases_url));
   const { caseStudiesIds } = props; // case studies from measure view
+  const [selectedCase, onSelectedCase] = React.useState();
   const hideFilters = caseStudiesIds ? true : false;
-  const mapColumnSize = hideFilters ? 12 : 8;
+  const mapColumnSize = 12;
 
   const [activeFilters, setActiveFilters] = React.useState({
     // nwrm_type: [],
@@ -47,7 +49,7 @@ export default function CaseStudyExplorerView(props) {
   if (__SERVER__) return '';
 
   return (
-    <div>
+    <div className="searchlib-block">
       <Grid.Row>
         {hideFilters ? null : (
           <ActiveFilters
@@ -84,16 +86,27 @@ export default function CaseStudyExplorerView(props) {
                 items={cases}
                 activeItems={activeItems}
                 hideFilters={hideFilters}
+                selectedCase={selectedCase}
+                onSelectedCase={onSelectedCase}
               />
             </Grid.Column>
-            {hideFilters ? null : (
+            {/* {hideFilters ? null : (
               <Grid.Column mobile={4} tablet={4} computer={4}>
                 <div id="external-popup-overlay"></div>
               </Grid.Column>
-            )}
+            )} */}
           </Grid>
         ) : null}
       </Grid.Row>
+      {/* <Grid.Row>
+        {hideFilters ? null : (
+          <CaseStudyList
+            activeItems={activeItems}
+            selectedCase={selectedCase}
+            onSelectedCase={onSelectedCase}
+          />
+        )}
+      </Grid.Row> */}
     </div>
   );
 }

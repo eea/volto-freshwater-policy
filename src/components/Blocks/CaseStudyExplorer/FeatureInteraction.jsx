@@ -23,7 +23,7 @@ const useStyles = () => {
   const selectStyle = React.useCallback(
     (feature) => {
       // const color = feature.values_.features[0].values_['color'] || '#ccc';
-      const color = '#309ebc';
+      const color = '#004B7F'; // #003052 #309ebc
       // console.log(color);
       selected.image_.getFill().setColor(color);
       return selected;
@@ -40,17 +40,26 @@ function getExtentOfFeatures(features) {
   return point.getExtent();
 }
 
-export default function FeatureInteraction({ onFeatureSelect, hideFilters }) {
+export default function FeatureInteraction({
+  onFeatureSelect,
+  hideFilters,
+  selectedCase,
+}) {
   const { map } = useMapContext();
   const { selectStyle } = useStyles();
 
+  const select = new ol.interaction.Select({
+    // condition: ol.condition.click,
+    style: hideFilters ? null : selectStyle,
+  });
+
+  if (selectedCase) {
+    select.getFeatures().push(selectedCase);
+    onFeatureSelect(selectedCase);
+  }
+
   React.useEffect(() => {
     if (!map) return;
-
-    const select = new ol.interaction.Select({
-      condition: ol.condition.click,
-      style: hideFilters ? null : selectStyle,
-    });
 
     select.on('select', function (e) {
       const features = e.target.getFeatures().getArray();
@@ -87,6 +96,7 @@ export default function FeatureInteraction({ onFeatureSelect, hideFilters }) {
     });
 
     return () => map.removeInteraction(select);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [map, selectStyle, onFeatureSelect, hideFilters]);
 
   return null;
