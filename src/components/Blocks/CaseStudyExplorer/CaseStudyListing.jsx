@@ -1,7 +1,9 @@
 import React from 'react';
+import { zoomMapToFeatures } from './utils';
 
 export default function CaseStudyList(props) {
-  const { selectedCase, onSelectedCase, pointsSource } = props;
+  const { selectedCase, onSelectedCase, pointsSource, map } = props;
+
   // console.log('activeItems', activeItems);
   // React.useEffect(() => {
   //   if (activeItems) {
@@ -85,6 +87,7 @@ export default function CaseStudyList(props) {
                     onClick={() => {
                       // const features = getFeatures([item]);
                       onSelectedCase(item.values_);
+                      zoomMapToFeatures(map, [item], 500000);
                     }}
                   >
                     Show on map

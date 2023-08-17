@@ -1,6 +1,7 @@
 import React from 'react';
 import { openlayers as ol } from '@eeacms/volto-openlayers-map';
 import { useMapContext } from '@eeacms/volto-openlayers-map/api';
+import { zoomMapToFeatures } from './utils';
 
 const useStyles = () => {
   const selected = React.useMemo(
@@ -34,17 +35,12 @@ const useStyles = () => {
   return { selected, selectStyle };
 };
 
-function getExtentOfFeatures(features) {
-  const points = features.map((f) => f.getGeometry().flatCoordinates);
-  const point = new ol.geom.MultiPoint(points);
-  return point.getExtent();
-}
-
 export default function FeatureInteraction({
   onFeatureSelect,
   hideFilters,
   selectedCase,
 }) {
+  // console.log('featureinteraction', selectedCase);
   const { map } = useMapContext();
   const { selectStyle } = useStyles();
 
@@ -53,10 +49,16 @@ export default function FeatureInteraction({
     style: hideFilters ? null : selectStyle,
   });
 
-  if (selectedCase) {
-    select.getFeatures().push(selectedCase);
-    onFeatureSelect(selectedCase);
-  }
+  // React.useEffect(() => {
+  //   if (selectedCase) {
+  //     select.getFeatures().push(selectedCase);
+  //     // map.dispatchEvent({t
+  //     console.log(select, select.getFeatures());
+  //     map.render();
+  //     // onFeatureSelect(selectedCase);
+  //     // console.log('onfeatureselect', onFeatureSelect);
+  //   }
+  // }, [onFeatureSelect, select, selectedCase]);
 
   React.useEffect(() => {
     if (!map) return;
@@ -75,12 +77,7 @@ export default function FeatureInteraction({
           }
           onFeatureSelect(selectedFeature);
         } else {
-          const extent = getExtentOfFeatures(subfeatures);
-          let extentBuffer =
-            (extent[3] - extent[1] + extent[2] - extent[0]) / 4;
-          extentBuffer = extentBuffer < 500 ? 500 : extentBuffer;
-          const paddedExtent = ol.extent.buffer(extent, extentBuffer);
-          map.getView().fit(paddedExtent, { ...map.getSize(), duration: 1000 });
+          zoomMapToFeatures(map, subfeatures);
         }
       });
 
