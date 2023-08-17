@@ -77,13 +77,13 @@ export default function CaseStudyList(props) {
           </div>
         </div>
       ) : (
-        features.map((item) => {
+        features.map((item, index) => {
           return (
-            <div className="u-item listing-item result-item">
+            <div className="u-item listing-item result-item" key={index}>
               <div className="slot-top">
                 <div className="listing-body">
                   <button
-                    class="ui button primary"
+                    className="ui button primary"
                     onClick={() => {
                       // const features = getFeatures([item]);
                       onSelectedCase(item.values_);
