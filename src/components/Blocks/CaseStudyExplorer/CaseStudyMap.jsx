@@ -21,8 +21,7 @@ export default function CaseStudyMap(props) {
     selectedCase,
     onSelectedCase,
   } = props;
-  console.log('render map');
-  const features = getFeatures(items); //console.log('Features list', features);
+  const features = getFeatures(items);
 
   const [tileWMSSources] = React.useState([
     new ol.source.TileWMS({
