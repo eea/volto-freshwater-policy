@@ -18,7 +18,7 @@ export default function CaseStudyExplorerView(props) {
   const { caseStudiesIds } = props; // case studies from measure view
   const [selectedCase, onSelectedCase] = React.useState();
   const hideFilters = caseStudiesIds ? true : false;
-  const mapColumnSize = hideFilters ? 12 : 12;
+  const mapColumnSize = 12;
 
   const [activeFilters, setActiveFilters] = React.useState({
     // nwrm_type: [],
