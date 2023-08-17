@@ -4,7 +4,7 @@ import { addAppURL } from '@plone/volto/helpers';
 
 import CaseStudyMap from './CaseStudyMap';
 import { ActiveFilters, CaseStudyFilters } from './CaseStudyFilters';
-import CaseStudyList from './CaseStudyListing';
+// import CaseStudyList from './CaseStudyListing';
 
 import { filterCases, getFilters } from './utils';
 import { useCases } from './hooks';
@@ -98,7 +98,7 @@ export default function CaseStudyExplorerView(props) {
           </Grid>
         ) : null}
       </Grid.Row>
-      <Grid.Row>
+      {/* <Grid.Row>
         {hideFilters ? null : (
           <CaseStudyList
             activeItems={activeItems}
@@ -106,7 +106,7 @@ export default function CaseStudyExplorerView(props) {
             onSelectedCase={onSelectedCase}
           />
         )}
-      </Grid.Row>
+      </Grid.Row> */}
     </div>
   );
 }

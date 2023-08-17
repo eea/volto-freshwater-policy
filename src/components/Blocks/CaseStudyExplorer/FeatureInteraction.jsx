@@ -40,17 +40,26 @@ function getExtentOfFeatures(features) {
   return point.getExtent();
 }
 
-export default function FeatureInteraction({ onFeatureSelect, hideFilters }) {
+export default function FeatureInteraction({
+  onFeatureSelect,
+  hideFilters,
+  selectedCase,
+}) {
   const { map } = useMapContext();
   const { selectStyle } = useStyles();
 
+  const select = new ol.interaction.Select({
+    // condition: ol.condition.click,
+    style: hideFilters ? null : selectStyle,
+  });
+
+  if (selectedCase) {
+    select.getFeatures().push(selectedCase);
+    onFeatureSelect(selectedCase);
+  }
+
   React.useEffect(() => {
     if (!map) return;
-
-    const select = new ol.interaction.Select({
-      condition: ol.condition.click,
-      style: hideFilters ? null : selectStyle,
-    });
 
     select.on('select', function (e) {
       const features = e.target.getFeatures().getArray();

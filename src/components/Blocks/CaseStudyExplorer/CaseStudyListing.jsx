@@ -1,9 +1,22 @@
+import React from 'react';
 import { getFeatures } from './utils';
 
 export default function CaseStudyList(props) {
-  const { activeItems, selectedCase, onSelectedCase } = props;
+  const { activeItems, selectedCase, onSelectedCase, pointsSource } = props;
+  // console.log('activeItems', activeItems);
+  console.log('selectedCase', selectedCase);
+  console.log('pointsSource', pointsSource.getFeatures(selectedCase));
 
-  return activeItems.length === 0 ? (
+  // React.useEffect(() => {
+  //   if (activeItems) {
+  //     pointsSource.clear();
+  //     pointsSource.addFeatures(getFeatures(activeItems));
+  //   }
+  // }, [activeItems, pointsSource]);
+
+  const features = pointsSource.getFeatures(selectedCase);
+
+  return features.length === 0 ? (
     <>
       <h3 style={{ margin: 'calc(2rem - 0.1em) 0 1rem' }}>
         We could not find any results for your search criteria
@@ -66,7 +79,7 @@ export default function CaseStudyList(props) {
           </div>
         </div>
       ) : (
-        activeItems.map((item) => {
+        features.map((item) => {
           return (
             <div className="u-item listing-item result-item">
               <div className="slot-top">
@@ -74,8 +87,8 @@ export default function CaseStudyList(props) {
                   <button
                     class="ui button primary"
                     onClick={() => {
-                      const features = getFeatures([item]);
-                      onSelectedCase(features[0].values_);
+                      // const features = getFeatures([item]);
+                      onSelectedCase(item.values_);
                     }}
                   >
                     Show on map
@@ -84,28 +97,28 @@ export default function CaseStudyList(props) {
                     <a
                       target="_blank"
                       rel="noreferrer"
-                      href={item.properties.path}
-                      title={item.properties.title}
+                      href={item.values_.path}
+                      title={item.values_.title}
                     >
-                      {item.properties.title}
+                      {item.values_.title}
                     </a>
                   </h3>
                   <p className="listing-description">
-                    {item.properties.description}
+                    {item.values_.description}
                   </p>
                   <div className="slot-bottom">
                     <div className="result-bottom">
                       <div className="result-info">3 Aug 2023</div>
                       <div className="result-info">
                         <span className="result-info-title">Sectors:</span>
-                        <span>{item.properties.sectors.join(', ')}</span>
+                        <span>{item.values_.sectors.join(', ')}</span>
                       </div>
                       <div className="result-info">
                         <span className="result-info-title">
                           NWRMs implemented:
                         </span>
                         <span>
-                          {item.properties.measures
+                          {item.values_.nwrms_implemented
                             .map((item) => {
                               return item.title;
                             })
