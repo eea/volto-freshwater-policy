@@ -1,8 +1,22 @@
 import React from 'react';
+import { useStyles } from './FeatureInteraction';
 import { zoomMapToFeatures } from './utils';
+import { openlayers as ol } from '@eeacms/volto-openlayers-map';
 
 export default function CaseStudyList(props) {
-  const { selectedCase, onSelectedCase, pointsSource, map } = props;
+  const {
+    selectedCase,
+    onSelectedCase,
+    pointsSource,
+    map,
+    searchInput,
+  } = props;
+  const { selectStyle } = useStyles();
+
+  // const selectInteraction = new ol.interaction.Select({
+  //   condition: ol.condition.click,
+  //   style: selectStyle,
+  // });
 
   // console.log('activeItems', activeItems);
   // React.useEffect(() => {
@@ -85,9 +99,36 @@ export default function CaseStudyList(props) {
                   <button
                     className="ui button primary"
                     onClick={() => {
+                      // scroll to the map
+                      const element = document.getElementById('cse-filter');
+                      element.scrollIntoView({
+                        behavior: 'smooth',
+                      });
+
                       // const features = getFeatures([item]);
                       onSelectedCase(item.values_);
                       zoomMapToFeatures(map, [item], 500000);
+
+                      // let evt = {};
+                      // evt.type = 'select';
+                      // evt.coordinate = [];
+                      // evt.coordinate[0] =
+                      //   item.values_.geometry.flatCoordinates[0];
+                      // evt.coordinate[1] =
+                      //   item.values_.geometry.flatCoordinates[1];
+                      // map.dispatchEvent(evt);
+
+                      //   var fakeOnSelectEvent = new ol.interaction.Select.Event(
+                      //     ol.interaction.Select.EventType.SELECT,
+                      //     [item],
+                      //     [],
+                      //     false,
+                      //   );
+
+                      //   ol.events.EventTarget.prototype.dispatchEvent.call(
+                      //     selectInteraction,
+                      //     fakeOnSelectEvent,
+                      //   );
                     }}
                   >
                     Show on map
@@ -102,9 +143,17 @@ export default function CaseStudyList(props) {
                       {item.values_.title}
                     </a>
                   </h3>
-                  <p className="listing-description">
-                    {item.values_.description}
-                  </p>
+                  <p
+                    className="listing-description"
+                    dangerouslySetInnerHTML={{
+                      __html: searchInput
+                        ? item.values_.description.replace(
+                            searchInput,
+                            '<b>' + searchInput + '</b>',
+                          )
+                        : item.values_.description,
+                    }}
+                  ></p>
                   <div className="slot-bottom">
                     <div className="result-bottom">
                       <div className="result-info">3 Aug 2023</div>

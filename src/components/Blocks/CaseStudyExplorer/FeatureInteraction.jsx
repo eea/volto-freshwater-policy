@@ -3,7 +3,7 @@ import { openlayers as ol } from '@eeacms/volto-openlayers-map';
 import { useMapContext } from '@eeacms/volto-openlayers-map/api';
 import { zoomMapToFeatures } from './utils';
 
-const useStyles = () => {
+export const useStyles = () => {
   const selected = React.useMemo(
     () =>
       new ol.style.Style({

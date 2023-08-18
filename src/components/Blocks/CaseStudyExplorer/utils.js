@@ -44,9 +44,10 @@ export function getFeatures(cases) {
   });
 }
 
-export function filterCases(cases, activeFilters, caseStudiesIds) {
+export function filterCases(cases, activeFilters, caseStudiesIds, searchInput) {
   const data = cases.filter((_case) => {
     // let flag_type = false;
+    let flag_searchInput = false;
     let flag_implemented = false;
     let flag_sectors = false;
     let flag_case = caseStudiesIds
@@ -60,6 +61,18 @@ export function filterCases(cases, activeFilters, caseStudiesIds) {
     //     if (_case.properties.nwrm_type === filter) flag_type = true;
     //   });
     // }
+
+    if (!searchInput) {
+      flag_searchInput = true;
+    } else {
+      if (_case.properties.title.toLowerCase().includes(searchInput)) {
+        flag_searchInput = true;
+      } else if (
+        _case.properties.description.toLowerCase().includes(searchInput)
+      ) {
+        flag_searchInput = true;
+      }
+    }
 
     if (!activeFilters.nwrms_implemented.length) {
       flag_implemented = true;
@@ -85,7 +98,7 @@ export function filterCases(cases, activeFilters, caseStudiesIds) {
       });
     }
 
-    return flag_case && flag_implemented && flag_sectors // && flag_type
+    return flag_case && flag_implemented && flag_sectors && flag_searchInput
       ? _case
       : false;
   });
