@@ -45,7 +45,7 @@ export default function FeatureInteraction({
   const { selectStyle } = useStyles();
 
   const select = new ol.interaction.Select({
-    // condition: ol.condition.click,
+    condition: ol.condition.click,
     style: hideFilters ? null : selectStyle,
   });
 

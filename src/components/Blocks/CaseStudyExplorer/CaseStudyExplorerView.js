@@ -3,7 +3,7 @@ import { Grid } from 'semantic-ui-react'; // Dropdown,
 import { addAppURL } from '@plone/volto/helpers';
 
 import CaseStudyMap from './CaseStudyMap';
-import { ActiveFilters, CaseStudyFilters } from './CaseStudyFilters';
+import { ActiveFilters, CaseStudyFilters, SearchBox } from './CaseStudyFilters';
 // import CaseStudyList from './CaseStudyListing';
 
 import { filterCases, getFilters } from './utils';
@@ -50,6 +50,15 @@ export default function CaseStudyExplorerView(props) {
 
   return (
     <div className="searchlib-block">
+      <Grid.Row>
+        {hideFilters ? null : (
+          <SearchBox
+            filters={filters}
+            activeFilters={activeFilters}
+            setActiveFilters={setActiveFilters}
+          />
+        )}
+      </Grid.Row>
       <Grid.Row>
         {hideFilters ? null : (
           <ActiveFilters

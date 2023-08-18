@@ -103,14 +103,6 @@ export function CaseStudyFilters(props) {
 
   return (
     <>
-      {/* <CaseStudyFilter
-        filterTitle="Light or In-depth"
-        filterName="nwrm_type"
-        filters={filters}
-        activeFilters={activeFilters}
-        setActiveFilters={setActiveFilters}
-      /> */}
-
       <CaseStudyFilter
         filterTitle="Sectors"
         filterName="sectors"
@@ -127,6 +119,32 @@ export function CaseStudyFilters(props) {
         setActiveFilters={setActiveFilters}
       />
     </>
+  );
+}
+
+export function SearchBox(props) {
+  return (
+    <div className="header-content">
+      <div className="sui-search-box">
+        <div className="search-input">
+          <div className="terms-box">
+            <input placeholder="Search with a keyword..."></input>
+            <div className="terms-box-left">
+              <div className="input-controls">
+                <div className="ui button basic clear-button">
+                  <i
+                    aria-hidden="true"
+                    className="close icon"
+                    role="button"
+                  ></i>
+                </div>
+              </div>
+              <div className="search-icon" role="button"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 

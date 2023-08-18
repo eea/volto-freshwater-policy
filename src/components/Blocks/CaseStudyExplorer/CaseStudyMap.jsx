@@ -102,16 +102,16 @@ export default function CaseStudyMap(props) {
           />
           <MapContextGateway setMap={setMap} />
         </Layers>
-        {hideFilters ? null : (
-          <CaseStudyList
-            map={map}
-            activeItems={activeItems}
-            selectedCase={selectedCase}
-            onSelectedCase={onSelectedCase}
-            pointsSource={pointsSource}
-          />
-        )}
       </MapWithSelection>
+      {hideFilters ? null : (
+        <CaseStudyList
+          map={map}
+          activeItems={activeItems}
+          selectedCase={selectedCase}
+          onSelectedCase={onSelectedCase}
+          pointsSource={pointsSource}
+        />
+      )}
     </>
   ) : null;
 }
