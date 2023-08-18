@@ -69,22 +69,14 @@ const CaseStudyView = (props) => {
   const { content } = props;
   const [activeIndices, setActiveIndices] = React.useState([]);
   const [summary, setSummary] = React.useState('');
-  const [nationalId, setNationalId] = React.useState('');
-  const [siteName, setSiteName] = React.useState('');
-  const [longitude, setLongitude] = React.useState('');
-  const [latitude, setLatitude] = React.useState('');
-  const [NUTSCode, setNUTSCode] = React.useState('');
-  const [RBDcode, setRBDcode] = React.useState('');
-  const [transboundary, setTransboundary] = React.useState('');
+  const [firstColumnData, setFirstColumnData] = React.useState({});
+  const [secondColumnData, setSecondColumnData] = React.useState({});
 
   const handleAccordionClick = (index) => {
-    // Check if the index is already in the activeIndices array
     const isActive = activeIndices.includes(index);
     if (isActive) {
-      // If the index is active, remove it from the array
       setActiveIndices(activeIndices.filter((i) => i !== index));
     } else {
-      // If the index is not active, add it to the array
       setActiveIndices([...activeIndices, index]);
     }
   };
@@ -99,44 +91,76 @@ const CaseStudyView = (props) => {
     setSummary(
       generalDataElement.querySelector(
         '.field--name-field-nwrm-cs-summary .field__item',
-      ).textContent,
+      )?.textContent,
     );
-    setNationalId(
-      generalDataElement.querySelector(
-        '.field--name-field-nwrm-cs-national-id .field__item',
-      ).textContent,
-    );
-    setSiteName(
-      generalDataElement.querySelector(
-        '.field--name-field-nwrm-cs-site-name .field__item',
-      ).textContent,
-    );
-    setLongitude(
-      generalDataElement.querySelector(
-        '.field--name-field-nwrm-cs-longitude .field__item',
-      ).textContent,
-    );
-    setLatitude(
-      generalDataElement.querySelector(
-        '.field--name-field-nwrm-cs-latitude  .field__item',
-      ).textContent,
-    );
-    setNUTSCode(
-      generalDataElement.querySelector(
-        '.field--name-field-nwrm-cs-nuts-code .field__item',
-      ).textContent,
-    );
-    setRBDcode(
-      generalDataElement.querySelector(
-        '.field--name-field-nwrm-cs-rbd-code .field__item',
-      ).textContent,
-    );
-    setTransboundary(
-      generalDataElement.querySelector(
-        '.field--name-field-nwrm-cs-transboundary .field__item',
-      ).textContent,
-    );
+    setFirstColumnData({
+      'National Id':
+        generalDataElement.querySelector(
+          '.field--name-field-nwrm-cs-national-id .field__item',
+        )?.textContent || '',
+      'Site Name':
+        generalDataElement.querySelector(
+          '.field--name-field-nwrm-cs-site-name .field__item',
+        )?.textContent || '',
+    });
+    setSecondColumnData({
+      Longitude:
+        generalDataElement.querySelector(
+          '.field--name-field-nwrm-cs-longitude .field__item',
+        )?.textContent || '',
+      Latitude:
+        generalDataElement.querySelector(
+          '.field--name-field-nwrm-cs-latitude  .field__item',
+        )?.textContent || '',
+      'NUTS Code':
+        generalDataElement.querySelector(
+          '.field--name-field-nwrm-cs-nuts-code .field__item',
+        )?.textContent || '',
+      'RBD code':
+        generalDataElement.querySelector(
+          '.field--name-field-nwrm-cs-rbd-code .field__item',
+        )?.textContent || '',
+      Transboundary:
+        generalDataElement.querySelector(
+          '.field--name-field-nwrm-cs-transboundary .field__item',
+        )?.textContent || '',
+    });
   }, [content]);
+
+  React.useEffect(() => {
+    const parentElements = document.querySelectorAll(
+      '.accordion .field--label-above',
+    );
+
+    parentElements.forEach((parentElement) => {
+      const tableElement = parentElement.querySelector('.table-responsive');
+      if (!tableElement) {
+        parentElement.classList.add('no-table');
+      }
+    });
+
+    // transform table to list
+    const tableContainer = document.querySelector(
+      '.field--name-field-nwrm-cs-policy-tgt .table-responsive',
+    );
+    const table = document.getElementById('paragraph-nwrm_cs_policy_tgt');
+    const newList = document.createElement('ul');
+
+    table.querySelectorAll('tbody tr').forEach((row) => {
+      // Create a list item for each row
+      const listItem = document.createElement('li');
+
+      // Iterate through the cells of the row
+      row.querySelectorAll('td').forEach((cell) => {
+        listItem.textContent += cell.textContent + ', ';
+      });
+      listItem.textContent = listItem.textContent.slice(0, -2);
+      newList.appendChild(listItem);
+    });
+
+    const firstRow = table.rows[0];
+    firstRow.cells.length === 1 && tableContainer.replaceChild(newList, table);
+  }, []);
 
   return (
     <>
@@ -145,60 +169,50 @@ const CaseStudyView = (props) => {
       <div id="page-document" className="ui container">
         <div>
           <div className="metadata-header">
-            {/* {content['@type'] && (
-              <h3 className="item-type">{formatItemType(content['@type'])}</h3>
-            )} */}
             <div className="page-header content-box">
               <div className="header-title-info">
                 <h1>{content.title}</h1>
                 <div className="header-info">
                   <div className="first-column">
-                    <div className="field field--label-inline">
-                      <div className="field__label">National Id:</div>
-                      <div className="field__item">{nationalId}</div>
-                    </div>
-
-                    <div className="field field--label-inline">
-                      <div className="field__label">Site name:</div>
-                      <div className="field__item">{siteName}</div>
-                    </div>
+                    {Object.entries(firstColumnData).map(
+                      ([label, item]) =>
+                        item && (
+                          <div
+                            className="field field--label-inline"
+                            key={label}
+                          >
+                            <div className="field__label">{label}:</div>
+                            <div className="field__item">{item}</div>
+                          </div>
+                        ),
+                    )}
                   </div>
 
                   <div className="second-column">
-                    <div className="field field--label-inline">
-                      <div className="field__label">Longitude:</div>
-                      <div className="field__item">{longitude}</div>
-                    </div>
-
-                    <div className="field field--label-inline">
-                      <div className="field__label">Latitude:</div>
-                      <div className="field__item">{latitude}</div>
-                    </div>
-
-                    <div className="field field--label-inline">
-                      <div className="field__label">NUTS Code:</div>
-                      <div className="field__item">{NUTSCode}</div>
-                    </div>
-
-                    <div className="field field--label-inline">
-                      <div className="field__label">RBD code:</div>
-                      <div className="field__item">{RBDcode}</div>
-                    </div>
-
-                    <div className="field field--label-inline">
-                      <div className="field__label">Transboundary:</div>
-                      <div className="field__item">{transboundary}</div>
-                    </div>
+                    {Object.entries(secondColumnData).map(
+                      ([label, item]) =>
+                        item && (
+                          <div
+                            className="field field--label-inline"
+                            key={label}
+                          >
+                            <div className="field__label">{label}:</div>
+                            <div className="field__item">{item}</div>
+                          </div>
+                        ),
+                    )}
                   </div>
                 </div>
               </div>
             </div>
 
             <div className="body">
-              <div className="field field--label-above field-with-margin">
-                <h3 className="field__label">Summary</h3>
-                <div className="field__item">{summary}</div>
-              </div>
+              {summary && (
+                <div className="field field--label-above field-with-margin">
+                  <h3 className="field__label">Summary</h3>
+                  <div className="field__item">{summary}</div>
+                </div>
+              )}
 
               <div className="field__item">
                 {content.items.map(
@@ -236,63 +250,79 @@ const CaseStudyView = (props) => {
                 </div>
               )}
 
-              <Accordion fluid styled>
-                {content.sources && (
-                  <div className="field--label-above field-with-margin">
-                    <Accordion.Title
-                      active={activeIndices.includes(0)}
-                      index={0}
-                      onClick={() => handleAccordionClick(0)}
-                    >
-                      <h4 className="field__label">Sources</h4>
-                      <Icon
-                        size="30px"
-                        name={activeIndices.includes(0) ? upSVG : downSVG}
-                      />
-                    </Accordion.Title>
-                    <Accordion.Content active={activeIndices.includes(0)}>
-                      <div className="field__item">
-                        <ul>
-                          {content.sources.map((item) => (
-                            <li key={item['@id']}>
-                              <a href={item['@id']}>{item.title}</a>
-                            </li>
-                          ))}{' '}
-                        </ul>
-                      </div>
-                    </Accordion.Content>
-                  </div>
-                )}
-              </Accordion>
+              <div className="accordion-wrapper">
+                <div className="field--label-above">
+                  <Accordion fluid styled>
+                    {content.sources && (
+                      <>
+                        <Accordion.Title
+                          active={activeIndices.includes(0)}
+                          index={0}
+                          onClick={() => handleAccordionClick(0)}
+                        >
+                          <h4 className="field__label">Sources</h4>
+                          <Icon
+                            size="30px"
+                            name={activeIndices.includes(0) ? upSVG : downSVG}
+                          />
+                        </Accordion.Title>
+                        <Accordion.Content active={activeIndices.includes(0)}>
+                          <div className="field__item">
+                            <ul>
+                              {content.sources.map((item) => (
+                                <li key={item['@id']}>
+                                  <a href={item['@id']}>{item.title}</a>
+                                </li>
+                              ))}{' '}
+                            </ul>
+                          </div>
+                        </Accordion.Content>
+                      </>
+                    )}
+                  </Accordion>
+                </div>
 
-              {Sections.map((item, index) => {
-                return (
-                  <div className="field--label-above">
-                    <Accordion>
-                      <Accordion.Title
-                        active={activeIndices.includes(index + 1)}
-                        index={index + 1}
-                        onClick={() => handleAccordionClick(index + 1)}
-                      >
-                        <h4 className="field__label">{item.title}</h4>
-                        <Icon
-                          size="30px"
-                          name={
-                            activeIndices.includes(index + 1) ? upSVG : downSVG
-                          }
-                        />
-                      </Accordion.Title>
-                      <Accordion.Content
-                        active={activeIndices.includes(index + 1)}
-                      >
-                        <div className="field__item">
-                          <Section {...props} id={item.id} title={item.title} />
-                        </div>
-                      </Accordion.Content>
-                    </Accordion>
-                  </div>
-                );
-              })}
+                {Sections.map((item, index) => {
+                  const sectionData = content[item.id]?.data;
+
+                  if (sectionData) {
+                    return (
+                      <div className="field--label-above">
+                        <Accordion>
+                          <Accordion.Title
+                            active={activeIndices.includes(index + 1)}
+                            index={index + 1}
+                            onClick={() => handleAccordionClick(index + 1)}
+                          >
+                            <h4 className="field__label">{item.title}</h4>
+                            <Icon
+                              size="30px"
+                              name={
+                                activeIndices.includes(index + 1)
+                                  ? upSVG
+                                  : downSVG
+                              }
+                            />
+                          </Accordion.Title>
+                          <Accordion.Content
+                            active={activeIndices.includes(index + 1)}
+                          >
+                            <div className="field__item">
+                              <Section
+                                {...props}
+                                id={item.id}
+                                title={item.title}
+                              />
+                            </div>
+                          </Accordion.Content>
+                        </Accordion>
+                      </div>
+                    );
+                  }
+
+                  return null;
+                })}
+              </div>
             </div>
           </div>
         </div>
