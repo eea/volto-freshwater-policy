@@ -4,14 +4,9 @@
 @import (multiple, reference, optional) '../../theme.config';
 
 .case-study-view {
-  // .breadcrumbs,
-  // .herosection {
-  //   display: none;
-  // }
-
-  // .item-snippet-type {
-  //   display: none;
-  // }
+  .breadcrumbs {
+    background-color: #ddd !important;
+  }
 
   .field--label-inline {
     .field__label {
@@ -82,7 +77,8 @@
 
   // Copy from DatabseItemView
   .content-area {
-    padding-top: 0;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
   }
 
   .ui.container.tags {
@@ -160,7 +156,19 @@
       justify-content: space-between;
 
       .second-column {
+        display: table;
         font-size: smaller;
+        list-style: none;
+
+        .field {
+          display: table-row;
+        }
+
+        .field__label {
+          display: table-cell;
+          padding-right: 0.5em;
+          text-align: end;
+        }
       }
     }
 
@@ -169,13 +177,37 @@
     }
   }
 
-  .body {
-    .field--label-inline.field-with-margin {
-      .field__label {
-        margin-top: 30px;
+  .accordion {
+    .field--label-inline,
+    .field--label-above {
+      margin-bottom: 10px;
+    }
+
+    .field--label-inline,
+    .no-table {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+    }
+
+    .field--label-above:not(.no-table) .field__item {
+      width: 100%;
+
+      .table {
+        width: 100%;
+
+        td:nth-child(1) {
+          width: 200px;
+        }
       }
     }
 
+    .field__label {
+      margin-bottom: 0;
+    }
+  }
+
+  .body {
     .field--label-above.field-with-margin {
       .field__label {
         display: block;
@@ -185,6 +217,10 @@
 
     .field__label a {
       color: #004050;
+    }
+
+    .accordion-wrapper {
+      margin-top: 30px;
     }
   }
 }
