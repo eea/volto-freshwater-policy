@@ -13,6 +13,30 @@ describe('CaseStudy', () => {
           items: [{ '@type': 'File', '@id': 'testid' }],
           measures: [{ '@id': 'testid', title: 'Measure Test Title' }],
           sources: [{ '@id': 'testid', title: 'Soruce Test Title' }],
+          policy_general_governance: {
+            data: `<div class="details-wrapper">
+            <div class="field field--name-field-nwrm-cs-policy-tgt field--label-above">
+              <div class="table-responsive">
+                <table class="table" id="paragraph-nwrm_cs_policy_tgt">
+                  <thead>
+                    <tr>
+                      <th>
+                        <em>Target purpose</em>
+                      </th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div>Runoff control</div>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>`,
+          },
           general: {
             data: `<div class="details-wrapper">
           <div class="field field--name-field-nwrm-cs-national-id field--type-string field--label-inline">
@@ -53,7 +77,7 @@ describe('CaseStudy', () => {
           </div>`,
           },
         }}
-        id={'general'}
+        id={'policy_general_governance'}
       />,
     );
     expect(container.querySelector('.field__item')).toBeInTheDocument();
@@ -64,7 +88,9 @@ describe('CaseStudy', () => {
     const firstItem = getByText('Sources');
     fireEvent.click(firstItem);
     fireEvent.click(firstItem);
-    const secondItem = getByText('Performance');
+    const secondItem = getByText(
+      'Policy, general governance and design targets',
+    );
     fireEvent.click(secondItem);
   });
 });
