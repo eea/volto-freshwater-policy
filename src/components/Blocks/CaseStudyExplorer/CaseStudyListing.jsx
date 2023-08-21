@@ -1,7 +1,7 @@
 import React from 'react';
-import { useStyles } from './FeatureInteraction';
+// import { useStyles } from './FeatureInteraction';
 import { zoomMapToFeatures } from './utils';
-import { openlayers as ol } from '@eeacms/volto-openlayers-map';
+// import { openlayers as ol } from '@eeacms/volto-openlayers-map';
 
 export default function CaseStudyList(props) {
   const {
@@ -11,7 +11,8 @@ export default function CaseStudyList(props) {
     map,
     searchInput,
   } = props;
-  const { selectStyle } = useStyles();
+  // const { selectStyle } = useStyles();
+  const reSearch = new RegExp(`\\b(${searchInput})\\b`, 'gi');
 
   // const selectInteraction = new ol.interaction.Select({
   //   condition: ol.condition.click,
@@ -26,7 +27,11 @@ export default function CaseStudyList(props) {
   //   }
   // }, [activeItems, pointsSource]);
 
-  const features = pointsSource.getFeatures(selectedCase);
+  const features = pointsSource
+    .getFeatures(selectedCase)
+    .sort((item1, item2) =>
+      item1.values_.title.localeCompare(item2.values_.title),
+    );
 
   return features.length === 0 ? (
     <>
@@ -56,7 +61,6 @@ export default function CaseStudyList(props) {
               <p className="listing-description">{selectedCase.description}</p>
               <div className="slot-bottom">
                 <div className="result-bottom">
-                  <div className="result-info">3 Aug 2023</div>
                   <div className="result-info">
                     <span className="result-info-title">Sectors:</span>
                     <span>
@@ -79,12 +83,6 @@ export default function CaseStudyList(props) {
                         : ''}
                     </span>
                   </div>
-                  <div className="result-info">
-                    <span className="result-info-title">
-                      Available formats:
-                    </span>
-                    <span> GeoTIFF</span>
-                  </div>
                 </div>
               </div>
             </div>
@@ -96,43 +94,6 @@ export default function CaseStudyList(props) {
             <div className="u-item listing-item result-item" key={index}>
               <div className="slot-top">
                 <div className="listing-body">
-                  <button
-                    className="ui button primary"
-                    onClick={() => {
-                      // scroll to the map
-                      const element = document.getElementById('cse-filter');
-                      element.scrollIntoView({
-                        behavior: 'smooth',
-                      });
-
-                      // const features = getFeatures([item]);
-                      onSelectedCase(item.values_);
-                      zoomMapToFeatures(map, [item], 500000);
-
-                      // let evt = {};
-                      // evt.type = 'select';
-                      // evt.coordinate = [];
-                      // evt.coordinate[0] =
-                      //   item.values_.geometry.flatCoordinates[0];
-                      // evt.coordinate[1] =
-                      //   item.values_.geometry.flatCoordinates[1];
-                      // map.dispatchEvent(evt);
-
-                      //   var fakeOnSelectEvent = new ol.interaction.Select.Event(
-                      //     ol.interaction.Select.EventType.SELECT,
-                      //     [item],
-                      //     [],
-                      //     false,
-                      //   );
-
-                      //   ol.events.EventTarget.prototype.dispatchEvent.call(
-                      //     selectInteraction,
-                      //     fakeOnSelectEvent,
-                      //   );
-                    }}
-                  >
-                    Show on map
-                  </button>
                   <h3 className="listing-header">
                     <a
                       target="_blank"
@@ -147,16 +108,15 @@ export default function CaseStudyList(props) {
                     className="listing-description"
                     dangerouslySetInnerHTML={{
                       __html: searchInput
-                        ? item.values_.description.replace(
-                            searchInput,
-                            '<b>' + searchInput + '</b>',
+                        ? item.values_.description.replaceAll(
+                            reSearch,
+                            '<b>$1</b>',
                           )
                         : item.values_.description,
                     }}
                   ></p>
                   <div className="slot-bottom">
                     <div className="result-bottom">
-                      <div className="result-info">3 Aug 2023</div>
                       <div className="result-info">
                         <span className="result-info-title">Sectors:</span>
                         <span>{item.values_.sectors.join(', ')}</span>
@@ -165,19 +125,67 @@ export default function CaseStudyList(props) {
                         <span className="result-info-title">
                           NWRMs implemented:
                         </span>
-                        <span>
-                          {item.values_.nwrms_implemented
-                            .map((item) => {
-                              return item.title;
-                            })
-                            .join(', ')}
-                        </span>
+
+                        {item.values_.nwrms_implemented.map(
+                          (measure, index) => {
+                            return (
+                              <span>
+                                <a
+                                  target="_blank"
+                                  rel="noreferrer"
+                                  href={measure.path}
+                                >
+                                  {measure.title}
+                                  {index !==
+                                  item.values_.nwrms_implemented.length - 1
+                                    ? ', '
+                                    : ''}
+                                </a>
+                              </span>
+                            );
+                          },
+                        )}
                       </div>
-                      <div className="result-info">
-                        <span className="result-info-title">
-                          Available formats:
-                        </span>
-                        <span> GeoTIFF</span>
+                      <div
+                        className="result-info show-on-map"
+                        tabIndex="0"
+                        role="button"
+                        onKeyDown={() => {}}
+                        onClick={() => {
+                          // scroll to the map
+                          const element = document.getElementById('cse-filter');
+                          element.scrollIntoView({
+                            behavior: 'smooth',
+                          });
+
+                          // const features = getFeatures([item]);
+                          onSelectedCase(item.values_);
+                          zoomMapToFeatures(map, [item], 100000);
+
+                          // let evt = {};
+                          // evt.type = 'select';
+                          // evt.coordinate = [];
+                          // evt.coordinate[0] =
+                          //   item.values_.geometry.flatCoordinates[0];
+                          // evt.coordinate[1] =
+                          //   item.values_.geometry.flatCoordinates[1];
+                          // map.dispatchEvent(evt);
+
+                          //   var fakeOnSelectEvent = new ol.interaction.Select.Event(
+                          //     ol.interaction.Select.EventType.SELECT,
+                          //     [item],
+                          //     [],
+                          //     false,
+                          //   );
+
+                          //   ol.events.EventTarget.prototype.dispatchEvent.call(
+                          //     selectInteraction,
+                          //     fakeOnSelectEvent,
+                          //   );
+                        }}
+                      >
+                        <span className="result-info-title">Show on map</span>
+                        <i className="icon ri-road-map-line"></i>
                       </div>
                     </div>
                   </div>

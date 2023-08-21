@@ -1,7 +1,7 @@
 import React from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+// import { LazyLoadImage } from 'react-lazy-load-image-component';
 
-import searchSVG from './images/search.svg';
+// import searchSVG from './images/search.svg';
 
 const CaseStudyFilter = (props) => {
   const {
@@ -126,7 +126,8 @@ export function CaseStudyFilters(props) {
 }
 
 export function SearchBox(props) {
-  const { searchInput, setSearchInput } = props;
+  const { setSearchInput } = props;
+  const [showClearButton, setShowClearButton] = React.useState(false);
 
   return (
     <div className="header-content">
@@ -136,6 +137,10 @@ export function SearchBox(props) {
             <input
               id="search-input"
               placeholder="Search with a keyword..."
+              onChange={(event) => {
+                const _showClearButton = event.target.value ? true : false;
+                setShowClearButton(_showClearButton);
+              }}
               onKeyDown={(event) => {
                 if (event.code !== 'Enter') {
                   return;
@@ -145,19 +150,39 @@ export function SearchBox(props) {
             ></input>
             <div className="terms-box-left">
               <div className="input-controls">
-                {searchInput ? (
+                {showClearButton ? (
                   <div className="ui button basic clear-button">
                     <i
                       aria-hidden="true"
                       className="close icon"
                       role="button"
+                      onClick={() => {
+                        const searchInputElement = document.getElementById(
+                          'search-input',
+                        );
+                        searchInputElement.value = '';
+                        setSearchInput('');
+                        setShowClearButton(false);
+                      }}
                     ></i>
                   </div>
                 ) : (
                   ''
                 )}
               </div>
-              <div className="search-icon" role="button">
+              <div
+                className="search-icon"
+                role="button"
+                onClick={() => {
+                  const searchInputElement = document.getElementById(
+                    'search-input',
+                  );
+                  const searchInputVal = searchInputElement.value;
+                  setSearchInput(searchInputVal);
+                }}
+                onKeyDown={() => {}}
+                tabIndex="0"
+              >
                 {/* <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="icon"

@@ -28,7 +28,7 @@ export default function CaseStudyMap(props) {
     hideFilters,
     selectedCase,
     onSelectedCase,
-    searchInput
+    searchInput,
   } = props;
   const features = getFeatures(items);
   const [map, setMap] = React.useState();
