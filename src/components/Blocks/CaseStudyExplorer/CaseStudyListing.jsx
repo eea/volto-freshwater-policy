@@ -1,7 +1,5 @@
 import React from 'react';
-// import { useStyles } from './FeatureInteraction';
 import { zoomMapToFeatures } from './utils';
-// import { openlayers as ol } from '@eeacms/volto-openlayers-map';
 
 export default function CaseStudyList(props) {
   const {
@@ -11,21 +9,7 @@ export default function CaseStudyList(props) {
     map,
     searchInput,
   } = props;
-  // const { selectStyle } = useStyles();
   const reSearch = new RegExp(`\\b(${searchInput})\\b`, 'gi');
-
-  // const selectInteraction = new ol.interaction.Select({
-  //   condition: ol.condition.click,
-  //   style: selectStyle,
-  // });
-
-  // console.log('activeItems', activeItems);
-  // React.useEffect(() => {
-  //   if (activeItems) {
-  //     pointsSource.clear();
-  //     pointsSource.addFeatures(getFeatures(activeItems));
-  //   }
-  // }, [activeItems, pointsSource]);
 
   const features = pointsSource
     .getFeatures(selectedCase)
@@ -161,27 +145,6 @@ export default function CaseStudyList(props) {
                           // const features = getFeatures([item]);
                           onSelectedCase(item.values_);
                           zoomMapToFeatures(map, [item], 100000);
-
-                          // let evt = {};
-                          // evt.type = 'select';
-                          // evt.coordinate = [];
-                          // evt.coordinate[0] =
-                          //   item.values_.geometry.flatCoordinates[0];
-                          // evt.coordinate[1] =
-                          //   item.values_.geometry.flatCoordinates[1];
-                          // map.dispatchEvent(evt);
-
-                          //   var fakeOnSelectEvent = new ol.interaction.Select.Event(
-                          //     ol.interaction.Select.EventType.SELECT,
-                          //     [item],
-                          //     [],
-                          //     false,
-                          //   );
-
-                          //   ol.events.EventTarget.prototype.dispatchEvent.call(
-                          //     selectInteraction,
-                          //     fakeOnSelectEvent,
-                          //   );
                         }}
                       >
                         <span className="result-info-title">Show on map</span>
