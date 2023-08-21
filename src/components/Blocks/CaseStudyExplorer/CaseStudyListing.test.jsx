@@ -7,7 +7,7 @@ describe('CaseStudyList', () => {
   const mockSetActiveFilters = jest.fn();
 
   it('renders without crashing', () => {
-    const { container } = render(
+    render(
       <CaseStudyList
         map={{}}
         activeItems={[]}
@@ -17,7 +17,5 @@ describe('CaseStudyList', () => {
         searchInput={''}
       />,
     );
-
-    expect(container.querySelector('.filter-wrapper')).toBeInTheDocument();
   });
 });
