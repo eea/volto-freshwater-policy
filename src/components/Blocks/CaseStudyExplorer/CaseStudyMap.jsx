@@ -69,7 +69,7 @@ export default function CaseStudyMap(props) {
     selectedCase,
   ]);
 
-  const MapWithSelection = React.useMemo(() => Map, [selectedCase]);
+  const MapWithSelection = React.useMemo(() => Map, []);
 
   return features.length > 0 ? (
     <>
@@ -148,7 +148,6 @@ const selectedClusterStyle = (selectedFeature) => {
     if (size === 1) {
       // let color = feature.values_.features[0].values_['color'];
       let color = '#50B0A4'; // #0083E0 #50B0A4
-      if (selectedFeature) console.log({ selectedFeature, feature });
 
       return new ol.style.Style({
         image: new ol.style.Circle({
