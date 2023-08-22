@@ -95,23 +95,9 @@ export default function CaseStudyExplorerView(props) {
                 searchInput={searchInput}
               />
             </Grid.Column>
-            {/* {hideFilters ? null : (
-              <Grid.Column mobile={4} tablet={4} computer={4}>
-                <div id="external-popup-overlay"></div>
-              </Grid.Column>
-            )} */}
           </Grid>
         ) : null}
       </Grid.Row>
-      {/* <Grid.Row>
-        {hideFilters ? null : (
-          <CaseStudyList
-            activeItems={activeItems}
-            selectedCase={selectedCase}
-            onSelectedCase={onSelectedCase}
-          />
-        )}
-      </Grid.Row> */}
     </div>
   );
 }

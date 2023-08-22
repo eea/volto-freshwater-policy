@@ -49,17 +49,6 @@ export default function FeatureInteraction({
     style: hideFilters ? null : selectStyle,
   });
 
-  // React.useEffect(() => {
-  //   if (selectedCase) {
-  //     select.getFeatures().push(selectedCase);
-  //     // map.dispatchEvent({t
-  //     console.log(select, select.getFeatures());
-  //     map.render();
-  //     // onFeatureSelect(selectedCase);
-  //     // console.log('onfeatureselect', onFeatureSelect);
-  //   }
-  // }, [onFeatureSelect, select, selectedCase]);
-
   React.useEffect(() => {
     if (!map) return;
 

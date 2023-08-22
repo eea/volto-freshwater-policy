@@ -10,10 +10,6 @@ export default function FeatureDisplay({ feature }) {
           </a>
         </strong>
       </h3>
-      {/* <div>
-        <h4>Light or In-depth</h4>
-        <span>{feature.nwrm_type}</span>
-      </div> */}
       <div>
         <h4>NWRMs implemented</h4>
         <ul>
@@ -35,14 +31,7 @@ export default function FeatureDisplay({ feature }) {
             return <li key={index}>{item}</li>;
           })}
         </ul>
-
-        {/* <span>{feature.sectors.join(', ')}</span> */}
       </div>
-      {/* <span
-        dangerouslySetInnerHTML={{
-          __html: feature.adaptation_options_links.replace('<>', '; '),
-        }}
-      ></span> */}
     </div>
   ) : null;
 }
