@@ -1,5 +1,19 @@
 import { openlayers as ol } from '@eeacms/volto-openlayers-map';
 
+export function getExtentOfFeatures(features) {
+  const points = features.map((f) => f.getGeometry().flatCoordinates);
+  const point = new ol.geom.MultiPoint(points);
+  return point.getExtent();
+}
+
+export function zoomMapToFeatures(map, features, threshold = 500) {
+  const extent = getExtentOfFeatures(features);
+  let extentBuffer = (extent[3] - extent[1] + extent[2] - extent[0]) / 4;
+  extentBuffer = extentBuffer < threshold ? threshold : extentBuffer;
+  const paddedExtent = ol.extent.buffer(extent, extentBuffer);
+  map.getView().fit(paddedExtent, { ...map.getSize(), duration: 1000 });
+}
+
 export function getFeatures(cases) {
   const Feature = ol.ol.Feature;
 
@@ -25,27 +39,38 @@ export function getFeatures(cases) {
       },
       false,
     );
-    //return new Feature({ labelPoint: point, index: index });
     return point;
   });
 }
 
-export function filterCases(cases, activeFilters, caseStudiesIds) {
+export function filterCases(cases, activeFilters, caseStudiesIds, searchInput) {
   const data = cases.filter((_case) => {
-    // let flag_type = false;
+    let flag_searchInput = false;
     let flag_implemented = false;
     let flag_sectors = false;
     let flag_case = caseStudiesIds
       ? caseStudiesIds.includes(_case.properties.url.split('/').pop())
       : true;
 
-    // if (!activeFilters.nwrm_type.length) {
-    //   flag_type = true;
-    // } else {
-    //   activeFilters.nwrm_type.forEach((filter) => {
-    //     if (_case.properties.nwrm_type === filter) flag_type = true;
-    //   });
-    // }
+    if (!searchInput) {
+      flag_searchInput = true;
+    } else {
+      if (
+        _case.properties.title
+          .toLowerCase()
+          .split(/[\s,.;()]/)
+          .includes(searchInput)
+      ) {
+        flag_searchInput = true;
+      } else if (
+        _case.properties.description
+          .toLowerCase()
+          .split(/[\s,.;()]/)
+          .includes(searchInput)
+      ) {
+        flag_searchInput = true;
+      }
+    }
 
     if (!activeFilters.nwrms_implemented.length) {
       flag_implemented = true;
@@ -71,7 +96,7 @@ export function filterCases(cases, activeFilters, caseStudiesIds) {
       });
     }
 
-    return flag_case && flag_implemented && flag_sectors // && flag_type
+    return flag_case && flag_implemented && flag_sectors && flag_searchInput
       ? _case
       : false;
   });
@@ -81,19 +106,12 @@ export function filterCases(cases, activeFilters, caseStudiesIds) {
 
 export function getFilters(cases) {
   let _filters = {
-    // nwrm_type: {},
     nwrms_implemented: {},
     sectors: {},
   };
 
   for (let key of Object.keys(cases)) {
     const _case = cases[key];
-    // let typeName = _case.properties.nwrm_type;
-
-    // if (!_filters.nwrm_type.hasOwnProperty(typeName)) {
-    //   _filters.nwrm_type[typeName] = typeName;
-    // }
-
     let nwrms_implemented = _case.properties.measures;
     nwrms_implemented.map((item) => {
       if (!_filters.nwrms_implemented.hasOwnProperty(item['id'])) {
