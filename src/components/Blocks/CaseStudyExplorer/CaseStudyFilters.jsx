@@ -87,7 +87,7 @@ export function CaseStudyFilter(props) {
       </div>
     </div>
   );
-};
+}
 
 export function CaseStudyFilters(props) {
   const { filters, activeFilters, setActiveFilters } = props;
