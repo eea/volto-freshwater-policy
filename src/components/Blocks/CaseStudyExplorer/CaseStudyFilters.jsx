@@ -3,7 +3,7 @@ import React from 'react';
 
 // import searchSVG from './images/search.svg';
 
-const CaseStudyFilter = (props) => {
+export function CaseStudyFilter(props) {
   const {
     filterTitle,
     filters,

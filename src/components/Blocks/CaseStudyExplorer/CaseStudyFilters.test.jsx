@@ -2,7 +2,12 @@ import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import { render } from '@testing-library/react';
 
-import { CaseStudyFilters, ActiveFilters, SearchBox } from './CaseStudyFilters';
+import {
+  CaseStudyFilters,
+  ActiveFilters,
+  SearchBox,
+  CaseStudyFilter,
+} from './CaseStudyFilters';
 
 describe('CaseStudyFilters', () => {
   const mockSetActiveFilters = jest.fn();
@@ -57,6 +62,25 @@ describe('SearchBox', () => {
         setActiveFilters={mockSetActiveFilters}
         searchInput={mockSearchInput}
         setSearchInput={mockSetSearchInput}
+      />,
+    );
+  });
+});
+
+describe('CaseStudyFilter', () => {
+  const mockSetActiveFilters = jest.fn();
+  const mockFilters = {
+    sectors: { sector1: 'Sector 1', sector2: 'Sector 2' },
+  };
+
+  it('renders without crashing', () => {
+    render(
+      <CaseStudyFilter
+        filterTitle={'Case study filter'}
+        filters={mockFilters}
+        activeFilters={{ sectors: [] }}
+        setActiveFilters={mockSetActiveFilters}
+        filterName={'Filter name'}
       />,
     );
   });
