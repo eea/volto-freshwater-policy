@@ -4,6 +4,11 @@
 @import (multiple, reference, optional) '../../theme.config';
 
 .measure-view {
+
+  .breadcrumbs {
+    background-color: #ddd !important;
+  }
+
   .fullwidth {
     position: relative;
     right: 50%;
@@ -17,12 +22,14 @@
 
   .images-container {
     display: flex !important;
+    flex-direction: row !important;
     width: 100% !important;
     max-width: 1525px !important;
     justify-content: space-between;
     margin-right: auto !important;
     margin-left: auto !important;
     background-color: #f2f2f2;
+    height: 400px;
 
     .image-flexbox {
       display: flex;
@@ -32,15 +39,19 @@
       padding: 30px 0;
     }
 
+    .one-image {
+      display: flex;
+      margin-bottom: 10px;
+      height: 270px;
+    }
+
     .carousel {
       display: block;
       width: 500px;
       margin: 0;
 
-      .one-image {
-        display: flex;
-        justify-content: flex-end;
-        padding: 20px;
+      .image-slide {
+        height: 270px;
       }
 
       .slick-slider {
@@ -53,51 +64,47 @@
         align-items: center;
       }
 
-      .slick-slide.slick-active.slick-current {
+      .slick-slide.slick-active.slick-current:not(.one-image) {
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         padding-top: 20px;
+        visibility: visible;
       }
 
-      .slick-next {
-        right: 0;
-        left: 420px;
-      }
-
-      .slick-next:before {
-        color: white;
-        font-size: 30px;
-        opacity: 1;
-      }
-
-      .slick-prev:before {
-        color: white;
-        font-size: 30px;
-        opacity: 1;
-      }
-
-      .slick-prev {
-        z-index: 2;
-        left: 50px;
+      .image-slide.not-current {
+        visibility: hidden;
       }
     }
 
-    .arrow {
+    .carousel-wrapper {
       display: flex;
-      align-items: center;
-      border: none;
-      background: none;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .next-button {
+      background-color: black;
+      color: white;
       cursor: pointer;
+      right: 0;
+      left: -125px;
+      top: 330px;
     }
 
-    .arrow-left {
+    .buttons-wrapper {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-end;
       z-index: 1;
-      margin-right: -100px;
     }
 
-    .arrow-right {
-      z-index: 1;
-      margin-left: -50px;
+    .prev-button {
+      background-color: black;
+      color: white;
+      cursor: pointer;
+      z-index: 2;
+      left: -150px;
+      top: 330px;
     }
 
     .image-container {
@@ -161,16 +168,26 @@
   .table-responsive {
     table {
       tr {
-        margin-bottom: -12px;
+      border: 1px solid rgb(185, 185, 185);
+      margin-bottom: -12px;
       }
 
-      th {
-        display: none;
+      thead tr{
+      color: white;
+      border: 1px solid rgb(185, 185, 185);
+      background-color: #004b7f;
+      width: 100vw;
+      }
+
+      thead tr th {
+      padding: 10px 0 10px 15px;
+      text-align: start;
       }
 
       td {
-        padding-right: 15px;
-        padding-left: 15px;
+      padding-right: 15px;
+      padding-left: 15px;
+      border: 1px solid rgb(185, 185, 185);
       }
 
       border-collapse: collapse;
@@ -184,11 +201,6 @@
 
       .field--name-field-nwrm-benefits-2 {
         margin-left: 10px;
-      }
-
-      .field--name-field-nwrm-benefits-2::before {
-        margin-right: 0.5em;
-        content: '\2022'; /* Bullet point character */
       }
     }
   }
@@ -205,6 +217,7 @@
 
   .high {
     background-color: #006bb8;
+    color: white;
   }
 
   .medium {
@@ -217,7 +230,8 @@
 
   // Copy from DatabseItemView
   .content-area {
-    padding-top: 0;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
   }
 
   .ui.container.tags {
@@ -225,7 +239,6 @@
   }
 
   .metadata-header {
-    margin-top: 2em;
 
     h1 {
       padding-bottom: 10px;

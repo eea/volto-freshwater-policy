@@ -1,16 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Grid, Accordion } from 'semantic-ui-react';
 import { BodyClass } from '@plone/volto/helpers';
 import { Icon } from '@plone/volto/components';
-import {
-  ItemMetadataSnippet,
-  CaseStudyExplorer,
-} from '@eeacms/volto-freshwater-policy/components';
+import { CaseStudyExplorer } from '@eeacms/volto-freshwater-policy/components';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import './style.less';
 
 import downSVG from '@plone/volto/icons/down-key.svg';
 import upSVG from '@plone/volto/icons/up-key.svg';
+import rightSVG from '@plone/volto/icons/right-key.svg';
+import leftSVG from '@plone/volto/icons/left-key.svg';
 
 import Slider from 'react-slick';
 
@@ -107,7 +106,7 @@ const sortByLevel = (data) => {
 
 const MeasureView = (props) => {
   const { content } = props;
-  const [activeIndices, setActiveIndices] = useState([0, 1]);
+  const [activeIndices, setActiveIndices] = useState([0]);
   const [activeImage, setActiveImage] = useState(0);
   const imageItems = content.items.filter((item) => item['@type'] === 'Image');
 
@@ -145,6 +144,16 @@ const MeasureView = (props) => {
     });
   });
 
+  const slider = useRef();
+
+  const goToPrevSlide = () => {
+    slider.current.slickPrev();
+  };
+
+  const goToNextSlide = () => {
+    slider.current.slickNext();
+  };
+
   return (
     <>
       <BodyClass className="measure-view" />
@@ -152,7 +161,6 @@ const MeasureView = (props) => {
       <div id="page-document" className="ui container">
         <div>
           <div className="metadata-header">
-            <ItemMetadataSnippet {...props} item={content} />
             <div>
               <div className="images-container content-box">
                 <div className="image-flexbox">
@@ -213,27 +221,56 @@ const MeasureView = (props) => {
                     <br />
                   </div>
                 </div>
-                <Slider
-                  className="carousel"
-                  arrows={true}
-                  initialSlide={activeImage}
-                  afterChange={(currentSlide) => {
-                    setActiveImage(currentSlide);
-                  }}
-                >
-                  {imageItems.map((item, index) => (
-                    <div key={`image-${index}`}>
-                      <LazyLoadImage
-                        className={`image-slide ${
-                          activeImage === index ? 'current' : ''
-                        } ${imageItems.length === 1 && 'one-image'}`}
-                        src={item['@id'] + '/@@images/image/preview'}
-                        title={item['@id'].title}
-                        alt={item['@id'].title}
+                <div className="carousel-wrapper">
+                  {imageItems.length === 1 ? (
+                    <LazyLoadImage
+                      className="one-image"
+                      src={imageItems[0]['@id'] + '/@@images/image/preview'}
+                      title={imageItems[0]['@id'].title}
+                      alt={imageItems[0]['@id'].title}
+                    />
+                  ) : (
+                    <Slider
+                      className="carousel"
+                      arrows={false}
+                      ref={slider}
+                      initialSlide={activeImage}
+                      afterChange={(currentSlide) => {
+                        setActiveImage(currentSlide);
+                      }}
+                    >
+                      {imageItems.map((item, index) => (
+                        <div key={`image-${index}`}>
+                          <LazyLoadImage
+                            className={`image-slide ${
+                              activeImage === index ? 'current' : 'not-current'
+                            } ${imageItems.length === 1 && 'one-image'}`}
+                            src={item['@id'] + '/@@images/image/preview'}
+                            title={item['@id'].title}
+                            alt={item['@id'].title}
+                          />
+                        </div>
+                      ))}
+                    </Slider>
+                  )}
+
+                  {imageItems.length > 1 && (
+                    <div className="buttons-wrapper">
+                      <Icon
+                        onClick={goToPrevSlide}
+                        className="prev-button"
+                        size="30px"
+                        name={leftSVG}
+                      />
+                      <Icon
+                        onClick={goToNextSlide}
+                        className="next-button"
+                        size="30px"
+                        name={rightSVG}
                       />
                     </div>
-                  ))}
-                </Slider>
+                  )}
+                </div>
               </div>
             </div>
 
@@ -270,6 +307,13 @@ const MeasureView = (props) => {
                     <div className="field__item">
                       <div className="table-responsive">
                         <table>
+                          <thead>
+                            <tr>
+                              <th>Level</th>
+                              <th>Benefits</th>
+                              <th colSpan={1}></th>
+                            </tr>
+                          </thead>
                           <tbody>
                             {content.ecosystem_services.map((item, index) => (
                               <tr
@@ -315,6 +359,13 @@ const MeasureView = (props) => {
                     <div className="field__item">
                       <div className="table-responsive">
                         <table>
+                          <thead>
+                            <tr>
+                              <th>Level</th>
+                              <th>Benefits</th>
+                              <th colSpan={2}></th>
+                            </tr>
+                          </thead>
                           <tbody>
                             {content.biophysical_impacts.map((item, index) => (
                               <tr
@@ -367,6 +418,12 @@ const MeasureView = (props) => {
                     <div className="field__item">
                       <div className="table-responsive">
                         <table>
+                          <thead>
+                            <tr>
+                              <th>Level</th>
+                              <th>Benefits</th>
+                            </tr>
+                          </thead>
                           <tbody>
                             {content.policy_objectives.map((item, index) => (
                               <tr
