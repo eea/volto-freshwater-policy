@@ -264,8 +264,6 @@ const applyConfig = (config) => {
     { cssClass: 'black-text', label: 'Black text' },
   ];
 
-  console.log('hereee', config.settings.slate.styleMenu.inlineStyles);
-
   // Slate advanced link config
   const { slate } = config.settings;
 
