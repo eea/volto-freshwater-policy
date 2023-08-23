@@ -22,6 +22,7 @@ import installCustomCardsBlock from './components/Blocks/CustomCardsBlock';
 import installAppExtras from './components/theme/AppExtras';
 import installSlatePopup from './components/Blocks/SlatePopup';
 import installCaseStudyExplorer from './components/Blocks/CaseStudyExplorer';
+import installFreshwaterMeasureSearch from './config/index';
 
 import customBlockTemplates from './components/Blocks/CustomBlockTemplates/customBlockTemplates';
 
@@ -51,6 +52,17 @@ const messages = defineMessages({
 });
 
 const applyConfig = (config) => {
+  config.settings.searchlib = installFreshwaterMeasureSearch(
+    config.settings.searchlib,
+  );
+
+  const {
+    // resolve,
+    searchui: { freshwatermeasure },
+  } = config.settings.searchlib;
+
+  freshwatermeasure.elastic_index = '_es/globalsearch';
+
   // Multi-lingual
   config.settings.isMultilingual = false;
   config.settings.defaultLanguage =

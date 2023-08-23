@@ -24,7 +24,8 @@
     "@eeacms/volto-block-style",
     "@eeacms/volto-openlayers-map",
     "@eeacms/volto-eea-design-system",
-    "@eeacms/volto-eea-website-theme"
+    "@eeacms/volto-eea-website-theme",
+    "@eeacms/volto-searchlib"
   ],
   "dependencies": {
     "@eeacms/volto-block-style": "^3.3.0",
@@ -32,6 +33,7 @@
     "@eeacms/volto-eea-design-system": "*",
     "@eeacms/volto-eea-website-theme": "*",
     "@eeacms/volto-openlayers-map": "*",
+    "@eeacms/volto-searchlib": "*",
     "react-lazy-load-image-component": "^1.4.0",
     "react-slick": "^0.24.0",
     "slick-carousel": "^1.8.1"
