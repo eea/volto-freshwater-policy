@@ -235,8 +235,8 @@ const MeasureView = (props) => {
                       arrows={false}
                       ref={slider}
                       initialSlide={activeImage}
-                      afterChange={(currentSlide) => {
-                        setActiveImage(currentSlide);
+                      beforeChange={(currentSlide, nextSlide) => {
+                        setActiveImage(nextSlide);
                       }}
                     >
                       {imageItems.map((item, index) => (
