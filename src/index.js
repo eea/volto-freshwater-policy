@@ -244,6 +244,7 @@ const applyConfig = (config) => {
   }
 
   // Slate styles
+  config.settings.slate = config.settings.slate || {};
   config.settings.slate.styleMenu = config.settings.slate.styleMenu || {};
   config.settings.slate.styleMenu.inlineStyles = [
     ...(config.settings.slate.styleMenu?.inlineStyles || []),
