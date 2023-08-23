@@ -1,11 +1,4 @@
-import {
-  booleanFacet,
-  dateRangeFacet,
-  fixedRangeFacet,
-  histogramFacet,
-  makeRange,
-  multiTermFacet,
-} from '@eeacms/search';
+import { multiTermFacet } from '@eeacms/search';
 
 import globalSearchBaseConfig from '@eeacms/volto-globalsearch/config/global-search-base-config.js';
 

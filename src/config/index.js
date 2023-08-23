@@ -1,7 +1,5 @@
 import { mergeConfig } from '@eeacms/search';
-// import freshwaterMeasureSearchConfig from './freshwater-search-config';
 import facets from './facets';
-import globalSearchBaseConfig from '@eeacms/volto-globalsearch/config/global-search-base-config.js';
 
 const getClientProxyAddress = () => {
   const url = new URL(window.location);
@@ -9,9 +7,6 @@ const getClientProxyAddress = () => {
   url.search = '';
   return url.toString();
 };
-console.log("facets", facets);
-console.log("globalSearchBaseConfig", globalSearchBaseConfig);
-// debugger;
 
 const freshwaterMeasureSearchConfig = {
   title: 'Freashwater measure search',
