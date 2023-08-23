@@ -244,6 +244,7 @@ const applyConfig = (config) => {
   }
 
   // Slate styles
+  config.settings.slate = config.settings.slate || {};
   config.settings.slate.styleMenu = config.settings.slate.styleMenu || {};
   config.settings.slate.styleMenu.inlineStyles = [
     ...(config.settings.slate.styleMenu?.inlineStyles || []),
@@ -262,6 +263,8 @@ const applyConfig = (config) => {
     { cssClass: 'grey-circle text-circle', label: 'Grey circle' },
     { cssClass: 'black-text', label: 'Black text' },
   ];
+
+  console.log('hereee', config.settings.slate.styleMenu.inlineStyles);
 
   // Slate advanced link config
   const { slate } = config.settings;
