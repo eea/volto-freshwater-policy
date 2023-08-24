@@ -1,5 +1,6 @@
 import { mergeConfig } from '@eeacms/search';
 import facets from './facets';
+import views from './views';
 
 const getClientProxyAddress = () => {
   const url = new URL(window.location);
@@ -11,6 +12,7 @@ const getClientProxyAddress = () => {
 const freshwaterMeasureSearchConfig = {
   title: 'Freashwater measure search',
   ...facets,
+  ...views,
 };
 
 export default function install(config) {

@@ -26,7 +26,8 @@
     "@eeacms/volto-eea-design-system",
     "@eeacms/volto-eea-website-theme",
     "@eeacms/volto-searchlib",
-    "@eeacms/volto-globalsearch"
+    "@eeacms/volto-globalsearch",
+    "@eeacms/volto-listing-block"
   ],
   "dependencies": {
     "@eeacms/volto-globalsearch": "*",
@@ -36,6 +37,7 @@
     "@eeacms/volto-eea-website-theme": "*",
     "@eeacms/volto-openlayers-map": "*",
     "@eeacms/volto-searchlib": "*",
+    "@eeacms/volto-listing-block": "*",
     "react-lazy-load-image-component": "^1.4.0",
     "react-slick": "^0.24.0",
     "slick-carousel": "^1.8.1"

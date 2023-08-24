@@ -23,6 +23,7 @@ import installAppExtras from './components/theme/AppExtras';
 import installSlatePopup from './components/Blocks/SlatePopup';
 import installCaseStudyExplorer from './components/Blocks/CaseStudyExplorer';
 import installFreshwaterMeasureSearch from './config/index';
+import FreshwaterMeasureItem from './components/Result/FreshwaterMeasureItem';
 
 import customBlockTemplates from './components/Blocks/CustomBlockTemplates/customBlockTemplates';
 
@@ -57,9 +58,11 @@ const applyConfig = (config) => {
   );
 
   const {
-    // resolve,
+    resolve,
     searchui: { freshwatermeasure },
   } = config.settings.searchlib;
+
+  resolve.FreshwaterMeasureItem = { component: FreshwaterMeasureItem };
 
   freshwatermeasure.elastic_index = '_es/globalsearch';
 
