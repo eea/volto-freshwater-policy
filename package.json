@@ -17,7 +17,8 @@
     "url": "git@github.com:eea/volto-freshwater-policy.git"
   },
   "resolutions": {
-    "react-countup/countup.js": "2.5.0"
+    "react-countup/countup.js": "2.5.0",
+    "d3-array": "^2.12.1"
   },
   "addons": [
     "@eeacms/volto-datablocks",
