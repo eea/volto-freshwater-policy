@@ -24,7 +24,7 @@ export const useStyles = () => {
   const selectStyle = React.useCallback(
     (feature) => {
       // const color = feature.values_.features[0].values_['color'] || '#ccc';
-      const color = '#004B7F'; // #003052 #309ebc
+      const color = '#0A99FF'; // #004B7F #309ebc #0A99FF
       // console.log(color);
       selected.image_.getFill().setColor(color);
       return selected;

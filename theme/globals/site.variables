@@ -8,5 +8,5 @@
     Brand Colors
 --------------------*/
 
-@primaryColor: @blue-5;
-@secondaryColor: @blue-3;
+@primaryColor: #004B7F;
+@secondaryColor: #0083E0;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { zoomMapToFeatures } from './utils';
+import { openlayers as ol } from '@eeacms/volto-openlayers-map';
 
 export default function CaseStudyList(props) {
   const {
@@ -29,7 +30,16 @@ export default function CaseStudyList(props) {
   ) : (
     <div className="listing">
       {selectedCase ? (
-        <div className="u-item listing-item result-item">
+        <div
+          className="u-item listing-item result-item"
+          style={{
+            marginTop: '1em',
+            padding: 'em',
+            border: '3px solid #0A99FF',
+            borderTop: '1em solid #0A99FF',
+            paddingTop: 0,
+          }}
+        >
           <div className="slot-top">
             <div className="listing-body">
               <h3 className="listing-header">
@@ -57,15 +67,49 @@ export default function CaseStudyList(props) {
                     <span className="result-info-title">
                       NWRMs implemented:
                     </span>
-                    <span>
-                      {selectedCase.nwrms_implemented
-                        ? selectedCase.nwrms_implemented
-                            .map((item) => {
-                              return item.title;
-                            })
-                            .join(', ')
-                        : ''}
-                    </span>
+                    {selectedCase.nwrms_implemented.map((measure, index) => {
+                      return (
+                        <span>
+                          <a
+                            target="_blank"
+                            rel="noreferrer"
+                            href={measure.path}
+                          >
+                            {measure.title}
+                            {index !== selectedCase.nwrms_implemented.length - 1
+                              ? ', '
+                              : ''}
+                          </a>
+                        </span>
+                      );
+                    })}
+                  </div>
+                  <div
+                    className="result-info show-on-map"
+                    tabIndex="0"
+                    role="button"
+                    onKeyDown={() => {}}
+                    onClick={() => {
+                      // scroll to the map
+                      const element = document.getElementById('cse-filter');
+                      element.scrollIntoView({
+                        behavior: 'smooth',
+                      });
+                      onSelectedCase(null);
+                      map.getView().animate({
+                        zoom: 4,
+                        duration: 1000,
+                        center: ol.proj.transform(
+                          [10, 49],
+                          'EPSG:4326',
+                          'EPSG:3857',
+                        ),
+                      });
+                      map.getInteractions().array_[9].getFeatures().clear();
+                    }}
+                  >
+                    <span className="result-info-title">Reset map</span>
+                    <i className="icon ri-map-2-line"></i>
                   </div>
                 </div>
               </div>
@@ -136,15 +180,25 @@ export default function CaseStudyList(props) {
                         role="button"
                         onKeyDown={() => {}}
                         onClick={() => {
+                          map.getInteractions().array_[9].getFeatures().clear();
                           // scroll to the map
                           const element = document.getElementById('cse-filter');
                           element.scrollIntoView({
                             behavior: 'smooth',
                           });
 
-                          // const features = getFeatures([item]);
+                          zoomMapToFeatures(map, [item], 5000);
                           onSelectedCase(item.values_);
-                          zoomMapToFeatures(map, [item], 100000);
+
+                          setTimeout(() => {
+                            const coords =
+                              item.values_.geometry.flatCoordinates;
+                            const pixel = map.getPixelFromCoordinate(coords);
+                            map
+                              .getInteractions()
+                              .array_[9].getFeatures()
+                              .push(map.getFeaturesAtPixel(pixel)[0]);
+                          }, 1100);
                         }}
                       >
                         <span className="result-info-title">Show on map</span>
