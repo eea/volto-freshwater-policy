@@ -57,7 +57,7 @@ const FreshwaterMeasureItem = (props) => {
       <>
         <ExternalLink href={result.href} title={result.title}>
           {result.title}
-          {result.isNew && <Label className="new-item">New</Label>}
+          {/* {result.isNew && <Label className="new-item">New</Label>} */}
           {result.isExpired && (
             <Label className="archived-item">Archived</Label>
           )}

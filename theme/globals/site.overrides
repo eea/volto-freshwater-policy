@@ -24,3 +24,7 @@
   font-weight: 400;
   text-transform: uppercase;
 }
+
+body.searchlib-page .searchlib-block .back-link {
+  display: none;
+}
