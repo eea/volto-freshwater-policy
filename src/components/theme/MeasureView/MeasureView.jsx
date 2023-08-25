@@ -348,7 +348,7 @@ const MeasureView = (props) => {
                   index={1}
                   onClick={() => handleAccordionClick(1)}
                 >
-                  <h4>Biophysical</h4>
+                  <h4>Biophysical impacts</h4>
                   <Icon
                     size="30px"
                     name={activeIndices.includes(1) ? upSVG : downSVG}
