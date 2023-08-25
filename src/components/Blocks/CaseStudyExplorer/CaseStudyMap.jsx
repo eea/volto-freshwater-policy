@@ -73,7 +73,7 @@ export default function CaseStudyMap(props) {
     <>
       <MapWithSelection
         view={{
-          center: ol.proj.fromLonLat([10, 50]),
+          center: ol.proj.fromLonLat([10, 49]),
           showFullExtent: true,
           zoom: 4,
         }}
