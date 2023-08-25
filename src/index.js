@@ -38,6 +38,7 @@ import { withLink } from '@plone/volto-slate/editor/plugins/AdvancedLink/extensi
 import { linkDeserializer } from '@plone/volto-slate/editor/plugins/AdvancedLink/deserialize';
 import LinkEditSchema from '@plone/volto-slate/editor/plugins/AdvancedLink/schema';
 import ecLogo from '@eeacms/volto-freshwater-policy/../theme/assets/images/Header/logo-ec.svg';
+import { getBlocks } from '@plone/volto/helpers';
 
 import './slate-styles.less';
 
@@ -107,6 +108,30 @@ const applyConfig = (config) => {
       computer: 4,
     },
   };
+
+  //toc block + columns configuration
+  if (config.blocks.blocksConfig.columnsBlock) {
+    config.blocks.blocksConfig.columnsBlock.tocEntries = (
+      block = {},
+      tocData,
+    ) => {
+      // integration with volto-block-toc
+      const headlines = tocData.levels || ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
+      let entries = [];
+      const sorted_column_blocks = getBlocks(block?.data || {});
+      sorted_column_blocks.forEach((column_block) => {
+        const sorted_blocks = getBlocks(column_block[1]);
+        sorted_blocks.forEach((block) => {
+          const { value, plaintext } = block[1];
+          const type = value?.[0]?.type;
+          if (headlines.includes(type)) {
+            entries.push([parseInt(type.slice(1)), plaintext, block[0]]);
+          }
+        });
+      });
+      return entries;
+    };
+  }
 
   config.settings.eea.footerOpts.contacts = [];
   config.settings.eea.footerOpts.social = [];
