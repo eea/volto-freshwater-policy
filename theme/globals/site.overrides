@@ -72,3 +72,8 @@ body.searchlib-page
 .search-body-footer .ui.button.pagination-item.active:after {
   border-bottom: 5px solid @secondaryColor !important;
 }
+
+// hide +More filters
+section .searchlib-block .ui.button.sui-button.basic {
+  display: none;
+}
