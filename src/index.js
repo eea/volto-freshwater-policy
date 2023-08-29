@@ -65,7 +65,8 @@ const applyConfig = (config) => {
 
   resolve.FreshwaterMeasureItem = { component: FreshwaterMeasureItem };
 
-  freshwatermeasure.elastic_index = '_es/globalsearch';
+  freshwatermeasure.elastic_index = '_es/freshwatermeasure';
+  freshwatermeasure.index_name = 'wisetest_searchui';
 
   // Multi-lingual
   config.settings.isMultilingual = false;
