@@ -104,6 +104,39 @@ const sortByLevel = (data) => {
   });
 };
 
+const ImageSource = (props) => {
+  const { image } = props;
+
+  return (
+    image['@type'] === 'Image' && (
+      <div className="header_source">
+        {image.description.includes('http') ? (
+          <div className="field--label-inline">
+            <div className="field__label">
+              <a
+                target="_blank"
+                rel="noreferrer"
+                href={image.description.split(': ')[1]}
+                style={{ display: 'flex', gap: '5px' }}
+              >
+                <span>Source </span>
+                <i class="ri-external-link-line"></i>
+              </a>
+            </div>
+          </div>
+        ) : (
+          <div className="field--label-inline source">
+            <div className="field__label">Source:</div>
+            <div className="field__item">
+              {image.description.split(': ')[1]}
+            </div>
+          </div>
+        )}
+      </div>
+    )
+  );
+};
+
 const MeasureView = (props) => {
   const { content } = props;
   const [activeIndices, setActiveIndices] = useState([0]);
@@ -192,43 +225,20 @@ const MeasureView = (props) => {
                         </>
                       )}
                     </div>
-
-                    <div className="header_source">
-                      {content.items.map(
-                        (item) =>
-                          item['@type'] === 'Image' && (
-                            <>
-                              {item.description.includes('http') ? (
-                                <div className="field--label-inline">
-                                  <div className="field__label">
-                                    <a href={item.description.split(': ')[1]}>
-                                      Source
-                                    </a>
-                                  </div>
-                                </div>
-                              ) : (
-                                <div className="field--label-inline source">
-                                  <div className="field__label">Source:</div>
-                                  <div className="field__item">
-                                    {item.description.split(': ')[1]}
-                                  </div>
-                                </div>
-                              )}
-                            </>
-                          ),
-                      )}
-                    </div>
                     <br />
                   </div>
                 </div>
                 <div className="carousel-wrapper">
                   {imageItems.length === 1 ? (
-                    <LazyLoadImage
-                      className="one-image"
-                      src={imageItems[0]['@id'] + '/@@images/image/preview'}
-                      title={imageItems[0]['@id'].title}
-                      alt={imageItems[0]['@id'].title}
-                    />
+                    <>
+                      <LazyLoadImage
+                        className="one-image"
+                        src={imageItems[0]['@id'] + '/@@images/image/preview'}
+                        title={imageItems[0]['@id'].title}
+                        alt={imageItems[0]['@id'].title}
+                      />
+                      <ImageSource image={imageItems[0]} />
+                    </>
                   ) : (
                     <Slider
                       className="carousel"
@@ -249,6 +259,7 @@ const MeasureView = (props) => {
                             title={item['@id'].title}
                             alt={item['@id'].title}
                           />
+                          <ImageSource image={item} />
                         </div>
                       ))}
                     </Slider>
