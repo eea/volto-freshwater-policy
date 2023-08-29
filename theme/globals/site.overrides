@@ -2,6 +2,10 @@
   background-color: @primaryColor !important;
 }
 
+.ui.button.primary.inverted {
+  background-color: transparent !important;
+}
+
 .grid .nine.wide.content-body {
   .full-width {
     @media only screen and (min-width: @largestMobileScreen) {
