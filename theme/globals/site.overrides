@@ -2,6 +2,10 @@
   background-color: @primaryColor !important;
 }
 
+.ui.button.primary.inverted {
+  background-color: transparent !important;
+}
+
 .grid .nine.wide.content-body {
   .full-width {
     @media only screen and (min-width: @largestMobileScreen) {
@@ -39,6 +43,7 @@ body.searchlib-page .searchlib-block .back-link {
   fill: @secondaryColor !important;
 }
 
+.sui-search-box .search-input .input-controls i.close.icon,
 .search-body-footer .ui.button.pagination-item.active,
 .searchlib-block .dropdown-facets-list .dropdown-facet .facet-title i.icon,
 .searchlib-block .dropdown-facets-list .ui.button.sui-button,
@@ -56,6 +61,8 @@ body.searchlib-page
   color: @secondaryColor !important;
 }
 
+.sui-search-box .search-input .input-controls i.close.icon:before,
+.sui-search-box .search-input .input-controls i.close.icon:after,
 body.searchlib-page
   .searchlib-block
   .ui.segment.active-filter-list
@@ -76,4 +83,8 @@ body.searchlib-page
 // hide +More filters
 section .searchlib-block .ui.button.sui-button.basic {
   display: none;
+}
+
+.sui-search-box .search-input .input-controls .clear-button {
+  border: 2px solid @secondaryColor !important;
 }
