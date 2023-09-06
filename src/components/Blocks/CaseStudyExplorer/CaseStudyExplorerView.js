@@ -11,7 +11,7 @@ import { useCases } from './hooks';
 
 import './styles.less';
 
-const cases_url = '@@case-studies-map.arcgis.json';
+const cases_url = '/freshwater/@@case-studies-map.arcgis.json';
 
 export default function CaseStudyExplorerView(props) {
   let cases = useCases(addAppURL(cases_url));
