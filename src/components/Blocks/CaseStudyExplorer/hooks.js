@@ -14,7 +14,7 @@ export function useCases(url) {
         const res = JSON.parse(resp.text);
         setCases(res.features);
       });
-  });
+  }, [url]);
 
   return cases;
 }

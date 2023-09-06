@@ -82,21 +82,23 @@ export default function CaseStudyMap(props) {
       >
         <Controls attribution={false} />
         <Layers>
-          <button
-            className="reset-map-button ui button secondary"
-            onClick={() => {
-              onSelectedCase(null);
-              map.getView().animate({
-                zoom: 4,
-                duration: 1000,
-                center: ol.proj.transform([10, 49], 'EPSG:4326', 'EPSG:3857'),
-              });
-              map.getInteractions().array_[9].getFeatures().clear();
-            }}
-          >
-            <span className="result-info-title">Reset map</span>
-            <i className="icon ri-map-2-line"></i>
-          </button>
+          {hideFilters ? null : (
+            <button
+              className="reset-map-button ui button secondary"
+              onClick={() => {
+                onSelectedCase(null);
+                map.getView().animate({
+                  zoom: 4,
+                  duration: 1000,
+                  center: ol.proj.transform([10, 49], 'EPSG:4326', 'EPSG:3857'),
+                });
+                map.getInteractions().array_[9].getFeatures().clear();
+              }}
+            >
+              <span className="result-info-title">Reset map</span>
+              <i className="icon ri-map-2-line"></i>
+            </button>
+          )}
           <InfoOverlay
             selectedFeature={selectedCase}
             onFeatureSelect={onSelectedCase}
