@@ -55,7 +55,7 @@ const CountriesListingView = (props) => {
                             <Item.Image
                               className="countries-list-flag"
                               alt={item.title}
-                              src={`${item['@id']
+                              src={`/freshwater${item['@id']
                                 .replace(config.settings.apiPath, '')
                                 .replace(
                                   config.settings.internalApiPath,
@@ -88,7 +88,7 @@ const CountriesListingView = (props) => {
                               <Item.Image
                                 className="countries-list-flag"
                                 alt={item.title}
-                                src={`${item['@id']
+                                src={`/freshwater${item['@id']
                                   .replace(config.settings.apiPath, '')
                                   .replace(
                                     config.settings.internalApiPath,
