@@ -189,10 +189,12 @@ const applyConfig = (config) => {
   //use object_browser widget for call-to-action #256557
 
   const { callToActionBlock } = config.blocks.blocksConfig;
-  callToActionBlock.schemaEnhancer = composeSchema(
-    replaceCallToActionWidget,
-    callToActionBlock.schemaEnhancer,
-  );
+  if (callToActionBlock) {
+    callToActionBlock.schemaEnhancer = composeSchema(
+      replaceCallToActionWidget,
+      callToActionBlock.schemaEnhancer,
+    );
+  }
 
   // Search block metadata listing view
   config.blocks.blocksConfig.listing = {
