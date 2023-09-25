@@ -1,4 +1,5 @@
 import React from 'react';
+import { scrollToElement } from './utils';
 // import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 // import searchSVG from './images/search.svg';
@@ -78,6 +79,7 @@ export function CaseStudyFilter(props) {
                       });
                     }
                     setActiveFilters(temp);
+                    scrollToElement('search-input');
                   }}
                 />
                 <span>{label}</span>
@@ -146,6 +148,7 @@ export function SearchBox(props) {
                   return;
                 }
                 setSearchInput(event.target.value.toLowerCase());
+                scrollToElement('search-input');
               }}
             ></input>
             <div className="terms-box-left">
@@ -179,6 +182,7 @@ export function SearchBox(props) {
                   );
                   const searchInputVal = searchInputElement.value;
                   setSearchInput(searchInputVal);
+                  scrollToElement('search-input');
                 }}
                 onKeyDown={() => {}}
                 tabIndex="0"
@@ -219,6 +223,7 @@ export function ActiveFilters(props) {
       filterInputs[i].checked = false;
     }
     setActiveFilters({ nwrms_implemented: [], sectors: [] });
+    scrollToElement('search-input');
   };
 
   const removeFilter = (filterName, filterCode) => {
@@ -267,6 +272,7 @@ export function ActiveFilters(props) {
                       onKeyPress={() => {}}
                       onClick={() => {
                         removeFilter('nwrms_implemented', filterCode);
+                        scrollToElement('search-input');
                       }}
                       role="button"
                       className="close icon"
@@ -291,6 +297,7 @@ export function ActiveFilters(props) {
                       onKeyPress={() => {}}
                       onClick={() => {
                         removeFilter('sectors', filterCode);
+                        scrollToElement('search-input');
                       }}
                       role="button"
                       className="close icon"

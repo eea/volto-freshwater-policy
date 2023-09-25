@@ -8,7 +8,7 @@ import FeatureInteraction from './FeatureInteraction';
 import CaseStudyList from './CaseStudyListing';
 import { useMapContext } from '@eeacms/volto-openlayers-map/api';
 
-import { getFeatures } from './utils';
+import { getFeatures, scrollToElement } from './utils';
 
 const styleCache = {};
 const MapContextGateway = ({ setMap }) => {
@@ -86,6 +86,7 @@ export default function CaseStudyMap(props) {
             <button
               className="reset-map-button ui button secondary"
               onClick={() => {
+                scrollToElement('search-input');
                 onSelectedCase(null);
                 map.getView().animate({
                   zoom: 4,

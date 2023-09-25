@@ -1,5 +1,12 @@
 import { openlayers as ol } from '@eeacms/volto-openlayers-map';
 
+export function scrollToElement(elementId) {
+  const element = document.getElementById(elementId);
+  element.scrollIntoView({
+    behavior: 'smooth',
+  });
+}
+
 export function getExtentOfFeatures(features) {
   const points = features.map((f) => f.getGeometry().flatCoordinates);
   const point = new ol.geom.MultiPoint(points);

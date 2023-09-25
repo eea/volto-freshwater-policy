@@ -31,14 +31,14 @@
     "@eeacms/volto-listing-block"
   ],
   "dependencies": {
-    "@eeacms/volto-globalsearch": "*",
     "@eeacms/volto-block-style": "^3.3.0",
     "@eeacms/volto-datablocks": "*",
     "@eeacms/volto-eea-design-system": "*",
     "@eeacms/volto-eea-website-theme": "*",
+    "@eeacms/volto-globalsearch": "*",
+    "@eeacms/volto-listing-block": "*",
     "@eeacms/volto-openlayers-map": "*",
     "@eeacms/volto-searchlib": "*",
-    "@eeacms/volto-listing-block": "*",
     "react-lazy-load-image-component": "^1.4.0",
     "react-slick": "^0.24.0",
     "slick-carousel": "^1.8.1"
@@ -48,9 +48,9 @@
     "@plone/scripts": "*",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "cypress-fail-fast": "^5.0.1",
-    "md5": "^2.3.0",
     "husky": "*",
-    "lint-staged": "*"
+    "lint-staged": "*",
+    "md5": "^2.3.0"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json}": [

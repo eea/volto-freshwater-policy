@@ -1,5 +1,5 @@
 import React from 'react';
-import { zoomMapToFeatures } from './utils';
+import { scrollToElement, zoomMapToFeatures } from './utils';
 import { openlayers as ol } from '@eeacms/volto-openlayers-map';
 
 const showPageNr = (pageNr, currentPage, numberOfPages) => {
@@ -127,10 +127,8 @@ export default function CaseStudyList(props) {
                       onKeyDown={() => {}}
                       onClick={() => {
                         // scroll to the map
-                        const element = document.getElementById('cse-filter');
-                        element.scrollIntoView({
-                          behavior: 'smooth',
-                        });
+                        scrollToElement('search-input');
+                        // reset map zoom
                         onSelectedCase(null);
                         map.getView().animate({
                           zoom: 4,
