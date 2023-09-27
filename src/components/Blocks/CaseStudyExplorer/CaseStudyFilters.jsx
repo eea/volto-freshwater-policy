@@ -166,6 +166,7 @@ export function SearchBox(props) {
                         searchInputElement.value = '';
                         setSearchInput('');
                         setShowClearButton(false);
+                        scrollToElement('search-input');
                       }}
                     ></i>
                   </div>

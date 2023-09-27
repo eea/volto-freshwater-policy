@@ -65,8 +65,13 @@ export default function FeatureInteraction({
             window.location.href = url;
           }
           onFeatureSelect(selectedFeature);
-          scrollToElement('search-input');
+          scrollToElement('ol-map-container');
+          // map.getView().animate({
+          //   duration: 10,
+          //   center: selectedFeature.geometry.flatCoordinates,
+          // });
         } else {
+          onFeatureSelect(null);
           zoomMapToFeatures(map, subfeatures);
         }
       });

@@ -219,12 +219,7 @@ export default function CaseStudyList(props) {
                               .array_[9].getFeatures()
                               .clear();
                             // scroll to the map
-                            const element = document.getElementById(
-                              'cse-filter',
-                            );
-                            element.scrollIntoView({
-                              behavior: 'smooth',
-                            });
+                            scrollToElement('ol-map-container');
 
                             zoomMapToFeatures(map, [item], 5000);
                             onSelectedCase(item.values_);
