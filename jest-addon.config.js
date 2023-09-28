@@ -20,7 +20,7 @@ module.exports = {
       '<rootDir>/node_modules/@plone/volto/jest-addons-loader.js',
   },
   transformIgnorePatterns: [
-    'node_modules/(?!(@eeacms/volto-freshwater-policy/|@plone/volto/|@eeacms/volto-openlayers-map/|/ol/))',
+    'node_modules/(?!(@eeacms/volto-freshwater-policy/|@plone/volto/|@eeacms/volto-openlayers-map/|ol/))',
   ],
   transform: {
     '^.+\\.js(x)?$': 'babel-jest',
