@@ -11,6 +11,7 @@ import {
 
 describe('CaseStudyFilters', () => {
   const mockSetActiveFilters = jest.fn();
+  global.URL.createObjectURL = jest.fn();
   const mockFilters = {
     sectors: { sector1: 'Sector 1', sector2: 'Sector 2' },
   };
