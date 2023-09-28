@@ -1,3 +1,4 @@
+import './mockJsdom';
 import React from 'react';
 import '@testing-library/jest-dom/extend-expect';
 import { render } from '@testing-library/react';
@@ -13,6 +14,7 @@ describe('CaseStudyFilters', () => {
   const mockSetActiveFilters = jest.fn();
   window.URL.createObjectURL = function () {};
   global.URL.createObjectURL = jest.fn();
+
   const mockFilters = {
     sectors: { sector1: 'Sector 1', sector2: 'Sector 2' },
   };
