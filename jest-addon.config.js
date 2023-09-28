@@ -19,7 +19,9 @@ module.exports = {
     'load-volto-addons':
       '<rootDir>/node_modules/@plone/volto/jest-addons-loader.js',
   },
-  transformIgnorePatterns: ['node_modules/(?!@eeacms/volto-freshwater-policy)'],
+  transformIgnorePatterns: [
+    'node_modules/(?!(@eeacms/volto-freshwater-policy/|@plone/volto/))',
+  ],
   transform: {
     '^.+\\.js(x)?$': 'babel-jest',
     '^.+\\.(png)$': 'jest-file',
