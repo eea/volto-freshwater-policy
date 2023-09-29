@@ -21,6 +21,7 @@
     "d3-array": "^2.12.1"
   },
   "addons": [
+    "@eeacms/countup",
     "@eeacms/volto-datablocks",
     "@eeacms/volto-block-style",
     "@eeacms/volto-openlayers-map",
@@ -32,6 +33,7 @@
   ],
   "dependencies": {
     "@eeacms/volto-block-style": "^3.3.0",
+    "@eeacms/countup": "*",
     "@eeacms/volto-datablocks": "*",
     "@eeacms/volto-eea-design-system": "*",
     "@eeacms/volto-eea-website-theme": "*",
