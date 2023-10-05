@@ -16,7 +16,7 @@ const cases_url = '/freshwater/@@case-studies-map.arcgis.json';
 export default function CaseStudyExplorerView(props) {
   let cases = useCases(addAppURL(cases_url));
   const { caseStudiesIds } = props; // case studies from measure view
-  const [selectedCase, onSelectedCase] = React.useState();
+  const [selectedCase, onSelectedCase] = React.useState(null);
   const [searchInput, setSearchInput] = React.useState('');
   const hideFilters = caseStudiesIds ? true : false;
 

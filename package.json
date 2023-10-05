@@ -1,6 +1,6 @@
 {
   "name": "@eeacms/volto-freshwater-policy",
-  "version": "0.1.25",
+  "version": "0.1.26",
   "description": "@eeacms/volto-freshwater-policy: Volto add-on",
   "main": "src/index.js",
   "author": "European Environment Agency: IDM2 A-Team",
@@ -21,6 +21,7 @@
     "d3-array": "^2.12.1"
   },
   "addons": [
+    "@eeacms/countup",
     "@eeacms/volto-datablocks",
     "@eeacms/volto-block-style",
     "@eeacms/volto-openlayers-map",
@@ -31,14 +32,15 @@
     "@eeacms/volto-listing-block"
   ],
   "dependencies": {
-    "@eeacms/volto-globalsearch": "*",
+    "@eeacms/countup": "*",
     "@eeacms/volto-block-style": "^3.3.0",
     "@eeacms/volto-datablocks": "*",
     "@eeacms/volto-eea-design-system": "*",
     "@eeacms/volto-eea-website-theme": "*",
+    "@eeacms/volto-globalsearch": "*",
+    "@eeacms/volto-listing-block": "*",
     "@eeacms/volto-openlayers-map": "*",
     "@eeacms/volto-searchlib": "*",
-    "@eeacms/volto-listing-block": "*",
     "react-lazy-load-image-component": "^1.4.0",
     "react-slick": "^0.24.0",
     "slick-carousel": "^1.8.1"
@@ -48,9 +50,9 @@
     "@plone/scripts": "*",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "cypress-fail-fast": "^5.0.1",
-    "md5": "^2.3.0",
     "husky": "*",
-    "lint-staged": "*"
+    "lint-staged": "*",
+    "md5": "^2.3.0"
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json}": [

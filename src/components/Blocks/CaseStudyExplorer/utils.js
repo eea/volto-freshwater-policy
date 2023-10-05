@@ -1,5 +1,12 @@
 import { openlayers as ol } from '@eeacms/volto-openlayers-map';
 
+export function scrollToElement(elementId) {
+  const element = document.getElementById(elementId);
+  element.scrollIntoView({
+    behavior: 'smooth',
+  });
+}
+
 export function getExtentOfFeatures(features) {
   const points = features.map((f) => f.getGeometry().flatCoordinates);
   const point = new ol.geom.MultiPoint(points);
@@ -55,18 +62,10 @@ export function filterCases(cases, activeFilters, caseStudiesIds, searchInput) {
     if (!searchInput) {
       flag_searchInput = true;
     } else {
-      if (
-        _case.properties.title
-          .toLowerCase()
-          .split(/[\s,.;()]/)
-          .includes(searchInput)
-      ) {
+      if (_case.properties.title.toLowerCase().match(searchInput)) {
         flag_searchInput = true;
       } else if (
-        _case.properties.description
-          .toLowerCase()
-          .split(/[\s,.;()]/)
-          .includes(searchInput)
+        _case.properties.description.toLowerCase().match(searchInput)
       ) {
         flag_searchInput = true;
       }

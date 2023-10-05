@@ -1,5 +1,7 @@
 import React from 'react';
 
+import cx from 'classnames';
+
 import { Map, Layer, Layers, Controls } from '@eeacms/volto-openlayers-map/api';
 import { openlayers as ol } from '@eeacms/volto-openlayers-map';
 
@@ -8,7 +10,7 @@ import FeatureInteraction from './FeatureInteraction';
 import CaseStudyList from './CaseStudyListing';
 import { useMapContext } from '@eeacms/volto-openlayers-map/api';
 
-import { getFeatures } from './utils';
+import { getFeatures, scrollToElement } from './utils';
 
 const styleCache = {};
 const MapContextGateway = ({ setMap }) => {
@@ -30,6 +32,9 @@ export default function CaseStudyMap(props) {
   } = props;
   const features = getFeatures(items);
   const [map, setMap] = React.useState();
+  const [resetMapButtonClass, setResetMapButtonClass] = React.useState(
+    'inactive',
+  );
 
   const [tileWMSSources] = React.useState([
     new ol.source.TileWMS({
@@ -63,14 +68,54 @@ export default function CaseStudyMap(props) {
     }
   }, [activeItems, pointsSource]);
 
+  React.useEffect(() => {
+    if (!map) return null;
+
+    const moveendListener = (e) => {
+      // console.log('map.getView()', map.getView());
+      // console.log('selectedCase', selectedCase);
+      const mapZoom = Math.round(map.getView().getZoom() * 10) / 10;
+      const mapCenter = map.getView().getCenter();
+
+      if (selectedCase) {
+        const coords = selectedCase.geometry.flatCoordinates;
+        const pixel = map.getPixelFromCoordinate(coords);
+        map.getInteractions().array_[9].getFeatures().clear();
+        map
+          .getInteractions()
+          .array_[9].getFeatures()
+          .push(map.getFeaturesAtPixel(pixel)[0]);
+      } else {
+        map.getInteractions().array_[9].getFeatures().clear();
+      }
+
+      if (
+        mapZoom === 4 &&
+        JSON.stringify(mapCenter) ===
+          JSON.stringify(ol.proj.transform([10, 49], 'EPSG:4326', 'EPSG:3857'))
+      ) {
+        setResetMapButtonClass('inactive');
+      } else {
+        setResetMapButtonClass('active');
+      }
+    };
+
+    map.on('moveend', moveendListener);
+
+    return () => {
+      map.un('moveend', moveendListener);
+    };
+  }, [map, selectedCase, resetMapButtonClass, setResetMapButtonClass]);
+
   const clusterStyle = React.useMemo(() => selectedClusterStyle(selectedCase), [
     selectedCase,
   ]);
 
   const MapWithSelection = React.useMemo(() => Map, []);
+  // console.log('render');
 
   return features.length > 0 ? (
-    <>
+    <div id="ol-map-container">
       <MapWithSelection
         view={{
           center: ol.proj.fromLonLat([10, 49]),
@@ -84,8 +129,12 @@ export default function CaseStudyMap(props) {
         <Layers>
           {hideFilters ? null : (
             <button
-              className="reset-map-button ui button secondary"
+              className={cx(
+                'reset-map-button ui button secondary',
+                String(resetMapButtonClass),
+              )}
               onClick={() => {
+                scrollToElement('search-input');
                 onSelectedCase(null);
                 map.getView().animate({
                   zoom: 4,
@@ -129,7 +178,7 @@ export default function CaseStudyMap(props) {
           searchInput={searchInput}
         />
       )}
-    </>
+    </div>
   ) : null;
 }
 
