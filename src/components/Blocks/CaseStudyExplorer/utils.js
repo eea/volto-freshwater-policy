@@ -62,18 +62,10 @@ export function filterCases(cases, activeFilters, caseStudiesIds, searchInput) {
     if (!searchInput) {
       flag_searchInput = true;
     } else {
-      if (
-        _case.properties.title
-          .toLowerCase()
-          .split(/[\s,.;()]/)
-          .includes(searchInput)
-      ) {
+      if (_case.properties.title.toLowerCase().match(searchInput)) {
         flag_searchInput = true;
       } else if (
-        _case.properties.description
-          .toLowerCase()
-          .split(/[\s,.;()]/)
-          .includes(searchInput)
+        _case.properties.description.toLowerCase().match(searchInput)
       ) {
         flag_searchInput = true;
       }
