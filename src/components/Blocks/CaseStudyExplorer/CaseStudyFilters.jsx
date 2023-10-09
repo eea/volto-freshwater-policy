@@ -1,5 +1,6 @@
 import React from 'react';
-import { scrollToElement } from './utils';
+
+import { centerAndResetMapZoom, scrollToElement } from './utils';
 
 const normalizeSearchInput = (searchInput) => {
   return (
@@ -16,6 +17,7 @@ export function CaseStudyFilter(props) {
     activeFilters,
     setActiveFilters,
     filterName,
+    map,
   } = props;
 
   const showInputs = (event) => {
@@ -83,6 +85,7 @@ export function CaseStudyFilter(props) {
                     }
                     setActiveFilters(temp);
                     scrollToElement('search-input');
+                    centerAndResetMapZoom(map);
                   }}
                 />
                 <span>{label}</span>
@@ -95,7 +98,7 @@ export function CaseStudyFilter(props) {
 }
 
 export function CaseStudyFilters(props) {
-  const { filters, activeFilters, setActiveFilters } = props;
+  const { filters, activeFilters, setActiveFilters, map } = props;
 
   React.useEffect(() => {
     window.addEventListener('click', (event) => {
@@ -117,6 +120,7 @@ export function CaseStudyFilters(props) {
         filters={filters}
         activeFilters={activeFilters}
         setActiveFilters={setActiveFilters}
+        map={map}
       />
 
       <CaseStudyFilter
@@ -125,13 +129,14 @@ export function CaseStudyFilters(props) {
         filters={filters}
         activeFilters={activeFilters}
         setActiveFilters={setActiveFilters}
+        map={map}
       />
     </>
   );
 }
 
 export function SearchBox(props) {
-  const { setSearchInput } = props;
+  const { setSearchInput, map } = props;
   const [showClearButton, setShowClearButton] = React.useState(false);
 
   return (
@@ -154,6 +159,7 @@ export function SearchBox(props) {
 
                 setSearchInput(searchInput);
                 scrollToElement('search-input');
+                centerAndResetMapZoom(map);
               }}
             ></input>
             <div className="terms-box-left">
@@ -172,6 +178,7 @@ export function SearchBox(props) {
                         setSearchInput('');
                         setShowClearButton(false);
                         scrollToElement('search-input');
+                        centerAndResetMapZoom(map);
                       }}
                     ></i>
                   </div>

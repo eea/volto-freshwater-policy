@@ -27,6 +27,7 @@ export default function CaseStudyExplorerView(props) {
 
   const [activeItems, setActiveItems] = React.useState(cases);
   const [filters, setFilters] = React.useState([]);
+  const [map, setMap] = React.useState();
 
   React.useEffect(() => {
     const _filters = getFilters(cases);
@@ -61,6 +62,7 @@ export default function CaseStudyExplorerView(props) {
             setActiveFilters={setActiveFilters}
             searchInput={searchInput}
             setSearchInput={setSearchInput}
+            map={map}
           />
         )}
       </Grid.Row>
@@ -79,6 +81,7 @@ export default function CaseStudyExplorerView(props) {
             filters={filters}
             activeFilters={activeFilters}
             setActiveFilters={setActiveFilters}
+            map={map}
           />
         )}
       </Grid.Row>
@@ -93,6 +96,8 @@ export default function CaseStudyExplorerView(props) {
                 selectedCase={selectedCase}
                 onSelectedCase={onSelectedCase}
                 searchInput={searchInput}
+                map={map}
+                setMap={setMap}
               />
             </Grid.Column>
           </Grid>
