@@ -17,6 +17,19 @@ describe('utils.js', () => {
         url: 'localhost.com/test-case-study',
       },
     },
+    {
+      geometry: { coordinates: [0, 0] },
+      properties: {
+        title: 'case study 2',
+        image: '',
+        nwrm_type: 'light',
+        measures: [{ id: 'test-measure1', title: 'test measure 1' }],
+        description: 'test',
+        sectors: ['testsector'],
+        path: '/test-case-study',
+        url: 'localhost.com/test-case-study',
+      },
+    },
   ];
 
   test('getFeatures', () => {
@@ -26,13 +39,16 @@ describe('utils.js', () => {
   });
 
   test('filterCases', () => {
-    const mockActiveFilters = { nwrms_implemented: [], sectors: [] };
+    const mockActiveFilters = {
+      nwrms_implemented: ['test measure 1'],
+      sectors: ['testsector'],
+    };
     const mockCaseStudiesIds = ['test-case-study'];
     const mockCasesFiltered = filterCases(
       mockCases,
       mockActiveFilters,
       mockCaseStudiesIds,
-      'testinput',
+      'test',
     );
     expect(mockCasesFiltered).toStrictEqual([]);
   });
