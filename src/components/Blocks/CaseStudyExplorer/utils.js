@@ -1,5 +1,13 @@
 import { openlayers as ol } from '@eeacms/volto-openlayers-map';
 
+export function centerAndResetMapZoom(map) {
+  map.getView().animate({
+    zoom: 4,
+    duration: 1000,
+    center: ol.proj.transform([10, 49], 'EPSG:4326', 'EPSG:3857'),
+  });
+}
+
 export function scrollToElement(elementId) {
   const element = document.getElementById(elementId);
   element.scrollIntoView({

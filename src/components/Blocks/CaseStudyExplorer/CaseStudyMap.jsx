@@ -10,7 +10,7 @@ import FeatureInteraction from './FeatureInteraction';
 import CaseStudyList from './CaseStudyListing';
 import { useMapContext } from '@eeacms/volto-openlayers-map/api';
 
-import { getFeatures, scrollToElement } from './utils';
+import { centerAndResetMapZoom, getFeatures, scrollToElement } from './utils';
 
 const styleCache = {};
 const MapContextGateway = ({ setMap }) => {
@@ -29,9 +29,10 @@ export default function CaseStudyMap(props) {
     selectedCase,
     onSelectedCase,
     searchInput,
+    map,
+    setMap,
   } = props;
   const features = getFeatures(items);
-  const [map, setMap] = React.useState();
   const [resetMapButtonClass, setResetMapButtonClass] = React.useState(
     'inactive',
   );
@@ -136,11 +137,7 @@ export default function CaseStudyMap(props) {
               onClick={() => {
                 scrollToElement('search-input');
                 onSelectedCase(null);
-                map.getView().animate({
-                  zoom: 4,
-                  duration: 1000,
-                  center: ol.proj.transform([10, 49], 'EPSG:4326', 'EPSG:3857'),
-                });
+                centerAndResetMapZoom(map);
                 map.getInteractions().array_[9].getFeatures().clear();
               }}
             >

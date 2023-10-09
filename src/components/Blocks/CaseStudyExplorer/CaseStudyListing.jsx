@@ -1,6 +1,9 @@
 import React from 'react';
-import { scrollToElement, zoomMapToFeatures } from './utils';
-import { openlayers as ol } from '@eeacms/volto-openlayers-map';
+import {
+  centerAndResetMapZoom,
+  scrollToElement,
+  zoomMapToFeatures,
+} from './utils';
 
 const showPageNr = (pageNr, currentPage, numberOfPages) => {
   // show first 5 pages
@@ -130,15 +133,7 @@ export default function CaseStudyList(props) {
                         scrollToElement('search-input');
                         // reset map zoom
                         onSelectedCase(null);
-                        map.getView().animate({
-                          zoom: 4,
-                          duration: 1000,
-                          center: ol.proj.transform(
-                            [10, 49],
-                            'EPSG:4326',
-                            'EPSG:3857',
-                          ),
-                        });
+                        centerAndResetMapZoom(map);
                         map.getInteractions().array_[9].getFeatures().clear();
                       }}
                     >
