@@ -199,6 +199,7 @@ export function SearchBox(props) {
 
                   setSearchInput(searchInputVal);
                   scrollToElement('search-input');
+                  centerAndResetMapZoom(map);
                 }}
                 onKeyDown={() => {}}
                 tabIndex="0"
