@@ -21,6 +21,14 @@ const CountriesListingView = (props) => {
     },
   ];
 
+  const fixMissingPath = (url) => {
+    if (!url.startsWith('/freshwater/')) {
+      return '/freshwater' + url;
+    }
+
+    return url;
+  };
+
   React.useEffect(() => {
     dispatch(
       searchContent(
@@ -55,16 +63,15 @@ const CountriesListingView = (props) => {
                             <Item.Image
                               className="countries-list-flag"
                               alt={item.title}
-                              src={`/freshwater${item['@id']
-                                .replace(config.settings.apiPath, '')
-                                .replace(
-                                  config.settings.internalApiPath,
-                                  '',
-                                )}/@@images/image/thumb`}
+                              src={`${fixMissingPath(
+                                item['@id']
+                                  .replace(config.settings.apiPath, '')
+                                  .replace(config.settings.internalApiPath, ''),
+                              )}/@@images/image/thumb`}
                             />
                           )}
                           <Link
-                            to={flattenToAppURL(item['@id'])}
+                            to={fixMissingPath(flattenToAppURL(item['@id']))}
                             className="countries-listing-link"
                           >
                             {item.title}
@@ -88,16 +95,18 @@ const CountriesListingView = (props) => {
                               <Item.Image
                                 className="countries-list-flag"
                                 alt={item.title}
-                                src={`/freshwater${item['@id']
-                                  .replace(config.settings.apiPath, '')
-                                  .replace(
-                                    config.settings.internalApiPath,
-                                    '',
-                                  )}/@@images/image/thumb`}
+                                src={`${fixMissingPath(
+                                  item['@id']
+                                    .replace(config.settings.apiPath, '')
+                                    .replace(
+                                      config.settings.internalApiPath,
+                                      '',
+                                    ),
+                                )}/@@images/image/thumb`}
                               />
                             )}
                             <Link
-                              to={flattenToAppURL(item['@id'])}
+                              to={fixMissingPath(flattenToAppURL(item['@id']))}
                               className="countries-listing-link"
                             >
                               {item.title}
