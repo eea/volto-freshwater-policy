@@ -1,6 +1,6 @@
 {
   "name": "@eeacms/volto-freshwater-policy",
-  "version": "0.1.30",
+  "version": "0.1.31",
   "description": "@eeacms/volto-freshwater-policy: Volto add-on",
   "main": "src/index.js",
   "author": "European Environment Agency: IDM2 A-Team",
@@ -42,6 +42,7 @@
     "@eeacms/volto-openlayers-map": "*",
     "@eeacms/volto-searchlib": "*",
     "react-lazy-load-image-component": "^1.4.0",
+    "d3-array": "^2.12.1",
     "react-slick": "^0.24.0",
     "slick-carousel": "^1.8.1"
   },
