@@ -88,3 +88,29 @@ section .searchlib-block .ui.button.sui-button.basic {
 .sui-search-box .search-input .input-controls .clear-button {
   border: 2px solid @secondaryColor !important;
 }
+
+// Geolocation widget
+ul.metadata.geolocation-widget {
+  grid-template-columns: max-content max-content;
+
+  li {
+    margin-right: 4.25rem;
+  }
+}
+
+// Array widget
+.metadata {
+  &.block {
+    &.array {
+      display: block;
+
+      span {
+        margin-right: 0;
+
+        &::after {
+          content: '';
+        }
+      }
+    }
+  }
+}
