@@ -3,11 +3,14 @@ import React from 'react';
 import { centerAndResetMapZoom, scrollToElement } from './utils';
 
 const normalizeSearchInput = (searchInput) => {
-  return (
-    '\\b' +
-    searchInput.toLowerCase().replace('?', '.').replace('*', '[^\\s]+') +
-    '\\b'
-  );
+  let normInput = searchInput
+    .toLowerCase()
+    .replace('(', '')
+    .replace(')', '')
+    .replace('?', '.')
+    .replace('*', '[^\\s]+');
+
+  return '\\b' + normInput + '\\b';
 };
 
 export function CaseStudyFilter(props) {
