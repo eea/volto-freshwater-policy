@@ -24,23 +24,23 @@ import installAppExtras from './components/theme/AppExtras';
 import installSlatePopup from './components/Blocks/SlatePopup';
 import installCaseStudyExplorer from './components/Blocks/CaseStudyExplorer';
 import installFreshwaterMeasureSearch from './config/index';
-import FreshwaterMeasureItem from './components/Result/FreshwaterMeasureItem';
+import installCatalogSearch from './search/resource_catalog';
 
+import FreshwaterMeasureItem from './components/Result/FreshwaterMeasureItem';
 import customBlockTemplates from './components/Blocks/CustomBlockTemplates/customBlockTemplates';
 
-import freshwaterLogo from '@eeacms/volto-freshwater-policy/../theme/assets/images/Header/freshwater_logo.svg';
-import freshwaterWhiteLogo from '@eeacms/volto-freshwater-policy/../theme/assets/images/Header/freshwater_logo_white.svg';
-
-import linkSVG from '@plone/volto/icons/link.svg';
 import { makeInlineElementPlugin } from '@plone/volto-slate/elementEditor';
 import { LINK } from '@plone/volto-slate/constants';
 import { LinkElement } from '@plone/volto-slate/editor/plugins/AdvancedLink/render';
 import { withLink } from '@plone/volto-slate/editor/plugins/AdvancedLink/extensions';
 import { linkDeserializer } from '@plone/volto-slate/editor/plugins/AdvancedLink/deserialize';
 import LinkEditSchema from '@plone/volto-slate/editor/plugins/AdvancedLink/schema';
-import ecLogo from '@eeacms/volto-freshwater-policy/../theme/assets/images/Header/logo-ec.svg';
 import { getBlocks, composeSchema } from '@plone/volto/helpers';
 
+import linkSVG from '@plone/volto/icons/link.svg';
+import ecLogo from '@eeacms/volto-freshwater-policy/../theme/assets/images/Header/logo-ec.svg';
+import freshwaterLogo from '@eeacms/volto-freshwater-policy/../theme/assets/images/Header/freshwater_logo.svg';
+import freshwaterWhiteLogo from '@eeacms/volto-freshwater-policy/../theme/assets/images/Header/freshwater_logo_white.svg';
 import './slate-styles.less';
 
 const messages = defineMessages({
@@ -416,6 +416,7 @@ const applyConfig = (config) => {
     installAppExtras,
     installSlatePopup,
     installCaseStudyExplorer,
+    installCatalogSearch,
   ].reduce((acc, apply) => apply(acc), config);
 
   return final;
