@@ -124,7 +124,9 @@ const applyConfig = (config) => {
     headerSearchBox: [
       {
         isDefault: true,
-        path: '/freshwater/advanced-search',
+        path: config.settings.prefixPath
+          ? '/advanced-search'
+          : '/freshwater/advanced-search',
         placeholder: 'Search Freshwater...',
         description:
           'Looking for more information? Try searching the full EEA website content',

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Grid } from 'semantic-ui-react'; // Dropdown,
 import { addAppURL } from '@plone/volto/helpers';
-
+import config from '@plone/volto/registry';
 import CaseStudyMap from './CaseStudyMap';
 import { ActiveFilters, CaseStudyFilters, SearchBox } from './CaseStudyFilters';
 // import CaseStudyList from './CaseStudyListing';
@@ -11,9 +11,11 @@ import { useCases } from './hooks';
 
 import './styles.less';
 
-const cases_url = '/freshwater/@@case-studies-map.arcgis.json';
-
 export default function CaseStudyExplorerView(props) {
+  const cases_url = config.settings.prefixPath
+    ? '/@@case-studies-map.arcgis.json'
+    : '/freshwater/@@case-studies-map.arcgis.json';
+
   let cases = useCases(addAppURL(cases_url));
   const { caseStudiesIds } = props; // case studies from measure view
   const [selectedCase, onSelectedCase] = React.useState(null);
