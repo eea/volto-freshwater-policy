@@ -17,7 +17,7 @@ class Edit extends React.Component {
     ).map((k) => [k, countryNames[k]]);
 
     const choices = Object.keys(provider_data)
-      .sort()
+      .sort((a, b) => a.localeCompare(b))
       .map((n) => [n, n]);
 
     ['column_data'].forEach((n) => (schema.properties[n].choices = choices));

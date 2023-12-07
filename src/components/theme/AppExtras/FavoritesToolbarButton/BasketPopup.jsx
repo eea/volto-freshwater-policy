@@ -127,7 +127,7 @@ const BasketPopup = (props) => {
               return (
                 <ul className="boards-list">
                   {Object.keys(groupedItems[user])
-                    .sort()
+                    .sort((a, b) => a.localeCompare(b))
                     .map((group, index) => {
                       return (
                         <li
