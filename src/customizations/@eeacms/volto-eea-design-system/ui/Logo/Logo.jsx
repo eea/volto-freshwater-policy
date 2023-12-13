@@ -17,7 +17,7 @@ import config from '@plone/volto/registry';
  */
 const Logo = ({ src, invertedSrc, id, url, alt, title, inverted }) => {
   const root = useSelector((state) => state.breadcrumbs.root);
-  const logoHref = config.settings.prefixPath ?? '/';
+  const logoHref = config.settings.prefixPath ?? '/freshwater';
 
   return (
     <Link to={root || logoHref} title={title} className={'logo'}>
