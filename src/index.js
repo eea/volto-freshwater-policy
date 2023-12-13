@@ -176,9 +176,11 @@ const applyConfig = (config) => {
 
   // do not expand breadcrumbs. This fixed the breadcrumbs in contents view. The hasApiExpander needs to be made
   // generic to also look for nonContentRoutes.
-  config.settings.apiExpanders = [...config.settings.apiExpanders].filter(
-    (item) => !item.GET_CONTENT.includes('breadcrumbs'),
-  );
+  (config.settings.apiExpanders || []).forEach((item) => {
+    if (item.GET_CONTENT.includes('breadcrumbs')) {
+      item.GET_CONTENT.splice(item.GET_CONTENT.indexOf('breadcrumbs', 1));
+    }
+  });
 
   config.settings.eea.footerOpts.contacts = [];
   config.settings.eea.footerOpts.social = [];
