@@ -159,7 +159,7 @@ const ListingView = (props) => {
         />
 
         {Object.keys(groupedItems[username])
-          .sort()
+          .sort((a, b) => a.localeCompare(b))
           .map((group, index) => {
             return (
               <div className="fav-listing-board" key={index}>
