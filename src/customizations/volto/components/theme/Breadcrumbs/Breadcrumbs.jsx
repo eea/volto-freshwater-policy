@@ -14,7 +14,9 @@ import EEABreadcrumbs from '@eeacms/volto-eea-design-system/ui/Breadcrumbs/Bread
 
 const Breadcrumbs = (props) => {
   const dispatch = useDispatch();
-  const { items = [], root = '/' } = useSelector((state) => state?.breadcrumbs);
+  const { items = [], root = '/freshwater' } = useSelector(
+    (state) => state?.breadcrumbs,
+  );
   // const pathname = useSelector((state) => state.location.pathname);
   const location = useLocation();
   const { pathname } = location;
