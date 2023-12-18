@@ -20,6 +20,7 @@ const Breadcrumbs = (props) => {
   // const pathname = useSelector((state) => state.location.pathname);
   const location = useLocation();
   const { pathname } = location;
+  const breadCrumbsRoot = root.length > 0 ? root : '/freshwater';
 
   const sections = items.map((item) => ({
     title: item.title,
@@ -36,7 +37,11 @@ const Breadcrumbs = (props) => {
   return (
     <React.Fragment>
       <div id="page-header" />
-      <EEABreadcrumbs pathname={pathname} sections={sections} root={root} />
+      <EEABreadcrumbs
+        pathname={pathname}
+        sections={sections}
+        root={breadCrumbsRoot}
+      />
     </React.Fragment>
   );
 };
