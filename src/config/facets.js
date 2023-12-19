@@ -45,7 +45,7 @@ const facets = [
     // TODO: implement split in buckets
     ranges: makeRange({
       step: 1,
-      normalRange: [2000, new Date().getFullYear()],
+      normalRange: [2000, new Date().getFullYear() + 1],
       includeOutlierStart: false,
       includeOutlierEnd: false,
     }),
