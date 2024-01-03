@@ -28,10 +28,12 @@
     "@eeacms/volto-eea-website-theme",
     "@eeacms/volto-searchlib",
     "@eeacms/volto-globalsearch",
-    "@eeacms/volto-listing-block"
+    "@eeacms/volto-listing-block",
+    "@eeacms/volto-block-style"
   ],
   "dependencies": {
     "@eeacms/countup": "*",
+    "@eeacms/volto-block-style": "*",
     "@eeacms/volto-datablocks": "*",
     "@eeacms/volto-eea-design-system": "*",
     "@eeacms/volto-eea-website-theme": "*",

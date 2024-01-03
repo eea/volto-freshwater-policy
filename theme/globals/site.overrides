@@ -97,3 +97,29 @@ ul.metadata.geolocation-widget {
     }
   }
 }
+
+// Custom page header
+#page-header .content-box {
+  margin-bottom: 0px;
+}
+
+body.custom-page-header #page-header {
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+body.custom-page-header .breadcrumbs {
+  background-color: #e6e7e8 !important;
+
+  .ui.breadcrumb ol li {
+    vertical-align: middle;
+  }
+
+  .ui.breadcrumb a.section {
+    vertical-align: text-bottom;
+  }
+
+  .ui.breadcrumb .section.active {
+    vertical-align: text-bottom;
+  }
+}
