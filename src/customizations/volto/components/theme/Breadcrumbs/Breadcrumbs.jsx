@@ -20,7 +20,7 @@ const Breadcrumbs = (props) => {
   // const pathname = useSelector((state) => state.location.pathname);
   const location = useLocation();
   const { pathname } = location;
-  const breadCrumbsRoot = root.length > 0 ? root : '/freshwater';
+  const breadCrumbsRoot = root?.length > 0 ? root : '/freshwater';
 
   const sections = items.map((item) => ({
     title: item.title,
