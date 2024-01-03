@@ -97,19 +97,3 @@ ul.metadata.geolocation-widget {
     }
   }
 }
-
-
-.contenttype-country_profile_wr {
-  .ui.basic.segment.content-area {
-    padding-top: 0 !important;
-    margin-top: 0 !important;
-  }
-
-  .breadcrumbs {
-    background-color: #ddd !important;
-  }
-
-  .styled-group:first-of-type {
-    margin: 0;
-  }
-}
