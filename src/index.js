@@ -194,7 +194,6 @@ const applyConfig = (config) => {
     report_publication: DatabaseItemView,
     indicator: DatabaseItemView,
     briefing: DatabaseItemView,
-    map_interactive: DatabaseItemView,
     case_study: CaseStudyView,
     measure: MeasureView,
     source: SourceView,
