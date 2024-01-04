@@ -55,11 +55,12 @@ const Card = () => ({
 });
 
 export const PresentationCardsSchemaExtender = (schema, data) => {
-  const defaultFieldsets = schema.fieldsets.filter(
+  const fieldsets = schema.fieldsets;
+  const defaultFieldsets = fieldsets.filter(
     (fieldset) => fieldset.id === 'default',
   )[0];
 
-  const restOfFieldsets = schema.fieldsets.filter(
+  const restOfFieldsets = fieldsets.filter(
     (fieldset) => fieldset.id !== 'default',
   )[0];
 

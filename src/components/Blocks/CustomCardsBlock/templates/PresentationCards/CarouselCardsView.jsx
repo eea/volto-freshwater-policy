@@ -13,6 +13,7 @@ const Slider = loadable(() => import('react-slick'));
 
 const Arrows = (props) => {
   const { slider = {} } = props;
+  const sliderRef = slider.current;
 
   return (
     <>
@@ -20,8 +21,8 @@ const Arrows = (props) => {
         aria-label="Previous slide"
         className="slider-arrow prev-arrow"
         onClick={() => {
-          if (slider.current) {
-            slider.current.slickPrev();
+          if (sliderRef) {
+            sliderRef.slickPrev();
           }
         }}
       >
@@ -31,8 +32,8 @@ const Arrows = (props) => {
         aria-label="Next slide"
         className="slider-arrow next-arrow"
         onClick={() => {
-          if (slider.current) {
-            slider.current.slickNext();
+          if (sliderRef) {
+            sliderRef.slickNext();
           }
         }}
       >
