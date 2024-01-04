@@ -284,25 +284,6 @@ const applyConfig = (config) => {
     },
   ];
 
-  config.settings.externalRoutes = [
-    ...(config.settings.externalRoutes || []),
-    ...(config.settings.prefixPath
-      ? [
-          {
-            match: {
-              path: /\/$/,
-              exact: true,
-              strict: true,
-            },
-
-            url(payload) {
-              return payload.location.pathname;
-            },
-          },
-        ]
-      : []),
-  ];
-
   // Routes
   config.addonRoutes = [
     ...config.addonRoutes,
