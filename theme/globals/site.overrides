@@ -98,18 +98,28 @@ ul.metadata.geolocation-widget {
   }
 }
 
+// Custom page header
+#page-header .content-box {
+  margin-bottom: 0px;
+}
 
-.contenttype-country_profile_wr {
-  .ui.basic.segment.content-area {
-    padding-top: 0 !important;
-    margin-top: 0 !important;
+body.custom-page-header #page-header {
+  margin-right: auto !important;
+  margin-left: auto !important;
+}
+
+body.custom-page-header .breadcrumbs {
+  background-color: #e6e7e8 !important;
+
+  .ui.breadcrumb ol li {
+    vertical-align: middle;
   }
 
-  .breadcrumbs {
-    background-color: #ddd !important;
+  .ui.breadcrumb a.section {
+    vertical-align: text-bottom;
   }
 
-  .styled-group:first-of-type {
-    margin: 0;
+  .ui.breadcrumb .section.active {
+    vertical-align: text-bottom;
   }
 }
