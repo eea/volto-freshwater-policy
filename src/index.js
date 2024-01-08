@@ -397,6 +397,18 @@ const applyConfig = (config) => {
   if (config.blocks.blocksConfig.plotly_chart)
     config.blocks.blocksConfig.plotly_chart.restricted = false;
 
+  // config.settings.appExtras
+  config.settings.appExtras = [
+    ...config.settings.appExtras.filter((appExtra) => {
+      const appExtraComponentName =
+        appExtra.component?.name ||
+        appExtra.component?.WrappedComponent?.name ||
+        '';
+
+      return appExtraComponentName !== 'RemoveSchema';
+    }),
+  ];
+
   const final = [
     installEmbedContentBlock,
     installDashboardTabsBlock,
