@@ -47,15 +47,32 @@ body.searchlib-page .searchlib-block .back-link {
 .search-body-footer .ui.button.pagination-item.active,
 .searchlib-block .dropdown-facets-list .dropdown-facet .facet-title i.icon,
 .searchlib-block .dropdown-facets-list .ui.button.sui-button,
-.searchlib-block .dropdown-facets-list .dropdown-facet .ui.button.basic.facet-btn.active>.facet-title,
-body.searchlib-page .searchlib-block .above-results .sorting .inline.dropdown>span {
+.searchlib-block
+  .dropdown-facets-list
+  .dropdown-facet
+  .ui.button.basic.facet-btn.active
+  > .facet-title,
+body.searchlib-page
+  .searchlib-block
+  .above-results
+  .sorting
+  .inline.dropdown
+  > span {
   color: @secondaryColor !important;
 }
 
 .sui-search-box .search-input .input-controls i.close.icon:before,
 .sui-search-box .search-input .input-controls i.close.icon:after,
-body.searchlib-page .searchlib-block .ui.segment.active-filter-list .ui.label.filter-value i.close.icon:before,
-body.searchlib-page .searchlib-block .ui.segment.active-filter-list .ui.label.filter-value i.close.icon:after {
+body.searchlib-page
+  .searchlib-block
+  .ui.segment.active-filter-list
+  .ui.label.filter-value
+  i.close.icon:before,
+body.searchlib-page
+  .searchlib-block
+  .ui.segment.active-filter-list
+  .ui.label.filter-value
+  i.close.icon:after {
   background-color: @secondaryColor !important;
 }
 
@@ -78,23 +95,6 @@ ul.metadata.geolocation-widget {
 
   li {
     margin-right: 4.25rem;
-  }
-}
-
-// Array widget
-.metadata {
-  &.block {
-    &.array {
-      display: block;
-
-      span {
-        margin-right: 0;
-
-        &::after {
-          content: '';
-        }
-      }
-    }
   }
 }
 
