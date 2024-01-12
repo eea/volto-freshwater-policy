@@ -7,7 +7,7 @@ import React from 'react';
 import { Dropdown, Image } from 'semantic-ui-react';
 import { connect, useDispatch, useSelector } from 'react-redux';
 
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import { UniversalLink } from '@plone/volto/components';
 import {
   getBaseUrl,
@@ -29,6 +29,15 @@ import cx from 'classnames';
 
 function removeTrailingSlash(path) {
   return path.replace(/\/+$/, '');
+}
+
+function stripPrefix(url) {
+  const { settings } = config;
+  const prefix = settings.prefixPath;
+  if (url) {
+    if (prefix && url.startsWith(prefix)) return url.slice(prefix.length);
+  }
+  return url;
 }
 
 /**
@@ -225,7 +234,7 @@ const EEAHeader = ({ pathname, token, items, history, subsite }) => {
         menuItems={items}
         renderGlobalMenuItem={(item, { onClick }) => (
           <a
-            href={item.url || '/'}
+            href={stripPrefix(item.url || '/')}
             title={item.title}
             onClick={(e) => {
               e.preventDefault();
@@ -236,8 +245,8 @@ const EEAHeader = ({ pathname, token, items, history, subsite }) => {
           </a>
         )}
         renderMenuItem={(item, options, props) => (
-          <UniversalLink
-            href={item.url || '/'}
+          <Link
+            to={stripPrefix(item.url || '/')}
             title={item.nav_title || item.title}
             {...(options || {})}
             className={cx(options?.className, {
@@ -247,7 +256,7 @@ const EEAHeader = ({ pathname, token, items, history, subsite }) => {
             {props?.iconPosition !== 'right' && props?.children}
             <span>{item.nav_title || item.title}</span>
             {props?.iconPosition === 'right' && props?.children}
-          </UniversalLink>
+          </Link>
         )}
       ></Header.Main>
     </Header>

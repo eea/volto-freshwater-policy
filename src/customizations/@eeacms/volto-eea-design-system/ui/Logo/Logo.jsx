@@ -7,7 +7,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import config from '@plone/volto/registry';
-
 /**
  * Logo component class.
  * @function Logo
@@ -15,10 +14,10 @@ import config from '@plone/volto/registry';
  * @returns {string} Markup of the component.
  */
 const Logo = ({ src, invertedSrc, id, url, alt, title, inverted }) => {
-  const href = config.settings.prefixPath ?? '/';
+  const root = config.settings.prefixPath ? '' : '/';
 
   return (
-    <Link to={href} title={title} className={'logo'}>
+    <Link to={root} title={title} className={'logo'}>
       <LazyLoadImage
         src={inverted ? invertedSrc : src}
         alt={alt}
