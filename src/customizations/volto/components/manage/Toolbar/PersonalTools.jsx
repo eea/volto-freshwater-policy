@@ -120,8 +120,8 @@ class PersonalTools extends Component {
               : this.props.user.username}
           </h2>
           <UniversalLink
-            href="toolbar-logout"
-            to={`${getBaseUrl(this.props.pathname)}/logout`}
+            title="toolbar-logout"
+            href={`${getBaseUrl(this.props.pathname)}/logout`}
           >
             <Icon
               className="logout"
