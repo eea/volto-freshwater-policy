@@ -7,7 +7,7 @@ import React from 'react';
 import { Dropdown, Image } from 'semantic-ui-react';
 import { connect, useDispatch, useSelector } from 'react-redux';
 
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { UniversalLink } from '@plone/volto/components';
 import {
   getBaseUrl,
@@ -31,14 +31,14 @@ function removeTrailingSlash(path) {
   return path.replace(/\/+$/, '');
 }
 
-function stripPrefix(url) {
-  const { settings } = config;
-  const prefix = settings.prefixPath;
-  if (url) {
-    if (prefix && url.startsWith(prefix)) return url.slice(prefix.length);
-  }
-  return url;
-}
+// function stripPrefix(url) {
+//   const { settings } = config;
+//   const prefix = settings.prefixPath;
+//   if (url) {
+//     if (prefix && url.startsWith(prefix)) return url.slice(prefix.length);
+//   }
+//   return url;
+// }
 
 /**
  * EEA Specific Header component.
@@ -234,7 +234,7 @@ const EEAHeader = ({ pathname, token, items, history, subsite }) => {
         menuItems={items}
         renderGlobalMenuItem={(item, { onClick }) => (
           <a
-            href={stripPrefix(item.url || '/')}
+            href={item.url || '/'}
             title={item.title}
             onClick={(e) => {
               e.preventDefault();
@@ -245,8 +245,8 @@ const EEAHeader = ({ pathname, token, items, history, subsite }) => {
           </a>
         )}
         renderMenuItem={(item, options, props) => (
-          <Link
-            to={stripPrefix(item.url || '/')}
+          <UniversalLink
+            href={item.url || '/'}
             title={item.nav_title || item.title}
             {...(options || {})}
             className={cx(options?.className, {
@@ -256,7 +256,7 @@ const EEAHeader = ({ pathname, token, items, history, subsite }) => {
             {props?.iconPosition !== 'right' && props?.children}
             <span>{item.nav_title || item.title}</span>
             {props?.iconPosition === 'right' && props?.children}
-          </Link>
+          </UniversalLink>
         )}
       ></Header.Main>
     </Header>

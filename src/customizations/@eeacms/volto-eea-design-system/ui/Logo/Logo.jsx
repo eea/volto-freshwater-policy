@@ -14,7 +14,7 @@ import config from '@plone/volto/registry';
  * @returns {string} Markup of the component.
  */
 const Logo = ({ src, invertedSrc, id, url, alt, title, inverted }) => {
-  const root = config.settings.prefixPath ? '' : '/';
+  const root = config.settings.prefixPath ?? '/';
 
   return (
     <Link to={root} title={title} className={'logo'}>

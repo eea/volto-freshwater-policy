@@ -125,8 +125,8 @@ const applyConfig = (config) => {
       {
         isDefault: true,
         path: config.settings.prefixPath
-          ? '/advanced-search'
-          : '/freshwater/advanced-search',
+          ? '/freshwater/advanced-search'
+          : '/advanced-search',
         placeholder: 'Search Freshwater...',
         description:
           'Looking for more information? Try searching the full EEA website content',
