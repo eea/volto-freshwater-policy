@@ -233,15 +233,6 @@ const applyConfig = (config) => {
     group: 'data_visualizations',
   };
 
-  //use object_browser widget for call-to-action #256557
-  const { callToActionBlock } = config.blocks.blocksConfig;
-  if (callToActionBlock) {
-    callToActionBlock.schemaEnhancer = composeSchema(
-      replaceCallToActionWidget,
-      callToActionBlock.schemaEnhancer,
-    );
-  }
-
   // Search block metadata listing view
   config.blocks.blocksConfig.listing = {
     ...config.blocks.blocksConfig.listing,
@@ -422,11 +413,6 @@ const applyConfig = (config) => {
   ].reduce((acc, apply) => apply(acc), config);
 
   return final;
-};
-
-const replaceCallToActionWidget = ({ schema }) => {
-  schema.properties.href.widget = 'object_browser';
-  return schema;
 };
 
 export default applyConfig;
