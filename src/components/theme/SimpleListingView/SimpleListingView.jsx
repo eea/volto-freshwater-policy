@@ -36,7 +36,7 @@ const SimpleListingView = ({ items, isEditMode }) => {
   return (
     <>
       <ul className="items">
-        {items.map((item) => (
+        {items?.map((item) => (
           <li className="simple-listing-item" key={item['@id']}>
             <div
               className="simple-listing"
