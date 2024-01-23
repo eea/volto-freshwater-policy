@@ -98,7 +98,7 @@ const ItemMetadata = (props) => {
                       <Table.Cell>Temporal coverage</Table.Cell>
                       <Table.Cell>
                         <div className="tag-types">
-                          {temporal_coverage.temporal.map((temp, i) => (
+                          {temporal_coverage?.temporal?.map((temp, i) => (
                             <div key={i}>
                               <p>{temp.label}</p>
                             </div>
@@ -113,7 +113,7 @@ const ItemMetadata = (props) => {
                     <Table.Cell>Spatial coverage</Table.Cell>
                     <Table.Cell>
                       <div className="geo-tags tag-types">
-                        {geo_coverage.geolocation.map((geo, i) => (
+                        {geo_coverage?.geolocation?.map((geo, i) => (
                           <div key={i}>
                             <p>{geo.label}</p>
                           </div>
@@ -127,7 +127,7 @@ const ItemMetadata = (props) => {
                   <Table.Row>
                     <Table.Cell>Organisation</Table.Cell>
                     <Table.Cell>
-                      {publisher.map((item, i) => (
+                      {publisher?.map((item, i) => (
                         <div key={i}>
                           <p>{item.title}</p>
                         </div>
