@@ -1,8 +1,9 @@
 import React from 'react';
 import { Breadcrumb } from 'semantic-ui-react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { defineMessages, useIntl } from 'react-intl';
 import { langmap } from '@plone/volto/helpers';
+import { UniversalLink } from '@plone/volto/components';
 import ContentsBreadcrumbsRootItem from '@plone/volto/components/manage/Contents/ContentsBreadcrumbsRootItem';
 import ContentsBreadcrumbsHomeItem from '@plone/volto/components/manage/Contents/ContentsBreadcrumbsHomeItem';
 
@@ -30,44 +31,44 @@ const ContentsBreadcrumbs = (props) => {
     <Breadcrumb>
       {settings.isMultilingual && (
         <>
-          <Link
-            to="/contents"
+          <UniversalLink
+            href="/contents"
             className="section"
             title={intl.formatMessage(messages.root)}
           >
             <ContentsBreadcrumbsRootItem />
-          </Link>
+          </UniversalLink>
           <Breadcrumb.Divider />
         </>
       )}
       {settings.isMultilingual && pathname?.split('/')?.length > 2 && (
-        <Link
-          to={`/freshwater/${lang}/contents`}
+        <UniversalLink
+          href={`/freshwater/${lang}/contents`}
           className="section"
           title={intl.formatMessage(messages.home)}
         >
           {langmap?.[lang]?.nativeName ?? lang}
-        </Link>
+        </UniversalLink>
       )}
       {!settings.isMultilingual && (
-        <Link
-          to="/freshwater/contents"
+        <UniversalLink
+          href="/freshwater/contents"
           className="section"
           title={intl.formatMessage(messages.home)}
         >
           <ContentsBreadcrumbsHomeItem />
-        </Link>
+        </UniversalLink>
       )}
       {items.map((breadcrumb, index, breadcrumbs) => [
         <Breadcrumb.Divider key={`divider-${breadcrumb.url}`} />,
         index < breadcrumbs.length - 1 ? (
-          <Link
+          <UniversalLink
             key={breadcrumb.url}
-            to={`${breadcrumb.url}/contents`}
+            href={`${breadcrumb.url}/contents`}
             className="section"
           >
             {breadcrumb.nav_title || breadcrumb.title}
-          </Link>
+          </UniversalLink>
         ) : (
           <Breadcrumb.Section key={breadcrumb.url} active>
             {breadcrumb.nav_title || breadcrumb.title}

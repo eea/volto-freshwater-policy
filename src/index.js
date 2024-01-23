@@ -35,7 +35,7 @@ import { LinkElement } from '@plone/volto-slate/editor/plugins/AdvancedLink/rend
 import { withLink } from '@plone/volto-slate/editor/plugins/AdvancedLink/extensions';
 import { linkDeserializer } from '@plone/volto-slate/editor/plugins/AdvancedLink/deserialize';
 import LinkEditSchema from '@plone/volto-slate/editor/plugins/AdvancedLink/schema';
-import { getBlocks, composeSchema } from '@plone/volto/helpers';
+import { getBlocks } from '@plone/volto/helpers';
 
 import linkSVG from '@plone/volto/icons/link.svg';
 import ecLogo from '@eeacms/volto-freshwater-policy/../theme/assets/images/Header/logo-ec.svg';
@@ -125,8 +125,8 @@ const applyConfig = (config) => {
       {
         isDefault: true,
         path: config.settings.prefixPath
-          ? '/advanced-search'
-          : '/freshwater/advanced-search',
+          ? '/freshwater/advanced-search'
+          : '/advanced-search',
         placeholder: 'Search Freshwater...',
         description:
           'Looking for more information? Try searching the full EEA website content',
@@ -232,15 +232,6 @@ const applyConfig = (config) => {
     ...config.blocks.blocksConfig['tableau_block'],
     group: 'data_visualizations',
   };
-
-  //use object_browser widget for call-to-action #256557
-  const { callToActionBlock } = config.blocks.blocksConfig;
-  if (callToActionBlock) {
-    callToActionBlock.schemaEnhancer = composeSchema(
-      replaceCallToActionWidget,
-      callToActionBlock.schemaEnhancer,
-    );
-  }
 
   // Search block metadata listing view
   config.blocks.blocksConfig.listing = {
@@ -422,11 +413,6 @@ const applyConfig = (config) => {
   ].reduce((acc, apply) => apply(acc), config);
 
   return final;
-};
-
-const replaceCallToActionWidget = ({ schema }) => {
-  schema.properties.href.widget = 'object_browser';
-  return schema;
 };
 
 export default applyConfig;

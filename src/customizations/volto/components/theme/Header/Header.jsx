@@ -31,6 +31,15 @@ function removeTrailingSlash(path) {
   return path.replace(/\/+$/, '');
 }
 
+// function stripPrefix(url) {
+//   const { settings } = config;
+//   const prefix = settings.prefixPath;
+//   if (url) {
+//     if (prefix && url.startsWith(prefix)) return url.slice(prefix.length);
+//   }
+//   return url;
+// }
+
 /**
  * EEA Specific Header component.
  */
