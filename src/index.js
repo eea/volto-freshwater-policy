@@ -35,7 +35,7 @@ import { LinkElement } from '@plone/volto-slate/editor/plugins/AdvancedLink/rend
 import { withLink } from '@plone/volto-slate/editor/plugins/AdvancedLink/extensions';
 import { linkDeserializer } from '@plone/volto-slate/editor/plugins/AdvancedLink/deserialize';
 import LinkEditSchema from '@plone/volto-slate/editor/plugins/AdvancedLink/schema';
-import { getBlocks, composeSchema } from '@plone/volto/helpers';
+import { getBlocks } from '@plone/volto/helpers';
 
 import linkSVG from '@plone/volto/icons/link.svg';
 import ecLogo from '@eeacms/volto-freshwater-policy/../theme/assets/images/Header/logo-ec.svg';
