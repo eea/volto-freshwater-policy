@@ -5,7 +5,7 @@ export const CountryHeaderDataBlockSchema = () => ({
     {
       id: 'default',
       title: 'Default',
-      fields: ['country_flag'],
+      fields: ['country_flag', 'hide_country_flag_section'],
     },
     {
       id: 'data',
@@ -35,6 +35,10 @@ export const CountryHeaderDataBlockSchema = () => ({
     country_flag: {
       title: 'Country flag',
       choices: [],
+    },
+    hide_country_flag_section: {
+      type: 'boolean',
+      title: 'Hide country flag section',
     },
     hide_data_section: {
       type: 'boolean',
