@@ -47,6 +47,7 @@ const View = (props) => {
     column_data,
     description,
     placeholder = '-',
+    hide_country_flag_section,
     hide_data_section,
   } = data;
 
@@ -68,28 +69,32 @@ const View = (props) => {
   });
 
   return (
-    <div className="country-header-block full-width">
+    <div className="country-header-block">
       <div className="ui container">
         <div
           className={cx('country-header-wrapper', {
             'no-flag': !data.country_flag,
           })}
         >
-          <div className="country-profile-wrapper">
-            <div className="country-profile-flag">
-              {data.country_flag && (
-                <img alt={countryNames[data.country_flag]} src={flag} />
-              )}
+          {!hide_country_flag_section ? (
+            <div className="country-profile-wrapper">
+              <div className="country-profile-flag">
+                {data.country_flag && (
+                  <img alt={countryNames[data.country_flag]} src={flag} />
+                )}
+              </div>
+              <Dropdown
+                selection
+                className="countries-dd"
+                text={content.title}
+                options={country_profiles}
+                defaultValue={content.title.toLowerCase()}
+                icon="angle down"
+              />
             </div>
-            <Dropdown
-              selection
-              className="countries-dd"
-              text={content.title}
-              options={country_profiles}
-              defaultValue={content.title.toLowerCase()}
-              icon="angle down"
-            />
-          </div>
+          ) : (
+            ''
+          )}
           <div className="country-data-wrapper">
             <div className="uww-country-wrapper">
               {hide_data_section ||
@@ -119,23 +124,23 @@ const View = (props) => {
                     <div className="uww-country-legend">
                       <div className="legend-wrapper">
                         <span className="legend-box blue-bg"></span>
-                        <p className="legend-text">97 - 100%</p>
+                        <span className="legend-text">97.1 - 100%</span>
                       </div>
                       <div className="legend-wrapper">
                         <span className="legend-box green-bg"></span>
-                        <p className="legend-text">95 - 97%</p>
+                        <span className="legend-text">95.1 - 97%</span>
                       </div>
                       <div className="legend-wrapper">
                         <span className="legend-box yellow-bg"></span>
-                        <p className="legend-text">85 - 95%</p>
+                        <span className="legend-text">85.1 - 95%</span>
                       </div>
                       <div className="legend-wrapper">
                         <span className="legend-box orange-bg"></span>
-                        <p className="legend-text">70 - 85%</p>
+                        <span className="legend-text">70.1 - 85%</span>
                       </div>
                       <div className="legend-wrapper">
                         <span className="legend-box red-bg"></span>
-                        <p className="legend-text">0 - 70%</p>
+                        <span className="legend-text">0 - 70%</span>
                       </div>
                     </div>
                   </div>

@@ -1,10 +1,15 @@
 @type: 'extra';
 @element: 'custom';
-@blue-bg: lighten(#0099bb, 15%); //#8dcdf4;
-@green-bg: lighten(#88c24f, 15%); //#a3deaa;
-@yellow-bg: lighten(#f4cf01, 15%); //#f6f6bc;
-@orange-bg: lighten(#ff7f0e, 15%); //#fdae61;
-@red-bg: lighten(#ff0a00, 15%); //#ff5a5d;
+// @blue-bg: lighten(#0099bb, 15%); //#8dcdf4;
+// @green-bg: lighten(#88c24f, 15%); //#a3deaa;
+// @yellow-bg: lighten(#f4cf01, 15%); //#f6f6bc;
+// @orange-bg: lighten(#ff7f0e, 15%); //#fdae61;
+// @red-bg: lighten(#ff0a00, 15%); //#ff5a5d;
+@blue-bg: #008ff5; //#8dcdf4;
+@green-bg: #50b0a4; //#a3deaa;
+@yellow-bg: #fad936; //#f6f6bc;
+@orange-bg: #ff9933; //#fdae61;
+@red-bg: #b83230; //#ff5a5d;
 
 @import (multiple, reference, optional) '../../theme.config';
 
@@ -47,10 +52,11 @@
 
 .uww-left {
   display: flex;
-  width: 195px;
-  height: 130px;
+  width: 200px;
+  height: 158px;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   padding: 1em;
 }
 
@@ -58,6 +64,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  gap: 4em;
 
   .uww-data {
     font-family: @headerFont;
@@ -78,23 +85,27 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding-left: 25px;
+  gap: 10px;
+  // padding-left: 25px;
 
   .legend-wrapper {
     display: flex;
     flex-direction: row;
     align-items: center;
+    gap: 1em;
 
     .legend-box {
-      width: 20px;
-      height: 20px;
-      margin-right: 6px;
+      width: 44px;
+      height: 22px;
+      // margin-right: 14px;
     }
 
     .legend-text {
+      // color: #3d5265;
       font-family: @headerFont;
-      font-size: 12px;
-      line-height: 26px;
+      font-size: 14px;
+      // font-weight: 500;
+      // line-height: 26px;
     }
   }
 
@@ -119,41 +130,16 @@
   }
 }
 
-#view {
-  .country-header-block {
-    position: relative;
-    height: 200px;
-
-    &:before {
-      position: absolute;
-      z-index: -1;
-      top: -60px;
-      right: 0;
-      left: 0;
-      width: 100%;
-      height: 191px;
-      border-bottom: 1px solid #d8d8d8;
-      background-color: #f5f5f5;
-      content: '';
-    }
-
-    .country-header-wrapper {
-      &.no-flag {
-        top: 45px;
-      }
-    }
-  }
-}
-
 .country-header-block {
   position: relative;
+  // color: darken(#3d5265, 15%);
 
   .country-header-wrapper {
     display: flex;
     width: 100%;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    // justify-content: center;
   }
 
   .country-profile-flag {
@@ -216,6 +202,11 @@
 }
 
 @media only screen and (min-width: 795px) and (max-width: 945px) {
+  .country-header-block .country-header-wrapper {
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
   .uww-country-block {
     position: relative;
     flex-direction: column;
@@ -225,7 +216,7 @@
     position: absolute;
     right: 0;
     bottom: -60px;
-    min-width: 520px;
+    min-width: 650px;
     flex-direction: row;
   }
 }
