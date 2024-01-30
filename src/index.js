@@ -25,7 +25,6 @@ import installFreshwaterMeasureSearch from './config/index';
 import installCatalogSearch from './search/resource_catalog';
 
 import FreshwaterMeasureItem from './components/Result/FreshwaterMeasureItem';
-import customBlockTemplates from './components/Blocks/CustomBlockTemplates/customBlockTemplates';
 
 import { makeInlineElementPlugin } from '@plone/volto-slate/elementEditor';
 import { LINK } from '@plone/volto-slate/constants';
@@ -195,11 +194,6 @@ const applyConfig = (config) => {
     case_study: CaseStudyView,
     measure: MeasureView,
     source: SourceView,
-  };
-
-  config.blocks = {
-    ...config.blocks,
-    blocksConfig: { ...customBlockTemplates(config) },
   };
 
   // Block chooser
