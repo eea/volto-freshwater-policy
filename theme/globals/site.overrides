@@ -99,13 +99,28 @@ ul.metadata.geolocation-widget {
 }
 
 // Custom page header
-#page-header .content-box {
-  margin-bottom: 0px;
+body.custom-page-header {
+  #page-header {
+    .column-blocks-wrapper,
+    .content-box {
+      margin-bottom: 0;
+    }
+
+    .country-header-block {
+      padding-right: 1em;
+    }
+
+    .country-flag {
+      padding-left: 1.25rem;
+    }
+  }
 }
 
-body.custom-page-header #page-header {
-  margin-right: auto !important;
-  margin-left: auto !important;
+@media only screen and (min-width: 991px) {
+  body.custom-page-header #page-header {
+    margin-right: auto !important;
+    margin-left: auto !important;
+  }
 }
 
 body.custom-page-header .breadcrumbs {
