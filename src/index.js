@@ -1,8 +1,6 @@
 import { defineMessages } from 'react-intl';
 import {
   DatabaseItemView,
-  MetadataListingView,
-  SimpleListingView,
   FavBoardView,
   FavBoardListingView,
   CaseStudyView,
@@ -231,26 +229,6 @@ const applyConfig = (config) => {
   config.blocks.blocksConfig['tableau_block'] = {
     ...config.blocks.blocksConfig['tableau_block'],
     group: 'data_visualizations',
-  };
-
-  // Search block metadata listing view
-  config.blocks.blocksConfig.listing = {
-    ...config.blocks.blocksConfig.listing,
-    variations: [
-      ...config.blocks.blocksConfig.listing.variations,
-      {
-        id: 'metadata',
-        title: 'Metadata Listing',
-        template: MetadataListingView,
-        isDefault: false,
-      },
-      {
-        id: 'simple',
-        title: 'Simple Listing',
-        template: SimpleListingView,
-        isDefault: false,
-      },
-    ],
   };
 
   // Custom block styles

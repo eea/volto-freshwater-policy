@@ -20,9 +20,6 @@ export SourceView from './theme/SourceView/SourceView';
 export MeasureView from './theme/MeasureView/MeasureView';
 export CaseStudyView from './theme/CaseStudyView/CaseStudyView';
 export DatabaseItemView from './theme/DatabaseItemView/DatabaseItemView';
-export SimpleListingView from './theme/SimpleListingView/SimpleListingView';
-export MetadataHeader from './theme/MetadataListingView/MetadataHeader';
-export MetadataListingView from './theme/MetadataListingView/MetadataListingView';
 
 export Card from './Blocks/CustomCardsBlock/templates/PresentationCards/Card';
 export CaseStudyExplorer from './Blocks/CaseStudyExplorer/CaseStudyExplorerView';
