@@ -138,3 +138,16 @@ body.custom-page-header .breadcrumbs {
     vertical-align: text-bottom;
   }
 }
+
+// Fix block width when used as page header
+#page-header .styled-group.has--useAsPageHeader--true.has--size--container_width {
+  width: var(--container-text-width, 1120px) !important;
+}
+
+#page-header .styled-group.has--useAsPageHeader--true.has--size--narrow_width {
+  width: var(--container-text-width, 900px) !important;
+}
+
+#page-header .styled-group.has--useAsPageHeader--true.has--size--wide_width {
+  width: var(--container-text-width, 1320px) !important;
+}
