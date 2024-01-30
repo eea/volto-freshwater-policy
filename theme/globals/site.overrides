@@ -116,13 +116,6 @@ body.custom-page-header {
   }
 }
 
-@media only screen and (min-width: 991px) {
-  body.custom-page-header #page-header {
-    margin-right: auto !important;
-    margin-left: auto !important;
-  }
-}
-
 body.custom-page-header .breadcrumbs {
   background-color: #e6e7e8 !important;
 
@@ -140,14 +133,8 @@ body.custom-page-header .breadcrumbs {
 }
 
 // Fix block width when used as page header
-#page-header .styled-group.has--useAsPageHeader--true.has--size--container_width {
-  width: var(--container-text-width, 1120px) !important;
-}
-
-#page-header .styled-group.has--useAsPageHeader--true.has--size--narrow_width {
-  width: var(--container-text-width, 900px) !important;
-}
-
-#page-header .styled-group.has--useAsPageHeader--true.has--size--wide_width {
-  width: var(--container-text-width, 1320px) !important;
+#page-header .styled-group.has--useAsPageHeader--true {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
