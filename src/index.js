@@ -1,8 +1,6 @@
 import { defineMessages } from 'react-intl';
 import {
   DatabaseItemView,
-  MetadataListingView,
-  SimpleListingView,
   FavBoardView,
   FavBoardListingView,
   CaseStudyView,
@@ -27,7 +25,6 @@ import installFreshwaterMeasureSearch from './config/index';
 import installCatalogSearch from './search/resource_catalog';
 
 import FreshwaterMeasureItem from './components/Result/FreshwaterMeasureItem';
-import customBlockTemplates from './components/Blocks/CustomBlockTemplates/customBlockTemplates';
 
 import { makeInlineElementPlugin } from '@plone/volto-slate/elementEditor';
 import { LINK } from '@plone/volto-slate/constants';
@@ -199,11 +196,6 @@ const applyConfig = (config) => {
     source: SourceView,
   };
 
-  config.blocks = {
-    ...config.blocks,
-    blocksConfig: { ...customBlockTemplates(config) },
-  };
-
   // Block chooser
   config.blocks.groupBlocksOrder = [
     ...config.blocks.groupBlocksOrder,
@@ -231,26 +223,6 @@ const applyConfig = (config) => {
   config.blocks.blocksConfig['tableau_block'] = {
     ...config.blocks.blocksConfig['tableau_block'],
     group: 'data_visualizations',
-  };
-
-  // Search block metadata listing view
-  config.blocks.blocksConfig.listing = {
-    ...config.blocks.blocksConfig.listing,
-    variations: [
-      ...config.blocks.blocksConfig.listing.variations,
-      {
-        id: 'metadata',
-        title: 'Metadata Listing',
-        template: MetadataListingView,
-        isDefault: false,
-      },
-      {
-        id: 'simple',
-        title: 'Simple Listing',
-        template: SimpleListingView,
-        isDefault: false,
-      },
-    ],
   };
 
   // Custom block styles

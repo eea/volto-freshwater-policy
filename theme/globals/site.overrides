@@ -99,13 +99,21 @@ ul.metadata.geolocation-widget {
 }
 
 // Custom page header
-#page-header .content-box {
-  margin-bottom: 0px;
-}
+body.custom-page-header {
+  #page-header {
+    .column-blocks-wrapper,
+    .content-box {
+      margin-bottom: 0;
+    }
 
-body.custom-page-header #page-header {
-  margin-right: auto !important;
-  margin-left: auto !important;
+    .country-header-block {
+      padding-right: 1em;
+    }
+
+    .country-flag {
+      padding-left: 1.25rem;
+    }
+  }
 }
 
 body.custom-page-header .breadcrumbs {
@@ -125,14 +133,8 @@ body.custom-page-header .breadcrumbs {
 }
 
 // Fix block width when used as page header
-#page-header .styled-group.has--useAsPageHeader--true.has--size--container_width {
-  width: var(--container-text-width, 1120px) !important;
-}
-
-#page-header .styled-group.has--useAsPageHeader--true.has--size--narrow_width {
-  width: var(--container-text-width, 900px) !important;
-}
-
-#page-header .styled-group.has--useAsPageHeader--true.has--size--wide_width {
-  width: var(--container-text-width, 1320px) !important;
+#page-header .styled-group.has--useAsPageHeader--true {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
 }
