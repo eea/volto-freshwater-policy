@@ -9,80 +9,53 @@ import cx from 'classnames';
 
 import './css/plaincards.less';
 
+const WithLink = ({ link, children, isEditMode }) =>
+  link && !isEditMode ? (
+    <UniversalLink className="plain-card-link" href={link}>
+      {children}
+    </UniversalLink>
+  ) : (
+    children
+  );
+
 export const CardItem = (props) => {
   const { title, description, link, attachedimage, isEditMode } = props;
 
   return (
     <>
-      {link && !isEditMode ? (
-        <div className="ui card plain-card">
-          <UniversalLink className="plain-card-link" href={link}>
-            {attachedimage && (
-              <LazyLoadComponent>
-                <div
-                  className="plain-card-image"
-                  style={
-                    attachedimage
-                      ? {
-                          backgroundImage: `url(${getScaleUrl(
-                            getPath(attachedimage),
-                            'thumb',
-                          )})`,
-                        }
-                      : {}
-                  }
-                ></div>
-              </LazyLoadComponent>
-            )}
+      <div className="ui card plain-card">
+        <WithLink link={link} isEditMode={isEditMode}>
+          {attachedimage && (
+            <LazyLoadComponent>
+              <div
+                className="plain-card-image"
+                style={
+                  attachedimage
+                    ? {
+                        backgroundImage: `url(${getScaleUrl(
+                          getPath(attachedimage),
+                          'thumb',
+                        )})`,
+                      }
+                    : {}
+                }
+              ></div>
+            </LazyLoadComponent>
+          )}
 
-            {title && (
-              <div className="content plain-card-content">
-                <div className="plain-card-header">{title}</div>
-              </div>
-            )}
+          {title && (
+            <div className="content plain-card-content">
+              <div className="plain-card-header">{title}</div>
+            </div>
+          )}
 
-            {description && (
-              <div className="content plain-card-content">
-                <div className="plain-card-description">{description}</div>
-              </div>
-            )}
-          </UniversalLink>
-        </div>
-      ) : (
-        <div className="ui card plain-card">
-          <div className="plain-card-wrapper">
-            {attachedimage && (
-              <LazyLoadComponent>
-                <div
-                  className="plain-card-image"
-                  style={
-                    attachedimage
-                      ? {
-                          backgroundImage: `url(${getScaleUrl(
-                            getPath(attachedimage),
-                            'thumb',
-                          )})`,
-                        }
-                      : {}
-                  }
-                ></div>
-              </LazyLoadComponent>
-            )}
-
-            {title && (
-              <div className="content plain-card-content">
-                <div className="plain-card-header">{title}</div>
-              </div>
-            )}
-
-            {description && (
-              <div className="content plain-card-content">
-                <div className="plain-card-description">{description}</div>
-              </div>
-            )}
-          </div>
-        </div>
-      )}
+          {description && (
+            <div className="content plain-card-content">
+              <div className="plain-card-description">{description}</div>
+            </div>
+          )}
+        </WithLink>
+      </div>
     </>
   );
 };

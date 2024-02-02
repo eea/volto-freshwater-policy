@@ -1,6 +1,8 @@
 import { mergeConfig } from '@eeacms/search';
+import { build_runtime_mappings } from '@eeacms/volto-globalsearch/utils';
 
 import facets from './facets-catalog';
+import views from './views-catalog';
 
 const getClientProxyAddress = () => {
   const url = new URL(window.location);
@@ -12,7 +14,24 @@ const getClientProxyAddress = () => {
 const fwCatalogConfig = {
   title: 'Freshwater Resource Catalog',
   ...facets,
-  //   ...views,
+  ...views,
+};
+
+export const clusters = {
+  name: 'op_cluster',
+  field: 'objectProvides',
+  clusters: [
+    {
+      name: 'Dashboards',
+      values: ['Dashboard'],
+      defaultResultView: 'resourceCatalogItem',
+    },
+    {
+      name: 'Maps and Charts',
+      values: ['Map (interactive)'],
+      defaultResultView: 'resourceCatalogItem',
+    },
+  ],
 };
 
 export default function installResourceCatalogSearch(config) {
@@ -28,21 +47,28 @@ export default function installResourceCatalogSearch(config) {
     ...mergeConfig(envConfig, config.searchui.globalsearchbase),
     elastic_index: 'es',
     host: process.env.RAZZLE_ES_PROXY_ADDR || 'http://localhost:3000',
+    runtime_mappings: build_runtime_mappings(clusters),
   };
 
   const { resourceCatalog } = config.searchui;
 
   resourceCatalog.permanentFilters.push({
     terms: {
-      objectProvides: [
-        'Dashboard',
-        'Map (interactive)',
-        'Indicator',
-        'Report/Publication',
-        'Visualization (Tableau)',
-      ],
+      objectProvides: ['Dashboard', 'Map (interactive)'],
     },
   });
+
+  resourceCatalog.contentSectionsParams = {
+    enable: true,
+    sectionFacetsField: 'op_cluster',
+    sections: clusters.clusters,
+    clusterMapping: Object.assign(
+      {},
+      ...clusters.clusters.map(({ name, values }) =>
+        Object.assign({}, ...values.map((v) => ({ [v]: name }))),
+      ),
+    ),
+  };
 
   resourceCatalog.facets = facets;
 
