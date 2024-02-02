@@ -2,7 +2,7 @@ export default {
   resultViews: [
     {
       id: 'resourceCatalogItem',
-      title: 'Resource cataloge items',
+      title: 'Resource catalogue',
       icon: 'bars',
       render: null,
       isDefault: true,
