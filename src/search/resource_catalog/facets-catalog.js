@@ -1,5 +1,4 @@
 import { multiTermFacet } from '@eeacms/search';
-
 import globalSearchBaseConfig from '@eeacms/volto-globalsearch/config/global-search-base-config.js';
 
 const facets = [
@@ -8,16 +7,16 @@ const facets = [
     field: 'category.keyword',
     isFilterable: false,
     isMulti: true,
-    label: 'Main Topic',
-    iconsFamily: 'Main Topic',
+    label: 'WISE topics',
+    iconsFamily: 'WISE topics',
     alwaysVisible: false,
   }),
   multiTermFacet({
     field: 'legislative_reference.keyword',
     isFilterable: false,
     isMulti: true,
-    label: 'Main Reference Legislation',
-    iconsFamily: 'Main Reference Legislation',
+    label: 'Reference legislations',
+    iconsFamily: 'Reference legislations',
     alwaysVisible: false,
   }),
 ];

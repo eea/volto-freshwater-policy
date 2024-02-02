@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders map component 1`] = `
+<button
+  className="ui button toolbar-button"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  title="Share"
+>
+  <svg
+    className="icon"
+    dangerouslySetInnerHTML={
+      Object {
+        "__html": undefined,
+      }
+    }
+    onClick={null}
+    style={
+      Object {
+        "fill": "currentColor",
+        "height": "26px",
+        "width": "auto",
+      }
+    }
+    viewBox=""
+    xmlns=""
+  />
+</button>
+`;
