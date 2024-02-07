@@ -6,17 +6,11 @@ const applyConfig = (config) => {
     config.settings.searchlib,
   );
 
-  const {
-    resolve,
-    searchui: { resourceCatalog },
-  } = config.settings.searchlib;
+  const { resolve } = config.settings.searchlib;
 
   resolve.ResourceCatalogItem = {
     component: ResourceCatalogItem,
   };
-
-  resourceCatalog.elastic_index = '_es/freshwatermeasure';
-  resourceCatalog.index_name = 'wisetest_searchui';
 
   return config;
 };
