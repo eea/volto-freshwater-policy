@@ -50,11 +50,18 @@ const View = (props) => {
     hide_country_flag_section,
     hide_data_section,
   } = data;
-
+  const excludeItems = [
+    'discodata',
+    'queries',
+    'new-profiles',
+    'old-profiles',
+    'data-visualisation',
+    'map-visualizations',
+  ];
   const column_value = Array.from(new Set(provider_data?.[column_data])).sort();
   const siblings = getContentSiblings(content?.['@components']?.siblings);
   const country_profiles = (siblings || []).filter(
-    (item) => item.key !== 'discodata' && item.key !== 'queries',
+    (item) => !excludeItems.includes(item.key),
   );
 
   const [flag, setFlag] = React.useState();
@@ -78,7 +85,7 @@ const View = (props) => {
         >
           {!hide_country_flag_section ? (
             <div className="country-profile-wrapper">
-              <div className="country-profile-flag">
+              <div className="country-flag">
                 {data.country_flag && (
                   <img alt={countryNames[data.country_flag]} src={flag} />
                 )}
