@@ -54,14 +54,17 @@
 
   .green-bg {
     background-color: @green-bg;
+    color: #3d5265;
   }
 
   .yellow-bg {
     background-color: @yellow-bg;
+    color: #3d5265;
   }
 
   .orange-bg {
     background-color: @orange-bg;
+    color: #3d5265;
   }
 
   .red-bg {
@@ -93,6 +96,28 @@
   }
 }
 
+.content-box.primary,
+.content-box.secondary,
+.content-box.tertiary {
+  .country-header-block .ui.selection.dropdown.countries-dd {
+    color: #ffffff !important;
+
+    .divider {
+      color: #ffffff !important;
+    }
+  }
+}
+
+.content-box {
+  .country-header-block .ui.selection.dropdown.countries-dd {
+    color: #3d5265 !important;
+
+    .divider {
+      color: #3d5265 !important;
+    }
+  }
+}
+
 .country-header-block {
   position: relative;
 
@@ -120,7 +145,7 @@
     min-height: 1rem;
     padding: 0em;
     margin-right: 10px;
-    color: #004050 !important;
+    // color: #004050 !important;
     font-family: @headerFont;
     font-size: @h1;
     font-weight: @headerFontWeight !important;
@@ -150,7 +175,8 @@
   }
 
   i.icon {
-    color: #004050 !important;
+    // color: #004050 !important;
+    display: inline;
     font-size: 30px;
   }
 }

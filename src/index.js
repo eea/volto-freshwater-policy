@@ -187,7 +187,7 @@ const applyConfig = (config) => {
   config.settings.apiExpanders = [
     ...config.settings.apiExpanders,
     {
-      match: '/countries/uwwt',
+      match: '/',
       GET_CONTENT: ['siblings'],
     },
   ];
