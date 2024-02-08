@@ -3,6 +3,15 @@ import { UniversalLink } from '@plone/volto/components';
 import { getScaleUrl, getPath } from '@eeacms/volto-freshwater-policy/utils';
 import config from '@plone/volto/registry';
 
+const WithLink = ({ link, children, isEditMode }) =>
+  link && !isEditMode ? (
+    <UniversalLink className="presentation-card-wrapper" href={link}>
+      {children}
+    </UniversalLink>
+  ) : (
+    <div className="presentation-card-wrapper">{children}</div>
+  );
+
 const Card = (props) => {
   const {
     card,
@@ -15,138 +24,66 @@ const Card = (props) => {
   const leadImage = card.source?.[0]?.lead_image;
 
   return (
-    <>
-      {card.link && !isEditMode ? (
-        <div
-          className="ui card presentation-card has-link"
-          style={
-            border_color
-              ? {
-                  borderTop: `8px solid ${border_color}`,
+    <div
+      className="ui card presentation-card"
+      style={
+        border_color
+          ? {
+              borderTop: `8px solid ${border_color}`,
+            }
+          : {}
+      }
+    >
+      <div className="content presentation-card-content">
+        <WithLink link={card.link} isEditMode={isEditMode}>
+          <>
+            {leadImage && !card?.attachedimage ? (
+              <div
+                className="presentation-card-image"
+                style={{
+                  backgroundImage: `url(${card.source?.[0]['@id']
+                    .replace(config.settings.apiPath, '')
+                    .replace(
+                      config.settings.internalApiPath,
+                      '',
+                    )}/@@images/image/${image_scale || 'large'})`,
+                  minHeight: `${image_height}`,
+                }}
+              ></div>
+            ) : (
+              <div
+                className="presentation-card-image"
+                style={
+                  card?.attachedimage
+                    ? {
+                        backgroundImage: `url(${getScaleUrl(
+                          getPath(card.attachedimage),
+                          image_scale || 'large',
+                        )})`,
+                        minHeight: `${image_height}`,
+                      }
+                    : {}
                 }
-              : {}
-          }
-        >
-          <div className="content presentation-card-content">
-            <UniversalLink
-              className="presentation-card-wrapper"
-              href={card.link}
-            >
-              <>
-                {leadImage && !card?.attachedimage ? (
-                  <div
-                    className="presentation-card-image"
-                    style={{
-                      backgroundImage: `url(${card.source?.[0]['@id']
-                        .replace(config.settings.apiPath, '')
-                        .replace(
-                          config.settings.internalApiPath,
-                          '',
-                        )}/@@images/image/${image_scale || 'large'})`,
-                      minHeight: `${image_height}`,
-                    }}
-                  ></div>
-                ) : (
-                  <div
-                    className="presentation-card-image"
-                    style={
-                      card?.attachedimage
-                        ? {
-                            backgroundImage: `url(${getScaleUrl(
-                              getPath(card.attachedimage),
-                              image_scale || 'large',
-                            )})`,
-                            minHeight: `${image_height}`,
-                          }
-                        : {}
-                    }
-                  ></div>
-                )}
+              ></div>
+            )}
 
-                <div className="presentation-cards-content-wrapper">
-                  {card.title && (
-                    <div className="presentation-card-header">{card.title}</div>
-                  )}
+            <div className="presentation-cards-content-wrapper">
+              {card.title && (
+                <div className="presentation-card-header">{card.title}</div>
+              )}
 
-                  {!card.hide_description && card.description && (
-                    <div className="presentation-card-description">
-                      <p>{card.description}</p>
-                    </div>
-                  )}
+              {!card.hide_description && card.description && (
+                <div className="presentation-card-description">
+                  <p>{card.description}</p>
                 </div>
-              </>
-            </UniversalLink>
-          </div>
-
-          {card.item_type && (
-            <div className="extra content">{card.item_type}</div>
-          )}
-        </div>
-      ) : (
-        <div
-          className="ui card presentation-card"
-          style={
-            border_color
-              ? {
-                  borderTop: `8px solid ${border_color}`,
-                }
-              : {}
-          }
-        >
-          <div className="content presentation-card-content">
-            <div className="presentation-card-wrapper">
-              <>
-                {leadImage && !card?.attachedimage ? (
-                  <div
-                    className="presentation-card-image"
-                    style={{
-                      backgroundImage: `url(${card.source?.[0]['@id']
-                        .replace(config.settings.apiPath, '')
-                        .replace(
-                          config.settings.internalApiPath,
-                          '',
-                        )}/@@images/image/${image_scale || 'large'})`,
-                      minHeight: `${image_height}`,
-                    }}
-                  ></div>
-                ) : (
-                  <div
-                    className="presentation-card-image"
-                    style={
-                      card?.attachedimage
-                        ? {
-                            backgroundImage: `url(${getScaleUrl(
-                              getPath(card.attachedimage),
-                              image_scale || 'large',
-                            )})`,
-                            minHeight: `${image_height}`,
-                          }
-                        : {}
-                    }
-                  ></div>
-                )}
-
-                <div className="presentation-cards-content-wrapper">
-                  {card.title && (
-                    <div className="presentation-card-header">{card.title}</div>
-                  )}
-
-                  {!card.hide_description && card.description && (
-                    <div className="presentation-card-description">
-                      <p>{card.description}</p>
-                    </div>
-                  )}
-                </div>
-              </>
+              )}
             </div>
-          </div>
+          </>
+        </WithLink>
+      </div>
 
-          {card.item_type && (
-            <div className="extra content">{card.item_type}</div>
-          )}
-        </div>
-      )}
-    </>
+      {card.item_type && <div className="extra content">{card.item_type}</div>}
+    </div>
   );
 };
 
