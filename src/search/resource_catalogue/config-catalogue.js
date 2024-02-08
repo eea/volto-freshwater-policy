@@ -1,8 +1,8 @@
 import { mergeConfig } from '@eeacms/search';
 import { build_runtime_mappings } from '@eeacms/volto-globalsearch/utils';
 
-import facets from './facets-catalog';
-import views from './views-catalog';
+import facets from './facets-catalogue';
+import views from './views-catalogue';
 
 const getClientProxyAddress = () => {
   const url = new URL(window.location);

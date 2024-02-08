@@ -21,10 +21,7 @@ import installCustomCardsBlock from './components/Blocks/CustomCardsBlock';
 import installAppExtras from './components/theme/AppExtras';
 import installSlatePopup from './components/Blocks/SlatePopup';
 import installCaseStudyExplorer from './components/Blocks/CaseStudyExplorer';
-import installFreshwaterMeasureSearch from './config/index';
-import installCatalogSearch from './search/resource_catalog';
-
-import FreshwaterMeasureItem from './components/Result/FreshwaterMeasureItem';
+import installSearchEngine from './search';
 
 import { makeInlineElementPlugin } from '@plone/volto-slate/elementEditor';
 import { LINK } from '@plone/volto-slate/constants';
@@ -52,57 +49,6 @@ const messages = defineMessages({
 });
 
 const applyConfig = (config) => {
-  // searchlib
-  config.settings.searchlib = installFreshwaterMeasureSearch(
-    config.settings.searchlib,
-  );
-
-  const {
-    resolve,
-    searchui: { freshwatermeasure },
-  } = config.settings.searchlib;
-
-  resolve.FreshwaterMeasureItem = { component: FreshwaterMeasureItem };
-
-  freshwatermeasure.elastic_index = '_es/freshwatermeasure';
-  freshwatermeasure.index_name = 'wisetest_searchui';
-
-  // fix the query
-  const freshwatermeasureConfig =
-    config.settings.searchlib.searchui.freshwatermeasure;
-  const index = freshwatermeasureConfig.permanentFilters.findIndex(
-    (f) => f.id === 'constantScore',
-  );
-  const baseConstantScore = freshwatermeasureConfig.permanentFilters[index];
-
-  function updatedConstantScore() {
-    const base = baseConstantScore();
-    let filterBool = base.constant_score.filter.bool;
-
-    if (filterBool) {
-      if (!Array.isArray(filterBool.must_not)) {
-        if (
-          filterBool.must_not?.exists?.field === 'exclude_from_globalsearch'
-        ) {
-          delete filterBool.must_not;
-        }
-      } else {
-        filterBool.must_not = filterBool.must_not.filter((item) => {
-          if (item?.exists?.field === 'exclude_from_globalsearch') {
-            return false;
-          }
-          return true;
-        });
-      }
-    }
-
-    return base;
-  }
-
-  updatedConstantScore.id = 'constantScore';
-
-  freshwatermeasureConfig.permanentFilters[index] = updatedConstantScore;
-
   // Multi-lingual
   config.settings.isMultilingual = false;
   config.settings.defaultLanguage =
@@ -381,7 +327,7 @@ const applyConfig = (config) => {
     installAppExtras,
     installSlatePopup,
     installCaseStudyExplorer,
-    installCatalogSearch,
+    installSearchEngine,
   ].reduce((acc, apply) => apply(acc), config);
 
   return final;
