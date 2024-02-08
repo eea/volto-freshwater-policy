@@ -1,8 +1,8 @@
 import { mergeConfig } from '@eeacms/search';
 import { build_runtime_mappings } from '@eeacms/volto-globalsearch/utils';
 
-import facets from './facets-catalog';
-import views from './views-catalog';
+import facets from './facets-catalogue';
+import views from './views-catalogue';
 
 const getClientProxyAddress = () => {
   const url = new URL(window.location);
@@ -45,7 +45,8 @@ export default function installResourceCatalogSearch(config) {
 
   config.searchui.resourceCatalog = {
     ...mergeConfig(envConfig, config.searchui.globalsearchbase),
-    elastic_index: 'es',
+    elastic_index: '_es/freshwatermeasure',
+    index_name: 'wisetest_searchui',
     host: process.env.RAZZLE_ES_PROXY_ADDR || 'http://localhost:3000',
     runtime_mappings: build_runtime_mappings(clusters),
   };
