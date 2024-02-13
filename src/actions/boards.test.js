@@ -36,7 +36,7 @@ describe('Boards action', () => {
         uid,
         group,
         queryparams: doStringifySearchquery(''),
-        payload: '',
+        payload: {},
       });
     });
   });
@@ -54,7 +54,7 @@ describe('Boards action', () => {
         uid,
         group,
         queryparams: doStringifySearchquery(''),
-        payload: '',
+        payload: {},
       });
     });
   });
