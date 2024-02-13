@@ -187,7 +187,7 @@ const View = (props) => {
   const country_profiles = (siblings || []).filter(
     (item) => !excludeItems.includes(item.key),
   );
-  console.log(variation);
+
   const DataTemplate = variation === 'uwwt_profile' ? UWWTView : WRView;
   const [flag, setFlag] = React.useState();
 
