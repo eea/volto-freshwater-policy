@@ -192,6 +192,8 @@ const applyConfig = (config) => {
     },
   ];
 
+  config.settings.openExternalLinkInNewTab = true;
+
   // Routes
   config.addonRoutes = [
     ...config.addonRoutes,

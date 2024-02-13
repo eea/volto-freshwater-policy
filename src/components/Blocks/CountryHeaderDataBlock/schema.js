@@ -11,6 +11,7 @@ export const CountryHeaderDataBlockSchema = () => ({
       id: 'data',
       title: 'Data source',
       fields: [
+        'variation',
         'provider_url',
         'column_data',
         'description',
@@ -20,6 +21,14 @@ export const CountryHeaderDataBlockSchema = () => ({
   ],
 
   properties: {
+    variation: {
+      title: 'Variation',
+      choices: [
+        ['wr_profile', 'WR country profile'],
+        ['uwwt_profile', 'UWWT country profile'],
+      ],
+      default: 'uwwt_profile',
+    },
     provider_url: {
       widget: 'pick_object',
       title: 'Data provider',
@@ -46,7 +55,7 @@ export const CountryHeaderDataBlockSchema = () => ({
     },
   },
 
-  required: [],
+  required: ['variation'],
 });
 
 export default CountryHeaderDataBlockSchema;
