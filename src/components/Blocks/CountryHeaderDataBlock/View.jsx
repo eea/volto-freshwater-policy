@@ -10,7 +10,7 @@ import cx from 'classnames';
 import countryNames from './data/countries';
 import './style.less';
 
-const getClassName = (value) => {
+const getClassNameUWWT = (value) => {
   switch (true) {
     case value >= 97 && value <= 100:
       return 'blue-bg';
@@ -22,6 +22,19 @@ const getClassName = (value) => {
       return 'orange-bg';
     case value >= 0 && value <= 70:
       return 'red-bg';
+    default:
+      return;
+  }
+};
+
+const getClassNameWR = (value) => {
+  switch (true) {
+    case value >= 0 && value <= 20:
+      return 'blue-bg';
+    case value > 20 && value <= 40:
+      return 'green-bg';
+    case value > 40:
+      return 'yellow-bg';
     default:
       return;
   }
@@ -40,16 +53,127 @@ const getContentSiblings = (siblings) => {
   return countriesDropdown;
 };
 
-const View = (props) => {
-  const { data, provider_data, content } = props;
+const UWWTView = (props) => {
   const {
     provider_url,
     column_data,
     description,
     placeholder = '-',
-    hide_country_flag_section,
     hide_data_section,
-  } = data;
+    column_value,
+  } = props;
+
+  return (
+    <div className="country-data-wrapper">
+      {hide_data_section ||
+        (provider_url && (
+          <div className="uww-country-block">
+            <div className={'uww-left ' + getClassNameUWWT(column_value)}>
+              <div className="uww-data">
+                <div>
+                  {column_value[0] === 0 ? (
+                    <span>0%</span>
+                  ) : (
+                    <>
+                      <DataConnectedValue
+                        url={provider_url}
+                        column={column_data}
+                        placeholder={placeholder}
+                      />
+                      %
+                    </>
+                  )}
+                </div>
+              </div>
+              {description && <span className="uww-text">{description}</span>}
+            </div>
+            <div className="uww-country-legend">
+              <div className="legend-wrapper">
+                <span className="legend-box blue-bg"></span>
+                <span className="legend-text">97.1 - 100%</span>
+              </div>
+              <div className="legend-wrapper">
+                <span className="legend-box green-bg"></span>
+                <span className="legend-text">95.1 - 97%</span>
+              </div>
+              <div className="legend-wrapper">
+                <span className="legend-box yellow-bg"></span>
+                <span className="legend-text">85.1 - 95%</span>
+              </div>
+              <div className="legend-wrapper">
+                <span className="legend-box orange-bg"></span>
+                <span className="legend-text">70.1 - 85%</span>
+              </div>
+              <div className="legend-wrapper">
+                <span className="legend-box red-bg"></span>
+                <span className="legend-text">0 - 70%</span>
+              </div>
+            </div>
+          </div>
+        ))}
+    </div>
+  );
+};
+
+const WRView = (props) => {
+  const {
+    provider_url,
+    column_data,
+    description,
+    placeholder = '-',
+    hide_data_section,
+    column_value,
+  } = props;
+
+  return (
+    <div className="country-data-wrapper">
+      {hide_data_section ||
+        (provider_url && (
+          <div className="uww-country-block">
+            <div className={'uww-left ' + getClassNameWR(column_value)}>
+              <div className="uww-data">
+                <div>
+                  {column_value[0] === 0 ? (
+                    <span>0%</span>
+                  ) : (
+                    <>
+                      <DataConnectedValue
+                        url={provider_url}
+                        column={column_data}
+                        placeholder={placeholder}
+                      />
+                      %
+                    </>
+                  )}
+                </div>
+              </div>
+              {description && <span className="uww-text">{description}</span>}
+            </div>
+            <div className="uww-country-legend">
+              <div className="legend-wrapper">
+                <span className="legend-box blue-bg"></span>
+                <span className="legend-text">0 - 20% No water scarcity</span>
+              </div>
+              <div className="legend-wrapper">
+                <span className="legend-box green-bg"></span>
+                <span className="legend-text">20 - 40% Water scarcity</span>
+              </div>
+              <div className="legend-wrapper">
+                <span className="legend-box yellow-bg"></span>
+                <span className="legend-text">
+                  &gt; 40% Severe water scarcity
+                </span>
+              </div>
+            </div>
+          </div>
+        ))}
+    </div>
+  );
+};
+
+const View = (props) => {
+  const { data, provider_data, content } = props;
+  const { column_data, hide_country_flag_section, variation } = data;
   const excludeItems = [
     'discodata',
     'queries',
@@ -63,7 +187,8 @@ const View = (props) => {
   const country_profiles = (siblings || []).filter(
     (item) => !excludeItems.includes(item.key),
   );
-
+  console.log(variation);
+  const DataTemplate = variation === 'uwwt_profile' ? UWWTView : WRView;
   const [flag, setFlag] = React.useState();
 
   React.useEffect(() => {
@@ -102,56 +227,7 @@ const View = (props) => {
           ) : (
             ''
           )}
-          <div className="country-data-wrapper">
-            {hide_data_section ||
-              (provider_url && (
-                <div className="uww-country-block">
-                  <div className={'uww-left ' + getClassName(column_value)}>
-                    <div className="uww-data">
-                      <div>
-                        {column_value[0] === 0 ? (
-                          <span>0%</span>
-                        ) : (
-                          <>
-                            <DataConnectedValue
-                              url={provider_url}
-                              column={column_data}
-                              placeholder={placeholder}
-                            />
-                            %
-                          </>
-                        )}
-                      </div>
-                    </div>
-                    {description && (
-                      <span className="uww-text">{description}</span>
-                    )}
-                  </div>
-                  <div className="uww-country-legend">
-                    <div className="legend-wrapper">
-                      <span className="legend-box blue-bg"></span>
-                      <span className="legend-text">97.1 - 100%</span>
-                    </div>
-                    <div className="legend-wrapper">
-                      <span className="legend-box green-bg"></span>
-                      <span className="legend-text">95.1 - 97%</span>
-                    </div>
-                    <div className="legend-wrapper">
-                      <span className="legend-box yellow-bg"></span>
-                      <span className="legend-text">85.1 - 95%</span>
-                    </div>
-                    <div className="legend-wrapper">
-                      <span className="legend-box orange-bg"></span>
-                      <span className="legend-text">70.1 - 85%</span>
-                    </div>
-                    <div className="legend-wrapper">
-                      <span className="legend-box red-bg"></span>
-                      <span className="legend-text">0 - 70%</span>
-                    </div>
-                  </div>
-                </div>
-              ))}
-          </div>
+          <DataTemplate {...data} column_value={column_value} />
         </div>
       </div>
     </div>
