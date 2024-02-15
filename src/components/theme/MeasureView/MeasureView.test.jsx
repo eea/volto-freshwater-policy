@@ -35,39 +35,6 @@ describe('MeasureView', () => {
     measure_code: '123',
     measure_sector: 'Test Sector',
     other_sector: 'Other Sector',
-    possible_benefits: {
-      data: `<div class="field__items">
-      <div class="field__item">
-      <div class="table-responsive">
-      <table class="paragraphs-table table table-striped" data-striping="1" id="paragraph-nwrm_benefits_w_level">
-      <thead class="">
-      <tr>
-      <th><em class="placeholder">Benefits</em></th>
-      <th><em class="placeholder">Level</em></th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr class="odd" data-id="1273" data-quickedit-entity-id="paragraph/1273" data-type="paragraph">
-      <td>
-      <div class="field field--name-field-nwrm-benefits-2 field--type-entity-reference field--label-hidden field__item">BP2 - Slow runoff</div>
-      </td>
-      <td>
-      <div class="field field--name-field-level field--type-list-string field--label-hidden field__item">High</div>
-      </td>
-      </tr>
-      <tr class="even" data-id="18" data-quickedit-entity-id="paragraph/18" data-type="paragraph">
-      <td>
-      <div class="field field--name-field-nwrm-benefits-2 field--type-entity-reference field--label-hidden field__item">BP5 - Increase evapotranspiration</div>
-      </td>
-      <td>
-      <div class="field field--name-field-level field--type-list-string field--label-hidden field__item">Medium</div>
-      </td>
-      </tr>
-      </tbody>
-      </table>
-      </div></div>
-      </div>`,
-    },
     case_studies: [
       { '@id': '/case-study/1', title: 'Case Study 1' },
       { '@id': '/case-study/2', title: 'Case Study 2' },

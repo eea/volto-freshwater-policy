@@ -246,15 +246,30 @@ const ecosystemSchema = {
       // widget: 'textarea',
       choices: [
         ['ES1 - Water storage', 'ES1 - Water storage'],
-        ['ES2 - Fish stocks and recruiting', 'ES2 - Fish stocks and recruiting'],
-        ['ES3 - Natural biomass production', 'ES3 - Natural biomass production'],
+        [
+          'ES2 - Fish stocks and recruiting',
+          'ES2 - Fish stocks and recruiting',
+        ],
+        [
+          'ES3 - Natural biomass production',
+          'ES3 - Natural biomass production',
+        ],
         ['ES4 - Biodiversity preservation', 'ES4 - Biodiversity preservation'],
-        ['ES5 - Climate change adaptation and mitigation', 'ES5 - Climate change adaptation and mitigation'],
-        ['ES6 - Groundwater/aquifer recharge', 'ES6 - Groundwater/aquifer recharge'],
+        [
+          'ES5 - Climate change adaptation and mitigation',
+          'ES5 - Climate change adaptation and mitigation',
+        ],
+        [
+          'ES6 - Groundwater/aquifer recharge',
+          'ES6 - Groundwater/aquifer recharge',
+        ],
         ['ES7 - Flood risk reduction', 'ES7 - Flood risk reduction'],
         ['ES8 - Erosion/sediment control', 'ES8 - Erosion/sediment control'],
         ['ES9 - Filtration of pollutants', 'ES9 - Filtration of pollutants'],
-        ['ES10 - Recreational opportunities', 'ES10 - Recreational opportunities'],
+        [
+          'ES10 - Recreational opportunities',
+          'ES10 - Recreational opportunities',
+        ],
         ['ES11 - Aesthetic/cultural value', 'ES11 - Aesthetic/cultural value'],
         ['ES12 - Navigation', 'ES12 - Navigation'],
         ['ES13 - Geological resources', 'ES13 - Geological resources'],
@@ -265,23 +280,158 @@ const ecosystemSchema = {
   required: [],
 };
 
+const biophysicalSchema = {
+  title: 'Biophysical impact',
+  fieldsets: [
+    {
+      id: 'default',
+      title: 'default',
+      fields: ['level', 'name'],
+    },
+  ],
+  properties: {
+    level: {
+      title: 'Level',
+      choices: [
+        ['Low', 'Low'],
+        ['Medium', 'Medium'],
+        ['High', 'High'],
+      ],
+    },
+    name: {
+      title: 'Name',
+      choices: [
+        ['BP1 - Store runoff', 'BP1 - Store runoff'],
+        ['BP2 - Slow runoff', 'BP2 - Slow runoff'],
+        ['BP3 - Store river water', 'BP3 - Store river water'],
+        ['BP4 - Slow river water', 'BP4 - Slow river water'],
+        [
+          'BP5 - Increase evapotranspiration',
+          'BP5 - Increase evapotranspiration',
+        ],
+        [
+          'BP6 - Increase infiltration and/or groundwater recharge',
+          'BP6 - Increase infiltration and/or groundwater recharge',
+        ],
+        [
+          'BP7 - Increase soil water retention',
+          'BP7 - Increase soil water retention',
+        ],
+        ['BP8 - Reduce pollutant sources', 'BP8 - Reduce pollutant sources'],
+        [
+          'BP9 - Intercept pollution pathways',
+          'BP9 - Intercept pollution pathways',
+        ],
+        [
+          'BP10 - Reduce erosion and/or sediment delivery',
+          'BP10 - Reduce erosion and/or sediment delivery',
+        ],
+        ['BP11 - Improve soils', 'BP11 - Improve soils'],
+        ['BP12 - Create aquatic habitat', 'BP12 - Create aquatic habitat'],
+        ['BP13 - Create riparian habitat', 'BP13 - Create riparian habitat'],
+        [
+          'BP14 - Create terrestrial habitats',
+          'BP14 - Create terrestrial habitats',
+        ],
+        ['BP15 - Enhance precipitation', 'BP15 - Enhance precipitation'],
+        ['BP16 - Reduce peak temperature', 'BP16 - Reduce peak temperature'],
+        ['BP17 - Absorb and/or retain CO2', 'BP17 - Absorb and/or retain CO2'],
+      ],
+    },
+  },
+  required: [],
+};
+
+const policySchema = {
+  title: 'Policy objective',
+  fieldsets: [
+    {
+      id: 'default',
+      title: 'default',
+      fields: ['level', 'name'],
+    },
+  ],
+  properties: {
+    level: {
+      title: 'Level',
+      choices: [
+        ['Low', 'Low'],
+        ['Medium', 'Medium'],
+        ['High', 'High'],
+      ],
+    },
+    name: {
+      title: 'Name',
+      choices: [
+        [
+          'PO1 - Improving status of biology quality elements',
+          'PO1 - Improving status of biology quality elements',
+        ],
+        [
+          'PO2 - Improving status of physico-chemical quality elements',
+          'PO2 - Improving status of physico-chemical quality elements',
+        ],
+        [
+          'PO3 - Improving status of hydromorphology quality elements',
+          'PO3 - Improving status of hydromorphology quality elements',
+        ],
+        [
+          'PO4 - Improving chemical status and priority substances',
+          'PO4 - Improving chemical status and priority substances',
+        ],
+        [
+          'PO5 - Improving quantitative status',
+          'PO5 - Improving quantitative status',
+        ],
+        ['PO6 - Improving chemical status', 'PO6 - Improving chemical status'],
+        [
+          'PO7 - Prevent surface water status deterioration',
+          'PO7 - Prevent surface water status deterioration',
+        ],
+        [
+          'PO8 - Prevent groundwater status deterioration',
+          'PO8 - Prevent groundwater status deterioration',
+        ],
+        [
+          'PO9 - Take adequate and co-ordinated measures to reduce flood risks',
+          'PO9 - Take adequate and co-ordinated measures to reduce flood risks',
+        ],
+        [
+          'PO10 - Protection of important habitats',
+          'PO10 - Protection of important habitats',
+        ],
+        [
+          'PO11 - Better protection for ecosystems and more use of Green Infrastructure',
+          'PO11 - Better protection for ecosystems and more use of Green Infrastructure',
+        ],
+        [
+          'PO12 - More sustainable agriculture and forestry',
+          'PO12 - More sustainable agriculture and forestry',
+        ],
+        [
+          'PO13 - Better management of fish stocks',
+          'PO13 - Better management of fish stocks',
+        ],
+        [
+          'PO14 - Prevention of biodiversity loss',
+          'PO14 - Prevention of biodiversity loss',
+        ],
+      ],
+    },
+  },
+  required: [],
+};
+
 export const EcosystemServiceWidget = (props) => (
   <NWRMObjectListWidget {...props} schema={ecosystemSchema} />
 );
 
-export default NWRMObjectListWidget;
+export const BiophysicalImpactWidget = (props) => (
+  <NWRMObjectListWidget {...props} schema={biophysicalSchema} />
+);
 
-// ['ES1 - Water storage', 'ES1 - Water storage'],
-// ['ES2 - Fish stocks and recruiting', 'ES2 - Fish stocks and recruiting'],
-// ['ES3 - Natural biomass production', 'ES3 - Natural biomass production'],
-// ['ES4 - Biodiversity preservation', 'ES4 - Biodiversity preservation'],
-// ['ES5 - Climate change adaptation and mitigation', 'ES5 - Climate change adaptation and mitigation'],
-// ['ES6 - Groundwater/aquifer recharge', 'ES6 - Groundwater/aquifer recharge'],
-// ['ES7 - Flood risk reduction', 'ES7 - Flood risk reduction'],
-// ['ES8 - Erosion/sediment control', 'ES8 - Erosion/sediment control'],
-// ['ES9 - Filtration of pollutants', 'ES9 - Filtration of pollutants'],
-// ['ES10 - Recreational opportunities', 'ES10 - Recreational opportunities'],
-// ['ES11 - Aesthetic/cultural value', 'ES11 - Aesthetic/cultural value'],
-// ['ES12 - Navigation', 'ES12 - Navigation'],
-// ['ES13 - Geological resources', 'ES13 - Geological resources'],
-// ['ES14 - Energy production', 'ES14 - Energy production'],
+export const PolicyObjectiveWidget = (props) => (
+  <NWRMObjectListWidget {...props} schema={policySchema} />
+);
+
+export default NWRMObjectListWidget;
