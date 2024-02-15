@@ -246,15 +246,30 @@ const ecosystemSchema = {
       // widget: 'textarea',
       choices: [
         ['ES1 - Water storage', 'ES1 - Water storage'],
-        ['ES2 - Fish stocks and recruiting', 'ES2 - Fish stocks and recruiting'],
-        ['ES3 - Natural biomass production', 'ES3 - Natural biomass production'],
+        [
+          'ES2 - Fish stocks and recruiting',
+          'ES2 - Fish stocks and recruiting',
+        ],
+        [
+          'ES3 - Natural biomass production',
+          'ES3 - Natural biomass production',
+        ],
         ['ES4 - Biodiversity preservation', 'ES4 - Biodiversity preservation'],
-        ['ES5 - Climate change adaptation and mitigation', 'ES5 - Climate change adaptation and mitigation'],
-        ['ES6 - Groundwater/aquifer recharge', 'ES6 - Groundwater/aquifer recharge'],
+        [
+          'ES5 - Climate change adaptation and mitigation',
+          'ES5 - Climate change adaptation and mitigation',
+        ],
+        [
+          'ES6 - Groundwater/aquifer recharge',
+          'ES6 - Groundwater/aquifer recharge',
+        ],
         ['ES7 - Flood risk reduction', 'ES7 - Flood risk reduction'],
         ['ES8 - Erosion/sediment control', 'ES8 - Erosion/sediment control'],
         ['ES9 - Filtration of pollutants', 'ES9 - Filtration of pollutants'],
-        ['ES10 - Recreational opportunities', 'ES10 - Recreational opportunities'],
+        [
+          'ES10 - Recreational opportunities',
+          'ES10 - Recreational opportunities',
+        ],
         ['ES11 - Aesthetic/cultural value', 'ES11 - Aesthetic/cultural value'],
         ['ES12 - Navigation', 'ES12 - Navigation'],
         ['ES13 - Geological resources', 'ES13 - Geological resources'],
