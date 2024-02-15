@@ -13,7 +13,7 @@
       .ui.grid > .column.row > [class*='four wide computer'].column,
       .ui.grid > [class*='four wide computer'].column,
       .ui.column.grid > [class*='four wide computer'].column {
-        width: 25% !important;
+        width: 33.33333333% !important;
 
         > div {
           display: flex;
@@ -26,7 +26,7 @@
       .ui.grid > .column.row > [class*='eight wide computer'].column,
       .ui.grid > [class*='eight wide computer'].column,
       .ui.column.grid > [class*='eight wide computer'].column {
-        width: 75% !important;
+        width: 66.66666667% !important;
       }
     }
 

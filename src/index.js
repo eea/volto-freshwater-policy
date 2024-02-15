@@ -79,6 +79,7 @@ const applyConfig = (config) => {
       },
     ],
     logoTargetUrl: '/',
+    organisationName: 'Freshwater Information System for Europe',
   };
 
   config.settings.eea.footerOpts.logosHeader = 'Managed by';
