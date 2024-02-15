@@ -23,15 +23,15 @@ describe('MeasureView', () => {
       { '@type': 'Image', '@id': 'testid', description: '' },
       { '@type': 'Image', '@id': 'testid', description: 'http://test' },
     ],
-    ecosystem_services: [
-      { code: 'test code', level: 'test level', name: 'test name' },
-    ],
-    biophysical_impacts: [
-      { code: 'test code', level: 'test level', name: 'test name' },
-    ],
-    policy_objectives: [
-      { code: 'test code', level: 'test level2', name: 'test name' },
-    ],
+    ecosystem_services: {
+      value: [{ code: 'test code', level: 'test level', name: 'test name' }],
+    },
+    biophysical_impacts: {
+      value: [{ code: 'test code', level: 'test level', name: 'test name' }],
+    },
+    policy_objectives: {
+      value: [{ code: 'test code', level: 'test level2', name: 'test name' }],
+    },
     measure_code: '123',
     measure_sector: 'Test Sector',
     other_sector: 'Other Sector',
