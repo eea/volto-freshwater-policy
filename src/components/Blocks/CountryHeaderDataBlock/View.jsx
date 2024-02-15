@@ -53,7 +53,7 @@ const getContentSiblings = (siblings) => {
   return countriesDropdown;
 };
 
-const UWWTView = (props) => {
+export const UWWTView = (props) => {
   const {
     provider_url,
     column_data,
@@ -115,7 +115,7 @@ const UWWTView = (props) => {
   );
 };
 
-const WRView = (props) => {
+export const WRView = (props) => {
   const {
     provider_url,
     column_data,

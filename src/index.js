@@ -11,6 +11,7 @@ import {
 import { basket, boards } from './reducers';
 import CopyrightWidget from './components/Widgets/CopyrightWidget';
 import RightsWidget from './components/Widgets/RightsWidget';
+import { EcosystemServiceWidget } from './components/Widgets/NWRMObjectListWidget';
 import TokenWidget from '@plone/volto/components/manage/Widgets/TokenWidget';
 
 import installCountryHeaderDataBlock from './components/Blocks/CountryHeaderDataBlock';
@@ -220,6 +221,7 @@ const applyConfig = (config) => {
   config.widgets.id.license_copyright = CopyrightWidget;
   config.widgets.id.rights = RightsWidget;
   config.widgets.id.category = TokenWidget;
+  config.widgets.id.ecosystem_services = EcosystemServiceWidget;
 
   // addonReducers
   config.addonReducers = {
