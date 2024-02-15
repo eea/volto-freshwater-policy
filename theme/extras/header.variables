@@ -3,7 +3,7 @@
 -----------------------*/
 
 /* Logo */
-@computerLogoMaxWidth: 252px;
+@computerLogoMaxWidth: 350px;
 @computerLogoMarginTop: 0;
 
 
