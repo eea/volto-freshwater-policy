@@ -79,8 +79,6 @@ export default function install(config) {
     ),
   };
 
-  console.log('s', config.searchui.freshwatermeasure);
-
   if (typeof window !== 'undefined') {
     config.searchui.freshwatermeasure.host =
       process.env.RAZZLE_ES_PROXY_ADDR || getClientProxyAddress();
