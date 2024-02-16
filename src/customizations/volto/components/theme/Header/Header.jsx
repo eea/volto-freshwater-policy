@@ -14,6 +14,7 @@ import {
   hasApiExpander,
   flattenToAppURL,
   BodyClass,
+  isInternalURL,
 } from '@plone/volto/helpers';
 import { getNavigation } from '@plone/volto/actions';
 import { Header, Logo } from '@eeacms/volto-eea-design-system/ui';
@@ -289,6 +290,10 @@ const EEAHeader = ({ pathname, token, items, history, subsite, ...rest }) => {
                 className={cx(options?.className, {
                   active: item.url === router_pathname,
                 })}
+                openLinkInNewTab={
+                  config.settings.openExternalLinkInNewTab &&
+                  !isInternalURL(item.url)
+                }
               >
                 {props?.iconPosition !== 'right' && props?.children}
                 <span>{item.nav_title || item.title}</span>
