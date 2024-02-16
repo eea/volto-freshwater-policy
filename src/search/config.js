@@ -16,7 +16,7 @@ export const clusters = {
   clusters: [
     {
       name: 'Maps and Charts',
-      values: ['Map (interactive)'],
+      values: ['Map (interactive)', 'Map (simple)', 'Chart (interactive)'],
       defaultResultView: 'horizontalCard',
     },
     {
@@ -35,18 +35,8 @@ export const clusters = {
       defaultResultView: 'horizontalCard',
     },
     {
-      name: ' Measure',
-      values: ['Measure'],
-      defaultResultView: 'horizontalCard',
-    },
-    {
-      name: 'Case study',
-      values: ['Case study'],
-      defaultResultView: 'horizontalCard',
-    },
-    {
-      name: 'Glossary term',
-      values: ['Glossary term'],
+      name: 'Others',
+      values: ['Glossary term', 'Case study', 'Measure'],
       defaultResultView: 'horizontalCard',
     },
   ],
@@ -88,6 +78,8 @@ export default function install(config) {
       ),
     ),
   };
+
+  console.log('s', config.searchui.freshwatermeasure);
 
   if (typeof window !== 'undefined') {
     config.searchui.freshwatermeasure.host =
