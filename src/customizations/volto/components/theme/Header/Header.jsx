@@ -21,8 +21,8 @@ import { usePrevious } from '@eeacms/volto-eea-design-system/helpers';
 import { find } from 'lodash';
 import globeIcon from '@eeacms/volto-eea-design-system/../theme/themes/eea/assets/images/Header/global-line.svg';
 import eeaFlag from '@eeacms/volto-eea-design-system/../theme/themes/eea/assets/images/Header/eea.png';
-
 import config from '@plone/volto/registry';
+import { getContent, getQueryStringResults } from '@plone/volto/actions';
 import { compose } from 'recompose';
 
 import cx from 'classnames';
@@ -43,7 +43,7 @@ function removeTrailingSlash(path) {
 /**
  * EEA Specific Header component.
  */
-const EEAHeader = ({ pathname, token, items, history, subsite }) => {
+const EEAHeader = ({ pathname, token, items, history, subsite, ...rest }) => {
   const currentLang = useSelector((state) => state.intl.locale);
   const translations = useSelector(
     (state) => state.content.data?.['@components']?.translations?.items,
@@ -91,6 +91,37 @@ const EEAHeader = ({ pathname, token, items, history, subsite }) => {
       }
     }
   }, [token, dispatch, pathname, previousToken]);
+
+  const linkContentTypes = useSelector(
+    (state) => state.querystringsearch.subrequests?.['navigation-links']?.items,
+  );
+
+  const [initialPath] = React.useState(getBaseUrl(pathname));
+  const querystring = {
+    query: [
+      {
+        i: 'portal_type',
+        o: 'plone.app.querystring.operation.selection.any',
+        v: ['Link'],
+      },
+    ],
+  };
+  const adaptedQuery = Object.assign(
+    { metadata_fields: '_all' },
+    {
+      b_size: 10,
+    },
+    querystring,
+  );
+
+  // querystring-search for getting all links CTs
+  React.useEffect(() => {
+    if (!linkContentTypes) {
+      dispatch(
+        getQueryStringResults(initialPath, adaptedQuery, 'navigation-links'),
+      );
+    }
+  }, [initialPath, dispatch, linkContentTypes, adaptedQuery]);
 
   return (
     <Header menuItems={items}>
@@ -244,20 +275,43 @@ const EEAHeader = ({ pathname, token, items, history, subsite }) => {
             {item.title}
           </a>
         )}
-        renderMenuItem={(item, options, props) => (
-          <UniversalLink
-            href={item.url || '/'}
-            title={item.nav_title || item.title}
-            {...(options || {})}
-            className={cx(options?.className, {
-              active: item.url === router_pathname,
-            })}
-          >
-            {props?.iconPosition !== 'right' && props?.children}
-            <span>{item.nav_title || item.title}</span>
-            {props?.iconPosition === 'right' && props?.children}
-          </UniversalLink>
-        )}
+        renderMenuItem={(item, options, props) => {
+          if (linkContentTypes) {
+            const linkItem = linkContentTypes?.find(
+              (link) => flattenToAppURL(link['@id']) === item.url,
+            );
+
+            return (
+              <UniversalLink
+                href={token ? item.url || '/' : linkItem.remoteUrl}
+                title={item.nav_title || item.title}
+                {...(options || {})}
+                className={cx(options?.className, {
+                  active: item.url === router_pathname,
+                })}
+              >
+                {props?.iconPosition !== 'right' && props?.children}
+                <span>{item.nav_title || item.title}</span>
+                {props?.iconPosition === 'right' && props?.children}
+              </UniversalLink>
+            );
+          } else {
+            return (
+              <UniversalLink
+                href={item.url || '/'}
+                title={item.nav_title || item.title}
+                {...(options || {})}
+                className={cx(options?.className, {
+                  active: item.url === router_pathname,
+                })}
+              >
+                {props?.iconPosition !== 'right' && props?.children}
+                <span>{item.nav_title || item.title}</span>
+                {props?.iconPosition === 'right' && props?.children}
+              </UniversalLink>
+            );
+          }
+        }}
       ></Header.Main>
     </Header>
   );
