@@ -39,7 +39,7 @@ const messages = defineMessages({
 
 const NWRMObjectListWidget = (props) => {
   const { block, fieldSet, id, schema, onChange, schemaExtender } = props;
-  const value = props.value['value'] || props.value;
+  const value = props.value?.value || props.value || [];
   const [localActiveObject, setLocalActiveObject] = React.useState(
     props.activeObject ?? value.length - 1,
   );

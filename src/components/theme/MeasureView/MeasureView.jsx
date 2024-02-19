@@ -464,7 +464,7 @@ const MeasureView = (props) => {
             <h3>Related case studies</h3>
             <div className="full-width case-study-wrapper">
               <div className="ui container">
-                {content.case_studies.length !== 0 ? (
+                {content.case_studies && content.case_studies?.length !== 0 ? (
                   <div>
                     <Grid.Row>
                       <Grid columns="12">
