@@ -3,6 +3,7 @@ module.exports = {
   collectCoverageFrom: [
     'src/addons/**/src/**/*.{js,jsx,ts,tsx}',
     '!src/**/*.d.ts',
+    '!src/**/components/Widgets/*.{js,jsx,ts,tsx}',
   ],
   moduleNameMapper: {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
