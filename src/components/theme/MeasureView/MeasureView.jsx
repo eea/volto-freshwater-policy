@@ -84,8 +84,8 @@ const sortByLevel = (data) => {
     // Sort rows by levels
     const levelA = a.level;
     const levelB = b.level;
-    const textA = a.code;
-    const textB = b.code;
+    const textA = a.name;
+    const textB = b.name;
 
     if (levelA === levelB) {
       // If levels are the same, sort alphabetically by text
@@ -120,7 +120,7 @@ const ImageSource = (props) => {
                 style={{ display: 'flex', gap: '5px' }}
               >
                 <span>Source </span>
-                <i class="ri-external-link-line"></i>
+                <i className="ri-external-link-line"></i>
               </a>
             </div>
           </div>
@@ -142,10 +142,9 @@ const MeasureView = (props) => {
   const [activeIndices, setActiveIndices] = useState([0]);
   const [activeImage, setActiveImage] = useState(0);
   const imageItems = content.items.filter((item) => item['@type'] === 'Image');
-
-  sortByLevel(content.ecosystem_services);
-  sortByLevel(content.biophysical_impacts);
-  sortByLevel(content.policy_objectives);
+  sortByLevel(content.ecosystem_services.value);
+  sortByLevel(content.biophysical_impacts.value);
+  sortByLevel(content.policy_objectives.value);
 
   const handleAccordionClick = (index) => {
     // Check if the index is already in the activeIndices array
@@ -326,26 +325,27 @@ const MeasureView = (props) => {
                             </tr>
                           </thead>
                           <tbody>
-                            {content.ecosystem_services.map((item, index) => (
-                              <tr
-                                key={`row-es-${index}`}
-                                id={`row-es-${index}`}
-                              >
-                                <td className="field--name-field-level">
-                                  {item.level}
-                                </td>
-                                <td>
-                                  {Object.values(level2).map(
-                                    (level, index) =>
-                                      level.includes(item.code) &&
-                                      Object.keys(level2)[index],
-                                  )}
-                                </td>
-                                <td>
-                                  {item.code} {item.name}
-                                </td>
-                              </tr>
-                            ))}
+                            {content.ecosystem_services.value.map(
+                              (item, index) => (
+                                <tr
+                                  key={`row-es-${index}`}
+                                  id={`row-es-${index}`}
+                                >
+                                  <td className="field--name-field-level">
+                                    {item.level}
+                                  </td>
+                                  <td>
+                                    {Object.values(level2).map(
+                                      (level, index) =>
+                                        level.includes(
+                                          item.name.split(' - ')[0],
+                                        ) && Object.keys(level2)[index],
+                                    )}
+                                  </td>
+                                  <td>{item.name}</td>
+                                </tr>
+                              ),
+                            )}
                           </tbody>
                         </table>
                       </div>
@@ -378,33 +378,35 @@ const MeasureView = (props) => {
                             </tr>
                           </thead>
                           <tbody>
-                            {content.biophysical_impacts.map((item, index) => (
-                              <tr
-                                key={`row-bp-${index}`}
-                                id={`row-bp-${index}`}
-                              >
-                                <td className="field--name-field-level">
-                                  {item.level}
-                                </td>
-                                <td>
-                                  {Object.values(level2).map(
-                                    (level, index) =>
-                                      level.includes(item.code) &&
-                                      Object.keys(level2)[index],
-                                  )}
-                                </td>
-                                <td>
-                                  {Object.values(level3).map(
-                                    (level, index) =>
-                                      level.includes(item.code) &&
-                                      Object.keys(level3)[index],
-                                  )}
-                                </td>
-                                <td>
-                                  {item.code} {item.name}
-                                </td>
-                              </tr>
-                            ))}
+                            {content.biophysical_impacts.value.map(
+                              (item, index) => (
+                                <tr
+                                  key={`row-bp-${index}`}
+                                  id={`row-bp-${index}`}
+                                >
+                                  <td className="field--name-field-level">
+                                    {item.level}
+                                  </td>
+                                  <td>
+                                    {Object.values(level2).map(
+                                      (level, index) =>
+                                        level.includes(
+                                          item.name.split(' - ')[0],
+                                        ) && Object.keys(level2)[index],
+                                    )}
+                                  </td>
+                                  <td>
+                                    {Object.values(level3).map(
+                                      (level, index) =>
+                                        level.includes(
+                                          item.name.split(' - ')[0],
+                                        ) && Object.keys(level3)[index],
+                                    )}
+                                  </td>
+                                  <td>{item.name}</td>
+                                </tr>
+                              ),
+                            )}
                           </tbody>
                         </table>
                       </div>
@@ -436,19 +438,19 @@ const MeasureView = (props) => {
                             </tr>
                           </thead>
                           <tbody>
-                            {content.policy_objectives.map((item, index) => (
-                              <tr
-                                key={`row-po-${index}`}
-                                id={`row-po-${index}`}
-                              >
-                                <td className="field--name-field-level">
-                                  {item.level}
-                                </td>
-                                <td>
-                                  {item.code} {item.name}
-                                </td>
-                              </tr>
-                            ))}
+                            {content.policy_objectives.value.map(
+                              (item, index) => (
+                                <tr
+                                  key={`row-po-${index}`}
+                                  id={`row-po-${index}`}
+                                >
+                                  <td className="field--name-field-level">
+                                    {item.level}
+                                  </td>
+                                  <td>{item.name}</td>
+                                </tr>
+                              ),
+                            )}
                           </tbody>
                         </table>
                       </div>
@@ -462,48 +464,54 @@ const MeasureView = (props) => {
             <h3>Related case studies</h3>
             <div className="full-width case-study-wrapper">
               <div className="ui container">
-                <div>
-                  <Grid.Row>
-                    <Grid columns="12">
-                      <Grid.Column
-                        mobile={8}
-                        tablet={8}
-                        computer={8}
-                        className="col-left"
-                      >
-                        <CaseStudyExplorer
-                          caseStudiesIds={
-                            content.case_studies
-                              ? content.case_studies.map((item) => {
-                                  return item['@id'].split('/').pop();
-                                })
-                              : null
-                          }
-                        />
-                      </Grid.Column>
-                      <Grid.Column
-                        mobile={4}
-                        tablet={4}
-                        computer={4}
-                        className="col-right"
-                      >
-                        {content.case_studies && (
-                          <div>
-                            <div className="case-studies-list">
-                              <ul>
-                                {content.case_studies.map((item) => (
-                                  <li key={item['@id']}>
-                                    <a href={item['@id']}>{item.title}</a>
-                                  </li>
-                                ))}{' '}
-                              </ul>
+                {content.case_studies && content.case_studies?.length !== 0 ? (
+                  <div>
+                    <Grid.Row>
+                      <Grid columns="12">
+                        <Grid.Column
+                          mobile={8}
+                          tablet={8}
+                          computer={8}
+                          className="col-left"
+                        >
+                          <CaseStudyExplorer
+                            caseStudiesIds={
+                              content.case_studies
+                                ? content.case_studies.map((item) => {
+                                    return item['@id'].split('/').pop();
+                                  })
+                                : []
+                            }
+                          />
+                        </Grid.Column>
+                        <Grid.Column
+                          mobile={4}
+                          tablet={4}
+                          computer={4}
+                          className="col-right"
+                        >
+                          {content.case_studies && (
+                            <div>
+                              <div className="case-studies-list">
+                                <ul>
+                                  {content.case_studies.map((item) => (
+                                    <li key={item['@id']}>
+                                      <a href={item['@id']}>{item.title}</a>
+                                    </li>
+                                  ))}{' '}
+                                </ul>
+                              </div>
                             </div>
-                          </div>
-                        )}
-                      </Grid.Column>
-                    </Grid>
-                  </Grid.Row>
-                </div>
+                          )}
+                        </Grid.Column>
+                      </Grid>
+                    </Grid.Row>
+                  </div>
+                ) : (
+                  <h4 style={{ padding: '2em 0em' }}>
+                    No related case studies
+                  </h4>
+                )}
               </div>
             </div>
           </div>
