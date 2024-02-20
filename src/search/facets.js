@@ -1,9 +1,11 @@
 import { histogramFacet, makeRange, multiTermFacet } from '@eeacms/search';
 import globalSearchBaseConfig from '@eeacms/volto-globalsearch/config/global-search-base-config.js';
+import spatialWhitelist from '@eeacms/volto-globalsearch/config/json/spatialWhitelist';
+import spatialBlacklist from './json/spatialBlacklist.json';
 
 const facets = [
   ...globalSearchBaseConfig.facets.filter(
-    (facet) => facet.field !== 'time_coverage',
+    (facet) => facet.field !== 'time_coverage' && facet.field !== 'spatial',
   ),
   multiTermFacet({
     field: 'measure_sector.keyword',
@@ -53,7 +55,20 @@ const facets = [
     iconsFamily: 'Reference legislations',
     alwaysVisible: false,
   }),
-
+  multiTermFacet({
+    field: 'spatial',
+    isFilterable: true,
+    isMulti: true,
+    label: 'Countries',
+    blacklist: spatialBlacklist,
+    spatialWhitelist: spatialWhitelist,
+    show: 10000,
+    iconsFamily: 'Countries',
+    enableExact: true,
+    sortOn: 'value',
+    sortOrder: 'ascending',
+    alwaysVisible: false,
+  }),
   histogramFacet({
     field: 'time_coverage',
     isMulti: true,
