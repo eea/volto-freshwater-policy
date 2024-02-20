@@ -8,6 +8,7 @@ import { useHistory } from 'react-router-dom';
 import cx from 'classnames';
 import { Container, Menu, Grid, Dropdown } from 'semantic-ui-react'; // Dropdown,
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { isInternalURL } from '@plone/volto/helpers';
 
 import closeIcon from '@eeacms/volto-eea-design-system/../theme/themes/eea/assets/images/Header/close-line.svg';
 import searchIcon from '@eeacms/volto-eea-design-system/../theme/themes/eea/assets/images/Header/search-line.svg';
@@ -180,8 +181,11 @@ const Main = ({
     setActiveItem(item['@id'] || item.url);
     if (item.items.length) {
       setMenuIsActive(true);
-    } else {
+    } else if (isInternalURL(item.url)) {
       history.push(item.url);
+    } else {
+      const newTab = window.open(item.url, '_blank');
+      newTab.opener = null;
     }
   };
 

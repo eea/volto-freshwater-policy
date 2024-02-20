@@ -1,0 +1,65 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders a copyright widget component basic 1`] = `
+<DocumentFragment>
+  <div
+    class="inline field copyright-widget-wrapper field-wrapper-copyright"
+  >
+    <div
+      class="ui grid"
+    >
+      <div
+        class="stretched row"
+      >
+        <div
+          class="four wide column"
+        >
+          <div
+            class="wrapper"
+          >
+            <label
+              for="field-copyright"
+              id="fieldset-default-field-label-copyright"
+            >
+              CopyRight
+            </label>
+          </div>
+        </div>
+        <div
+          class="eight wide column"
+        >
+          <div
+            class="ui checked radio checkbox"
+          >
+            <input
+              checked=""
+              class="hidden"
+              readonly=""
+              tabindex="0"
+              type="radio"
+              value="EEA"
+            />
+            <label>
+              EEA Copyright Creative Commons CC-by licence
+            </label>
+          </div>
+          <div
+            class="ui radio checkbox"
+          >
+            <input
+              class="hidden"
+              readonly=""
+              tabindex="0"
+              type="radio"
+              value="other"
+            />
+            <label>
+              Other
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

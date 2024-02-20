@@ -21,10 +21,6 @@ describe('SourceView', () => {
       <p>The measure offers the potential for temporary flood storage, increased water retention in the landscape and runoff attenuation. Soil cover is maintained at all times with rooted vegetation, this reduces the surface flow of water and allows greater infiltration to the soil. Rates of soil erosion are considerably lower than arable land with potential benefits for water quality.</p>
       </div>`,
       },
-      possible_benefits: {
-        data: `"<div class="field__items">
-        </div>"`,
-      },
       source_case_studies: [{ '@id': 'Case Study', title: 'Test Title' }],
       source_data: { data: `<div>hei</div>` },
     };
