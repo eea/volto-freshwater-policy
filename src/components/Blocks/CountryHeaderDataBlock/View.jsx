@@ -175,6 +175,13 @@ const View = (props) => {
   const { data, provider_data, content } = props;
   const { column_data, hide_country_flag_section, variation } = data;
   const excludeItems = [
+    'test',
+    'sandbox',
+    'data',
+    'visualizations',
+    'maps',
+    'dashboard-tableau',
+    'images',
     'discodata',
     'queries',
     'new-profiles',
