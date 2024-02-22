@@ -16,7 +16,13 @@ export const CountryHeaderDataBlockSchema = () => ({
         'column_data',
         'description',
         'hide_data_section',
+        'show_actions',
       ],
+    },
+    {
+      id: 'actions',
+      title: 'Actions',
+      fields: ['hideShareButton', 'hideDownloadButton'],
     },
   ],
 
@@ -52,6 +58,16 @@ export const CountryHeaderDataBlockSchema = () => ({
     hide_data_section: {
       type: 'boolean',
       title: 'Hide data section',
+    },
+    hideShareButton: {
+      title: 'Hide share button',
+      type: 'boolean',
+      default: true,
+    },
+    hideDownloadButton: {
+      title: 'Hide download button',
+      type: 'boolean',
+      default: true,
     },
   },
 
