@@ -155,8 +155,8 @@
   padding: 0 !important;
   border: none !important;
 
-  >.text,
-  >.text:not(.default) {
+  > .text,
+  > .text:not(.default) {
     min-height: 1rem;
     padding: 0em;
     margin-right: 10px;
@@ -172,7 +172,7 @@
     font-weight: 400;
   }
 
-  >.menu {
+  > .menu {
     border: 1px solid #f1f1f1 !important;
     box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.08) !important;
   }
@@ -239,8 +239,8 @@
   }
 
   .has--useAsPageHeader--true {
-    .ui.grid>[class*="twelve wide"].column,
-    .ui.column.grid>[class*="twelve wide"].column {
+    .ui.grid > [class*='twelve wide'].column,
+    .ui.column.grid > [class*='twelve wide'].column {
       width: 50% !important;
     }
   }
@@ -249,7 +249,10 @@
 // Paper size A2
 @media only print and (min-width: 1200px) {
   .ui.container {
-    width: calc(var(--large-monitor-width, 1200px) - var(--m-gutter, 40px)*2 - var(--edit-gutter, 0px)*2) !important;
+    width: calc(
+      var(--large-monitor-width, 1200px) - var(--m-gutter, 40px) * 2 -
+        var(--edit-gutter, 0px) * 2
+    ) !important;
     margin-right: auto !important;
     margin-left: auto !important;
   }
@@ -258,7 +261,10 @@
 // Paper size A3
 @media only print and (min-width: 992px) and (max-width: 1199.9375px) {
   .ui.container {
-    width: calc(var(--computer-width, 992px) - var(--m-gutter, 32px)*2 - var(--edit-gutter, 0px)*2) !important;
+    width: calc(
+      var(--computer-width, 992px) - var(--m-gutter, 32px) * 2 -
+        var(--edit-gutter, 0px) * 2
+    ) !important;
     margin-right: auto !important;
     margin-left: auto !important;
   }
@@ -267,7 +273,10 @@
 // Paper size Tabloid
 @media only print and (min-width: 768px) and (max-width: 991.9375px) {
   .ui.container {
-    width: calc(var(--tablet-width, 768px) - var(--m-gutter, 22px)*2 - var(--edit-gutter, 0px)*2) !important;
+    width: calc(
+      var(--tablet-width, 768px) - var(--m-gutter, 22px) * 2 -
+        var(--edit-gutter, 0px) * 2
+    ) !important;
     margin-right: auto !important;
     margin-left: auto !important;
   }
@@ -276,18 +285,24 @@
 // Paper size A4
 @media only print and (max-width: 767.9375px) {
   .ui.container {
-    width: calc(var(--mobile-width, 100%) - var(--m-gutter, 1rem)*2 - var(--edit-gutter, 0px)*2) !important;
+    width: calc(
+      var(--mobile-width, 100%) - var(--m-gutter, 1rem) * 2 -
+        var(--edit-gutter, 0px) * 2
+    ) !important;
     margin-right: auto !important;
     margin-left: auto !important;
   }
 
   #main .eea.header .ui.container {
-    width: calc(var(--mobile-width, 100%) - var(--m-gutter, 1rem)*2 - var(--edit-gutter, 10px)*2) !important;
+    width: calc(
+      var(--mobile-width, 100%) - var(--m-gutter, 1rem) * 2 -
+        var(--edit-gutter, 10px) * 2
+    ) !important;
   }
 
   .has--useAsPageHeader--true {
-    .ui.grid>[class*="twelve wide"].column,
-    .ui.column.grid>[class*="twelve wide"].column {
+    .ui.grid > [class*='twelve wide'].column,
+    .ui.column.grid > [class*='twelve wide'].column {
       scale: 0.8;
     }
   }
