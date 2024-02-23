@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useRef } from 'react';
+import { defineMessages, injectIntl } from 'react-intl';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -6,9 +7,43 @@ import { Dropdown } from 'semantic-ui-react';
 import { flattenToAppURL } from '@plone/volto/helpers';
 import { DataConnectedValue } from '@eeacms/volto-datablocks/Utils';
 import { connectToProviderData } from '@eeacms/volto-datablocks/hocs';
+import Popup from '@eeacms/volto-eea-design-system/ui/Popup/Popup';
+import { sharePage } from '@eeacms/volto-eea-design-system/ui/Banner/Banner';
+import Banner from '@eeacms/volto-eea-design-system/ui/Banner/Banner';
 import cx from 'classnames';
 import countryNames from './data/countries';
 import './style.less';
+
+const messages = defineMessages({
+  share: {
+    id: 'Share',
+    defaultMessage: 'Share',
+  },
+  share_to: {
+    id: 'Share to',
+    defaultMessage: 'Share to',
+  },
+  download: {
+    id: 'Download',
+    defaultMessage: 'Download',
+  },
+  created: {
+    id: 'Created',
+    defaultMessage: 'Created',
+  },
+  published: {
+    id: 'Published',
+    defaultMessage: 'Published',
+  },
+  modified: {
+    id: 'Modified',
+    defaultMessage: 'Modified',
+  },
+  rssFeed: {
+    id: 'rssFeed',
+    defaultMessage: 'RSS Feed',
+  },
+});
 
 const getClassNameUWWT = (value) => {
   switch (true) {
@@ -172,8 +207,18 @@ export const WRView = (props) => {
 };
 
 const View = (props) => {
-  const { data, provider_data, content } = props;
-  const { column_data, hide_country_flag_section, variation } = data;
+  const { data, provider_data, content, intl } = props;
+  const metadata = props.metadata || props.properties;
+  const popupRef = useRef(null);
+
+  const {
+    column_data,
+    hide_country_flag_section,
+    hide_data_section,
+    variation,
+    hideDownloadButton,
+    hideShareButton,
+  } = data;
   const excludeItems = [
     'test',
     'sandbox',
@@ -235,6 +280,70 @@ const View = (props) => {
             ''
           )}
           <DataTemplate {...data} column_value={column_value} />
+          {!hide_data_section && (
+            <Banner.Content
+              actions={
+                <>
+                  {!hideShareButton && (
+                    <>
+                      <Popup
+                        className={'share-popup'}
+                        trigger={
+                          <Banner.Action
+                            icon="ri-share-fill"
+                            title={intl.formatMessage(messages.share)}
+                            className="share"
+                            onClick={() => {}}
+                          />
+                        }
+                        content={
+                          <>
+                            <p>{intl.formatMessage(messages.share_to)}</p>
+                            <div className="actions" ref={popupRef}>
+                              <Banner.Action
+                                icon="ri-facebook-fill"
+                                title={'Share page to Facebook'}
+                                titleClass={'hiddenStructure'}
+                                onClick={() => {
+                                  sharePage(metadata['@id'], 'facebook');
+                                }}
+                              />
+                              <Banner.Action
+                                icon="ri-twitter-x-line"
+                                title={'Share page to Twitter'}
+                                titleClass={'hiddenStructure'}
+                                onClick={() => {
+                                  sharePage(metadata['@id'], 'twitter');
+                                }}
+                              />
+                              <Banner.Action
+                                icon="ri-linkedin-fill"
+                                title={'Share page to Linkedin'}
+                                titleClass={'hiddenStructure'}
+                                onClick={() => {
+                                  sharePage(metadata['@id'], 'linkedin');
+                                }}
+                              />
+                            </div>
+                          </>
+                        }
+                      />
+                    </>
+                  )}
+                  {!hideDownloadButton && (
+                    <Banner.Action
+                      icon="ri-download-2-fill"
+                      title="Download"
+                      className="download"
+                      onClick={() => {
+                        window.print();
+                      }}
+                    />
+                  )}
+                </>
+              }
+            ></Banner.Content>
+          )}
         </div>
       </div>
     </div>
@@ -242,6 +351,7 @@ const View = (props) => {
 };
 
 export default compose(
+  injectIntl,
   connect((state, props) => ({
     content: state.content.data,
   })),
