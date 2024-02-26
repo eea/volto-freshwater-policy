@@ -41,11 +41,7 @@ const usePrint = () => {
       try {
         mediaQueryList.addEventListener('change', handleMediaChange);
       } catch (error) {
-        try {
-          mediaQueryList.addListener(handleMediaChange);
-        } catch (error) {
-          console.debug('Error', error);
-        }
+        mediaQueryList.addListener(handleMediaChange);
       }
 
       setIsPrint(mediaQueryList.matches);
@@ -54,11 +50,7 @@ const usePrint = () => {
         try {
           mediaQueryList.removeEventListener('change', handleMediaChange);
         } catch (error) {
-          try {
-            mediaQueryList.removeListener(handleMediaChange);
-          } catch (error) {
-            console.debug('Error', error);
-          }
+          mediaQueryList.removeListener(handleMediaChange);
         }
       };
     }
