@@ -81,7 +81,7 @@ export default function CaseStudyList(props) {
                 <h3 className="listing-header">
                   <a
                     target="_blank"
-                    rel="noreferrer"
+                    rel="noopener"
                     href={selectedCase.path}
                     title={selectedCase.title}
                   >
@@ -110,7 +110,7 @@ export default function CaseStudyList(props) {
                           <span>
                             <a
                               target="_blank"
-                              rel="noreferrer"
+                              rel="noopener"
                               href={measure.path}
                             >
                               {measure.title}
@@ -154,7 +154,7 @@ export default function CaseStudyList(props) {
                     <h3 className="listing-header">
                       <a
                         target="_blank"
-                        rel="noreferrer"
+                        rel="noopener"
                         href={item.values_.path}
                         title={item.values_.title}
                       >
@@ -189,7 +189,7 @@ export default function CaseStudyList(props) {
                                 <span>
                                   <a
                                     target="_blank"
-                                    rel="noreferrer"
+                                    rel="noopener"
                                     href={measure.path}
                                   >
                                     {measure.title}
