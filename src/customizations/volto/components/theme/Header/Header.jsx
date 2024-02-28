@@ -284,7 +284,7 @@ const EEAHeader = ({ pathname, token, items, history, subsite, ...rest }) => {
 
             return (
               <UniversalLink
-                href={token ? item.url || '/' : linkItem.remoteUrl}
+                href={token ? item.url || '/' : linkItem?.getRemoteUrl}
                 title={item.nav_title || item.title}
                 {...(options || {})}
                 className={cx(options?.className, {
@@ -292,7 +292,7 @@ const EEAHeader = ({ pathname, token, items, history, subsite, ...rest }) => {
                 })}
                 openLinkInNewTab={
                   config.settings.openExternalLinkInNewTab &&
-                  !isInternalURL(item.url)
+                  !isInternalURL(linkItem?.getRemoteUrl)
                 }
               >
                 {props?.iconPosition !== 'right' && props?.children}
