@@ -45,8 +45,8 @@ export default function installResourceCatalogSearch(config) {
 
   config.searchui.resourceCatalog = {
     ...mergeConfig(envConfig, config.searchui.globalsearchbase),
-    elastic_index: '_es/freshwatermeasure',
-    index_name: 'wisetest_searchui',
+    elastic_index: '_es/globalsearch',
+    index_name: 'data_searchui',
     host: process.env.RAZZLE_ES_PROXY_ADDR || 'http://localhost:3000',
     runtime_mappings: build_runtime_mappings(clusters),
   };
