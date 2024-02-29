@@ -199,6 +199,7 @@ const applyConfig = (config) => {
   ];
 
   config.settings.openExternalLinkInNewTab = true;
+  config.settings.blackListUrls = ['/marine'];
 
   // Routes
   config.addonRoutes = [
