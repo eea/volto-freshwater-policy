@@ -222,7 +222,7 @@ const CaseStudyView = (props) => {
                         <div className="field__label">
                           <a
                             href={item['@id'] + '/@@images/file'}
-                            rel="noreferrer"
+                            rel="noopener noreferrer"
                             target="_blank"
                           >
                             The in-depth description of the case study (link)

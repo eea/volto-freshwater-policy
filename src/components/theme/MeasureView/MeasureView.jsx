@@ -115,7 +115,7 @@ const ImageSource = (props) => {
             <div className="field__label">
               <a
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
                 href={image.description.split(': ')[1]}
                 style={{ display: 'flex', gap: '5px' }}
               >

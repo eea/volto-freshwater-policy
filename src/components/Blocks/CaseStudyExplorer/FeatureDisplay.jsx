@@ -5,7 +5,7 @@ export default function FeatureDisplay({ feature }) {
     <div id="csepopup">
       <h3>
         <strong>
-          <a target="_blank" rel="noreferrer" href={feature.path}>
+          <a target="_blank" rel="noopener noreferrer" href={feature.path}>
             {feature.title}
           </a>
         </strong>
@@ -16,7 +16,11 @@ export default function FeatureDisplay({ feature }) {
           {feature.nwrms_implemented.map((item, index) => {
             return (
               <li key={index}>
-                <a target="_blank" rel="noreferrer" href={item['path']}>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={item['path']}
+                >
                   {item['title']}
                 </a>
               </li>

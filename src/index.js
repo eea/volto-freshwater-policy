@@ -200,6 +200,9 @@ const applyConfig = (config) => {
 
   config.settings.openExternalLinkInNewTab = true;
 
+  //this is required by volto-prefixpath
+  config.settings.blackListUrls = ['/marine'];
+
   // Routes
   config.addonRoutes = [
     ...config.addonRoutes,
