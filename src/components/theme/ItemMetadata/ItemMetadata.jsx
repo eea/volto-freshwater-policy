@@ -147,7 +147,11 @@ const ItemMetadata = (props) => {
                   <Table.Row>
                     <Table.Cell>Source</Table.Cell>
                     <Table.Cell>
-                      <a href={original_source} target="_blank" rel="noopener">
+                      <a
+                        href={original_source}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
                         {original_source}
                       </a>
                     </Table.Cell>
