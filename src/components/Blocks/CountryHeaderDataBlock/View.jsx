@@ -1,9 +1,9 @@
 import React, { useRef } from 'react';
 import { defineMessages, injectIntl } from 'react-intl';
 import { compose } from 'redux';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Dropdown } from 'semantic-ui-react';
+import { Dropdown, Loader } from 'semantic-ui-react';
 import { flattenToAppURL } from '@plone/volto/helpers';
 import { DataConnectedValue } from '@eeacms/volto-datablocks/Utils';
 import { connectToProviderData } from '@eeacms/volto-datablocks/hocs';
@@ -13,6 +13,7 @@ import Banner from '@eeacms/volto-eea-design-system/ui/Banner/Banner';
 import cx from 'classnames';
 import countryNames from './data/countries';
 import './style.less';
+import { setIsPrint } from '@eeacms/volto-freshwater-policy/actions/print';
 
 const messages = defineMessages({
   share: {
@@ -207,6 +208,7 @@ export const WRView = (props) => {
 };
 
 const View = (props) => {
+  const dispatch = useDispatch();
   const { data, provider_data, content, intl } = props;
   const metadata = props.metadata || props.properties;
   const popupRef = useRef(null);
@@ -331,14 +333,88 @@ const View = (props) => {
                     </>
                   )}
                   {!hideDownloadButton && (
-                    <Banner.Action
-                      icon="ri-download-2-fill"
-                      title="Download"
-                      className="download"
-                      onClick={() => {
-                        window.print();
-                      }}
-                    />
+                    <>
+                      <Banner.Action
+                        icon="ri-download-2-fill"
+                        title="Download"
+                        className="download"
+                        onClick={() => {
+                          // set tabs to be visible
+                          const tabs = document.getElementsByClassName(
+                            'ui tab',
+                          );
+                          Array.from(tabs).forEach((tab) => {
+                            tab.style.display = 'block';
+                          });
+
+                          dispatch(setIsPrint(true));
+                          // display loader
+                          const printLoader = document.getElementById(
+                            'download-print-loader',
+                          );
+                          printLoader.style.display = 'flex';
+
+                          // scroll to iframes to make them be in the viewport
+                          // use timeout to wait for load
+                          let timeoutValue = 3000;
+                          setTimeout(() => {
+                            const iframes = document.getElementsByTagName(
+                              'iframe',
+                            );
+                            if (iframes) {
+                              Array.from(iframes).forEach((element, index) => {
+                                setTimeout(() => {
+                                  element.scrollIntoView({
+                                    behavior: 'instant',
+                                    block: 'nearest',
+                                    inline: 'center',
+                                  });
+                                }, timeoutValue);
+                                timeoutValue = timeoutValue + 3000;
+                              });
+                            }
+
+                            timeoutValue = timeoutValue + 1000;
+                            setTimeout(() => {
+                              window.scrollTo({
+                                top: 0,
+                              });
+                              Array.from(tabs).forEach((tab) => {
+                                tab.style.display = '';
+                              });
+                              printLoader.style.display = 'none';
+                              dispatch(setIsPrint(false));
+                              window.print();
+                            }, timeoutValue);
+                          }, timeoutValue);
+                        }}
+                      />
+                      <div
+                        id="download-print-loader"
+                        className={cx('ui warning message')}
+                        style={{
+                          position: 'fixed',
+                          left: '40%',
+                          right: '40%',
+                          backgroundColor: '#fff',
+                          padding: '1em',
+                          display: 'none',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                          top: '40%',
+                          zIndex: '9999',
+                        }}
+                      >
+                        <Loader
+                          disabled={false}
+                          indeterminate
+                          active
+                          inline
+                          size="medium"
+                        ></Loader>
+                        <div>Preparing download</div>
+                      </div>
+                    </>
                   )}
                 </>
               }
@@ -354,6 +430,7 @@ export default compose(
   injectIntl,
   connect((state, props) => ({
     content: state.content.data,
+    isPrint: state.isPrint,
   })),
   connectToProviderData((props) => {
     return {
