@@ -13,7 +13,7 @@ import Banner from '@eeacms/volto-eea-design-system/ui/Banner/Banner';
 import cx from 'classnames';
 import countryNames from './data/countries';
 import './style.less';
-import { setIsPrint } from '@eeacms/volto-freshwater-policy/actions/print';
+import { setIsPrint } from '@eeacms/volto-eea-website-theme/actions/print';
 
 const messages = defineMessages({
   share: {
