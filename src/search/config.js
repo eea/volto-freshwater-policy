@@ -57,10 +57,13 @@ export default function install(config) {
   envConfig.app_name = pjson.name;
   envConfig.app_version = pjson.version;
 
+  // for https://demo-water.devel5cph.eea.europa.eu/freshwater we use :
+  //  * elastic_index: '_es/freshwatermeasure',
+  //  * index_name: 'wisetest_searchui'
   config.searchui.freshwatermeasure = {
     ...mergeConfig(envConfig, config.searchui.globalsearch),
-    elastic_index: '_es/globalsearch',
-    index_name: 'data_searchui',
+    elastic_index: process.env.RAZZLE_ES_INDEX || '_es/globalsearch',
+    index_name: process.env.RAZZLE_ES_INDEX_NAME || 'data_searchui',
     host: process.env.RAZZLE_ES_PROXY_ADDR || 'http://localhost:3000',
     runtime_mappings: build_runtime_mappings(clusters),
   };
