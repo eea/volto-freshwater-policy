@@ -59,8 +59,8 @@ export default function install(config) {
 
   config.searchui.freshwatermeasure = {
     ...mergeConfig(envConfig, config.searchui.globalsearch),
-    elastic_index: '_es/globalsearch',
-    index_name: 'data_searchui',
+    elastic_index: process.env.RAZZLE_ES_INDEX || '_es/globalsearch',
+    index_name: process.env.RAZZLE_ES_INDEX_NAME || 'data_searchui',
     host: process.env.RAZZLE_ES_PROXY_ADDR || 'http://localhost:3000',
     runtime_mappings: build_runtime_mappings(clusters),
   };
