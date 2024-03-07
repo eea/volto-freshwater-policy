@@ -204,7 +204,8 @@ const applyConfig = (config) => {
   config.settings.blackListUrls = ['/marine'];
 
   // enable context-navigation
-  config.blocks.blocksConfig.contextNavigation.restricted = false;
+  if (config.blocks.blocksConfig.contextNavigation)
+    config.blocks.blocksConfig.contextNavigation.restricted = false;
 
   // Routes
   config.addonRoutes = [
