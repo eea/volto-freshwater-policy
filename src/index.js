@@ -203,6 +203,9 @@ const applyConfig = (config) => {
   //this is required by volto-prefixpath
   config.settings.blackListUrls = ['/marine'];
 
+  // enable context-navigation
+  config.blocks.blocksConfig.contextNavigation.restricted = false;
+
   // Routes
   config.addonRoutes = [
     ...config.addonRoutes,
