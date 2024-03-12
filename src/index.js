@@ -233,6 +233,7 @@ const applyConfig = (config) => {
   config.widgets.id.license_copyright = CopyrightWidget;
   config.widgets.id.rights = RightsWidget;
   config.widgets.id.category = TokenWidget;
+  config.widgets.id.legislative_reference = TokenWidget;
   config.widgets.id.ecosystem_services = EcosystemServiceWidget;
   config.widgets.id.biophysical_impacts = BiophysicalImpactWidget;
   config.widgets.id.policy_objectives = PolicyObjectiveWidget;
