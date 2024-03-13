@@ -1,3 +1,4 @@
+import { runtimeConfig } from '@plone/volto/runtime_config';
 import { mergeConfig } from '@eeacms/search';
 import { build_runtime_mappings } from '@eeacms/volto-globalsearch/utils';
 
@@ -48,8 +49,8 @@ export default function installResourceCatalogSearch(config) {
   //  * index_name: 'wisetest_searchui'
   config.searchui.resourceCatalog = {
     ...mergeConfig(envConfig, config.searchui.globalsearchbase),
-    elastic_index: process.env.RAZZLE_ES_INDEX || '_es/globalsearch',
-    index_name: process.env.RAZZLE_ES_INDEX_NAME || 'data_searchui',
+    elastic_index: runtimeConfig['RAZZLE_ES_INDEX'] || '_es/globalsearch',
+    index_name: runtimeConfig['RAZZLE_ES_INDEX_NAME'] || 'data_searchui',
     host: process.env.RAZZLE_ES_PROXY_ADDR || 'http://localhost:3000',
     runtime_mappings: build_runtime_mappings(clusters),
   };

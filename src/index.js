@@ -25,6 +25,7 @@ import installDashboardTabsBlock from './components/Blocks/DashboardTabsBlock';
 import installCustomCardsBlock from './components/Blocks/CustomCardsBlock';
 import installAppExtras from './components/theme/AppExtras';
 import installSlatePopup from './components/Blocks/SlatePopup';
+import installContextNavigation from './components/Blocks/ContextNavigation';
 import installCaseStudyExplorer from './components/Blocks/CaseStudyExplorer';
 import installSearchEngine from './search';
 
@@ -347,6 +348,7 @@ const applyConfig = (config) => {
     installSlatePopup,
     installCaseStudyExplorer,
     installSearchEngine,
+    installContextNavigation,
   ].reduce((acc, apply) => apply(acc), config);
 
   return final;
