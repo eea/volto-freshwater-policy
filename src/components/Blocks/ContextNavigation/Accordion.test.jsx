@@ -4,7 +4,7 @@ import configureStore from 'redux-mock-store';
 import { render } from '@testing-library/react';
 import '@testing-library/jest-dom/extend-expect';
 import { Provider } from 'react-intl-redux';
-import RASTAccordion from './RASTAccordion';
+import Accordion from './Accordion';
 
 const mockStore = configureStore();
 
@@ -35,7 +35,7 @@ describe('RASTAccordion', () => {
     const { container } = render(
       <Provider store={store}>
         <MemoryRouter>
-          <RASTAccordion {...data} />
+          <Accordion {...data} />
         </MemoryRouter>
       </Provider>,
     );
