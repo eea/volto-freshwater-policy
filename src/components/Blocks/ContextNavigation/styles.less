@@ -1,0 +1,40 @@
+@type: 'extra';
+@element: 'custom';
+
+@import (multiple, reference, optional) '../../theme.config';
+
+.rast-block {
+  a rect.circle:hover {
+    fill: #183 !important;
+  }
+
+  a rect.circle {
+    pointer-events: all !important;
+  }
+
+  svg,
+  svg * {
+    pointer-events: none;
+  }
+
+  .link-active {
+    .circle,
+    .circle:hover {
+      fill: @green-1;
+    }
+  }
+
+  .circle:hover {
+    fill: @green-1;
+  }
+
+  .item.active a {
+    font-weight: bold;
+  }
+}
+
+.rast-map-block {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
