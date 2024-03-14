@@ -11,5 +11,39 @@ export default {
         item: 'FreshwaterMeasureItem',
       },
     },
+    {
+      id: 'freshwaterChemicalTable',
+      title: 'Freshwater chemical table',
+      icon: 'table',
+      render: null,
+      isDefault: false,
+      factories: {
+        view: 'ChemicalTableView',
+        item: 'ChemicalTableRowItem',
+      },
+    },
   ],
+  chemicalTableViewParams: {
+    titleField: 'title',
+    urlField: 'about',
+    enabled: false,
+    columns: [
+      {
+        title: 'Priority substance',
+        field: 'title',
+      },
+      {
+        title: 'Countries',
+        field: 'number_of_countries',
+      },
+      {
+        title: 'Number',
+        field: 'number_of_appearances',
+      },
+      {
+        title: 'Categories',
+        field: 'number_of_categories',
+      },
+    ],
+  },
 };

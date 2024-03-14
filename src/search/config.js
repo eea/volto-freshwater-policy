@@ -70,6 +70,19 @@ export default function install(config) {
   };
 
   config.searchui.freshwatermeasure.facets = envConfig.facets;
+  config.searchui.freshwatermeasure.sortOptions = [
+    ...config.searchui.freshwatermeasure.sortOptions,
+    {
+      name: 'Number (lowest first)',
+      value: 'number_of_appearances',
+      direction: 'asc',
+    },
+    {
+      name: 'Number (highest first)',
+      value: 'number_of_appearances',
+      direction: 'desc',
+    },
+  ];
 
   config.searchui.freshwatermeasure.contentSectionsParams = {
     enable: true,

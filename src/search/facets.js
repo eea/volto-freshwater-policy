@@ -8,6 +8,22 @@ const facets = [
     (facet) => facet.field !== 'time_coverage' && facet.field !== 'spatial',
   ),
   multiTermFacet({
+    field: 'country.keyword',
+    isFilterable: false,
+    isMulti: true,
+    label: 'Country',
+    iconsFamily: 'Sources',
+    alwaysVisible: true,
+  }),
+  multiTermFacet({
+    field: 'management_plan.keyword',
+    isFilterable: false,
+    isMulti: true,
+    label: 'Management plan',
+    iconsFamily: 'Sources',
+    alwaysVisible: true,
+  }),
+  multiTermFacet({
     field: 'measure_sector.keyword',
     isFilterable: false,
     isMulti: true,

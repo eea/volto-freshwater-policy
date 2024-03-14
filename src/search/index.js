@@ -3,6 +3,8 @@ import installResourceCatalogSearch from './resource_catalogue/config-catalogue'
 
 import FreshwaterMeasureItem from '../components/Result/FreshwaterMeasureItem';
 import ResourceCatalogItem from '../components/Result/ResourceCatalogItem';
+import ChemicalTableView from '../components/Result/ChemicalTableView';
+import ChemicalTableRowItem from '../components/Result/ChemicalTableRowItem';
 
 const applyConfig = (config) => {
   config.settings.searchlib = installMainSearch(config.settings.searchlib);
@@ -16,8 +18,9 @@ const applyConfig = (config) => {
   resolve.ResourceCatalogItem = {
     component: ResourceCatalogItem,
   };
-
   resolve.FreshwaterMeasureItem = { component: FreshwaterMeasureItem };
+  resolve.ChemicalTableView = { component: ChemicalTableView };
+  resolve.ChemicalTableRowItem = { component: ChemicalTableRowItem };
 
   const freshwatermeasureConfig =
     config.settings.searchlib.searchui.freshwatermeasure;
