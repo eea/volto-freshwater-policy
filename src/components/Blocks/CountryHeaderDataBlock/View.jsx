@@ -340,9 +340,8 @@ const View = (props) => {
                         className="download"
                         onClick={() => {
                           // set tabs to be visible
-                          const tabs = document.getElementsByClassName(
-                            'ui tab',
-                          );
+                          const tabs =
+                            document.getElementsByClassName('ui tab');
                           Array.from(tabs).forEach((tab) => {
                             tab.style.display = 'block';
                           });
@@ -357,9 +356,10 @@ const View = (props) => {
                           let timeoutValue = 1000;
                           // if we have plotlycharts increase timeout
                           setTimeout(() => {
-                            const plotlyCharts = document.getElementsByClassName(
-                              'visualization-wrapper',
-                            );
+                            const plotlyCharts =
+                              document.getElementsByClassName(
+                                'visualization-wrapper',
+                              );
                             if (plotlyCharts.length > 0) {
                               timeoutValue = timeoutValue + 1000;
                             }
@@ -368,9 +368,8 @@ const View = (props) => {
                           // scroll to iframes to make them be in the viewport
                           // use timeout to wait for load
                           setTimeout(() => {
-                            const iframes = document.getElementsByTagName(
-                              'iframe',
-                            );
+                            const iframes =
+                              document.getElementsByTagName('iframe');
                             if (iframes.length > 0) {
                               timeoutValue = timeoutValue + 2000;
                               Array.from(iframes).forEach((element, index) => {
