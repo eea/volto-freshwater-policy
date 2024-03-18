@@ -3,6 +3,7 @@ import { mergeConfig } from '@eeacms/search';
 import { build_runtime_mappings } from '@eeacms/volto-globalsearch/utils';
 import facets from './facets';
 import views from './views';
+import vocabs from './vocabulary';
 
 const getClientProxyAddress = () => {
   const url = new URL(window.location);
@@ -67,6 +68,7 @@ export default function install(config) {
     index_name: runtimeConfig['RAZZLE_ES_INDEX_NAME'] || 'data_searchui',
     host: process.env.RAZZLE_ES_PROXY_ADDR || 'http://localhost:3000',
     runtime_mappings: build_runtime_mappings(clusters),
+    ...vocabs,
   };
 
   config.searchui.freshwatermeasure.facets = envConfig.facets;
@@ -83,7 +85,9 @@ export default function install(config) {
       direction: 'desc',
     },
   ];
-
+  config.searchui.freshwatermeasure.vocabs = {
+    ...vocabs,
+  };
   config.searchui.freshwatermeasure.contentSectionsParams = {
     enable: true,
     sectionFacetsField: 'op_cluster',
