@@ -10,7 +10,7 @@ import { useLocation } from 'react-router-dom';
  * INavigationPortlet
  */
 export function ContextNavigationComponent(props) {
-  const { items } = props;
+  const { items, data } = props;
   let activeMenu = null;
 
   const curent_location = useLocation();
@@ -30,6 +30,7 @@ export function ContextNavigationComponent(props) {
           items={items}
           curent_location={curent_location}
           activeMenu={activeMenu}
+          data={data}
         />
       ) : null}
     </>

@@ -1,4 +1,4 @@
-const fields = ['root_path'];
+const fields = ['root_path', 'title'];
 
 export default {
   title: 'RAST',
@@ -19,6 +19,9 @@ export default {
         'Ex: /en/knowledge-and-data/regional-adaptation-support-tool',
       required: true,
       noValueOption: false,
+    },
+    title: {
+      title: 'Title',
     },
   },
 
