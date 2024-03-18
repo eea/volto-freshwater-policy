@@ -37,11 +37,11 @@ export default {
         field: 'number_of_countries',
       },
       {
-        title: 'Number',
+        title: 'Number of water bodies',
         field: 'number_of_appearances',
       },
       {
-        title: 'Categories',
+        title: 'Number of water body category',
         field: 'number_of_categories',
       },
     ],

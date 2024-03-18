@@ -1,4 +1,9 @@
-import { histogramFacet, makeRange, multiTermFacet } from '@eeacms/search';
+import {
+  histogramFacet,
+  makeRange,
+  multiTermFacet,
+  singleTermFacet,
+} from '@eeacms/search';
 import globalSearchBaseConfig from '@eeacms/volto-globalsearch/config/global-search-base-config.js';
 import spatialWhitelist from '@eeacms/volto-globalsearch/config/json/spatialWhitelist';
 import spatialBlacklist from './json/spatialBlacklist.json';
@@ -8,6 +13,14 @@ const facets = [
     (facet) => facet.field !== 'time_coverage' && facet.field !== 'spatial',
   ),
   multiTermFacet({
+    field: 'title.eea_title',
+    isFilterable: true,
+    isMulti: true,
+    label: 'Substance',
+    iconsFamily: 'Sources',
+    alwaysVisible: true,
+  }),
+  singleTermFacet({
     field: 'country.keyword',
     isFilterable: false,
     isMulti: true,
@@ -15,11 +28,11 @@ const facets = [
     iconsFamily: 'Sources',
     alwaysVisible: true,
   }),
-  multiTermFacet({
+  singleTermFacet({
     field: 'management_plan.keyword',
     isFilterable: false,
     isMulti: true,
-    label: 'Management plan',
+    label: 'River Basin Management Plan',
     iconsFamily: 'Sources',
     alwaysVisible: true,
   }),
