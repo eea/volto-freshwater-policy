@@ -22,26 +22,22 @@ const AccordionContent = (props) => {
     <div className="dataset-content">
       <div>
         {items.length
-          ? items
-              .filter((item) => item['@type'] === 'Document')
-              .map((item) => (
-                <List.Item
-                  key={item.id}
-                  className={`${
-                    item['@id'].endsWith(curent_location.pathname)
-                      ? 'active'
-                      : ''
-                  }`}
-                >
-                  <List.Content>
-                    <div className="dataset-item">
-                      <Link to={flattenToAppURL(getBaseUrl(item['@id']))}>
-                        {item.title}
-                      </Link>
-                    </div>
-                  </List.Content>
-                </List.Item>
-              ))
+          ? items.map((item) => (
+              <List.Item
+                key={item.id}
+                className={`${
+                  item['@id'].endsWith(curent_location.pathname) ? 'active' : ''
+                }`}
+              >
+                <List.Content>
+                  <div className="dataset-item">
+                    <Link to={flattenToAppURL(getBaseUrl(item['@id']))}>
+                      {item.title}
+                    </Link>
+                  </div>
+                </List.Content>
+              </List.Item>
+            ))
           : null}
       </div>
     </div>
