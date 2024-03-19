@@ -30,14 +30,14 @@ const facets = [
     label: 'Country',
     iconsFamily: 'Sources',
     alwaysVisible: true,
-    default: {
-      values: ['EU27'],
-      type: 'any',
-    },
-    missing: {
-      values: ['EU27'],
-      type: 'any',
-    },
+    // default: {
+    //   values: ['EU27'],
+    //   // type: 'any',
+    // },
+    // missing: {
+    //   values: ['EU27'],
+    //   // type: 'any',
+    // },
   }),
   singleTermFacet({
     field: 'management_plan.keyword',
@@ -46,14 +46,14 @@ const facets = [
     label: 'River Basin Management Plan',
     iconsFamily: 'Sources',
     alwaysVisible: true,
-    default: {
-      values: ['3rd'],
-      type: 'any',
-    },
-    missing: {
-      values: ['3rd'],
-      type: 'any',
-    },
+    // default: {
+    //   values: ['3rd'],
+    //   // type: 'any',
+    // },
+    // missing: {
+    //   values: ['3rd'],
+    //   // type: 'any',
+    // },
   }),
   multiTermFacet({
     field: 'measure_sector.keyword',
