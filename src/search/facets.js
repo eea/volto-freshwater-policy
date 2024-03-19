@@ -8,6 +8,40 @@ import globalSearchBaseConfig from '@eeacms/volto-globalsearch/config/global-sea
 import spatialWhitelist from '@eeacms/volto-globalsearch/config/json/spatialWhitelist';
 import spatialBlacklist from './json/spatialBlacklist.json';
 
+const countryCodes = [
+  'EU27', // 'EU 27 Countries',
+  'AT', // 'Austria',
+  'BE', // 'Belgium',
+  'BG', // 'Bulgaria',
+  'HR', // 'Croatia',
+  'CY', // 'Cyprus',
+  'CZ', // 'Czechia',
+  'DK', // 'Denmark',
+  'EE', // 'Estonia',
+  'FI', // 'Finland',
+  'FR', // 'France',
+  'DE', // 'Germany',
+  'EL', // 'Greece',
+  'HU', // 'Hungary',
+  'IE', // 'Ireland',
+  'IS', // 'Iceland',
+  'IT', // 'Italy',
+  'LT', // 'Lithuania',
+  'LU', // 'Luxembourg',
+  'LV', // 'Latvia',
+  'MT', // 'Malta',
+  'NL', // 'Netherlands',
+  'NO', // 'Norway',
+  'PL', // 'Poland',
+  'PT', // 'Portugal',
+  'RO', // 'Romania',
+  'ES', // 'Spain',
+  'SK', // 'Slovakia',
+  'SI', // 'Slovenia',
+  'SE', // 'Sweden',
+  'UK', // 'United Kingdom',
+];
+
 const facets = [
   ...globalSearchBaseConfig.facets.filter(
     (facet) =>
@@ -30,6 +64,9 @@ const facets = [
     label: 'Country',
     iconsFamily: 'Sources',
     alwaysVisible: true,
+    sortOn: 'custom',
+    sortOrder: 'ascending',
+    facetValues: countryCodes,
     // default: {
     //   values: ['EU27'],
     //   // type: 'any',
