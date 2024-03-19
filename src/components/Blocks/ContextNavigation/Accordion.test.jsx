@@ -30,6 +30,9 @@ describe('RASTAccordion', () => {
         locale: 'en',
         messages: {},
       },
+      content: {
+        subrequests: {},
+      },
     });
 
     const { container } = render(
