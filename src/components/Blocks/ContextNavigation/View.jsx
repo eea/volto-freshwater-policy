@@ -4,7 +4,7 @@ import ContextNavigation from './ContextNavigation';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContent } from '@plone/volto/actions';
 
-function useChildren(location) {
+export function useChildren(location) {
   const dispatch = useDispatch();
   React.useEffect(() => {
     const action = getContent(location, null, location);
@@ -35,6 +35,7 @@ export default function View(props) {
         location={{
           pathname: root_path,
         }}
+        data={data}
       />
     </div>
   );

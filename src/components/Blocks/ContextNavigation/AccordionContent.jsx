@@ -3,31 +3,33 @@ import { List } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { compose } from 'redux';
 import { flattenToAppURL, getBaseUrl } from '@plone/volto/helpers';
-import { useDispatch, useSelector } from 'react-redux';
-import { getContent } from '@plone/volto/actions';
-// import useChildren from './RASTView';
+import { useChildren } from './View';
 
 const AccordionContent = (props) => {
-  const { main, curent_location } = props;
-  const dispatch = useDispatch();
+  const {
+    main,
+    curent_location,
+    data: { types = [] },
+  } = props;
   const location = main.url;
-  let items = [];
 
-  React.useEffect(() => {
-    const action = getContent(location, null, location);
-    dispatch(action);
-  }, [location, dispatch]);
+  // React.useEffect(() => {
+  //   const action = getContent(location, null, location);
+  //   dispatch(action);
+  // }, [location, dispatch]);
 
-  items = useSelector(
-    (state) => state.content?.subrequests?.[location]?.data?.items || [],
-  );
-  // const items = useChildren(location);
+  // items = useSelector(
+  //   (state) => state.content?.subrequests?.[location]?.data?.items || [],
+  // );
+  const items = useChildren(location);
   return (
     <div className="dataset-content">
       <div>
         {items.length
           ? items
-              .filter((item) => item['@type'] === 'Folder')
+              .filter((item) =>
+                types.length ? types.includes(item['@type']) : item,
+              )
               .map((item) => (
                 <List.Item
                   key={item.id}
