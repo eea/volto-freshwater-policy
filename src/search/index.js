@@ -6,6 +6,23 @@ import ResourceCatalogItem from '../components/Result/ResourceCatalogItem';
 import ChemicalTableView from '../components/Result/ChemicalTableView';
 import ChemicalTableRowItem from '../components/Result/ChemicalTableRowItem';
 
+const getActiveFilters = (filters, appConfig) => {
+  const { facets = [] } = appConfig;
+  const filterableFacets = facets.filter(
+    (f) =>
+      f.isFilter ||
+      (typeof f.showInFacetsList !== 'undefined' ? f.showInFacetsList : true),
+  );
+  const facetNames = filterableFacets.map((f) => f.field);
+  const filterNames = filters
+    .filter((f) => facetNames.includes(f.field))
+    .map((f) => f.field);
+
+  const activeFilters = filters.filter((f) => filterNames.includes(f.field));
+
+  return activeFilters;
+};
+
 const applyConfig = (config) => {
   config.settings.searchlib = installMainSearch(config.settings.searchlib);
 
@@ -14,6 +31,8 @@ const applyConfig = (config) => {
   );
 
   const { resolve } = config.settings.searchlib;
+
+  resolve.getGlobalSearchActiveFilters = getActiveFilters;
 
   resolve.ResourceCatalogItem = {
     component: ResourceCatalogItem,
