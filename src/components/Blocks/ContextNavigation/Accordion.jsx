@@ -78,6 +78,7 @@ const Accordion = (props) => {
                   href: item['@id'],
                   url: item.url,
                 }}
+                data={data}
               />
             </SemanticAccordion.Content>
           </SemanticAccordion>
