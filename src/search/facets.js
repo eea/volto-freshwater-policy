@@ -69,14 +69,6 @@ const facets = [
     facetValues: countryCodes,
     hideActiveFilters: true,
     hideRemoveFilter: true,
-    // default: {
-    //   values: ['EU27'],
-    //   // type: 'any',
-    // },
-    // missing: {
-    //   values: ['EU27'],
-    //   // type: 'any',
-    // },
   }),
   singleTermFacet({
     field: 'management_plan.keyword',
@@ -87,14 +79,14 @@ const facets = [
     alwaysVisible: true,
     hideActiveFilters: true,
     hideRemoveFilter: true,
-    // default: {
-    //   values: ['3rd'],
-    //   // type: 'any',
-    // },
-    // missing: {
-    //   values: ['3rd'],
-    //   // type: 'any',
-    // },
+  }),
+  multiTermFacet({
+    field: 'chemical_type.keyword',
+    isFilterable: true,
+    isMulti: true,
+    label: 'Chemical type',
+    iconsFamily: 'Sources',
+    alwaysVisible: true,
   }),
   multiTermFacet({
     field: 'measure_sector.keyword',
