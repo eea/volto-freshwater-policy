@@ -19,9 +19,7 @@ import {
 import TokenWidget from '@plone/volto/components/manage/Widgets/TokenWidget';
 
 import installCountryHeaderDataBlock from './components/Blocks/CountryHeaderDataBlock';
-import installCountriesListingBlock from './components/Blocks/CountriesListingBlock';
 import installEmbedContentBlock from './components/Blocks/Content';
-import installDashboardTabsBlock from './components/Blocks/DashboardTabsBlock';
 import installCustomCardsBlock from './components/Blocks/CustomCardsBlock';
 import installAppExtras from './components/theme/AppExtras';
 import installSlatePopup from './components/Blocks/SlatePopup';
@@ -53,6 +51,8 @@ const messages = defineMessages({
     defaultMessage: 'Remove link',
   },
 });
+
+const restrictedBlocks = ['imagecards'];
 
 const applyConfig = (config) => {
   // Multi-lingual
@@ -156,13 +156,7 @@ const applyConfig = (config) => {
   ];
 
   // Move blocks to freshwater group
-  const blocksToUpdate = [
-    'arcgis_block',
-    'imagecards',
-    'countryFlag',
-    'tableau_block',
-    'use_cases_block',
-  ];
+  const blocksToUpdate = ['countryFlag', 'tableau_block'];
   const updatedGroup = { group: 'freshwater_addons' };
 
   blocksToUpdate.forEach((blockId) => {
@@ -338,12 +332,17 @@ const applyConfig = (config) => {
     }),
   ];
 
+  // Disabled blocks
+  restrictedBlocks.forEach((block) => {
+    if (config.blocks.blocksConfig[block]) {
+      config.blocks.blocksConfig[block].restricted = true;
+    }
+  });
+
   const final = [
     installEmbedContentBlock,
-    installDashboardTabsBlock,
     installCustomCardsBlock,
     installCountryHeaderDataBlock,
-    installCountriesListingBlock,
     installAppExtras,
     installSlatePopup,
     installCaseStudyExplorer,

@@ -10,7 +10,7 @@ export default (config) => {
     group: 'freshwater_addons',
     view: ContentBlockView,
     edit: ContentBlockEdit,
-    restricted: false,
+    restricted: true,
     mostUsed: false,
     blockHasOwnFocusManagement: false,
     sidebarTab: 1,
