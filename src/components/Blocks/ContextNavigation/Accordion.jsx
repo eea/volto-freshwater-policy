@@ -1,10 +1,8 @@
 import React from 'react';
-import { Accordion as SemanticAccordion, Button } from 'semantic-ui-react';
-import { Icon } from '@plone/volto/components';
+import { Accordion as SemanticAccordion, Icon } from 'semantic-ui-react';
+
 import AccordionContent from './AccordionContent';
 import { useHistory } from 'react-router-dom';
-import upArrow from '@plone/volto/icons/up-key.svg';
-import downArrow from '@plone/volto/icons/down-key.svg';
 
 const Accordion = (props) => {
   const { items = {}, curent_location, activeMenu, data = {} } = props;
@@ -48,25 +46,19 @@ const Accordion = (props) => {
             >
               <span className="item-title">{item.title}</span>
               {active ? (
-                <Button
-                  icon
-                  basic
+                <Icon
+                  className="ri-arrow-up-s-line"
                   onClick={(e) => {
                     handleIconClick(e, index);
                   }}
-                >
-                  <Icon name={upArrow} />
-                </Button>
+                />
               ) : (
-                <Button
-                  icon
-                  basic
+                <Icon
+                  className="ri-arrow-down-s-line"
                   onClick={(e) => {
                     handleIconClick(e, index);
                   }}
-                >
-                  <Icon name={downArrow} />
-                </Button>
+                />
               )}
             </SemanticAccordion.Title>
             <SemanticAccordion.Content active={active}>
