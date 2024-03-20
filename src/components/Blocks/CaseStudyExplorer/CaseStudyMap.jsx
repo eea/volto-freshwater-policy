@@ -33,9 +33,8 @@ export default function CaseStudyMap(props) {
     setMap,
   } = props;
   const features = getFeatures(items);
-  const [resetMapButtonClass, setResetMapButtonClass] = React.useState(
-    'inactive',
-  );
+  const [resetMapButtonClass, setResetMapButtonClass] =
+    React.useState('inactive');
 
   const [tileWMSSources] = React.useState([
     new ol.source.TileWMS({
@@ -108,9 +107,10 @@ export default function CaseStudyMap(props) {
     };
   }, [map, selectedCase, resetMapButtonClass, setResetMapButtonClass]);
 
-  const clusterStyle = React.useMemo(() => selectedClusterStyle(selectedCase), [
-    selectedCase,
-  ]);
+  const clusterStyle = React.useMemo(
+    () => selectedClusterStyle(selectedCase),
+    [selectedCase],
+  );
 
   const MapWithSelection = React.useMemo(() => Map, []);
   // console.log('render');

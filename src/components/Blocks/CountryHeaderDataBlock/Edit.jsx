@@ -12,9 +12,9 @@ class Edit extends React.Component {
     const provider_data = this.props.provider_data || {};
     const schema = CountryHeaderDataBlockSchema();
 
-    schema.properties.country_flag.choices = Object.keys(
-      countryNames,
-    ).map((k) => [k, countryNames[k]]);
+    schema.properties.country_flag.choices = Object.keys(countryNames).map(
+      (k) => [k, countryNames[k]],
+    );
 
     const choices = Object.keys(provider_data)
       .sort((a, b) => a.localeCompare(b))
