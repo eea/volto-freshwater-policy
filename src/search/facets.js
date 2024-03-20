@@ -67,6 +67,8 @@ const facets = [
     sortOn: 'custom',
     sortOrder: 'ascending',
     facetValues: countryCodes,
+    hideActiveFilters: true,
+    hideRemoveFilter: true,
     // default: {
     //   values: ['EU27'],
     //   // type: 'any',
@@ -83,6 +85,8 @@ const facets = [
     label: 'River Basin Management Plan',
     iconsFamily: 'Sources',
     alwaysVisible: true,
+    hideActiveFilters: true,
+    hideRemoveFilter: true,
     // default: {
     //   values: ['3rd'],
     //   // type: 'any',
