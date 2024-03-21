@@ -21,7 +21,4 @@ export MeasureView from './theme/MeasureView/MeasureView';
 export CaseStudyView from './theme/CaseStudyView/CaseStudyView';
 export DatabaseItemView from './theme/DatabaseItemView/DatabaseItemView';
 
-export Card from './Blocks/CustomCardsBlock/templates/PresentationCards/Card';
 export CaseStudyExplorer from './Blocks/CaseStudyExplorer/CaseStudyExplorerView';
-export GroupCardsView from './Blocks/CustomCardsBlock/templates/PresentationCards/GroupCardsView';
-export CarouselCardsView from './Blocks/CustomCardsBlock/templates/PresentationCards/CarouselCardsView';
