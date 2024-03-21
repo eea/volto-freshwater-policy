@@ -19,7 +19,6 @@ import {
 import TokenWidget from '@plone/volto/components/manage/Widgets/TokenWidget';
 
 import installCountryHeaderDataBlock from './components/Blocks/CountryHeaderDataBlock';
-import installEmbedContentBlock from './components/Blocks/Content';
 import installAppExtras from './components/theme/AppExtras';
 import installSlatePopup from './components/Blocks/SlatePopup';
 import installContextNavigation from './components/Blocks/ContextNavigation';
@@ -338,7 +337,6 @@ const applyConfig = (config) => {
   });
 
   const final = [
-    installEmbedContentBlock,
     installCountryHeaderDataBlock,
     installAppExtras,
     installSlatePopup,
