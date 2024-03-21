@@ -1,5 +1,6 @@
 const vocab = {
   'management_plan.keyword': {
+    '1st': '1st River Basin Management Plan',
     '2nd': '2nd River Basin Management Plan',
     '3rd': '3rd River Basin Management Plan',
   },

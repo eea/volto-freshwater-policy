@@ -4,13 +4,13 @@ import { useAppConfig } from '@eeacms/search/lib/hocs';
 
 const WrappedTable = (props) => {
   const { appConfig } = useAppConfig();
-  const { chemicalTableViewParams } = appConfig;
+  const { gwPollutantTableViewParams } = appConfig;
 
   return (
     <Table celled compact>
       <Table.Header>
         <Table.Row>
-          {chemicalTableViewParams.columns.map((col, index) => (
+          {gwPollutantTableViewParams.columns.map((col, index) => (
             <Table.HeaderCell key={index}>
               {col.title || col.field}
             </Table.HeaderCell>
@@ -22,5 +22,5 @@ const WrappedTable = (props) => {
   );
 };
 
-const ChemicalTableView = (props) => <WrappedTable {...props} />;
-export default ChemicalTableView;
+const GWPollutantTableView = (props) => <WrappedTable {...props} />;
+export default GWPollutantTableView;
