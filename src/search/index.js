@@ -3,8 +3,10 @@ import installResourceCatalogSearch from './resource_catalogue/config-catalogue'
 
 import FreshwaterMeasureItem from '../components/Result/FreshwaterMeasureItem';
 import ResourceCatalogItem from '../components/Result/ResourceCatalogItem';
-import ChemicalTableView from '../components/Result/ChemicalTableView';
-import ChemicalTableRowItem from '../components/Result/ChemicalTableRowItem';
+import SWPrioritySubstanceTableView from '../components/Result/SWPrioritySubstanceTableView';
+import SWPrioritySubstanceTableRowItem from '../components/Result/SWPrioritySubstanceTableRowItem';
+import GWPollutantTableView from '../components/Result/GWPollutantTableView';
+import GWPollutantTableRowItem from '../components/Result/GWPollutantTableRowItem';
 
 const getActiveFilters = (filters, appConfig) => {
   const { facets = [] } = appConfig;
@@ -38,8 +40,19 @@ const applyConfig = (config) => {
     component: ResourceCatalogItem,
   };
   resolve.FreshwaterMeasureItem = { component: FreshwaterMeasureItem };
-  resolve.ChemicalTableView = { component: ChemicalTableView };
-  resolve.ChemicalTableRowItem = { component: ChemicalTableRowItem };
+  resolve.SWPrioritySubstanceTableView = {
+    component: SWPrioritySubstanceTableView,
+  };
+  resolve.SWPrioritySubstanceTableRowItem = {
+    component: SWPrioritySubstanceTableRowItem,
+  };
+
+  resolve.GWPollutantTableView = {
+    component: GWPollutantTableView,
+  };
+  resolve.GWPollutantTableRowItem = {
+    component: GWPollutantTableRowItem,
+  };
 
   const freshwatermeasureConfig =
     config.settings.searchlib.searchui.freshwatermeasure;
