@@ -12,18 +12,29 @@ export default {
       },
     },
     {
-      id: 'freshwaterChemicalTable',
-      title: 'Freshwater chemical table',
+      id: 'freshwaterSWPrioritySubstanceTable',
+      title: 'Freshwater SWPrioritySubstance table',
       icon: 'table',
       render: null,
       isDefault: false,
       factories: {
-        view: 'ChemicalTableView',
-        item: 'ChemicalTableRowItem',
+        view: 'SWPrioritySubstanceTableView',
+        item: 'SWPrioritySubstanceTableRowItem',
+      },
+    },
+    {
+      id: 'freshwaterGWPollutantable',
+      title: 'Freshwater GWPollutant table',
+      icon: 'table',
+      render: null,
+      isDefault: false,
+      factories: {
+        view: 'GWPollutantTableView',
+        item: 'GWPollutantTableRowItem',
       },
     },
   ],
-  chemicalTableViewParams: {
+  swPrioritySubstanceTableViewParams: {
     titleField: 'title',
     urlField: 'about',
     enabled: false,
@@ -43,6 +54,25 @@ export default {
       {
         title: 'Number of water body category',
         field: 'number_of_categories',
+      },
+    ],
+  },
+  gwPollutantTableViewParams: {
+    titleField: 'title',
+    urlField: 'about',
+    enabled: false,
+    columns: [
+      {
+        title: 'Priority substance',
+        field: 'title',
+      },
+      {
+        title: 'Countries',
+        field: 'number_of_countries',
+      },
+      {
+        title: 'Number of water bodies',
+        field: 'number_of_appearances',
       },
     ],
   },

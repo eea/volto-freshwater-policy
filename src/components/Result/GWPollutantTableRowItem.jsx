@@ -12,7 +12,7 @@ const normalizeStr = (str) => {
 
 const WrappedRowItem = (props) => {
   const { appConfig } = useAppConfig();
-  const { chemicalTableViewParams } = appConfig;
+  const { gwPollutantTableViewParams } = appConfig;
   const { result } = props;
   const days =
     (Date.now() - Date.parse(result['issued']?.raw)) / 1000 / 60 / 60 / 24;
@@ -24,14 +24,14 @@ const WrappedRowItem = (props) => {
 
   return (
     <Table.Row>
-      {chemicalTableViewParams.columns.map((col, index) => (
+      {gwPollutantTableViewParams.columns.map((col, index) => (
         <Table.Cell key={index}>
           {index === 0 ? (
             <>
               {/* <div>
                 <ResultHeader
                   {...props}
-                  {...chemicalTableViewParams}
+                  {...gwPollutantTableViewParams}
                   appConfig={appConfig}
                 />
               </div> */}
@@ -71,6 +71,6 @@ const WrappedRowItem = (props) => {
   );
 };
 
-const ChemicalTableRowItem = (props) => <WrappedRowItem {...props} />;
+const GWPollutantTableRowItem = (props) => <WrappedRowItem {...props} />;
 
-export default ChemicalTableRowItem;
+export default GWPollutantTableRowItem;
