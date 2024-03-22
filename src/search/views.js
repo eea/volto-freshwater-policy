@@ -63,7 +63,7 @@ export default {
     enabled: false,
     columns: [
       {
-        title: 'Priority substance',
+        title: 'Pollutant',
         field: 'title',
       },
       {
