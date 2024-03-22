@@ -57,6 +57,14 @@ const facets = [
     iconsFamily: 'Sources',
     alwaysVisible: true,
   }),
+  multiTermFacet({
+    field: 'title.eea_title',
+    isFilterable: true,
+    isMulti: true,
+    label: 'Pollutant',
+    iconsFamily: 'Sources',
+    alwaysVisible: true,
+  }),
   singleTermFacet({
     field: 'country.keyword',
     isFilterable: false,
@@ -69,6 +77,13 @@ const facets = [
     facetValues: countryCodes,
     hideActiveFilters: true,
     hideRemoveFilter: true,
+    // allow_missing: false,
+    // missing: {
+    //   values: ['EU27'],
+    // },
+    // default: {
+    //   values: ['EU27'],
+    // },
   }),
   singleTermFacet({
     field: 'management_plan.keyword',
