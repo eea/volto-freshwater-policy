@@ -7,6 +7,8 @@ import SWPrioritySubstanceTableView from '../components/Result/SWPrioritySubstan
 import SWPrioritySubstanceTableRowItem from '../components/Result/SWPrioritySubstanceTableRowItem';
 import GWPollutantTableView from '../components/Result/GWPollutantTableView';
 import GWPollutantTableRowItem from '../components/Result/GWPollutantTableRowItem';
+import SWFailingRBSPTableView from '../components/Result/SWFailingRBSPTableView';
+import SWFailingRBSPTableRowItem from '../components/Result/SWFailingRBSPTableRowItem';
 
 const getActiveFilters = (filters, appConfig) => {
   const { facets = [] } = appConfig;
@@ -52,6 +54,13 @@ const applyConfig = (config) => {
   };
   resolve.GWPollutantTableRowItem = {
     component: GWPollutantTableRowItem,
+  };
+
+  resolve.SWFailingRBSPTableView = {
+    component: SWFailingRBSPTableView,
+  };
+  resolve.SWFailingRBSPTableRowItem = {
+    component: SWFailingRBSPTableRowItem,
   };
 
   const freshwatermeasureConfig =

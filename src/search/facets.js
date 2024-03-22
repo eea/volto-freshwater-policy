@@ -58,7 +58,7 @@ const facets = [
     alwaysVisible: true,
   }),
   multiTermFacet({
-    field: 'title.eea_title',
+    field: 'title.index',
     isFilterable: true,
     isMulti: true,
     label: 'Pollutant',
