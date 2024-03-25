@@ -33,6 +33,17 @@ export default {
         item: 'GWPollutantTableRowItem',
       },
     },
+    {
+      id: 'freshwaterSWFailingRBSP',
+      title: 'Freshwater swFailingRBSP table',
+      icon: 'table',
+      render: null,
+      isDefault: false,
+      factories: {
+        view: 'SWFailingRBSPTableView',
+        item: 'SWFailingRBSPTableRowItem',
+      },
+    },
   ],
   swPrioritySubstanceTableViewParams: {
     titleField: 'title',
@@ -63,7 +74,7 @@ export default {
     enabled: false,
     columns: [
       {
-        title: 'Priority substance',
+        title: 'Pollutant',
         field: 'title',
       },
       {
@@ -73,6 +84,29 @@ export default {
       {
         title: 'Number of water bodies',
         field: 'number_of_appearances',
+      },
+    ],
+  },
+  swFailingRBSPTableViewParams: {
+    titleField: 'title',
+    urlField: 'about',
+    enabled: false,
+    columns: [
+      {
+        title: 'River Basin Specific Pollutant',
+        field: 'title',
+      },
+      {
+        title: 'Number of water bodies',
+        field: 'number_of_appearances',
+      },
+      {
+        title: 'Number of water body category',
+        field: 'number_of_categories',
+      },
+      {
+        title: 'Countries',
+        field: 'number_of_countries',
       },
     ],
   },
