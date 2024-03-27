@@ -19,6 +19,18 @@
     font-weight: bold;
   }
 
+  .ui.accordion[class*='ary'] > .title,
+  .ui.accordion[class*='ary'].inverted > .title,
+  .ui.accordion[class*='ary'].inverted > .icon,
+  .ui.accordion[class*='ary'] > .filter {
+    color: var(--text-color);
+    font-weight: bold;
+
+    .icon {
+      color: var(--text-color);
+    }
+  }
+
   .ui.accordion .content.active {
     --bg-color: #ffffff;
 
