@@ -59,11 +59,11 @@ export default {
         field: 'number_of_countries',
       },
       {
-        title: 'Number of water bodies',
+        title: 'Number of water bodies failing',
         field: 'number_of_appearances',
       },
       {
-        title: 'Number of water body category',
+        title: 'Number of water body categories',
         field: 'number_of_categories',
       },
     ],
@@ -82,7 +82,7 @@ export default {
         field: 'number_of_countries',
       },
       {
-        title: 'Number of water bodies',
+        title: 'Number of water bodies failing',
         field: 'number_of_appearances',
       },
     ],
@@ -97,11 +97,11 @@ export default {
         field: 'title',
       },
       {
-        title: 'Number of water bodies',
+        title: 'Number of water bodies failing',
         field: 'number_of_appearances',
       },
       {
-        title: 'Number of water body category',
+        title: 'Number of water body categories',
         field: 'number_of_categories',
       },
       {
