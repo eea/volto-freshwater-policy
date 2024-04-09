@@ -82,7 +82,7 @@ export default {
         field: 'number_of_countries',
       },
       {
-        title: 'Number of water bodies failing',
+        title: 'Number of water bodies',
         field: 'number_of_appearances',
       },
     ],
