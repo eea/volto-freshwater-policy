@@ -4,6 +4,10 @@ import { Table, Label } from 'semantic-ui-react';
 // import { ResultHeader } from '@eeacms/search/components/Result/ResultModal';
 
 const normalizeStr = (str) => {
+  if (typeof str === 'number') {
+    str = str.toLocaleString();
+  }
+
   let tmp = document.createElement('DIV');
   tmp.innerHTML = str;
   str = tmp.textContent || tmp.innerText || '';
@@ -28,13 +32,6 @@ const WrappedRowItem = (props) => {
         <Table.Cell key={index}>
           {index === 0 ? (
             <>
-              {/* <div>
-                <ResultHeader
-                  {...props}
-                  {...swPrioritySubstanceTableViewParams}
-                  appConfig={appConfig}
-                />
-              </div> */}
               {normalizeStr(
                 Array.isArray(result[col.field]?.raw)
                   ? result[col.field]?.raw.sort().join(', ')
