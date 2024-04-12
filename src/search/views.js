@@ -82,8 +82,8 @@ export default {
         field: 'number_of_countries',
       },
       {
-        title: 'Number of water bodies',
-        field: 'number_of_appearances',
+        title: 'Area of groundwater bodies failing',
+        field: 'number_of_area',
       },
     ],
   },

@@ -84,6 +84,16 @@ export default function install(config) {
       value: 'number_of_appearances',
       direction: 'desc',
     },
+    {
+      name: 'Area (lowest first)',
+      value: 'number_of_area',
+      direction: 'asc',
+    },
+    {
+      name: 'Area (highest first)',
+      value: 'number_of_area',
+      direction: 'desc',
+    },
   ];
   config.searchui.freshwatermeasure.vocabs = {
     ...vocabs,
