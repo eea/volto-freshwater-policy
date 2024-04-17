@@ -68,15 +68,15 @@ const facets = [
   singleTermFacet({
     field: 'country.keyword',
     isFilterable: false,
-    isMulti: true,
+    isMulti: false,
     label: 'Country',
     iconsFamily: 'Sources',
     alwaysVisible: true,
     sortOn: 'custom',
     sortOrder: 'ascending',
     facetValues: countryCodes,
-    hideActiveFilters: true,
-    hideRemoveFilter: true,
+    // hideActiveFilters: true,
+    // hideRemoveFilter: true,
     // allow_missing: false,
     // missing: {
     //   values: ['EU27'],
@@ -88,12 +88,18 @@ const facets = [
   singleTermFacet({
     field: 'management_plan.keyword',
     isFilterable: false,
-    isMulti: true,
+    isMulti: false,
     label: 'River Basin Management Plan',
     iconsFamily: 'Sources',
     alwaysVisible: true,
-    hideActiveFilters: true,
-    hideRemoveFilter: true,
+    // hideActiveFilters: true,
+    // hideRemoveFilter: true,
+    // missing: {
+    //   values: ['3rd'],
+    // },
+    // default: {
+    //   values: ['3rd'],
+    // },
   }),
   multiTermFacet({
     field: 'chemical_type.keyword',
