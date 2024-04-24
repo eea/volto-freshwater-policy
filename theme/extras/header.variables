@@ -9,3 +9,4 @@
 
 /* Main menu */
 @megaMenuBackgroundColor: @primaryColor;
+@mainMenuItemFontSize            : ~"min(max(0.875rem, 1.5vw), 1.05rem)";
