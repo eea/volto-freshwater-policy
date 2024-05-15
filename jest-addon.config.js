@@ -31,6 +31,7 @@ module.exports = {
   },
   transformIgnorePatterns: [
     '/node_modules/(?!(@plone|@root|@package|@eeacms|@plone-collective)/).*/',
+    '/node_modules/(?!(@plone|@root|@package|@eeacms|ol|ol-mapbox-style)/).*/',
   ],
   transform: {
     '^.+\\.js(x)?$': 'babel-jest',
