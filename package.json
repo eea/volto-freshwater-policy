@@ -19,23 +19,21 @@
   "resolutions": {
     "react-countup/countup.js": "2.5.0",
     "d3-array": "^2.12.1",
-    "@elastic/search-ui": "1.21.2"
+    "@elastic/search-ui": "1.21.2",
+    "@eeacms/volto-datablocks": "^6.4.1",
+    "@eeacms/volto-listing-block": "<8.0.0"
   },
   "addons": [
-    "@eeacms/countup",
     "@eeacms/volto-datablocks",
     "@eeacms/volto-openlayers-map",
     "@eeacms/volto-eea-design-system",
     "@eeacms/volto-eea-website-theme",
     "@eeacms/volto-searchlib",
     "@eeacms/volto-globalsearch",
-    "@eeacms/volto-listing-block",
-    "@eeacms/volto-block-style"
+    "@eeacms/volto-listing-block"
   ],
   "dependencies": {
-    "@eeacms/countup": "*",
-    "@eeacms/volto-block-style": "*",
-    "@eeacms/volto-datablocks": "*",
+    "@eeacms/volto-datablocks": "^6.4.1",
     "@eeacms/volto-eea-design-system": "*",
     "@eeacms/volto-eea-website-theme": "^1.33.2",
     "@eeacms/volto-globalsearch": "^1.0.20",
