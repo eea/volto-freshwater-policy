@@ -99,7 +99,6 @@ describe('EcosystemServiceWidget', () => {
         <EcosystemServiceWidget onChange={onChangeMock} value={initialValue} />
       </Provider>,
     );
-    screen.debug();
 
     fireEvent.click(container.querySelector('#remove-item-2'));
   });
@@ -117,7 +116,6 @@ describe('EcosystemServiceWidget', () => {
         />
       </Provider>,
     );
-    screen.debug();
 
     fireEvent.click(container.querySelector('#remove-item-2'));
   });
@@ -130,7 +128,6 @@ describe('EcosystemServiceWidget', () => {
         <EcosystemServiceWidget onChange={onChangeMock} value={initialValue} />
       </Provider>,
     );
-    screen.debug();
 
     fireEvent.click(container.querySelector('#move-item-2'));
   });
