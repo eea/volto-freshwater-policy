@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-intl-redux';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
-import { render, fireEvent, waitFor, screen } from '@testing-library/react';
+import { render, fireEvent, waitFor } from '@testing-library/react';
 import {
   EcosystemServiceWidget,
   BiophysicalImpactWidget,
@@ -99,7 +99,6 @@ describe('EcosystemServiceWidget', () => {
         <EcosystemServiceWidget onChange={onChangeMock} value={initialValue} />
       </Provider>,
     );
-    screen.debug();
 
     fireEvent.click(container.querySelector('#remove-item-2'));
   });
@@ -117,7 +116,6 @@ describe('EcosystemServiceWidget', () => {
         />
       </Provider>,
     );
-    screen.debug();
 
     fireEvent.click(container.querySelector('#remove-item-2'));
   });
@@ -130,7 +128,6 @@ describe('EcosystemServiceWidget', () => {
         <EcosystemServiceWidget onChange={onChangeMock} value={initialValue} />
       </Provider>,
     );
-    screen.debug();
 
     fireEvent.click(container.querySelector('#move-item-2'));
   });
