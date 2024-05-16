@@ -40,7 +40,7 @@
     "@eeacms/volto-globalsearch": "^1.0.20",
     "@eeacms/volto-listing-block": "*",
     "@eeacms/volto-openlayers-map": "*",
-    "@eeacms/volto-searchlib": "^0.6.3",
+    "@eeacms/volto-searchlib": "^0.9.3",
     "@elastic/search-ui": "1.21.2",
     "d3-array": "^2.12.1",
     "react-lazy-load-image-component": "^1.4.0",
