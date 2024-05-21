@@ -22,7 +22,7 @@
     "@elastic/search-ui": "1.21.2",
     "@eeacms/volto-datablocks": "^6.4.1",
     "@eeacms/volto-listing-block": "<8.0.0",
-    "@eeacms/volto-searchlib": "^0.9.3"
+    "@eeacms/volto-searchlib": "0.9.3"
   },
   "addons": [
     "@eeacms/volto-datablocks",
@@ -35,12 +35,12 @@
   ],
   "dependencies": {
     "@eeacms/volto-datablocks": "^6.4.1",
-    "@eeacms/volto-eea-design-system": "*",
+    "@eeacms/volto-eea-design-system": "^1.23.8",
     "@eeacms/volto-eea-website-theme": "^1.33.2",
     "@eeacms/volto-globalsearch": "^1.0.20",
-    "@eeacms/volto-listing-block": "*",
-    "@eeacms/volto-openlayers-map": "*",
-    "@eeacms/volto-searchlib": "^0.9.3",
+    "@eeacms/volto-listing-block": "^7.1.0",
+    "@eeacms/volto-openlayers-map": "0.3.2",
+    "@eeacms/volto-searchlib": "0.9.3",
     "@elastic/search-ui": "1.21.2",
     "d3-array": "^2.12.1",
     "react-lazy-load-image-component": "^1.4.0",
