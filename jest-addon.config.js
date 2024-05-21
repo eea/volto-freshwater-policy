@@ -32,6 +32,7 @@ module.exports = {
   transformIgnorePatterns: [
     '/node_modules/(?!(@plone|@root|@package|@eeacms|@plone-collective)/).*/',
     '/node_modules/(?!(@plone|@root|@package|@eeacms|ol|ol-mapbox-style)/).*/',
+    '/node_modules/(?!(@plone|@root|@package|@eeacms)/).*/',
   ],
   transform: {
     '^.+\\.js(x)?$': 'babel-jest',
@@ -42,15 +43,15 @@ module.exports = {
   },
   coverageThreshold: {
     global: {
-      branches: 1,
-      functions: 1,
-      lines: 1,
-      statements: 1,
+      branches: 5,
+      functions: 5,
+      lines: 5,
+      statements: 5,
     },
   },
   ...(process.env.JEST_USE_SETUP === 'ON' && {
     setupFilesAfterEnv: [
-      '<rootDir>/node_modules/@eeacms/volto-freshwater-policy/jest.setup.js',
+      '<rootDir>/node_modules/@eeacms/volto-accordion-block/jest.setup.js',
     ],
   }),
 };
