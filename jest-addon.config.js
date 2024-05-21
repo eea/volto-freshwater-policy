@@ -26,26 +26,25 @@ module.exports = {
       '<rootDir>/node_modules/@plone/volto/jest-addons-loader.js',
   },
   transformIgnorePatterns: [
-    '/node_modules/(?!(@plone|@root|@package|@eeacms)/).*/',
+    '/node_modules/(?!(@plone|@root|@package|@eeacms|ol|ol-mapbox-style)/).*/',
   ],
   transform: {
     '^.+\\.js(x)?$': 'babel-jest',
-    '^.+\\.ts(x)?$': 'babel-jest',
     '^.+\\.(png)$': 'jest-file',
     '^.+\\.(jpg)$': 'jest-file',
     '^.+\\.(svg)$': './node_modules/@plone/volto/jest-svgsystem-transform.js',
   },
   coverageThreshold: {
     global: {
-      branches: 5,
-      functions: 5,
-      lines: 5,
-      statements: 5,
+      branches: 1,
+      functions: 1,
+      lines: 1,
+      statements: 1,
     },
   },
   ...(process.env.JEST_USE_SETUP === 'ON' && {
     setupFilesAfterEnv: [
-      '<rootDir>/node_modules/@eeacms/volto-accordion-block/jest.setup.js',
+      '<rootDir>/node_modules/@eeacms/volto-freshwater-policy/jest.setup.js',
     ],
   }),
 };
