@@ -22,7 +22,7 @@
     "@elastic/search-ui": "1.21.2",
     "@eeacms/volto-datablocks": "^6.4.1",
     "@eeacms/volto-listing-block": "<8.0.0",
-    "@eeacms/volto-searchlib": "0.9.3"
+    "@eeacms/volto-searchlib": "2.0.0"
   },
   "addons": [
     "@eeacms/volto-datablocks",
