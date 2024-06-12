@@ -471,7 +471,7 @@ class Toolbar extends Component {
                     {this.props.content &&
                       this.props.content.is_folderish &&
                       folderContentsAction &&
-                      !this.props.pathname.endsWith('/contents') && (
+                      !this.props.pathname?.endsWith('/contents') && (
                         <UniversalLink
                           aria-label={this.props.intl.formatMessage(
                             messages.contents,
@@ -490,7 +490,7 @@ class Toolbar extends Component {
                     {this.props.content &&
                       this.props.content.is_folderish &&
                       folderContentsAction &&
-                      this.props.pathname.endsWith('/contents') && (
+                      this.props.pathname?.endsWith('/contents') && (
                         <UniversalLink
                           href={`${path}`}
                           aria-label={this.props.intl.formatMessage(

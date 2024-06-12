@@ -34,7 +34,7 @@ const AccordionContent = (props) => {
                 <List.Item
                   key={item.id}
                   className={`${
-                    item['@id'].endsWith(curent_location.pathname)
+                    item['@id']?.endsWith(curent_location.pathname)
                       ? 'active'
                       : ''
                   }`}
