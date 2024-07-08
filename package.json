@@ -1,6 +1,6 @@
 {
   "name": "@eeacms/volto-freshwater-policy",
-  "version": "0.6.11",
+  "version": "0.6.12",
   "description": "@eeacms/volto-freshwater-policy: Volto add-on",
   "main": "src/index.js",
   "author": "European Environment Agency: IDM2 A-Team",
@@ -19,10 +19,12 @@
   "resolutions": {
     "react-countup/countup.js": "2.5.0",
     "d3-array": "^2.12.1",
-    "@elastic/search-ui": "1.21.2",
+    "@elastic/react-search-ui": "1.20.2",
+    "@elastic/react-search-ui-views": "1.20.2",
+    "@elastic/search-ui": "1.20.2",
     "@eeacms/volto-datablocks": "^6.4.1",
     "@eeacms/volto-listing-block": "<8.0.0",
-    "@eeacms/volto-searchlib": "^0.9.3"
+    "@eeacms/volto-searchlib": "2.0.2"
   },
   "addons": [
     "@eeacms/volto-datablocks",
@@ -35,13 +37,15 @@
   ],
   "dependencies": {
     "@eeacms/volto-datablocks": "^6.4.1",
-    "@eeacms/volto-eea-design-system": "*",
+    "@eeacms/volto-eea-design-system": "^1.23.8",
     "@eeacms/volto-eea-website-theme": "^1.33.2",
     "@eeacms/volto-globalsearch": "^1.0.20",
-    "@eeacms/volto-listing-block": "*",
-    "@eeacms/volto-openlayers-map": "*",
-    "@eeacms/volto-searchlib": "^0.9.3",
-    "@elastic/search-ui": "1.21.2",
+    "@eeacms/volto-listing-block": "^7.1.0",
+    "@eeacms/volto-openlayers-map": "0.3.2",
+    "@eeacms/volto-searchlib": "2.0.2",
+    "@elastic/react-search-ui": "1.20.2",
+    "@elastic/react-search-ui-views": "1.20.2",
+    "@elastic/search-ui": "1.20.2",
     "d3-array": "^2.12.1",
     "react-lazy-load-image-component": "^1.4.0",
     "react-slick": "^0.24.0",
