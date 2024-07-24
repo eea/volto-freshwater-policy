@@ -7,18 +7,19 @@ pipeline {
   }
 
   environment {
-    GIT_NAME = "volto-freshwater-policy"
-    NAMESPACE = "@eeacms"
-    SONARQUBE_TAGS = "volto.eea.europa.eu,water.europa.eu-freshwater"
-    DEPENDENCIES = ""
-    BACKEND_PROFILES = "eea.kitkat:testing"
-    BACKEND_ADDONS = ""
-    VOLTO = "17"
-    VOLTO16_BREAKING_CHANGES = "no"
-    IMAGE_NAME = BUILD_TAG.toLowerCase()
-  }
+        GIT_NAME = "volto-freshwater-policy"
+        NAMESPACE = "@eeacms"
+        SONARQUBE_TAGS = "volto.eea.europa.eu,water.europa.eu-freshwater"
+        DEPENDENCIES = ""
+        BACKEND_PROFILES = "eea.kitkat:testing"
+        BACKEND_ADDONS = ""
+        VOLTO = "17"
+        VOLTO16_BREAKING_CHANGES = "yes"
+        IMAGE_NAME = BUILD_TAG.toLowerCase()
+    }
 
   stages {
+
     stage('Release') {
       when {
         allOf {
@@ -34,6 +35,7 @@ pipeline {
         }
       }
     }
+    
 
     stage('Check if testing needed') {
       when {
@@ -413,4 +415,3 @@ pipeline {
     }
   }
 }
-
