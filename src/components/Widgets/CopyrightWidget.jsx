@@ -4,7 +4,7 @@ import { Radio, TextArea } from 'semantic-ui-react';
 
 import './style.less';
 
-export default (props) => {
+const Widget = (props) => {
   const { value = 'EEA', onChange, id } = props;
   const [otherValue, setOtherValue] = React.useState();
 
@@ -47,3 +47,5 @@ export default (props) => {
     </FormFieldWrapper>
   );
 };
+
+export default Widget;

@@ -1,4 +1,4 @@
-export default {
+const views = {
   resultViews: [
     {
       id: 'resourceCatalogItem',
@@ -13,3 +13,5 @@ export default {
     },
   ],
 };
+
+export default views;

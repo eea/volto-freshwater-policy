@@ -189,6 +189,8 @@ const facets = [
   }),
 ];
 
-export default {
+const allFacets = {
   facets,
 };
+
+export default allFacets;

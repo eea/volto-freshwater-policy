@@ -9,7 +9,7 @@ const EEA_LICENSE =
   'provided that the source is acknowledged ' +
   '(https://www.eea.europa.eu/legal/copyright)';
 
-export default (props) => {
+const Widget = (props) => {
   const { value = EEA_LICENSE, onChange, id } = props;
   const [otherValue, setOtherValue] = React.useState();
 
@@ -48,3 +48,5 @@ export default (props) => {
     </FormFieldWrapper>
   );
 };
+
+export default Widget;
