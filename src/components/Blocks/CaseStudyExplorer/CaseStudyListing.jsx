@@ -29,13 +29,8 @@ const showPageNr = (pageNr, currentPage, numberOfPages) => {
 };
 
 export default function CaseStudyList(props) {
-  const {
-    selectedCase,
-    onSelectedCase,
-    pointsSource,
-    map,
-    searchInput,
-  } = props;
+  const { selectedCase, onSelectedCase, pointsSource, map, searchInput } =
+    props;
   const reSearch = new RegExp(`\\b(${searchInput})\\b`, 'gi');
   const [currentPage, setCurrentPage] = React.useState(1);
 

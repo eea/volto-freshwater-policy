@@ -4,7 +4,7 @@ import {
   AddToFavBoardButton,
 } from './FavoritesToolbarButton';
 
-export default (config) => {
+const install = (config) => {
   config.settings.appExtras = [
     ...(config.settings.appExtras || []),
     {
@@ -23,3 +23,5 @@ export default (config) => {
 
   return config;
 };
+
+export default install;

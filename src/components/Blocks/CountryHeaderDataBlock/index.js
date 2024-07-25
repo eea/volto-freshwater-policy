@@ -3,7 +3,7 @@ import Edit from './Edit';
 import { PickObjectWidget } from '@eeacms/volto-datablocks/components';
 import headerSVG from '@plone/volto/icons/hero.svg';
 
-export default (config) => {
+const install = (config) => {
   config.blocks.blocksConfig.countryHeaderDataBlock = {
     id: 'countryHeaderDataBlock',
     title: 'Country header data block',
@@ -23,3 +23,5 @@ export default (config) => {
   config.widgets.widget.pick_object = PickObjectWidget;
   return config;
 };
+
+export default install;

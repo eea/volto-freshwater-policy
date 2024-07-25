@@ -24,7 +24,7 @@ function viewMiddleware(req, res, next) {
     .catch(next);
 }
 
-export default function (config) {
+export default function middleware(config) {
   const middleware = express.Router();
 
   // TODO: do we want catch all?
