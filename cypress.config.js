@@ -2,12 +2,12 @@ const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
   viewportWidth: 1280,
-  defaultCommandTimeout: 8888,
+  defaultCommandTimeout: 10000,
   chromeWebSecurity: false,
   reporter: 'junit',
-  video: true,
+  video: false,
   retries: {
-    runMode: 8,
+    runMode: 2,
     openMode: 0,
   },
   reporterOptions: {
@@ -18,6 +18,9 @@ module.exports = defineConfig({
   e2e: {
     setupNodeEvents(on, config) {
       // e2e testing node events setup code
+      require('@cypress/code-coverage/task')(on, config);
+      require('cypress-fail-fast/plugin')(on, config);
+      return config;
     },
     baseUrl: 'http://localhost:3000',
   },
