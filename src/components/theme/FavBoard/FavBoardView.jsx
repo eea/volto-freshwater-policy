@@ -42,13 +42,8 @@ const CATALOGUE_CONTENT_TYPES = [
 ];
 
 const ListingViewHeader = (props) => {
-  const {
-    userId,
-    groupedItems,
-    paramOwner,
-    paramGroup,
-    setConfirmOpen,
-  } = props;
+  const { userId, groupedItems, paramOwner, paramGroup, setConfirmOpen } =
+    props;
   const item = groupedItems[paramOwner][paramGroup][0];
 
   const [copyUrlStatus, copyUrl] = useCopyToClipboard(window.location.href);

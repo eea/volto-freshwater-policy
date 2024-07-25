@@ -1,4 +1,4 @@
-export default {
+const searchViews = {
   resultViews: [
     {
       id: 'freshwaterMeasureCard',
@@ -111,3 +111,5 @@ export default {
     ],
   },
 };
+
+export default searchViews;

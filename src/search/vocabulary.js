@@ -39,4 +39,6 @@ const vocab = {
   },
 };
 
-export default { vocab };
+const vocabs = { vocab };
+
+export default vocabs;

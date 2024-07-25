@@ -174,9 +174,8 @@ export function SearchBox(props) {
                       className="close icon"
                       role="button"
                       onClick={() => {
-                        const searchInputElement = document.getElementById(
-                          'search-input',
-                        );
+                        const searchInputElement =
+                          document.getElementById('search-input');
                         searchInputElement.value = '';
                         setSearchInput('');
                         setShowClearButton(false);
@@ -193,9 +192,8 @@ export function SearchBox(props) {
                 className="search-icon"
                 role="button"
                 onClick={() => {
-                  const searchInputElement = document.getElementById(
-                    'search-input',
-                  );
+                  const searchInputElement =
+                    document.getElementById('search-input');
                   const searchInputVal = normalizeSearchInput(
                     searchInputElement.value,
                   );
