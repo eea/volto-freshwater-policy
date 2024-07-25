@@ -14,10 +14,8 @@ module.exports = {
     '@package/(.*)$': '<rootDir>/node_modules/@plone/volto/src/$1',
     '@root/(.*)$': '<rootDir>/node_modules/@plone/volto/src/$1',
     '@plone/volto-quanta/(.*)$': '<rootDir>/src/addons/volto-quanta/src/$1',
-    '@eeacms/search/(.*)$':
-      '<rootDir>/node_modules/@eeacms/volto-searchlib/searchlib/$1',
-    '@eeacms/search':
-      '<rootDir>/node_modules/@eeacms/volto-searchlib/searchlib',
+    '@eeacms/search/(.*)$': '<rootDir>/src/addons/volto-searchlib/searchlib/$1',
+    '@eeacms/search': '<rootDir>/src/addons/volto-searchlib/searchlib',
     '@eeacms/(.*?)/(.*)$': '<rootDir>/node_modules/@eeacms/$1/src/$2',
     '@plone/volto-slate$':
       '<rootDir>/node_modules/@plone/volto/packages/volto-slate/src',
@@ -28,8 +26,7 @@ module.exports = {
       '<rootDir>/node_modules/@plone/volto/jest-addons-loader.js',
   },
   transformIgnorePatterns: [
-    '/node_modules/(?!(@plone|@root|@package|@eeacms|ol|ol-mapbox-style)/).*/',
-    '/node_modules/(?!(@plone|@root|@package|@eeacms|@plone-collective)/).*/',
+    '/node_modules/(?!(@plone|@root|@package|@eeacms)/).*/',
   ],
   transform: {
     '^.+\\.js(x)?$': 'babel-jest',
