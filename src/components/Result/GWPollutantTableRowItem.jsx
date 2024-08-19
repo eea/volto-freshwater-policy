@@ -24,45 +24,51 @@ const WrappedRowItem = (props) => {
     expired = Date.parse(result['expires']?.raw) < Date.now();
   }
 
+  const blacklistPollutants = appConfig.facets.filter(
+    (facet) => facet.label === 'Substance',
+  )[0].blacklist;
+
   return (
-    <Table.Row>
-      {gwPollutantTableViewParams.columns.map((col, index) => (
-        <Table.Cell key={index}>
-          {index === 0 ? (
-            <>
-              {normalizeStr(
+    blacklistPollutants.indexOf(result.title) === -1 && (
+      <Table.Row>
+        {gwPollutantTableViewParams.columns.map((col, index) => (
+          <Table.Cell key={index}>
+            {index === 0 ? (
+              <>
+                {normalizeStr(
+                  Array.isArray(result[col.field]?.raw)
+                    ? result[col.field]?.raw.sort().join(', ')
+                    : result[col.field]?.raw || result[col.field] || '',
+                )}
+                {days < 30 ? (
+                  <>
+                    &nbsp;
+                    <Label className="new-item" horizontal>
+                      New
+                    </Label>
+                  </>
+                ) : expired ? (
+                  <>
+                    &nbsp;
+                    <Label className="archived-item" horizontal>
+                      Archived
+                    </Label>
+                  </>
+                ) : (
+                  ''
+                )}
+              </>
+            ) : (
+              normalizeStr(
                 Array.isArray(result[col.field]?.raw)
                   ? result[col.field]?.raw.sort().join(', ')
-                  : result[col.field]?.raw || result[col.field] || '',
-              )}
-              {days < 30 ? (
-                <>
-                  &nbsp;
-                  <Label className="new-item" horizontal>
-                    New
-                  </Label>
-                </>
-              ) : expired ? (
-                <>
-                  &nbsp;
-                  <Label className="archived-item" horizontal>
-                    Archived
-                  </Label>
-                </>
-              ) : (
-                ''
-              )}
-            </>
-          ) : (
-            normalizeStr(
-              Array.isArray(result[col.field]?.raw)
-                ? result[col.field]?.raw.sort().join(', ')
-                : result[col.field]?.raw || '',
-            )
-          )}
-        </Table.Cell>
-      ))}
-    </Table.Row>
+                  : result[col.field]?.raw || '',
+              )
+            )}
+          </Table.Cell>
+        ))}
+      </Table.Row>
+    )
   );
 };
 

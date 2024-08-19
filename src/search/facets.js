@@ -56,6 +56,7 @@ const facets = [
     label: 'Substance',
     iconsFamily: 'Sources',
     alwaysVisible: true,
+    blacklist: ['Other parameter'],
   }),
   multiTermFacet({
     field: 'title.index',
@@ -64,6 +65,7 @@ const facets = [
     label: 'Pollutant',
     iconsFamily: 'Sources',
     alwaysVisible: true,
+    blacklist: ['Other parameter'],
   }),
   singleTermFacet({
     field: 'country.keyword',
