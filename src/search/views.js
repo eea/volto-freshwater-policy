@@ -82,7 +82,7 @@ const searchViews = {
         field: 'number_of_countries',
       },
       {
-        title: 'Area of groundwater bodies failing',
+        title: 'Area of groundwater bodies failing km²',
         field: 'number_of_area',
       },
     ],
