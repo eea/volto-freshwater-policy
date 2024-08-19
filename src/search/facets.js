@@ -7,7 +7,6 @@ import {
 import globalSearchBaseConfig from '@eeacms/volto-globalsearch/config/global-search-base-config.js';
 import spatialWhitelist from '@eeacms/volto-globalsearch/config/json/spatialWhitelist';
 import spatialBlacklist from './json/spatialBlacklist.json';
-import pollutantBlackslist from './json/pollutantBlacklist.json';
 
 const countryCodes = [
   'EU27', // 'EU 27 Countries',
@@ -57,7 +56,7 @@ const facets = [
     label: 'Substance',
     iconsFamily: 'Sources',
     alwaysVisible: true,
-    blacklist: pollutantBlackslist,
+    blacklist: ['Other parameter'],
   }),
   multiTermFacet({
     field: 'title.index',
@@ -66,7 +65,7 @@ const facets = [
     label: 'Pollutant',
     iconsFamily: 'Sources',
     alwaysVisible: true,
-    blacklist: pollutantBlackslist,
+    blacklist: ['Other parameter'],
   }),
   singleTermFacet({
     field: 'country.keyword',
