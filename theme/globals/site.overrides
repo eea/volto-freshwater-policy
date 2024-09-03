@@ -2,7 +2,7 @@
   background-color: @primaryColor !important;
 }
 
-.ui.button.primary.inverted {
+.ui.button.primary.inverted:not(:hover) {
   background-color: transparent !important;
 }
 
