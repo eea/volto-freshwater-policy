@@ -76,6 +76,10 @@ body.searchlib-page
   background-color: @secondaryColor !important;
 }
 
+.block.search .ui.accordion.filter-listing .filter-list-group .ui.label {
+  background-color: @secondaryColor !important;
+}
+
 .search-body-footer .ui.button.pagination-item.active:after {
   border-bottom: 5px solid @secondaryColor !important;
 }
