@@ -6,6 +6,10 @@
   background-color: transparent !important;
 }
 
+.ui.button.primary.inverted:focus {
+  background-color: @primaryColor !important;;
+}
+
 .grid .nine.wide.content-body {
   .full-width {
     @media only screen and (min-width: @largestMobileScreen) {
