@@ -68,7 +68,7 @@ const facets = [
     blacklist: ['Other parameter'],
   }),
   singleTermFacet({
-    field: 'country.keyword',
+    field: 'wise_country.keyword',
     isFilterable: false,
     isMulti: false,
     label: 'Country',
