@@ -115,5 +115,13 @@ export default function install(config) {
       process.env.RAZZLE_ES_PROXY_ADDR || getClientProxyAddress();
   }
 
+  config.searchui.freshwatermeasure.runtime_mappings['hiddenContentType'] = {
+    script: {
+      source:
+        "if (doc['objectProvides'].contains('chemical')){emit ('true')} else {emit('false')}",
+    },
+    type: 'keyword',
+  };
+
   return config;
 }
