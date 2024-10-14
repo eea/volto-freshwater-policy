@@ -4,7 +4,7 @@ const vocab = {
     '2nd': '2nd River Basin Management Plan',
     '3rd': '3rd River Basin Management Plan',
   },
-  'country.keyword': {
+  'wise_country.keyword': {
     AT: 'Austria',
     BE: 'Belgium',
     BG: 'Bulgaria',
