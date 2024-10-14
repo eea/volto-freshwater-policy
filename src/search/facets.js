@@ -189,6 +189,15 @@ const facets = [
     aggs_script:
       "def vals = doc['time_coverage']; if (vals.length == 0){return 2500} else {def ret = [];for (val in vals){def tmp_val = val.substring(0,4);ret.add(tmp_val.toLowerCase() == tmp_val.toUpperCase() ? Integer.parseInt(tmp_val) : 2500);}return ret;}",
   }),
+  singleTermFacet({
+    field: 'hiddenContentType',
+    isFilterable: false,
+    isMulti: false,
+    label: 'Hidden content types',
+    iconsFamily: 'Sources',
+    alwaysVisible: true,
+  }),
+
 ];
 
 const allFacets = {
