@@ -197,7 +197,6 @@ const facets = [
     iconsFamily: 'Sources',
     alwaysVisible: true,
   }),
-
 ];
 
 const allFacets = {
