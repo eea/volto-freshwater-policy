@@ -137,6 +137,19 @@ const ImageSource = (props) => {
   );
 };
 
+const renderCircles = (effect) => {
+  const circleCount = effect === 'High' ? 3 : effect === 'Medium' ? 2 : effect === 'Low' ? 1: 0;
+  const circleClass = effect; // 'high', 'medium', or 'low'
+  
+  return (
+    <div className="circle-container">
+      {Array.from({ length: circleCount }).map((_, index) => (
+        <span key={index} className={`circle ${circleClass}`}></span>
+      ))}
+    </div>
+  );
+};
+
 const MeasureView = (props) => {
   const { content } = props;
   const [activeIndices, setActiveIndices] = useState([0]);
@@ -319,9 +332,9 @@ const MeasureView = (props) => {
                         <table>
                           <thead>
                             <tr>
-                              <th>Level</th>
-                              <th>Benefits</th>
-                              <th colSpan={1}></th>
+                              <th>Type of benefit</th>
+                              <th colSpan={1}>Ecosystem services</th>
+                              <th>Effectiveness</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -331,9 +344,6 @@ const MeasureView = (props) => {
                                   key={`row-es-${index}`}
                                   id={`row-es-${index}`}
                                 >
-                                  <td className="field--name-field-level">
-                                    {item.level}
-                                  </td>
                                   <td>
                                     {Object.values(level2).map(
                                       (level, index) =>
@@ -343,6 +353,9 @@ const MeasureView = (props) => {
                                     )}
                                   </td>
                                   <td>{item.name}</td>
+                                  <td className="field--name-field-level">
+                                    {renderCircles(item.level)}
+                                  </td>
                                 </tr>
                               ),
                             )}
@@ -372,9 +385,10 @@ const MeasureView = (props) => {
                         <table>
                           <thead>
                             <tr>
-                              <th>Level</th>
-                              <th>Benefits</th>
-                              <th colSpan={2}></th>
+                              <th>Direct/indirect impact</th>
+                              <th>Overall effect</th>
+                              <th>Type of impact</th>
+                              <th>Effectiveness</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -384,9 +398,6 @@ const MeasureView = (props) => {
                                   key={`row-bp-${index}`}
                                   id={`row-bp-${index}`}
                                 >
-                                  <td className="field--name-field-level">
-                                    {item.level}
-                                  </td>
                                   <td>
                                     {Object.values(level2).map(
                                       (level, index) =>
@@ -404,6 +415,9 @@ const MeasureView = (props) => {
                                     )}
                                   </td>
                                   <td>{item.name}</td>
+                                  <td className="field--name-field-level">
+                                    {renderCircles(item.level)}
+                                  </td>
                                 </tr>
                               ),
                             )}
@@ -433,8 +447,8 @@ const MeasureView = (props) => {
                         <table>
                           <thead>
                             <tr>
-                              <th>Level</th>
-                              <th>Benefits</th>
+                              <th>Policy Objective</th>
+                              <th>Effectiveness</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -444,10 +458,10 @@ const MeasureView = (props) => {
                                   key={`row-po-${index}`}
                                   id={`row-po-${index}`}
                                 >
-                                  <td className="field--name-field-level">
-                                    {item.level}
-                                  </td>
                                   <td>{item.name}</td>
+                                  <td className="field--name-field-level">
+                                    {renderCircles(item.level)}
+                                  </td>
                                 </tr>
                               ),
                             )}
