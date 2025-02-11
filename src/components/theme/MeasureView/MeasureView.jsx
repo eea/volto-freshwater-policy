@@ -138,9 +138,10 @@ const ImageSource = (props) => {
 };
 
 const renderCircles = (effect) => {
-  const circleCount = effect === 'High' ? 3 : effect === 'Medium' ? 2 : effect === 'Low' ? 1: 0;
+  const circleCount =
+    effect === 'High' ? 3 : effect === 'Medium' ? 2 : effect === 'Low' ? 1 : 0;
   const circleClass = effect; // 'high', 'medium', or 'low'
-  
+
   return (
     <div className="circle-container">
       {Array.from({ length: circleCount }).map((_, index) => (
