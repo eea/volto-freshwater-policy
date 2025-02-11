@@ -4,34 +4,34 @@
 @import (multiple, reference, optional) '../../theme.config';
 
 .measure-view {
-
   /* Circle container */
-  .circle-container {display: flex;
+  .circle-container {
+    display: flex;
     gap: 5px;
   }
-  
+
   /* Circle styles */
   .circle {
+    display: inline-block;
     width: 15px;
     height: 15px;
     border-radius: 50%;
-    display: inline-block;
   }
-  
+
   .High {
     background-color: #0073e6;
   }
-  
+
   /* Dark blue for high effect */
   .Medium {
     background-color: #00bfff;
   }
-  
+
   /* Light blue for medium effect */
   .Low {
     background-color: #c0e4f6;
   }
-  
+
   /* Lightest blue for low effect */
   .breadcrumbs {
     background-color: #ddd !important;
@@ -191,8 +191,8 @@
 
   .table-responsive {
     table {
-      border-collapse: collapse;
       background-color: white;
+      border-collapse: collapse;
 
       tr {
         border: 1px solid rgb(185, 185, 185);
