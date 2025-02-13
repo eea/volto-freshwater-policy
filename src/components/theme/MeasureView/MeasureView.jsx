@@ -313,6 +313,20 @@ const MeasureView = (props) => {
             <br />
             <div>
               <h3>Benefits</h3>
+              <p class="callout">
+                Please note that the "effectiveness" column is based on
+                qualitative rating provided by scientific experts. For more
+                information see this&nbsp;synthesis{' '}
+                <strong>
+                  <a
+                    href="/freshwater/resources/nwrm-imported/documentation/sd2_final_version.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    document
+                  </a>
+                </strong>
+              </p>
               <Accordion fluid styled>
                 {/* Ecosystem service */}
                 <Accordion.Title
