@@ -231,6 +231,7 @@ const ecosystemSchema = {
     level: {
       title: 'Level',
       choices: [
+        ['Negative', 'Negative'],
         ['Low', 'Low'],
         ['Medium', 'Medium'],
         ['High', 'High'],
@@ -356,6 +357,7 @@ const policySchema = {
     level: {
       title: 'Level',
       choices: [
+        ['Negative', 'Negative'],
         ['Low', 'Low'],
         ['Medium', 'Medium'],
         ['High', 'High'],
