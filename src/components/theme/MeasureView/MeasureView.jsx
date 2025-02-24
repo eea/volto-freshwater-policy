@@ -139,7 +139,15 @@ const ImageSource = (props) => {
 
 const renderCircles = (effect) => {
   const circleCount =
-    effect === 'High' ? 3 : effect === 'Medium' ? 2 : effect === 'Low' ? 1 : 0;
+    effect === 'High'
+      ? 3
+      : effect === 'Medium'
+      ? 2
+      : effect === 'Low'
+      ? 1
+      : effect === 'Negative'
+      ? 1
+      : 0;
   const circleClass = effect; // 'high', 'medium', or 'low'
 
   return (
@@ -313,20 +321,47 @@ const MeasureView = (props) => {
             <br />
             <div>
               <h3>Benefits</h3>
-              <p class="callout">
+              <p>
                 Please note that the "effectiveness" column is based on
                 qualitative rating provided by scientific experts. For more
-                information see this&nbsp;synthesis{' '}
+                information see this synthesis{' '}
                 <strong>
                   <a
                     href="/freshwater/resources/nwrm-imported/documentation/sd2_final_version.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    document
+                    document.
                   </a>
                 </strong>
               </p>
+              <div
+                style={{
+                  display: 'flex',
+                  'justify-content': 'flex-start',
+                  gap: '2em',
+                }}
+              >
+                <div class="circle-container">
+                  <span class="circle High"></span>
+                  <span class="circle High"></span>
+                  <span class="circle High"></span>
+                  <span>High</span>
+                </div>
+                <div class="circle-container">
+                  <span class="circle Medium"></span>
+                  <span class="circle Medium"></span>
+                  <span>Medium</span>
+                </div>
+                <div class="circle-container">
+                  <span class="circle Low"></span>
+                  <span>Low</span>
+                </div>
+                <div class="circle-container">
+                  <span class="circle Negative"></span>
+                  <span>Negative</span>
+                </div>
+              </div>
               <Accordion fluid styled>
                 {/* Ecosystem service */}
                 <Accordion.Title

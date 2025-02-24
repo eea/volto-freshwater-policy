@@ -293,6 +293,7 @@ const biophysicalSchema = {
     level: {
       title: 'Level',
       choices: [
+        ['Negative', 'Negative'],
         ['Low', 'Low'],
         ['Medium', 'Medium'],
         ['High', 'High'],
