@@ -21,7 +21,6 @@ import TokenWidget from '@plone/volto/components/manage/Widgets/TokenWidget';
 import installCountryHeaderDataBlock from './components/Blocks/CountryHeaderDataBlock';
 import installAppExtras from './components/theme/AppExtras';
 import installSlatePopup from './components/Blocks/SlatePopup';
-import installContextNavigation from './components/Blocks/ContextNavigation';
 import installCaseStudyExplorer from './components/Blocks/CaseStudyExplorer';
 import installSearchEngine from './search';
 
@@ -195,10 +194,6 @@ const applyConfig = (config) => {
   //this is required by volto-prefixpath
   config.settings.blackListUrls = ['/marine'];
 
-  // enable context-navigation
-  if (config.blocks.blocksConfig.contextNavigation)
-    config.blocks.blocksConfig.contextNavigation.restricted = false;
-
   // Routes
   config.addonRoutes = [
     ...config.addonRoutes,
@@ -342,7 +337,6 @@ const applyConfig = (config) => {
     installSlatePopup,
     installCaseStudyExplorer,
     installSearchEngine,
-    installContextNavigation,
   ].reduce((acc, apply) => apply(acc), config);
 
   return final;
