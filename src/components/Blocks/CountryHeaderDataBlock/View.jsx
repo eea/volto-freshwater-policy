@@ -235,6 +235,7 @@ const View = (props) => {
     'old-profiles',
     'data-visualisation',
     'map-visualizations',
+    'glossary',
   ];
   const column_value = Array.from(new Set(provider_data?.[column_data])).sort();
   const siblings = getContentSiblings(content?.['@components']?.siblings);
