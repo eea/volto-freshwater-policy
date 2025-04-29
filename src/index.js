@@ -38,6 +38,8 @@ import freshwaterLogo from '@eeacms/volto-freshwater-policy/../theme/assets/imag
 import freshwaterWhiteLogo from '@eeacms/volto-freshwater-policy/../theme/assets/images/Header/freshwater_logo_white.svg';
 import './slate-styles.less';
 
+import { AccordionEdit, AccordionView } from './components';
+
 const messages = defineMessages({
   edit: {
     id: 'Edit link',
@@ -48,9 +50,6 @@ const messages = defineMessages({
     defaultMessage: 'Remove link',
   },
 });
-
-import { AccordionEdit, AccordionView } from './components';
-
 
 const restrictedBlocks = ['imagecards'];
 
