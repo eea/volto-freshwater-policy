@@ -22,3 +22,6 @@ export CaseStudyView from './theme/CaseStudyView/CaseStudyView';
 export DatabaseItemView from './theme/DatabaseItemView/DatabaseItemView';
 
 export CaseStudyExplorer from './Blocks/CaseStudyExplorer/CaseStudyExplorerView';
+
+export * from './theme/TabsBlock/variations/freshwaterRounded';
+

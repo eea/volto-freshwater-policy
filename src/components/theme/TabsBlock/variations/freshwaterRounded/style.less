@@ -1,0 +1,63 @@
+@type: 'extra';
+@element: 'custom';
+
+@import (multiple, reference, optional) '../../theme.config';
+
+
+.block-editor-tabs_block .ui.menu.rounded-tabs.inverted,
+.ui.menu.rounded-tabs.inverted {
+    background-color: transparent !important;
+
+    a.item,
+    div.ui.item {
+        --tab-inverted-text-color: #3d5265 !important;
+        --tab-inverted-hover-text-color: #3d5265 !important;
+
+        &.active {
+            --tab-inverted-active-text-color: @primaryColor !important;
+            --tab-inverted-hover-text-color: @primaryColor !important;
+            border-top-left-radius: 10px !important;
+            border-top-right-radius: 10px !important;
+            color: @primaryColor !important;
+            background-color: #e5e5e5 !important;
+        }
+    }
+
+    &.primary {
+
+        a.item,
+        div.ui.item {
+            &.active {
+                --tab-inverted-hover-text-color: white !important;
+                background-color: @primaryColor !important;
+                color: white !important;
+            }
+        }
+    }
+
+    &.secondary {
+
+        a.item,
+        div.ui.item {
+            &.active {
+                --tab-inverted-hover-text-color: white !important;
+                background-color: @secondaryColor !important;
+                color: white !important;
+            }
+        }
+
+    }
+
+    &.tertiary {
+
+        a.item,
+        div.ui.item {
+            &.active {
+                --tab-inverted-hover-text-color: white !important;
+                background-color: @tertiaryColor !important;
+                color: white !important;
+            }
+        }
+
+    }
+}
