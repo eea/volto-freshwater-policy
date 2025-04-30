@@ -38,6 +38,8 @@ import freshwaterLogo from '@eeacms/volto-freshwater-policy/../theme/assets/imag
 import freshwaterWhiteLogo from '@eeacms/volto-freshwater-policy/../theme/assets/images/Header/freshwater_logo_white.svg';
 import './slate-styles.less';
 
+import { AccordionEdit, AccordionView } from './components';
+
 const messages = defineMessages({
   edit: {
     id: 'Edit link',
@@ -167,6 +169,19 @@ const applyConfig = (config) => {
     ...config.blocks.blocksConfig['tableau_block'],
     group: 'data_visualizations',
   };
+
+  //new variation for tabs_block
+  config.blocks.blocksConfig['tabs_block'].variations = [
+    ...config.blocks.blocksConfig['tabs_block'].variations,
+    {
+      id: 'freshwater_rounded',
+      title: 'Freshwater top-rounded tab',
+      edit: AccordionEdit,
+      view: AccordionView,
+      schemaEnhancer: AccordionEdit.schemaEnhancer,
+      transformWidth: 800,
+    },
+  ];
 
   // Custom block styles
   config.settings.pluggableStyles = [
