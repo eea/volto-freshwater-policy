@@ -7,7 +7,8 @@
 }
 
 .ui.button.primary.inverted:focus {
-  background-color: @primaryColor !important;;
+  background-color: @primaryColor !important;
+  ;
 }
 
 .grid .nine.wide.content-body {
@@ -51,32 +52,15 @@ body.searchlib-page .searchlib-block .back-link {
 .search-body-footer .ui.button.pagination-item.active,
 .searchlib-block .dropdown-facets-list .dropdown-facet .facet-title i.icon,
 .searchlib-block .dropdown-facets-list .ui.button.sui-button,
-.searchlib-block
-  .dropdown-facets-list
-  .dropdown-facet
-  .ui.button.basic.facet-btn.active
-  > .facet-title,
-body.searchlib-page
-  .searchlib-block
-  .above-results
-  .sorting
-  .inline.dropdown
-  > span {
+.searchlib-block .dropdown-facets-list .dropdown-facet .ui.button.basic.facet-btn.active>.facet-title,
+body.searchlib-page .searchlib-block .above-results .sorting .inline.dropdown>span {
   color: @secondaryColor !important;
 }
 
 .sui-search-box .search-input .input-controls i.close.icon:before,
 .sui-search-box .search-input .input-controls i.close.icon:after,
-body.searchlib-page
-  .searchlib-block
-  .ui.segment.active-filter-list
-  .ui.label.filter-value
-  i.close.icon:before,
-body.searchlib-page
-  .searchlib-block
-  .ui.segment.active-filter-list
-  .ui.label.filter-value
-  i.close.icon:after {
+body.searchlib-page .searchlib-block .ui.segment.active-filter-list .ui.label.filter-value i.close.icon:before,
+body.searchlib-page .searchlib-block .ui.segment.active-filter-list .ui.label.filter-value i.close.icon:after {
   background-color: @secondaryColor !important;
 }
 
@@ -109,6 +93,7 @@ ul.metadata.geolocation-widget {
 // Custom page header
 body.custom-page-header {
   #page-header {
+
     .column-blocks-wrapper,
     .content-box {
       margin-bottom: 0;
@@ -148,8 +133,27 @@ body.custom-page-header .breadcrumbs {
 }
 
 @media only screen and (max-height: @tabletBreakpoint) {
-#toolbar .toolbar-content.show {
+  #toolbar .toolbar-content.show {
     max-height: 700px !important;
     z-index: 5;
+  }
 }
+
+// WFD country profile custom classes
+.gray-tab-background .RRT__panel.ui.attached.segment.tab.content.active {
+  background-color: #f9f9f9;
+}
+
+.small-line-height p {
+  line-height: 1.1;
+}
+.medium-line-height p {
+  line-height: 1.3;
+}
+
+.no-margin-column {
+  div.column-blocks-wrapper,
+  div.ui.one.statistics {
+    margin: 0 !important;
+  }
 }
