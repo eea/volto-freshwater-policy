@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { addAppURL } from '@plone/volto/helpers';
 // import config from '@plone/volto/registry';
 import superagent from 'superagent';
+import cx from 'classnames';
 
 import './style.less';
 
@@ -49,8 +50,8 @@ const filterFormatBenefitsData = (rawData, selectedSector, benefit) => {
   });
 
   const columnLabels = Array.from(columnSet).sort((a, b) => {
-    const numA = parseInt(a.match(/BP(\d+)/)?.[1] ?? 0, 10);
-    const numB = parseInt(b.match(/BP(\d+)/)?.[1] ?? 0, 10);
+    const numA = parseInt(a.match(/(\d+)/)?.[1] ?? 0, 10);
+    const numB = parseInt(b.match(/(\d+)/)?.[1] ?? 0, 10);
     return numA - numB;
   });
 
@@ -58,8 +59,8 @@ const filterFormatBenefitsData = (rawData, selectedSector, benefit) => {
   const rowLabels = filteredData
     .map((item) => `${item.code} - ${item.title}`)
     .sort((a, b) => {
-      const numA = parseInt(a.match(/BP(\d+)/)?.[1] ?? 0, 10);
-      const numB = parseInt(b.match(/BP(\d+)/)?.[1] ?? 0, 10);
+      const numA = parseInt(a.match(/(\d+)/)?.[1] ?? 0, 10);
+      const numB = parseInt(b.match(/(\d+)/)?.[1] ?? 0, 10);
       return numA - numB;
     });
 
@@ -79,7 +80,7 @@ const filterFormatBenefitsData = (rawData, selectedSector, benefit) => {
 
 const NWRMBenefitsTable = (props) => {
   const { data } = props;
-  const { sector, benefit, variation } = data || {};
+  const { sector, benefit, variation, tableSize } = data || {};
   const [benefitsData, setBenefitsData] = React.useState([]);
 
   React.useEffect(() => {
@@ -91,12 +92,12 @@ const NWRMBenefitsTable = (props) => {
     sector,
     benefit,
   );
-  console.log(sector, benefit);
+  console.log(sector, benefit, tableSize);
   console.log(benefitsData);
   console.log(tableData);
 
   return (
-    <div className="table-container">
+    <div className={cx('table-container', variation)}>
       <table className="ecosystem-table">
         <thead>
           <tr>
@@ -113,12 +114,13 @@ const NWRMBenefitsTable = (props) => {
           {rowLabels.map((rowLabel, i) => (
             <tr key={i}>
               <td className="row-header">{rowLabel}</td>
-              {tableData[i].map((val, j) =>
-                variation === 'circle' ? (
-                  <td>{renderCircles(val)}</td>
-                ) : (
-                  <td key={j} className={`cell ${val}`}></td>
-                ),
+              {tableData[i].map(
+                (val, j) =>
+                  variation === 'circle' ? (
+                    <td>{renderCircles(val)}</td>
+                  ) : (
+                    <td key={j} className={cx('cell', val)}></td>
+                  ),
                 // <td>{renderCircles(val)}</td>
               )}
             </tr>
