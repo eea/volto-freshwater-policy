@@ -24,5 +24,4 @@ const install = (config) => {
   return config;
 };
 
-
 export default install;
