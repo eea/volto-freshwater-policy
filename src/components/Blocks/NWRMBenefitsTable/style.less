@@ -1,0 +1,87 @@
+.table-container {
+  overflow-x: auto;
+  padding: 1rem;
+}
+
+.ecosystem-table {
+  border-collapse: collapse;
+  font-size: 0.75rem;
+  text-align: left;
+  width: auto;
+  table-layout: auto;
+  margin: auto;
+}
+
+.ecosystem-table th,
+.ecosystem-table td {
+  // padding: 1rem;
+  border: 1px solid #b9b9b9;
+  font-size: 1rem;
+}
+
+.ecosystem-table td {
+  padding: 0 1em;
+
+  &.row-header {
+    // background-color: #fdfdc4;
+    white-space: nowrap;
+    width: 1px;
+    /* Allows content to determine width */
+    padding: 1em 1rem;
+    text-align: left;
+  }
+}
+
+.corner-header {
+  background-color: #004b7f;;
+  /* light yellow */
+}
+
+.column-header {
+  padding: 1em 1rem;
+  background-color: #004b7f;
+  color: white;
+  writing-mode: sideways-lr;
+
+  div {
+    transform: rotate(45deg);
+  }
+}
+
+.cell {
+  width: 2rem;
+  height: 2rem;
+}
+
+.circle-container {
+  display: flex;
+  align-items: center;
+  // margin: 0 0 1em;
+  gap: 5px;
+
+  /* Circle styles */
+  .circle {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+  }
+
+
+}
+
+.High {
+  background-color: #0073e6;
+}
+
+.Medium {
+  background-color: #00bfff;
+}
+
+.Low {
+  background-color: #c0e4f6;
+}
+
+.Negative {
+  background-color: #ffa500;
+}
