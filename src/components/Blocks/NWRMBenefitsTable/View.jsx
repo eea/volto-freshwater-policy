@@ -113,12 +113,13 @@ const NWRMBenefitsTable = (props) => {
           {rowLabels.map((rowLabel, i) => (
             <tr key={i}>
               <td className="row-header">{rowLabel}</td>
-              {tableData[i].map((val, j) =>
-                variation === 'circle' ? (
-                  <td>{renderCircles(val)}</td>
-                ) : (
-                  <td key={j} className={`cell ${val}`}></td>
-                ),
+              {tableData[i].map(
+                (val, j) =>
+                  variation === 'circle' ? (
+                    <td>{renderCircles(val)}</td>
+                  ) : (
+                    <td key={j} className={`cell ${val}`}></td>
+                  ),
                 // <td>{renderCircles(val)}</td>
               )}
             </tr>

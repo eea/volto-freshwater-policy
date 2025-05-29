@@ -20,7 +20,7 @@ const NWRMBenefitsTableEdit = (props) => {
 
   return (
     <>
-      <NWRMBenefitsTableView {...props}/>
+      <NWRMBenefitsTableView {...props} />
 
       <SidebarPortal selected={selected}>
         <InlineForm
