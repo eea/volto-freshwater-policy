@@ -18,7 +18,7 @@ export const NWRMBenefitsTableBlockSchema = () => ({
         ['Urban', 'Urban'],
         ['Hydromorphology', 'Hydromorphology'],
       ],
-      // default: 'uwwt_profile',
+      default: 'Agriculture',
     },
     benefit: {
       title: 'Benefit',
@@ -27,7 +27,7 @@ export const NWRMBenefitsTableBlockSchema = () => ({
         ['ecosystem_services', 'Ecosystem Services'],
         ['policy_objectives', 'EU Policy Objective'],
       ],
-      // default: 'uwwt_profile',
+      default: 'biophysical_impacts',
     },
     variation: {
       title: 'Variation',
@@ -35,7 +35,7 @@ export const NWRMBenefitsTableBlockSchema = () => ({
         ['circle', 'Circle'],
         ['fill', 'Fill'],
       ],
-      // default: 'uwwt_profile',
+      default: 'Circle',
     },
   },
 

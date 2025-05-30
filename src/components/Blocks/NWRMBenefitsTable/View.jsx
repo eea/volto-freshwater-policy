@@ -6,6 +6,12 @@ import cx from 'classnames';
 
 import './style.less';
 
+const rowSpan = {
+  biophysical_impacts: 3,
+  ecosystem_services: 2,
+  policy_objectives: 2,
+};
+
 const renderCircles = (effect) => {
   const circleCount =
     effect === 'High'
@@ -101,7 +107,114 @@ const NWRMBenefitsTable = (props) => {
       <table className="ecosystem-table">
         <thead>
           <tr>
-            <th className="column-header"> </th>
+            <th rowSpan={rowSpan[benefit]} className="column-header">
+              <div className="legend">
+                {variation === 'circle' ? (
+                  <div>
+                    <div class="circle-container">
+                      <span class="circle High"></span>
+                      <span class="circle High"></span>
+                      <span class="circle High"></span>
+                      <span>High</span>
+                    </div>
+                    <div class="circle-container">
+                      <span class="circle Medium"></span>
+                      <span class="circle Medium"></span>
+                      <span>Medium</span>
+                    </div>
+                    <div class="circle-container">
+                      <span class="circle Low"></span>
+                      <span>Low</span>
+                    </div>
+                    <div class="circle-container">
+                      <span class="circle Negative"></span>
+                      <span>Negative</span>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="legend-wrapped">
+                    <div className="legend-row">
+                      <span className="legend-box High"></span>High
+                    </div>
+                    <div className="legend-row">
+                      <span className="legend-box Medium"></span>Medium
+                    </div>
+                    <div className="legend-row">
+                      <span className="legend-box Low"></span>Low
+                    </div>
+                    <div className="legend-row">
+                      <span className="legend-box Negative"></span>Negative
+                    </div>
+                  </div>
+                )}
+              </div>
+            </th>
+            {benefit === 'ecosystem_services' && (
+              <>
+                <th colSpan={3} className="column-section">
+                  Provisioning
+                </th>
+                <th colSpan={6} className="column-section">
+                  Regulatory and maintenance
+                </th>
+                <th colSpan={2} className="column-section">
+                  Cultural
+                </th>
+                <th colSpan={3} className="column-section">
+                  Abiotic
+                </th>
+              </>
+            )}
+            {benefit === 'biophysical_impacts' && (
+              <>
+                <th colSpan={7} className="column-section">
+                  Mechanisms of water retention
+                </th>
+                <th colSpan={10} className="column-section">
+                  Biophysical impacts resulting from water retention
+                </th>
+              </>
+            )}
+            {benefit === 'policy_objectives' && (
+              <>
+                <th colSpan={8} className="column-section">
+                  Water Framework Directive
+                </th>
+                <th colSpan={1} className="column-section">
+                  FD
+                </th>
+                <th colSpan={1} className="column-section">
+                  HD & BD
+                </th>
+                <th colSpan={4} className="column-section">
+                  2020 Biodiversity strategy
+                </th>
+              </>
+            )}
+          </tr>
+          {benefit === 'biophysical_impacts' && (
+            <tr>
+              <th colSpan={4} className="column-section">
+                Slowing and storing runoff
+              </th>
+              <th colSpan={3} className="column-section">
+                Reducing runoff
+              </th>
+              <th colSpan={2} className="column-section">
+                Reducing pollution
+              </th>
+              <th colSpan={2} className="column-section">
+                Soil conservation
+              </th>
+              <th colSpan={3} className="column-section">
+                Creating habitat
+              </th>
+              <th colSpan={3} className="column-section">
+                Climate alteration
+              </th>
+            </tr>
+          )}
+          <tr>
             {columnLabels.map((label, i) => (
               <th key={i} className="column-header">
                 {label}
