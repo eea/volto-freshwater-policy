@@ -86,7 +86,7 @@ const filterFormatBenefitsData = (rawData, selectedSector, benefit) => {
 
 const NWRMBenefitsTable = (props) => {
   const { data } = props;
-  const { sector, benefit, variation, tableSize } = data || {};
+  const { sector, benefit, variation } = data || {};
   const [benefitsData, setBenefitsData] = React.useState([]);
 
   React.useEffect(() => {
