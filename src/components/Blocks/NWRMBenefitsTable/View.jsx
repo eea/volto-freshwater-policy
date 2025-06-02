@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { addAppURL } from '@plone/volto/helpers';
 // import config from '@plone/volto/registry';
 import superagent from 'superagent';
@@ -43,7 +43,7 @@ const fetchBenefitsData = async () => {
       .set('accept', 'json');
     return JSON.parse(resp.text);
   } catch (err) {
-    console.error('Error fetching data:', err);
+    // console.error('Error fetching data:', err);
   }
 };
 
@@ -98,9 +98,9 @@ const NWRMBenefitsTable = (props) => {
     sector,
     benefit,
   );
-  console.log(sector, benefit, tableSize);
-  console.log(benefitsData);
-  console.log(tableData);
+  // console.log(sector, benefit, tableSize);
+  // console.log(benefitsData);
+  // console.log(tableData);
 
   return (
     <div className={cx('table-container', variation)}>

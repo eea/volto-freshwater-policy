@@ -9,11 +9,7 @@ const NWRMBenefitsTableEdit = (props) => {
     block,
     data,
     onChangeBlock,
-    onChangeField,
-    pathname,
     selected,
-    manage,
-    provider_data = {},
   } = props;
 
   const schema = NWRMBenefitsTableBlockSchema();
