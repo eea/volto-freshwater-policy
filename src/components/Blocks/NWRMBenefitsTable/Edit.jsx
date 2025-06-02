@@ -5,12 +5,7 @@ import InlineForm from '@plone/volto/components/manage/Form/InlineForm';
 import NWRMBenefitsTableView from './View';
 
 const NWRMBenefitsTableEdit = (props) => {
-  const {
-    block,
-    data,
-    onChangeBlock,
-    selected,
-  } = props;
+  const { block, data, onChangeBlock, selected } = props;
 
   const schema = NWRMBenefitsTableBlockSchema();
 
