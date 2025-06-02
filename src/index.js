@@ -19,6 +19,7 @@ import {
 import TokenWidget from '@plone/volto/components/manage/Widgets/TokenWidget';
 
 import installCountryHeaderDataBlock from './components/Blocks/CountryHeaderDataBlock';
+import installNWRMBenefitsTableBlock from './components/Blocks/NWRMBenefitsTable';
 import installAppExtras from './components/theme/AppExtras';
 import installSlatePopup from './components/Blocks/SlatePopup';
 import installCaseStudyExplorer from './components/Blocks/CaseStudyExplorer';
@@ -348,6 +349,7 @@ const applyConfig = (config) => {
 
   const final = [
     installCountryHeaderDataBlock,
+    installNWRMBenefitsTableBlock,
     installAppExtras,
     installSlatePopup,
     installCaseStudyExplorer,
