@@ -4,6 +4,7 @@ import { getFeatures, filterCases, getFilters } from './utils';
 
 jest.mock('./utils', () => ({
   getFeatures: jest.fn(),
+  filterCases: jest.fn(),
 }));
 
 describe('utils.js', () => {
