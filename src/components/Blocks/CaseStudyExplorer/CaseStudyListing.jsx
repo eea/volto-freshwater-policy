@@ -128,7 +128,7 @@ export default function CaseStudyList(props) {
                         scrollToElement('search-input');
                         // reset map zoom
                         onSelectedCase(null);
-                        centerAndResetMapZoom(map);
+                        centerAndResetMapZoom({ map, ol });
                         map.getInteractions().array_[9].getFeatures().clear();
                       }}
                     >

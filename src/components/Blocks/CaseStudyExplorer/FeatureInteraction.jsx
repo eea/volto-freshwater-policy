@@ -73,7 +73,7 @@ function FeatureInteraction({
           // });
         } else {
           onFeatureSelect(null);
-          zoomMapToFeatures(map, subfeatures);
+          zoomMapToFeatures({ map, features: subfeatures, ol });
         }
       });
 

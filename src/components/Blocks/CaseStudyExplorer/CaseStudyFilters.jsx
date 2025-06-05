@@ -88,7 +88,7 @@ export function CaseStudyFilter(props) {
                     }
                     setActiveFilters(temp);
                     scrollToElement('search-input');
-                    centerAndResetMapZoom(map);
+                    centerAndResetMapZoom({ map, ol });
                   }}
                 />
                 <span>{label}</span>
@@ -162,7 +162,7 @@ export function SearchBox(props) {
 
                 setSearchInput(searchInput);
                 scrollToElement('search-input');
-                centerAndResetMapZoom(map);
+                centerAndResetMapZoom({ map, ol });
               }}
             ></input>
             <div className="terms-box-left">
@@ -180,7 +180,7 @@ export function SearchBox(props) {
                         setSearchInput('');
                         setShowClearButton(false);
                         scrollToElement('search-input');
-                        centerAndResetMapZoom(map);
+                        centerAndResetMapZoom({ map, ol });
                       }}
                     ></i>
                   </div>
@@ -200,7 +200,7 @@ export function SearchBox(props) {
 
                   setSearchInput(searchInputVal);
                   scrollToElement('search-input');
-                  centerAndResetMapZoom(map);
+                  centerAndResetMapZoom({ map, ol });
                 }}
                 onKeyDown={() => {}}
                 tabIndex="0"

@@ -38,7 +38,7 @@ function CaseStudyMap(props) {
     setMap,
     ol,
   } = props;
-  const features = getFeatures(items);
+  const features = getFeatures({ cases: items, ol });
   const [resetMapButtonClass, setResetMapButtonClass] =
     React.useState('inactive');
 
@@ -70,9 +70,9 @@ function CaseStudyMap(props) {
   React.useEffect(() => {
     if (activeItems) {
       pointsSource.clear();
-      pointsSource.addFeatures(getFeatures(activeItems));
+      pointsSource.addFeatures(getFeatures({ cases: activeItems, ol }));
     }
-  }, [activeItems, pointsSource]);
+  }, [activeItems, pointsSource, ol]);
 
   React.useEffect(() => {
     if (!map) return null;
@@ -143,7 +143,7 @@ function CaseStudyMap(props) {
               onClick={() => {
                 scrollToElement('search-input');
                 onSelectedCase(null);
-                centerAndResetMapZoom(map);
+                centerAndResetMapZoom({ map, ol });
                 map.getInteractions().array_[9].getFeatures().clear();
               }}
             >

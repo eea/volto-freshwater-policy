@@ -34,7 +34,7 @@ describe('utils.js', () => {
 
   test('getFeatures', () => {
     expect(() => {
-      getFeatures(mockCases);
+      getFeatures({ cases: mockCases, ol });
     }).not.toThrowError();
   });
 
