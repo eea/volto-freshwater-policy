@@ -13,7 +13,7 @@ import {
 jest.mock('@eeacms/volto-openlayers-map', () => ({
   openlayers: {
     proj: {
-      fromLonLat: jest.fn().mockReturnValue([0, 0]),
+      transform: jest.fn().mockReturnValue([0, 0]),
     },
   },
   withOpenLayers: (Component) => (props) => (
@@ -21,7 +21,7 @@ jest.mock('@eeacms/volto-openlayers-map', () => ({
       {...props}
       ol={{
         proj: {
-          fromLonLat: jest.fn().mockReturnValue([0, 0]),
+          transform: jest.fn().mockReturnValue([0, 0]),
         },
       }}
     />

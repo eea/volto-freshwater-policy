@@ -16,8 +16,10 @@ module.exports = {
     '@package/(.*)$': '<rootDir>/node_modules/@plone/volto/src/$1',
     '@root/(.*)$': '<rootDir>/node_modules/@plone/volto/src/$1',
     '@plone/volto-quanta/(.*)$': '<rootDir>/src/addons/volto-quanta/src/$1',
-    '@eeacms/search/(.*)$': '<rootDir>/src/addons/volto-searchlib/searchlib/$1',
-    '@eeacms/search': '<rootDir>/src/addons/volto-searchlib/searchlib',
+    '@eeacms/search/(.*)$':
+      '<rootDir>/node_modules/@eeacms/volto-searchlib/searchlib/$1',
+    '@eeacms/search':
+      '<rootDir>/node_modules/@eeacms/volto-searchlib/searchlib',
     '@eeacms/(.*?)/(.*)$': '<rootDir>/node_modules/@eeacms/$1/src/$2',
     '@plone/volto-slate$':
       '<rootDir>/node_modules/@plone/volto/packages/volto-slate/src',
@@ -26,11 +28,10 @@ module.exports = {
     '~/(.*)$': '<rootDir>/src/$1',
     'load-volto-addons':
       '<rootDir>/node_modules/@plone/volto/jest-addons-loader.js',
-    '@eeacms/volto-openlayers-map':
-      'github:eea/volto-openlayers-map#fe98a11ef5f92335acaaff098ef7734c3f2ac2fa',
+    '@eeacms/volto-openlayers-map': 'github:eea/volto-openlayers-map#develop',
   },
   transformIgnorePatterns: [
-    '/node_modules/(?!(@plone|@root|@package|@eeacms|@plone-collective|ol|ol-mapbox-style)/).*/',
+    '/node_modules/(?!(@plone|@root|@package|@eeacms|@plone-collective)/).*/',
   ],
   transform: {
     '^.+\\.js(x)?$': 'babel-jest',
