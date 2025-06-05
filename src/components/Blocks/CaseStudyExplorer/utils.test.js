@@ -2,6 +2,10 @@ import './mockJsdom';
 import '@testing-library/jest-dom/extend-expect';
 import { getFeatures, filterCases, getFilters } from './utils';
 
+jest.mock('./utils', () => ({
+  getFeatures: jest.fn(),
+}));
+
 describe('utils.js', () => {
   const mockCases = [
     {
@@ -34,7 +38,7 @@ describe('utils.js', () => {
 
   test('getFeatures', () => {
     expect(() => {
-      getFeatures({ cases: mockCases, ol });
+      getFeatures({ cases: mockCases });
     }).not.toThrowError();
   });
 

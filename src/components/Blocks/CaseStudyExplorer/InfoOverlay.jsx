@@ -59,7 +59,7 @@ function InfoOverlay({
       map.un('click', handler);
       map.removeOverlay(overlay);
     };
-  }, [map, tooltip, onFeatureSelect, hideFilters]); //
+  }, [map, tooltip, onFeatureSelect, hideFilters, ol]); //
 
   const [isClient, setIsClient] = React.useState(false);
   React.useEffect(() => setIsClient(true), []);

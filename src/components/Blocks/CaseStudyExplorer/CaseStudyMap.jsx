@@ -111,11 +111,11 @@ function CaseStudyMap(props) {
     return () => {
       map.un('moveend', moveendListener);
     };
-  }, [map, selectedCase, resetMapButtonClass, setResetMapButtonClass]);
+  }, [map, selectedCase, resetMapButtonClass, setResetMapButtonClass, ol]);
 
   const clusterStyle = React.useMemo(
     () => selectedClusterStyle({ selectedCase, ol }),
-    [selectedCase],
+    [selectedCase, ol],
   );
 
   const MapWithSelection = React.useMemo(() => Map, []);
