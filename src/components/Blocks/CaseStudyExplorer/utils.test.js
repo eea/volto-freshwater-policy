@@ -2,11 +2,6 @@ import './mockJsdom';
 import '@testing-library/jest-dom/extend-expect';
 import { getFeatures, filterCases, getFilters } from './utils';
 
-jest.mock('./utils', () => ({
-  getFeatures: jest.fn(),
-  filterCases: jest.fn(),
-}));
-
 describe('utils.js', () => {
   const mockCases = [
     {
@@ -38,8 +33,25 @@ describe('utils.js', () => {
   ];
 
   test('getFeatures', () => {
+    const mockFeature = {
+      setId: jest.fn(),
+      setProperties: jest.fn(),
+    };
+
+    const ol = {
+      ol: {
+        Feature: jest.fn().mockImplementation(() => mockFeature),
+      },
+      geom: {
+        Point: jest.fn().mockImplementation(() => ({})),
+      },
+      proj: {
+        fromLonLat: jest.fn().mockReturnValue([0, 0]),
+      },
+    };
+
     expect(() => {
-      getFeatures({ cases: mockCases });
+      getFeatures({ cases: mockCases, ol });
     }).not.toThrowError();
   });
 
@@ -59,7 +71,12 @@ describe('utils.js', () => {
   });
 
   test('getFilters', () => {
-    const mockFilters = getFilters(mockCases);
+    const mockCasesObject = mockCases.reduce((acc, item, index) => {
+      acc[index] = item;
+      return acc;
+    }, {});
+
+    const mockFilters = getFilters(mockCasesObject);
     expect(mockFilters).toStrictEqual({
       nwrms_implemented: { 'test-measure1': 'test measure 1' },
       sectors: { testsector: 'testsector' },
