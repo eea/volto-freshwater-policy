@@ -28,7 +28,6 @@ module.exports = {
     '~/(.*)$': '<rootDir>/src/$1',
     'load-volto-addons':
       '<rootDir>/node_modules/@plone/volto/jest-addons-loader.js',
-    '@eeacms/volto-openlayers-map': 'github:eea/volto-openlayers-map#develop',
   },
   transformIgnorePatterns: [
     '/node_modules/(?!(@plone|@root|@package|@eeacms|@plone-collective)/).*/',
