@@ -2,13 +2,18 @@ import React from 'react';
 
 import cx from 'classnames';
 
-import { Map, Layer, Layers, Controls } from '@eeacms/volto-openlayers-map/api';
-import { openlayers as ol } from '@eeacms/volto-openlayers-map';
+import {
+  Map,
+  Layer,
+  Layers,
+  Controls,
+  useMapContext,
+} from '@eeacms/volto-openlayers-map/api';
+import { withOpenLayers } from '@eeacms/volto-openlayers-map';
 
 import InfoOverlay from './InfoOverlay';
 import FeatureInteraction from './FeatureInteraction';
 import CaseStudyList from './CaseStudyListing';
-import { useMapContext } from '@eeacms/volto-openlayers-map/api';
 
 import { centerAndResetMapZoom, getFeatures, scrollToElement } from './utils';
 
@@ -21,7 +26,7 @@ const MapContextGateway = ({ setMap }) => {
   return null;
 };
 
-export default function CaseStudyMap(props) {
+function CaseStudyMap(props) {
   const {
     items,
     activeItems,
@@ -31,8 +36,9 @@ export default function CaseStudyMap(props) {
     searchInput,
     map,
     setMap,
+    ol,
   } = props;
-  const features = getFeatures(items);
+  const features = getFeatures({ cases: items, ol });
   const [resetMapButtonClass, setResetMapButtonClass] =
     React.useState('inactive');
 
@@ -64,9 +70,9 @@ export default function CaseStudyMap(props) {
   React.useEffect(() => {
     if (activeItems) {
       pointsSource.clear();
-      pointsSource.addFeatures(getFeatures(activeItems));
+      pointsSource.addFeatures(getFeatures({ cases: activeItems, ol }));
     }
-  }, [activeItems, pointsSource]);
+  }, [activeItems, pointsSource, ol]);
 
   React.useEffect(() => {
     if (!map) return null;
@@ -105,11 +111,11 @@ export default function CaseStudyMap(props) {
     return () => {
       map.un('moveend', moveendListener);
     };
-  }, [map, selectedCase, resetMapButtonClass, setResetMapButtonClass]);
+  }, [map, selectedCase, resetMapButtonClass, setResetMapButtonClass, ol]);
 
   const clusterStyle = React.useMemo(
-    () => selectedClusterStyle(selectedCase),
-    [selectedCase],
+    () => selectedClusterStyle({ selectedCase, ol }),
+    [selectedCase, ol],
   );
 
   const MapWithSelection = React.useMemo(() => Map, []);
@@ -137,7 +143,7 @@ export default function CaseStudyMap(props) {
               onClick={() => {
                 scrollToElement('search-input');
                 onSelectedCase(null);
-                centerAndResetMapZoom(map);
+                centerAndResetMapZoom({ map, ol });
                 map.getInteractions().array_[9].getFeatures().clear();
               }}
             >
@@ -179,7 +185,7 @@ export default function CaseStudyMap(props) {
   ) : null;
 }
 
-const selectedClusterStyle = (selectedFeature) => {
+const selectedClusterStyle = ({ selectedFeature, ol }) => {
   function _clusterStyle(feature) {
     const size = feature.get('features').length;
     let style = styleCache[size];
@@ -228,3 +234,5 @@ const selectedClusterStyle = (selectedFeature) => {
   }
   return _clusterStyle;
 };
+
+export default withOpenLayers(CaseStudyMap);

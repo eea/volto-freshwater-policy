@@ -1,6 +1,7 @@
 import React from 'react';
 
 import { centerAndResetMapZoom, scrollToElement } from './utils';
+import { withOpenLayers } from '@eeacms/volto-openlayers-map';
 
 const normalizeSearchInput = (searchInput) => {
   let normInput = searchInput
@@ -21,6 +22,7 @@ export function CaseStudyFilter(props) {
     setActiveFilters,
     filterName,
     map,
+    ol,
   } = props;
 
   const showInputs = (event) => {
@@ -88,7 +90,7 @@ export function CaseStudyFilter(props) {
                     }
                     setActiveFilters(temp);
                     scrollToElement('search-input');
-                    centerAndResetMapZoom(map);
+                    centerAndResetMapZoom({ map, ol });
                   }}
                 />
                 <span>{label}</span>
@@ -100,8 +102,8 @@ export function CaseStudyFilter(props) {
   );
 }
 
-export function CaseStudyFilters(props) {
-  const { filters, activeFilters, setActiveFilters, map } = props;
+function CaseStudyFiltersComponent(props) {
+  const { filters, activeFilters, setActiveFilters, map, ol } = props;
 
   React.useEffect(() => {
     window.addEventListener('click', (event) => {
@@ -124,6 +126,7 @@ export function CaseStudyFilters(props) {
         activeFilters={activeFilters}
         setActiveFilters={setActiveFilters}
         map={map}
+        ol={ol}
       />
 
       <CaseStudyFilter
@@ -133,13 +136,14 @@ export function CaseStudyFilters(props) {
         activeFilters={activeFilters}
         setActiveFilters={setActiveFilters}
         map={map}
+        ol={ol}
       />
     </>
   );
 }
 
-export function SearchBox(props) {
-  const { setSearchInput, map } = props;
+function SearchBoxComponent(props) {
+  const { setSearchInput, map, ol } = props;
   const [showClearButton, setShowClearButton] = React.useState(false);
 
   return (
@@ -162,7 +166,7 @@ export function SearchBox(props) {
 
                 setSearchInput(searchInput);
                 scrollToElement('search-input');
-                centerAndResetMapZoom(map);
+                centerAndResetMapZoom({ map, ol });
               }}
             ></input>
             <div className="terms-box-left">
@@ -180,7 +184,7 @@ export function SearchBox(props) {
                         setSearchInput('');
                         setShowClearButton(false);
                         scrollToElement('search-input');
-                        centerAndResetMapZoom(map);
+                        centerAndResetMapZoom({ map, ol });
                       }}
                     ></i>
                   </div>
@@ -200,7 +204,7 @@ export function SearchBox(props) {
 
                   setSearchInput(searchInputVal);
                   scrollToElement('search-input');
-                  centerAndResetMapZoom(map);
+                  centerAndResetMapZoom({ map, ol });
                 }}
                 onKeyDown={() => {}}
                 tabIndex="0"
@@ -217,7 +221,7 @@ export function SearchBox(props) {
   );
 }
 
-export function ActiveFilters(props) {
+function ActiveFiltersComponent(props) {
   const { filters, activeFilters, setActiveFilters } = props;
   const hasActiveFilters = Object.entries(activeFilters).some(
     ([filterName, filterList]) => {
@@ -329,3 +333,7 @@ export function ActiveFilters(props) {
     ''
   );
 }
+
+export const CaseStudyFilters = withOpenLayers(CaseStudyFiltersComponent);
+export const SearchBox = withOpenLayers(SearchBoxComponent);
+export const ActiveFilters = withOpenLayers(ActiveFiltersComponent);
