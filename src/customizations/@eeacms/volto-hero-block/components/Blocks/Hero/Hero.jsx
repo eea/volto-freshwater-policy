@@ -31,8 +31,11 @@ function Hero({
 }) {
   const image = getFieldURL(props.image);
   const isExternal = !isInternalURL(image);
-  const { alignContent = 'center', bg = 'center', backgroundVariant = 'primary' } =
-    styles || {};
+  const {
+    alignContent = 'center',
+    bg = 'center',
+    backgroundVariant = 'primary',
+  } = styles || {};
 
   const containerCssStyles = React.useMemo(
     () => ({
@@ -64,8 +67,8 @@ function Hero({
       objectFit: 'cover',
       objectPosition: bg,
       zIndex: -1,
-    }
-  }, [bg, imageUrl])
+    };
+  }, [bg, imageUrl]);
 
   return (
     <div
@@ -95,13 +98,7 @@ function Hero({
         )}
         style={containerCssStyles}
       >
-        {imageUrl && (
-          <Image
-            src={imageUrl}
-            alt=""
-            style={imageStyle}
-          />
-        )}
+        {imageUrl && <Image src={imageUrl} alt="" style={imageStyle} />}
         {image && overlay && (
           <div className="hero-block-image-overlay dark-overlay-4"></div>
         )}
