@@ -7,9 +7,9 @@ import alignBottomSVG from '@plone/volto/icons/move-down.svg';
 import clearSVG from '@plone/volto/icons/clear.svg';
 
 const ALIGN_INFO_MAP = {
-  'top': [alignTopSVG, 'Top'],
-  'center': [alignCenterSVG, 'Center'],
-  'bottom': [alignBottomSVG, 'Bottom'],
+  top: [alignTopSVG, 'Top'],
+  center: [alignCenterSVG, 'Center'],
+  bottom: [alignBottomSVG, 'Bottom'],
   '': [clearSVG, 'None'],
 };
 
@@ -207,4 +207,3 @@ export const stylingSchema = (props) => {
   };
   return schema;
 };
-  
