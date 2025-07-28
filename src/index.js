@@ -40,7 +40,7 @@ import freshwaterWhiteLogo from '@eeacms/volto-freshwater-policy/../theme/assets
 import './slate-styles.less';
 
 import { AccordionEdit, AccordionView } from './components';
-import MatrixConnector from './components/manage/controlpanel/MatrixConnector.jsx'
+import MatrixConnector from './components/manage/controlpanel/MatrixConnector.jsx';
 
 const messages = defineMessages({
   edit: {
@@ -350,7 +350,7 @@ const applyConfig = (config) => {
       path: './components/manage/controlpanel/MatrixConnector',
       component: MatrixConnector,
       restricted: false, // Or true, depending on permission logic
-      '@id': './components/manage/controlpanel/MatrixConnector'
+      '@id': './components/manage/controlpanel/MatrixConnector',
     },
   ];
 
