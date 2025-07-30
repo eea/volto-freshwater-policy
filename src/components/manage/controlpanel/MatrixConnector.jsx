@@ -97,13 +97,14 @@ function MatrixConnector(props) {
               values={{ title: <q>matrix connector</q> }}
             />
           </Segment>
+          {/*
           <Segment secondary>
             <FormattedMessage
-              id="view relationship between visualizations and connnectors"
-              defaultmessage="view relationship between visualizations and connnectors"
+              id="Visualizations status and ussage"
+              defaultmessage="Visualizations status and ussage"
             />
           </Segment>
-
+         */} 
           <Segment>
             <Header size="small">
               <FormattedMessage
