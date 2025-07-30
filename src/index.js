@@ -8,7 +8,7 @@ import {
   SourceView,
 } from './components';
 
-import { basket, boards } from './reducers';
+import { basket, boards, matrixConnector } from './reducers';
 import CopyrightWidget from './components/Widgets/CopyrightWidget';
 import RightsWidget from './components/Widgets/RightsWidget';
 import {
@@ -247,6 +247,7 @@ const applyConfig = (config) => {
     ...(config.addonReducers || {}),
     basket,
     boards,
+    matrixConnector
   };
 
   if (__SERVER__) {
