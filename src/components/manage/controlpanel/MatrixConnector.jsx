@@ -1,13 +1,12 @@
-import { Segment, Header } from 'semantic-ui-react';
+import React, {useEffect} from 'react'
 
-function MatrixConnector() { 
+function MatrixConnector(props) { 
   useEffect(() => {
-    console.log('MATRIC CONNECTOR LOADED')
+    console.log('MATRIX CONNECTOR LOADED', props)
   }, [])
-  return <Segment padded>
-    <Header as="h1">My Addon Settings</Header>
-    <p>This is your custom control panel.</p>
-  </Segment>
+  return <div>
+    <p>Matrix connector addon</p>
+  </div> 
 }
 
 export default MatrixConnector

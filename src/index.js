@@ -40,7 +40,7 @@ import freshwaterWhiteLogo from '@eeacms/volto-freshwater-policy/../theme/assets
 import './slate-styles.less';
 
 import { AccordionEdit, AccordionView } from './components';
-import MatrixConnector from './components/manage/controlpanel/MatrixConnector.jsx'
+import MatrixConnector from './components/manage/controlpanel/MatrixConnector.jsx';
 
 const messages = defineMessages({
   edit: {
@@ -341,18 +341,22 @@ const applyConfig = (config) => {
     }),
   ];
 
-  config.settings.controlpanels = [
-    ...config.settings.controlpanels,
-    {
-      id: 'MatrixConnector',
-      title: 'Matrix Connector',
-      group: 'addons', // You can also use 'site' or create a new group
-      path: './components/manage/controlpanel/MatrixConnector',
-      component: MatrixConnector,
-      restricted: false, // Or true, depending on permission logic
-      '@id': './components/manage/controlpanel/MatrixConnector'
-    },
-  ];
+   config.settings.controlpanels = [
+      ...config.settings.controlpanels,
+      {
+        '@id': '/matrix-connector',
+        group: 'addons',
+        title: 'Matrix connector',
+      },
+    ];
+
+    config.addonRoutes = [
+      ...config.addonRoutes,
+      {
+        path: '/controlpanel/matrix-connector',
+        component: MatrixConnector,
+      },
+    ];
 
   // Disabled blocks
   restrictedBlocks.forEach((block) => {
