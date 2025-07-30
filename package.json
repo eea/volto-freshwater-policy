@@ -46,7 +46,7 @@
     "@eeacms/volto-listing-block": "^8.1.1",
     "@eeacms/volto-openlayers-map": "1.0.1",
     "@eeacms/volto-searchlib": "^2.0.2",
-    "@eeacms/volto-tabs-block": "9.0.3",
+    "@eeacms/volto-tabs-block": "9.1.0",
     "d3-array": "^2.12.1",
     "react-lazy-load-image-component": "^1.4.0",
     "react-slick": "^0.24.0",
