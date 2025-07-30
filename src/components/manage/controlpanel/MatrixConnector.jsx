@@ -104,7 +104,7 @@ function MatrixConnector(props) {
               defaultmessage="Visualizations status and ussage"
             />
           </Segment>
-         */} 
+         */}
           <Segment>
             <Header size="small">
               <FormattedMessage
