@@ -1,5 +1,4 @@
-import {GET_ALL_VISUALIZATIONS} from '@eeacms/volto-freshwater-policy/constants/ActionTypes';
-
+import { GET_ALL_VISUALIZATIONS } from '@eeacms/volto-freshwater-policy/constants/ActionTypes';
 
 const initialState = {
   get: {
@@ -63,4 +62,3 @@ export default function matrixConnector(state = initialState, action = {}) {
       return state;
   }
 }
-

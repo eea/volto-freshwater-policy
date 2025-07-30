@@ -247,7 +247,7 @@ const applyConfig = (config) => {
     ...(config.addonReducers || {}),
     basket,
     boards,
-    matrixConnector
+    matrixConnector,
   };
 
   if (__SERVER__) {
@@ -342,22 +342,22 @@ const applyConfig = (config) => {
     }),
   ];
 
-   config.settings.controlpanels = [
-      ...config.settings.controlpanels,
-      {
-        '@id': '/matrix-connector',
-        group: 'addons',
-        title: 'Matrix connector',
-      },
-    ];
+  config.settings.controlpanels = [
+    ...config.settings.controlpanels,
+    {
+      '@id': '/matrix-connector',
+      group: 'addons',
+      title: 'Matrix connector',
+    },
+  ];
 
-    config.addonRoutes = [
-      ...config.addonRoutes,
-      {
-        path: '/controlpanel/matrix-connector',
-        component: MatrixConnector,
-      },
-    ];
+  config.addonRoutes = [
+    ...config.addonRoutes,
+    {
+      path: '/controlpanel/matrix-connector',
+      component: MatrixConnector,
+    },
+  ];
 
   // Disabled blocks
   restrictedBlocks.forEach((block) => {

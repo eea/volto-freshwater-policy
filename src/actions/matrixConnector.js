@@ -1,6 +1,4 @@
-import {
-  GET_ALL_VISUALIZATIONS
-} from '@eeacms/volto-freshwater-policy/constants/ActionTypes';
+import { GET_ALL_VISUALIZATIONS } from '@eeacms/volto-freshwater-policy/constants/ActionTypes';
 
 export function getVisualizations(url, options = {}) {
   const { query, batchSize, batchStart, ...rest } = options;

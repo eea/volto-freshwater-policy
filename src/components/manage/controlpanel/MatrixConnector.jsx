@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react'
+import React, { useEffect } from 'react';
 import {
   Button,
   Checkbox,
@@ -19,11 +19,15 @@ import { Link } from 'react-router-dom';
 import { createPortal } from 'react-dom';
 import { toast } from 'react-toastify';
 
-import { FormattedMessage, defineMessages, injectIntl, useIntl } from 'react-intl';
+import {
+  FormattedMessage,
+  defineMessages,
+  injectIntl,
+  useIntl,
+} from 'react-intl';
 
 import { getContent } from '@plone/volto/actions/content/content';
 import { workflowMapping } from '@plone/volto/config/Workflows.js ';
-
 
 import Helmet from '@plone/volto/helpers/Helmet/Helmet';
 import { getBaseUrl } from '@plone/volto/helpers/Url/Url';
@@ -33,7 +37,7 @@ import Toolbar from '@plone/volto/components/manage/Toolbar/Toolbar';
 import Toast from '@plone/volto/componenks/manage/Toast/Toast';
 
 import backSVG from '@plone/volto/icons/back.svg';
-import {getVisualizations} from '@eeacms/volto-freshwater-policy/actions/matrixConnector';
+import { getVisualizations } from '@eeacms/volto-freshwater-policy/actions/matrixConnector';
 import Circle from '@plone/volto/components/manage/Contents/circle';
 import config from '@plone/volto/registry';
 
@@ -68,7 +72,6 @@ const messages = defineMessages({
   },
 });
 
-
 function MatrixConnector(props) {
   const intl = useIntl();
   const matrixConnector = useSelector((state) => state.matrixConnector);
@@ -81,95 +84,101 @@ function MatrixConnector(props) {
       batchSize: '',
     });
     props.getContent(getBaseUrl(props.pathname));
-  }, [])
+  }, []);
 
-
-  return <Container>
-    <article id="content">
-      <Segment.Group raised>
-        <Segment classname="primary">
-          <FormattedMessage
-            id="matrix connector"
-            defaultmessage="matrix connector"
-            values={{ title: <q>matrix connector</q> }}
-          />
-        </Segment>
-        <Segment secondary>
-          <FormattedMessage
-            id="view relationship between visualizations and connnectors"
-            defaultmessage="view relationship between visualizations and connnectors"
-          />
-        </Segment>
-
-        <Segment>
-
-          <Header size="small">
+  return (
+    <Container>
+      <article id="content">
+        <Segment.Group raised>
+          <Segment classname="primary">
             <FormattedMessage
-              id="Visualizations status"
-              defaultmessage="Visualizations status"
+              id="matrix connector"
+              defaultmessage="matrix connector"
+              values={{ title: <q>matrix connector</q> }}
             />
-          </Header>
+          </Segment>
+          <Segment secondary>
+            <FormattedMessage
+              id="view relationship between visualizations and connnectors"
+              defaultmessage="view relationship between visualizations and connnectors"
+            />
+          </Segment>
 
+          <Segment>
+            <Header size="small">
+              <FormattedMessage
+                id="Visualizations status"
+                defaultmessage="Visualizations status"
+              />
+            </Header>
+          </Segment>
 
-        </Segment>
+          <Segment>
+            <Table cell>
+              <Table.Row>
+                <Table.HeaderCell width="1">
+                  <FormattedMessage id="Name" defaultMessage="Name" />
+                </Table.HeaderCell>
+                <Table.HeaderCell width="10">
+                  <FormattedMessage id="Ussage" defaultMessage="Ussage" />
+                </Table.HeaderCell>
+              </Table.Row>
 
-        <Segment>
-          <Table cell>
+              <Table.Body>
+                {matrixConnector.get.loading && (
+                  <Table.Row>
+                    <Table.Cell colSpan="4">
+                      <Loader active inline="centered" />
+                    </Table.Cell>
+                  </Table.Row>
+                )}
 
-            <Table.Row>
-              <Table.HeaderCell width="1">
-                <FormattedMessage id="Name" defaultMessage="Name" />
-              </Table.HeaderCell>
-              <Table.HeaderCell width="10">
-                <FormattedMessage id="Ussage" defaultMessage="Ussage" />
-              </Table.HeaderCell>
-            </Table.Row>
+                {Object.keys(matrixConnector.items).map((item, index) => (
+                  <Table.Row>
+                    <Table.Cell>
+                      <strong>{item}</strong>
+                    </Table.Cell>
 
-            <Table.Body>
-              {matrixConnector.get.loading && (
-                <Table.Row>
-                  <Table.Cell colSpan="4">
-                    <Loader active inline="centered" />
-                  </Table.Cell>
-                </Table.Row>
-              )}
-
-              {Object.keys(matrixConnector.items).map((item, index) => (
-                <Table.Row>
-                  <Table.Cell>
-                    <strong>{item}</strong> 
-                  </Table.Cell>
-
-                  <Table.Cell>
-                    {matrixConnector.items[item].map((obj, i) => (
-                      <>
-                        <div>
-                          <span>
-                            <Circle color={config.settings.workflowMapping[obj.review_state].color} size="15px" />
-                          </span>
-                          {messages[item[index.id]]
-                            ? intl.formatMessage(messages[obj.review_state])
-                            : obj['review_title'] ||
-                              obj['review_state'] ||
-                              intl.formatMessage(messages.no_workflow_state)}
-                          <span>{' '}</span>
-                          <a target="_blank" rel="noopener noreferrer" href={obj.path}>
-                            {obj.path} 
-                          </a>
-                        </div>
-                      </>
-                    ))}
-                  </Table.Cell>
-                </Table.Row>
-              ))}
-            </Table.Body>
-
-          </Table>
-        </Segment>
-      </Segment.Group>
-
-    </article>
-  </Container> 
+                    <Table.Cell>
+                      {matrixConnector.items[item].map((obj, i) => (
+                        <>
+                          <div>
+                            <span>
+                              <Circle
+                                color={
+                                  config.settings.workflowMapping[
+                                    obj.review_state
+                                  ].color
+                                }
+                                size="15px"
+                              />
+                            </span>
+                            {messages[item[index.id]]
+                              ? intl.formatMessage(messages[obj.review_state])
+                              : obj['review_title'] ||
+                                obj['review_state'] ||
+                                intl.formatMessage(messages.no_workflow_state)}
+                            <span> </span>
+                            <a
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              href={obj.path}
+                            >
+                              {obj.path}
+                            </a>
+                          </div>
+                        </>
+                      ))}
+                    </Table.Cell>
+                  </Table.Row>
+                ))}
+              </Table.Body>
+            </Table>
+          </Segment>
+        </Segment.Group>
+      </article>
+    </Container>
+  );
 }
 
 export default compose(
