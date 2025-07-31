@@ -91,13 +91,7 @@ function VisualizationStatus(props) {
       batchSize: itemsPerPage === 'All' ? 999999999999 : itemsPerPage,
     };
     dispatch(getVisualizationUssage(getBaseUrl(props.pathname), options));
-  }, [
-      activePage,
-      dispatch,
-      filterQuery,
-      itemsPerPage,
-      props.pathname,
-    ]);
+  }, [activePage, dispatch, filterQuery, itemsPerPage, props.pathname]);
 
   // Calculate page count from results
   const pages = useMemo(() => {
@@ -178,8 +172,8 @@ function VisualizationStatus(props) {
                               <Circle
                                 color={
                                   config.settings.workflowMapping[
-                                  obj.review_state
-                                ].color
+                                    obj.review_state
+                                  ].color
                                 }
                                 size="15px"
                               />
@@ -214,7 +208,6 @@ function VisualizationStatus(props) {
                 marginBottom: '20px',
               }}
             >
-
               {pages && (
                 <Pagination
                   boundaryRange={0}
@@ -256,9 +249,7 @@ function VisualizationStatus(props) {
                   </Menu.Item>
                 ))}
               </Menu.Menu>
-
             </div>
-
           </Segment>
         </Segment.Group>
       </article>

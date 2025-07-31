@@ -78,7 +78,9 @@ const itemsPerPageChoices = [10, 25, 50, 'All'];
 function VisualizationRelationships(props) {
   const intl = useIntl();
   const dispatch = useDispatch();
-  const visualizations = useSelector((state) => state.visualizationRelationships);
+  const visualizations = useSelector(
+    (state) => state.visualizationRelationships,
+  );
   const [filterQuery, setFilterQuery] = useState('');
   const [activePage, setActivePage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -89,14 +91,10 @@ function VisualizationRelationships(props) {
       batchStart: (activePage - 1) * itemsPerPage,
       batchSize: itemsPerPage === 'All' ? 999999999999 : itemsPerPage,
     };
-    dispatch(getVisualizationRelationships(getBaseUrl(props.pathname), options));
-  }, [
-      activePage,
-      dispatch,
-      filterQuery,
-      itemsPerPage,
-      props.pathname,
-    ]);
+    dispatch(
+      getVisualizationRelationships(getBaseUrl(props.pathname), options),
+    );
+  }, [activePage, dispatch, filterQuery, itemsPerPage, props.pathname]);
 
   // Calculate page count from results
   const pages = useMemo(() => {
@@ -214,7 +212,6 @@ function VisualizationRelationships(props) {
                 marginBottom: '20px',
               }}
             >
-
               {pages && (
                 <Pagination
                   boundaryRange={0}
@@ -256,7 +253,6 @@ function VisualizationRelationships(props) {
                   </Menu.Item>
                 ))}
               </Menu.Menu>
-
             </div>
           </Segment>
         </Segment.Group>
@@ -276,4 +272,3 @@ export default compose(
     { getVisualizationRelationships, getContent },
   ),
 )(VisualizationRelationships);
-
