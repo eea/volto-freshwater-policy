@@ -74,7 +74,9 @@ const messages = defineMessages({
 
 function VisualizationRelationships(props) {
   const intl = useIntl();
-  const visualizations = useSelector((state) => state.visualizationRelationships);
+  const visualizations = useSelector(
+    (state) => state.visualizationRelationships,
+  );
 
   useEffect(() => {
     props.getVisualizationRelationships(getBaseUrl(props.pathname), {
@@ -97,7 +99,7 @@ function VisualizationRelationships(props) {
               defaultmessage="Visualizations status and ussage"
             />
           </Segment>
-         */} 
+         */}
           <Segment className="primary">
             <Header size="small">
               <FormattedMessage
@@ -137,28 +139,34 @@ function VisualizationRelationships(props) {
                     </Table.Cell>
                     <Table.Cell>
                       <strong>
-                        {
-                          item.connector ? <a
+                        {item.connector ? (
+                          <a
                             target="_blank"
                             rel="noopener noreferrer"
                             href={item.connector.path}
-                          >{item.connector.title}</a>
-                            : '-'
-                        }
+                          >
+                            {item.connector.title}
+                          </a>
+                        ) : (
+                          '-'
+                        )}
                       </strong>
                     </Table.Cell>
                     <Table.Cell>
                       <strong>
-                        {
-                          item.file ? <a
+                        {item.file ? (
+                          <a
                             target="_blank"
                             rel="noopener noreferrer"
                             href={item.file.path}
-                          >{item.file.title}</a>
-                            : '-'
-                        }
+                          >
+                            {item.file.title}
+                          </a>
+                        ) : (
+                          '-'
+                        )}
                       </strong>
-                     </Table.Cell>
+                    </Table.Cell>
                   </Table.Row>
                 ))}
               </Table.Body>
@@ -181,5 +189,3 @@ export default compose(
     { getVisualizationRelationships, getContent },
   ),
 )(VisualizationRelationships);
-
-

@@ -62,4 +62,3 @@ export default function visualizationUssage(state = initialState, action = {}) {
       return state;
   }
 }
-

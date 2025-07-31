@@ -97,7 +97,7 @@ function VisualizationStatus(props) {
               defaultmessage="Visualizations status and ussage"
             />
           </Segment>
-         */} 
+         */}
           <Segment className="primary">
             <Header size="small">
               <FormattedMessage
@@ -186,4 +186,3 @@ export default compose(
     { getVisualizationUssage, getContent },
   ),
 )(VisualizationStatus);
-
