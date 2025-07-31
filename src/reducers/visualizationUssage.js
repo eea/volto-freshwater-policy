@@ -1,4 +1,4 @@
-import { GET_ALL_VISUALIZATIONS } from '@eeacms/volto-freshwater-policy/constants/ActionTypes';
+import { GET_VISUALIZATION_USSAGE } from '@eeacms/volto-freshwater-policy/constants/ActionTypes';
 
 const initialState = {
   get: {
@@ -20,16 +20,16 @@ function getRequestKey(actionType) {
 }
 
 /**
- * Matrix Connector reducer.
+ * Visualizations ussage reducer.
  * @function aliases
  * @param {Object} state Current state.
  * @param {Object} action Action to be handled.
  * @returns {Object} New state.
  */
 
-export default function matrixConnector(state = initialState, action = {}) {
+export default function visualizationUssage(state = initialState, action = {}) {
   switch (action.type) {
-    case `${GET_ALL_VISUALIZATIONS}_PENDING`:
+    case `${GET_VISUALIZATION_USSAGE}_PENDING`:
       return {
         ...state,
         [getRequestKey(action.type)]: {
@@ -38,7 +38,7 @@ export default function matrixConnector(state = initialState, action = {}) {
           error: null,
         },
       };
-    case `${GET_ALL_VISUALIZATIONS}_SUCCESS`:
+    case `${GET_VISUALIZATION_USSAGE}_SUCCESS`:
       return {
         ...state,
         items: action.result?.data,
@@ -49,7 +49,7 @@ export default function matrixConnector(state = initialState, action = {}) {
           error: null,
         },
       };
-    case `${GET_ALL_VISUALIZATIONS}_FAIL`:
+    case `${GET_VISUALIZATION_USSAGE}_FAIL`:
       return {
         ...state,
         [getRequestKey(action.type)]: {
@@ -62,3 +62,4 @@ export default function matrixConnector(state = initialState, action = {}) {
       return state;
   }
 }
+

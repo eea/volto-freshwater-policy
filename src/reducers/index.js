@@ -1,3 +1,4 @@
 export boards from './boards';
 export basket from './basket';
-export matrixConnector from './matrixConnector.js';
+export visualizationUssage from './visualizationUssage'
+export visualizationRelationships from './visualizationRelationships'

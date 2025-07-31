@@ -37,7 +37,7 @@ import Toolbar from '@plone/volto/components/manage/Toolbar/Toolbar';
 import Toast from '@plone/volto/componenks/manage/Toast/Toast';
 
 import backSVG from '@plone/volto/icons/back.svg';
-import { getVisualizations } from '@eeacms/volto-freshwater-policy/actions/matrixConnector';
+import { getVisualizationRelationships } from '@eeacms/volto-freshwater-policy/actions/visualizationRelationships';
 import Circle from '@plone/volto/components/manage/Contents/circle';
 import config from '@plone/volto/registry';
 
@@ -72,12 +72,12 @@ const messages = defineMessages({
   },
 });
 
-function MatrixConnector(props) {
+function VisualizationRelationships(props) {
   const intl = useIntl();
-  const matrixConnector = useSelector((state) => state.matrixConnector);
+  const visualizations = useSelector((state) => state.visualizationRelationships);
 
   useEffect(() => {
-    props.getVisualizations(getBaseUrl(props.pathname), {
+    props.getVisualizationRelationships(getBaseUrl(props.pathname), {
       query: '',
       manual: '',
       datetime: '',
@@ -90,13 +90,6 @@ function MatrixConnector(props) {
     <Container>
       <article id="content">
         <Segment.Group raised>
-          <Segment classname="primary">
-            <FormattedMessage
-              id="matrix connector"
-              defaultmessage="matrix connector"
-              values={{ title: <q>matrix connector</q> }}
-            />
-          </Segment>
           {/*
           <Segment secondary>
             <FormattedMessage
@@ -105,11 +98,11 @@ function MatrixConnector(props) {
             />
           </Segment>
          */} 
-          <Segment>
+          <Segment className="primary">
             <Header size="small">
               <FormattedMessage
-                id="Visualizations status"
-                defaultmessage="Visualizations status"
+                id="Visualizations relationship with data connectors"
+                defaultmessage="Visualizations relationship with data connectors"
               />
             </Header>
           </Segment>
@@ -117,16 +110,19 @@ function MatrixConnector(props) {
           <Segment>
             <Table cell>
               <Table.Row>
-                <Table.HeaderCell width="1">
+                <Table.HeaderCell>
                   <FormattedMessage id="Name" defaultMessage="Name" />
                 </Table.HeaderCell>
-                <Table.HeaderCell width="10">
-                  <FormattedMessage id="Ussage" defaultMessage="Ussage" />
+                <Table.HeaderCell>
+                  <FormattedMessage id="Connector" defaultMessage="Connector" />
+                </Table.HeaderCell>
+                <Table.HeaderCell>
+                  <FormattedMessage id="Files" defaultMessage="Files" />
                 </Table.HeaderCell>
               </Table.Row>
 
               <Table.Body>
-                {matrixConnector.get.loading && (
+                {visualizations.get.loading && (
                   <Table.Row>
                     <Table.Cell colSpan="4">
                       <Loader active inline="centered" />
@@ -134,43 +130,35 @@ function MatrixConnector(props) {
                   </Table.Row>
                 )}
 
-                {Object.keys(matrixConnector.items).map((item, index) => (
+                {visualizations.items.map((item, index) => (
                   <Table.Row>
                     <Table.Cell>
-                      <strong>{item}</strong>
+                      <strong>{item.title}</strong>
                     </Table.Cell>
-
                     <Table.Cell>
-                      {matrixConnector.items[item].map((obj, i) => (
-                        <>
-                          <div>
-                            <span>
-                              <Circle
-                                color={
-                                  config.settings.workflowMapping[
-                                    obj.review_state
-                                  ].color
-                                }
-                                size="15px"
-                              />
-                            </span>
-                            {messages[item[index.id]]
-                              ? intl.formatMessage(messages[obj.review_state])
-                              : obj['review_title'] ||
-                                obj['review_state'] ||
-                                intl.formatMessage(messages.no_workflow_state)}
-                            <span> </span>
-                            <a
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              href={obj.path}
-                            >
-                              {obj.path}
-                            </a>
-                          </div>
-                        </>
-                      ))}
+                      <strong>
+                        {
+                          item.connector ? <a
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href={item.connector.path}
+                          >{item.connector.title}</a>
+                            : '-'
+                        }
+                      </strong>
                     </Table.Cell>
+                    <Table.Cell>
+                      <strong>
+                        {
+                          item.file ? <a
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href={item.file.path}
+                          >{item.file.title}</a>
+                            : '-'
+                        }
+                      </strong>
+                     </Table.Cell>
                   </Table.Row>
                 ))}
               </Table.Body>
@@ -186,10 +174,12 @@ export default compose(
   injectIntl,
   connect(
     (state, props) => ({
-      data: state.matrixConnector,
+      data: state.visualizationRelationships,
       pathname: props.location.pathname,
       title: state.content.data?.title || '',
     }),
-    { getVisualizations, getContent },
+    { getVisualizationRelationships, getContent },
   ),
-)(MatrixConnector);
+)(VisualizationRelationships);
+
+

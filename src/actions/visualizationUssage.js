@@ -1,6 +1,7 @@
-import { GET_ALL_VISUALIZATIONS } from '@eeacms/volto-freshwater-policy/constants/ActionTypes';
+import { GET_VISUALIZATION_USSAGE } from '@eeacms/volto-freshwater-policy/constants/ActionTypes';
 
-export function getVisualizations(url, options = {}) {
+
+export function getVisualizationUssage(url, options = {}) {
   const { query, batchSize, batchStart, ...rest } = options;
   const params = new URLSearchParams({
     q: query ?? '',
@@ -9,10 +10,11 @@ export function getVisualizations(url, options = {}) {
     ...rest,
   });
   return {
-    type: GET_ALL_VISUALIZATIONS,
+    type: GET_VISUALIZATION_USSAGE,
     request: {
       op: 'get',
-      path: `${url}/@@visualizations-status?${params.toString()}`,
+      path: `${url}/@@visualization-ussage?${params.toString()}`,
     },
   };
 }
+
