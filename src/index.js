@@ -8,7 +8,12 @@ import {
   SourceView,
 } from './components';
 
-import { basket, boards, visualizationUssage, visualizationRelationships } from './reducers';
+import {
+  basket,
+  boards,
+  visualizationUssage,
+  visualizationRelationships,
+} from './reducers';
 import CopyrightWidget from './components/Widgets/CopyrightWidget';
 import RightsWidget from './components/Widgets/RightsWidget';
 import {
@@ -40,8 +45,8 @@ import freshwaterWhiteLogo from '@eeacms/volto-freshwater-policy/../theme/assets
 import './slate-styles.less';
 
 import { AccordionEdit, AccordionView } from './components';
-import VisualizationUssage from './components/controlpanel/VisualizationUssage'
-import VisualizationRelationships from './components/controlpanel/VisualizationRelationships'
+import VisualizationUssage from './components/controlpanel/VisualizationUssage';
+import VisualizationRelationships from './components/controlpanel/VisualizationRelationships';
 
 const messages = defineMessages({
   edit: {
@@ -350,7 +355,7 @@ const applyConfig = (config) => {
       '@id': '/visualization-ussage',
       group: 'addons',
       title: 'Visualization ussage',
-    }, 
+    },
     {
       '@id': '/visualization-relationships',
       group: 'addons',

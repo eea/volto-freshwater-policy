@@ -27,7 +27,10 @@ function getRequestKey(actionType) {
  * @returns {Object} New state.
  */
 
-export default function visualizationRelationships(state = initialState, action = {}) {
+export default function visualizationRelationships(
+  state = initialState,
+  action = {},
+) {
   switch (action.type) {
     case `${GET_VISUALIZATION_RELATIONSHIPS}_PENDING`:
       return {
@@ -62,5 +65,3 @@ export default function visualizationRelationships(state = initialState, action 
       return state;
   }
 }
-
-

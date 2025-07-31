@@ -1,6 +1,5 @@
 import { GET_VISUALIZATION_RELATIONSHIPS } from '@eeacms/volto-freshwater-policy/constants/ActionTypes';
 
-
 export function getVisualizationRelationships(url, options = {}) {
   const { query, batchSize, batchStart, ...rest } = options;
   const params = new URLSearchParams({
@@ -17,4 +16,3 @@ export function getVisualizationRelationships(url, options = {}) {
     },
   };
 }
-
