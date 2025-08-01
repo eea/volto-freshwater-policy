@@ -122,8 +122,8 @@ function VisualizationRelationships(props) {
             <Segment className="primary">
               <Header size="small">
                 <FormattedMessage
-                  id="Visualizations relationship with data connectors"
-                  defaultmessage="Visualizations relationship with data connectors"
+                  id="Visualizations relationship with connectors"
+                  defaultmessage="Visualizations relationship with connectors"
                   title={{ title: <q>{title}</q> }}
                 />
               </Header>
