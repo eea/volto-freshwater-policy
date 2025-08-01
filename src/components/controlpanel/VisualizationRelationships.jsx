@@ -24,8 +24,6 @@ import Helmet from '@plone/volto/helpers/Helmet/Helmet';
 import { getBaseUrl } from '@plone/volto/helpers/Url/Url';
 
 import { getVisualizationRelationships } from '@eeacms/volto-freshwater-policy/actions/visualizationRelationships';
-import Circle from '@plone/volto/components/manage/Contents/circle';
-import config from '@plone/volto/registry';
 import map from 'lodash/map';
 
 const messages = defineMessages({
@@ -72,20 +70,18 @@ function VisualizationRelationships(props) {
   const visualizations = useSelector(
     (state) => state.visualizationRelationships,
   );
-  const [filterQuery, setFilterQuery] = useState('');
   const [activePage, setActivePage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
   const updateResults = useCallback(() => {
     const options = {
-      query: filterQuery,
       batchStart: (activePage - 1) * itemsPerPage,
       batchSize: itemsPerPage === 'All' ? 999999999999 : itemsPerPage,
     };
     dispatch(
       getVisualizationRelationships(getBaseUrl(props.pathname), options),
     );
-  }, [activePage, dispatch, filterQuery, itemsPerPage, props.pathname]);
+  }, [activePage, dispatch, itemsPerPage, props.pathname]);
 
   // Calculate page count from results
   const pages = useMemo(() => {

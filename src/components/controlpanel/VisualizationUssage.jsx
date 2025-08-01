@@ -71,18 +71,16 @@ function VisualizationUssage(props) {
   const visualizations = useSelector((state) => state.visualizationUssage);
   const dispatch = useDispatch();
 
-  const [filterQuery, setFilterQuery] = useState('');
   const [activePage, setActivePage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
 
   const updateResults = useCallback(() => {
     const options = {
-      query: filterQuery,
       batchStart: (activePage - 1) * itemsPerPage,
       batchSize: itemsPerPage === 'All' ? 999999999999 : itemsPerPage,
     };
     dispatch(getVisualizationUssage(getBaseUrl(props.pathname), options));
-  }, [activePage, dispatch, filterQuery, itemsPerPage, props.pathname]);
+  }, [activePage, dispatch, itemsPerPage, props.pathname]);
 
   // Calculate page count from results
   const pages = useMemo(() => {
