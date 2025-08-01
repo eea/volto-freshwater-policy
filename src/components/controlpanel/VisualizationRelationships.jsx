@@ -57,11 +57,16 @@ const messages = defineMessages({
     id: 'Not available',
     defaultMessage: 'None',
   },
+  visualizationRelationships: {
+    id: 'Visualization Relationships',
+    defaultMessage: 'Visualization Relationships',
+  },
 });
 
 const itemsPerPageChoices = [10, 25, 50, 'All'];
 
 function VisualizationRelationships(props) {
+  const title = props;
   const intl = useIntl();
   const dispatch = useDispatch();
   const visualizations = useSelector(
@@ -104,146 +109,150 @@ function VisualizationRelationships(props) {
       batchSize: '',
     });
     props.getContent(getBaseUrl(props.pathname));
+    // eslint-disable-next-line
   }, []);
 
   return (
-    <Container>
-      <article id="content">
-        <Segment.Group raised>
-          {/*
-          <Segment secondary>
-            <FormattedMessage
-              id="Visualizations status and ussage"
-              defaultmessage="Visualizations status and ussage"
-            />
-          </Segment>
-         */}
-          <Segment className="primary">
-            <Header size="small">
-              <FormattedMessage
-                id="Visualizations relationship with data connectors"
-                defaultmessage="Visualizations relationship with data connectors"
-              />
-            </Header>
-          </Segment>
+    <div id="page-visualization-relationships">
+      <Helmet title={intl.formatMessage(messages.visualizationRelationships)} />
 
-          <Segment>
-            <Table cell>
-              <Table.Row>
-                <Table.HeaderCell>
-                  <FormattedMessage id="Name" defaultMessage="Name" />
-                </Table.HeaderCell>
-                <Table.HeaderCell>
-                  <FormattedMessage id="Connector" defaultMessage="Connector" />
-                </Table.HeaderCell>
-                <Table.HeaderCell>
-                  <FormattedMessage id="Files" defaultMessage="Files" />
-                </Table.HeaderCell>
-              </Table.Row>
+      <Container>
+        <article id="content">
+          <Segment.Group raised>
+            <Segment className="primary">
+              <Header size="small">
+                <FormattedMessage
+                  id="Visualizations relationship with data connectors"
+                  defaultmessage="Visualizations relationship with data connectors"
+                  title={{ title: <q>{title}</q> }}
+                />
+              </Header>
+            </Segment>
 
-              <Table.Body>
-                {visualizations.get.loading && (
-                  <Table.Row>
-                    <Table.Cell colSpan="4">
-                      <Loader active inline="centered" />
-                    </Table.Cell>
-                  </Table.Row>
+            <Segment>
+              <Table cell>
+                <Table.Row>
+                  <Table.HeaderCell>
+                    <FormattedMessage
+                      id="Visualization"
+                      defaultMessage="Visualization"
+                    />
+                  </Table.HeaderCell>
+                  <Table.HeaderCell>
+                    <FormattedMessage
+                      id="Connector"
+                      defaultMessage="Connector"
+                    />
+                  </Table.HeaderCell>
+                  <Table.HeaderCell>
+                    <FormattedMessage id="File" defaultMessage="File" />
+                  </Table.HeaderCell>
+                </Table.Row>
+
+                <Table.Body>
+                  {visualizations.get.loading && (
+                    <Table.Row>
+                      <Table.Cell colSpan="4">
+                        <Loader active inline="centered" />
+                      </Table.Cell>
+                    </Table.Row>
+                  )}
+
+                  {visualizations.items.map((item, index) => (
+                    <Table.Row>
+                      <Table.Cell>
+                        <strong>{item.title}</strong>
+                      </Table.Cell>
+                      <Table.Cell>
+                        <strong>
+                          {item.connector ? (
+                            <a
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              href={item.connector.path}
+                            >
+                              {item.connector.title}
+                            </a>
+                          ) : (
+                            '-'
+                          )}
+                        </strong>
+                      </Table.Cell>
+                      <Table.Cell>
+                        <strong>
+                          {item.file ? (
+                            <a
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              href={item.file.path}
+                            >
+                              {item.file.title}
+                            </a>
+                          ) : (
+                            '-'
+                          )}
+                        </strong>
+                      </Table.Cell>
+                    </Table.Row>
+                  ))}
+                </Table.Body>
+              </Table>
+
+              <div
+                style={{
+                  display: 'flex',
+                  flexWrap: 'wrap',
+                  alignItems: 'center',
+                  marginBottom: '20px',
+                }}
+              >
+                {pages && (
+                  <Pagination
+                    boundaryRange={0}
+                    activePage={activePage}
+                    ellipsisItem={null}
+                    firstItem={null}
+                    lastItem={null}
+                    siblingRange={1}
+                    totalPages={pages}
+                    onPageChange={(e, { activePage }) =>
+                      setActivePage(activePage)
+                    }
+                  />
                 )}
 
-                {visualizations.items.map((item, index) => (
-                  <Table.Row>
-                    <Table.Cell>
-                      <strong>{item.title}</strong>
-                    </Table.Cell>
-                    <Table.Cell>
-                      <strong>
-                        {item.connector ? (
-                          <a
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            href={item.connector.path}
-                          >
-                            {item.connector.title}
-                          </a>
-                        ) : (
-                          '-'
-                        )}
-                      </strong>
-                    </Table.Cell>
-                    <Table.Cell>
-                      <strong>
-                        {item.file ? (
-                          <a
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            href={item.file.path}
-                          >
-                            {item.file.title}
-                          </a>
-                        ) : (
-                          '-'
-                        )}
-                      </strong>
-                    </Table.Cell>
-                  </Table.Row>
-                ))}
-              </Table.Body>
-            </Table>
-
-            <div
-              style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                alignItems: 'center',
-                marginBottom: '20px',
-              }}
-            >
-              {pages && (
-                <Pagination
-                  boundaryRange={0}
-                  activePage={activePage}
-                  ellipsisItem={null}
-                  firstItem={null}
-                  lastItem={null}
-                  siblingRange={1}
-                  totalPages={pages}
-                  onPageChange={(e, { activePage }) =>
-                    setActivePage(activePage)
-                  }
-                />
-              )}
-
-              <Menu.Menu
-                position="right"
-                style={{ display: 'flex', marginLeft: 'auto' }}
-              >
-                <Menu.Item style={{ color: 'grey' }}>
-                  <FormattedMessage id="Show" defaultMessage="Show" />:
-                </Menu.Item>
-                {map(itemsPerPageChoices, (size) => (
-                  <Menu.Item
-                    style={{
-                      padding: '0 0.4em',
-                      margin: '0em 0.357em',
-                      cursor: 'pointer',
-                    }}
-                    key={size}
-                    value={size}
-                    active={size === itemsPerPage}
-                    onClick={(e, { value }) => {
-                      setItemsPerPage(value);
-                      setActivePage(1);
-                    }}
-                  >
-                    {size}
+                <Menu.Menu
+                  position="right"
+                  style={{ display: 'flex', marginLeft: 'auto' }}
+                >
+                  <Menu.Item style={{ color: 'grey' }}>
+                    <FormattedMessage id="Show" defaultMessage="Show" />:
                   </Menu.Item>
-                ))}
-              </Menu.Menu>
-            </div>
-          </Segment>
-        </Segment.Group>
-      </article>
-    </Container>
+                  {map(itemsPerPageChoices, (size) => (
+                    <Menu.Item
+                      style={{
+                        padding: '0 0.4em',
+                        margin: '0em 0.357em',
+                        cursor: 'pointer',
+                      }}
+                      key={size}
+                      value={size}
+                      active={size === itemsPerPage}
+                      onClick={(e, { value }) => {
+                        setItemsPerPage(value);
+                        setActivePage(1);
+                      }}
+                    >
+                      {size}
+                    </Menu.Item>
+                  ))}
+                </Menu.Menu>
+              </div>
+            </Segment>
+          </Segment.Group>
+        </article>
+      </Container>
+    </div>
   );
 }
 
