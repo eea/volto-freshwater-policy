@@ -353,12 +353,12 @@ const applyConfig = (config) => {
     ...config.settings.controlpanels,
     {
       '@id': '/visualization-ussage',
-      group: 'addons',
+      group: 'Visualizations',
       title: 'Visualization ussage',
     },
     {
       '@id': '/visualization-relationships',
-      group: 'addons',
+      group: 'Visualizations',
       title: 'Visualization relationships',
     },
   ];

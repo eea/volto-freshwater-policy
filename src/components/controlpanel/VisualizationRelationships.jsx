@@ -1,23 +1,15 @@
 import React, { useEffect, useState, useCallback, useMemo } from 'react';
 import {
-  Button,
-  Checkbox,
   Container,
-  Form,
   Header,
-  Input,
   Loader,
   Menu,
   Pagination,
-  Radio,
   Segment,
   Table,
 } from 'semantic-ui-react';
 import { connect, useSelector, useDispatch } from 'react-redux';
 import { compose } from 'redux';
-import { Link } from 'react-router-dom';
-import { createPortal } from 'react-dom';
-import { toast } from 'react-toastify';
 
 import {
   FormattedMessage,
@@ -27,16 +19,10 @@ import {
 } from 'react-intl';
 
 import { getContent } from '@plone/volto/actions/content/content';
-import { workflowMapping } from '@plone/volto/config/Workflows.js ';
 
 import Helmet from '@plone/volto/helpers/Helmet/Helmet';
 import { getBaseUrl } from '@plone/volto/helpers/Url/Url';
 
-import Icon from '@plone/volto/components/theme/Icon/Icon';
-import Toolbar from '@plone/volto/components/manage/Toolbar/Toolbar';
-import Toast from '@plone/volto/componenks/manage/Toast/Toast';
-
-import backSVG from '@plone/volto/icons/back.svg';
 import { getVisualizationRelationships } from '@eeacms/volto-freshwater-policy/actions/visualizationRelationships';
 import Circle from '@plone/volto/components/manage/Contents/circle';
 import config from '@plone/volto/registry';
@@ -78,7 +64,9 @@ const itemsPerPageChoices = [10, 25, 50, 'All'];
 function VisualizationRelationships(props) {
   const intl = useIntl();
   const dispatch = useDispatch();
-  const visualizations = useSelector((state) => state.visualizationRelationships);
+  const visualizations = useSelector(
+    (state) => state.visualizationRelationships,
+  );
   const [filterQuery, setFilterQuery] = useState('');
   const [activePage, setActivePage] = useState(1);
   const [itemsPerPage, setItemsPerPage] = useState(10);
@@ -89,14 +77,10 @@ function VisualizationRelationships(props) {
       batchStart: (activePage - 1) * itemsPerPage,
       batchSize: itemsPerPage === 'All' ? 999999999999 : itemsPerPage,
     };
-    dispatch(getVisualizationRelationships(getBaseUrl(props.pathname), options));
-  }, [
-      activePage,
-      dispatch,
-      filterQuery,
-      itemsPerPage,
-      props.pathname,
-    ]);
+    dispatch(
+      getVisualizationRelationships(getBaseUrl(props.pathname), options),
+    );
+  }, [activePage, dispatch, filterQuery, itemsPerPage, props.pathname]);
 
   // Calculate page count from results
   const pages = useMemo(() => {
@@ -214,7 +198,6 @@ function VisualizationRelationships(props) {
                 marginBottom: '20px',
               }}
             >
-
               {pages && (
                 <Pagination
                   boundaryRange={0}
@@ -256,7 +239,6 @@ function VisualizationRelationships(props) {
                   </Menu.Item>
                 ))}
               </Menu.Menu>
-
             </div>
           </Segment>
         </Segment.Group>
@@ -276,4 +258,3 @@ export default compose(
     { getVisualizationRelationships, getContent },
   ),
 )(VisualizationRelationships);
-
