@@ -1,3 +1,5 @@
+@import '../extras/tocnav';
+
 .ui.button.primary {
   background-color: @primaryColor !important;
 }
