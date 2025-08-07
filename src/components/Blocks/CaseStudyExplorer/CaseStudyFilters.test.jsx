@@ -10,6 +10,24 @@ import {
   CaseStudyFilter,
 } from './CaseStudyFilters';
 
+jest.mock('@eeacms/volto-openlayers-map', () => ({
+  openlayers: {
+    proj: {
+      transform: jest.fn().mockReturnValue([0, 0]),
+    },
+  },
+  withOpenLayers: (Component) => (props) => (
+    <Component
+      {...props}
+      ol={{
+        proj: {
+          transform: jest.fn().mockReturnValue([0, 0]),
+        },
+      }}
+    />
+  ),
+}));
+
 describe('CaseStudyFilters', () => {
   const mockSetActiveFilters = jest.fn();
   window.URL.createObjectURL = function () {};

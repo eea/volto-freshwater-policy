@@ -1,4 +1,6 @@
 import React from 'react';
+import { withOpenLayers } from '@eeacms/volto-openlayers-map';
+
 import {
   centerAndResetMapZoom,
   scrollToElement,
@@ -28,8 +30,8 @@ const showPageNr = (pageNr, currentPage, numberOfPages) => {
   return false;
 };
 
-export default function CaseStudyList(props) {
-  const { selectedCase, onSelectedCase, pointsSource, map, searchInput } =
+function CaseStudyList(props) {
+  const { selectedCase, onSelectedCase, pointsSource, map, searchInput, ol } =
     props;
   const reSearch = new RegExp(`\\b(${searchInput})\\b`, 'gi');
   const [currentPage, setCurrentPage] = React.useState(1);
@@ -128,7 +130,7 @@ export default function CaseStudyList(props) {
                         scrollToElement('search-input');
                         // reset map zoom
                         onSelectedCase(null);
-                        centerAndResetMapZoom(map);
+                        centerAndResetMapZoom({ map, ol });
                         map.getInteractions().array_[9].getFeatures().clear();
                       }}
                     >
@@ -211,7 +213,12 @@ export default function CaseStudyList(props) {
                             // scroll to the map
                             scrollToElement('ol-map-container');
 
-                            zoomMapToFeatures(map, [item], 5000);
+                            zoomMapToFeatures({
+                              map,
+                              features: [item],
+                              threshold: 5000,
+                              ol,
+                            });
                             onSelectedCase(item.values_);
 
                             setTimeout(() => {
@@ -312,3 +319,5 @@ export default function CaseStudyList(props) {
     </>
   );
 }
+
+export default withOpenLayers(CaseStudyList);

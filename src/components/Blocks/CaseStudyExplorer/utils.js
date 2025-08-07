@@ -1,6 +1,4 @@
-import { openlayers as ol } from '@eeacms/volto-openlayers-map';
-
-export function centerAndResetMapZoom(map) {
+export function centerAndResetMapZoom({ map, ol }) {
   map.getView().animate({
     zoom: 4,
     duration: 1000,
@@ -15,21 +13,21 @@ export function scrollToElement(elementId) {
   });
 }
 
-export function getExtentOfFeatures(features) {
+export function getExtentOfFeatures({ features, ol }) {
   const points = features.map((f) => f.getGeometry().flatCoordinates);
   const point = new ol.geom.MultiPoint(points);
   return point.getExtent();
 }
 
-export function zoomMapToFeatures(map, features, threshold = 500) {
-  const extent = getExtentOfFeatures(features);
+export function zoomMapToFeatures({ map, features, threshold = 500, ol }) {
+  const extent = getExtentOfFeatures({ features, ol });
   let extentBuffer = (extent[3] - extent[1] + extent[2] - extent[0]) / 4;
   extentBuffer = extentBuffer < threshold ? threshold : extentBuffer;
   const paddedExtent = ol.extent.buffer(extent, extentBuffer);
   map.getView().fit(paddedExtent, { ...map.getSize(), duration: 1000 });
 }
 
-export function getFeatures(cases) {
+export function getFeatures({ cases, ol }) {
   const Feature = ol.ol.Feature;
 
   return cases.map((c, index) => {
