@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import CaseStudyList from './CaseStudyListing';
 import {
@@ -128,7 +128,7 @@ describe('CaseStudyList', () => {
   });
 
   it('renders features and highlights search term', () => {
-    const { getByText, getByHTML } = render(
+    const { getByText } = render(
       <CaseStudyList
         selectedCase={null}
         onSelectedCase={jest.fn()}
