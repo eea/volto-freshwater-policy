@@ -135,12 +135,17 @@ function CaseStudyList(props) {
                         map.getInteractions().array_[9].getFeatures().clear();
                       }}
                     >
-                      <span className="result-info-title" data-testid="reset-map">Reset map</span>
+                      <span
+                        className="result-info-title"
+                        data-testid="reset-map"
+                      >
+                        Reset map
+                      </span>
                       <i className="icon ri-map-2-line"></i>
                     </div>
                   </div>
                 </div>
-              </div>  
+              </div>
             </div>
           </div>
         ) : (
