@@ -12,15 +12,23 @@ jest.mock('@eeacms/search/lib/hocs', () => ({
   }),
 }));
 
-jest.mock(
-  '@eeacms/search/components/Result/ExternalLink',
-  () =>
-    ({ href, children, title }) => (
-      <a href={href} title={title}>
-        {children}
-      </a>
-    ),
-);
+jest.mock('@eeacms/search/components/Result/ExternalLink', () => {
+  const PropTypes = require('prop-types');
+
+  const mock = ({ href, children, title }) => (
+    <a href={href} title={title}>
+      {children}
+    </a>
+  );
+
+  mock.propTypes = {
+    href: PropTypes.string.isRequired,
+    children: PropTypes.node,
+    title: PropTypes.string,
+  };
+
+  return mock;
+});
 
 jest.mock('@eeacms/search', () => ({
   SegmentedBreadcrumb: ({ href }) => (
