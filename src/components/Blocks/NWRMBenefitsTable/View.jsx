@@ -100,7 +100,7 @@ const NWRMBenefitsTable = (props) => {
   );
   // console.log(sector, benefit, tableSize);
   // console.log(benefitsData);
-  console.log(variation);
+  // console.log(variation);
 
   return (
     <div className={cx('table-container', variation)}>
