@@ -100,7 +100,7 @@ const NWRMBenefitsTable = (props) => {
   );
   // console.log(sector, benefit, tableSize);
   // console.log(benefitsData);
-  // console.log(tableData);
+  console.log(variation);
 
   return (
     <div className={cx('table-container', variation)}>
@@ -109,7 +109,7 @@ const NWRMBenefitsTable = (props) => {
           <tr>
             <th rowSpan={rowSpan[benefit]} className="column-header">
               <div className="legend">
-                {variation === 'circle' ? (
+                {variation === 'circle-table' ? (
                   <div>
                     <div class="circle-container">
                       <span class="circle High"></span>
@@ -229,7 +229,7 @@ const NWRMBenefitsTable = (props) => {
               <td className="row-header">{rowLabel}</td>
               {tableData[i].map(
                 (val, j) =>
-                  variation === 'circle' ? (
+                  variation === 'circle-table' ? (
                     <td>{renderCircles(val)}</td>
                   ) : (
                     <td key={j} className={cx('cell', val)}></td>
