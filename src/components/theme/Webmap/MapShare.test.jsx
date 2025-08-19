@@ -1,5 +1,5 @@
-import MapShare from './MapShare';
 import React from 'react';
+import MapShare from './MapShare';
 import { Provider } from 'react-intl-redux';
 import renderer from 'react-test-renderer';
 import configureStore from 'redux-mock-store';

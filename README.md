@@ -14,7 +14,6 @@
 [![Bugs](https://sonarqube.eea.europa.eu/api/project_badges/measure?project=volto-freshwater-policy-develop&metric=bugs)](https://sonarqube.eea.europa.eu/dashboard?id=volto-freshwater-policy-develop)
 [![Duplicated Lines (%)](https://sonarqube.eea.europa.eu/api/project_badges/measure?project=volto-freshwater-policy-develop&metric=duplicated_lines_density)](https://sonarqube.eea.europa.eu/dashboard?id=volto-freshwater-policy-develop)
 
-
 [Volto](https://github.com/plone/volto) add-on
 
 ## Features
@@ -42,25 +41,25 @@ Go to http://localhost:3000
 
 1. Start Volto frontend
 
-* If you already have a volto project, just update `package.json`:
+- If you already have a volto project, just update `package.json`:
 
-   ```JSON
-   "addons": [
-       "@eeacms/volto-freshwater-policy"
-   ],
+  ```JSON
+  "addons": [
+      "@eeacms/volto-freshwater-policy"
+  ],
 
-   "dependencies": {
-       "@eeacms/volto-freshwater-policy": "*"
-   }
-   ```
+  "dependencies": {
+      "@eeacms/volto-freshwater-policy": "*"
+  }
+  ```
 
-* If not, create one:
+- If not, create one:
 
-   ```
-   npm install -g yo @plone/generator-volto
-   yo @plone/volto my-volto-project --canary --addon @eeacms/volto-freshwater-policy
-   cd my-volto-project
-   ```
+  ```
+  npm install -g yo @plone/generator-volto
+  yo @plone/volto my-volto-project --canary --addon @eeacms/volto-freshwater-policy
+  cd my-volto-project
+  ```
 
 1. Install new add-ons and restart Volto:
 

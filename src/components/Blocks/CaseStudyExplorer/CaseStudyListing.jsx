@@ -81,6 +81,7 @@ function CaseStudyList(props) {
                     rel="noopener noreferrer"
                     href={selectedCase.path}
                     title={selectedCase.title}
+                    datatest-id="selected-case"
                   >
                     {selectedCase.title}
                   </a>
@@ -134,7 +135,12 @@ function CaseStudyList(props) {
                         map.getInteractions().array_[9].getFeatures().clear();
                       }}
                     >
-                      <span className="result-info-title">Reset map</span>
+                      <span
+                        className="result-info-title"
+                        data-testid="reset-map"
+                      >
+                        Reset map
+                      </span>
                       <i className="icon ri-map-2-line"></i>
                     </div>
                   </div>
@@ -183,7 +189,7 @@ function CaseStudyList(props) {
                           {item.values_.nwrms_implemented.map(
                             (measure, index) => {
                               return (
-                                <span>
+                                <span key={index}>
                                   <a
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -281,6 +287,7 @@ function CaseStudyList(props) {
                         onClick={() => {
                           setCurrentPage(pageNr);
                         }}
+                        key={index}
                       >
                         {pageNr}
                       </button>
