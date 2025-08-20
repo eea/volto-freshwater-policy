@@ -24,6 +24,7 @@ import installAppExtras from './components/theme/AppExtras';
 import installSlatePopup from './components/Blocks/SlatePopup';
 import installCaseStudyExplorer from './components/Blocks/CaseStudyExplorer';
 import installSearchEngine from './search';
+import { stripprefixPathTeaser } from './utils';
 
 import { makeInlineElementPlugin } from '@plone/volto-slate/elementEditor';
 import { LINK } from '@plone/volto-slate/constants';
@@ -130,6 +131,9 @@ const applyConfig = (config) => {
       item.GET_CONTENT.splice(item.GET_CONTENT.indexOf('navigation', 1));
     }
   });
+  if (config.blocks.blocksConfig.teaser) {
+    config.blocks.blocksConfig.teaser.dataAdapter = stripprefixPathTeaser;
+  }
 
   config.settings.eea.footerOpts.contacts = [];
   config.settings.eea.footerOpts.social = [];

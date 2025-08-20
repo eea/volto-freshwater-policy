@@ -30,3 +30,37 @@ export const deStringifySearchquery = (searchparamstring) => {
   }
   return params.toString();
 };
+
+export const stripprefixPathTeaser = ({
+  block,
+  data,
+  id,
+  onChangeBlock,
+  value,
+}) => {
+  let dataSaved = {
+    ...data,
+    [id]: value,
+  };
+  if (id === 'href' && !isEmpty(value)) {
+    dataSaved = {
+      ...dataSaved,
+      href: [
+        {
+          ...value[0],
+          '@id': value[0]['@id'].replace(config.settings.prefixPath, ''),
+        },
+      ],
+    };
+  }
+
+  if (id === 'href' && !isEmpty(value) && !data.title && !data.description) {
+    dataSaved = {
+      ...dataSaved,
+      title: value[0].Title,
+      description: value[0].Description,
+      head_title: value[0].head_title,
+    };
+  }
+  onChangeBlock(block, dataSaved);
+};
