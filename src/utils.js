@@ -1,3 +1,6 @@
+import isEmpty from 'lodash/isEmpty';
+import config from '@plone/volto/registry';
+
 export const getPath = (url) =>
   url.startsWith('http') ? new URL(url).pathname : url;
 
