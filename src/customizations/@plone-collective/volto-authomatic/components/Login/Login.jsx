@@ -12,7 +12,6 @@ import {
   Input,
   Segment,
   Grid,
-  Tab,
 } from 'semantic-ui-react';
 import {
   FormattedMessage,
@@ -31,14 +30,15 @@ import { toast } from 'react-toastify';
 import { Toast } from '@plone/volto/components';
 import aheadSVG from '@plone/volto/icons/ahead.svg';
 import clearSVG from '@plone/volto/icons/clear.svg';
+import './Login.less';
 
 // Import authomatic components and actions
 import {
   authomaticRedirect,
   listAuthOptions,
   oidcRedirect,
-} from '../../actions';
-import AuthProviders from '../AuthProviders/AuthProviders';
+} from '@plone-collective/volto-authomatic/actions';
+import AuthProviders from '@plone-collective/volto-authomatic/components/AuthProviders/AuthProviders';
 
 const messages = defineMessages({
   login: {
@@ -82,13 +82,13 @@ const messages = defineMessages({
     id: 'box_forgot_password_option',
     defaultMessage: 'Forgot your password?',
   },
-  externalLogin: {
-    id: 'External Login',
-    defaultMessage: 'External Login',
+  signInWith: {
+    id: 'Sign in with EEA Microsoft Entra ID',
+    defaultMessage: 'Sign in with EEA Microsoft Entra ID',
   },
-  ploneLogin: {
-    id: 'Plone Login',
-    defaultMessage: 'Plone Login',
+  orSignIn: {
+    id: 'Or sign in with external provider:',
+    defaultMessage: 'Or sign in with external provider:',
   },
   loading: {
     id: 'Loading',
@@ -231,45 +231,29 @@ function Login({ intl }) {
     event.preventDefault();
   };
 
-  // Prepare tabs
+  // Prepare providers for external login
   const validProviders = options
     ? options.filter((provider) => provider.id !== 'oidc')
     : [];
 
-  const panes = [
-    // External login tab (only show if providers exist)
-    ...(validProviders && validProviders.length > 0
-      ? [
-          {
-            menuItem: intl.formatMessage(messages.externalLogin),
-            render: () => (
-              <Tab.Pane>
-                <Segment className="form">
-                  {!loading && validProviders && (
-                    <AuthProviders
-                      providers={validProviders}
-                      action="login"
-                      onSelectProvider={onSelectProvider}
-                    />
-                  )}
-                  {(loading || validProviders.length === 0) && (
-                    <div style={{ textAlign: 'center', padding: '2rem' }}>
-                      {intl.formatMessage(messages.loading)}
-                    </div>
-                  )}
-                </Segment>
-              </Tab.Pane>
-            ),
-          },
-        ]
-      : []),
-    // Plone login tab
-    {
-      menuItem: intl.formatMessage(messages.ploneLogin),
-      render: () => (
-        <Tab.Pane>
-          <Form method="post" onSubmit={onLogin}>
-            <Segment className="form">
+  return (
+    <div id="page-login">
+      <Helmet title={intl.formatMessage(messages.Login)} />
+      <Container text>
+        <Segment.Group raised>
+          <Segment className="primary">
+            <FormattedMessage id="Log In" defaultMessage="Login" />
+          </Segment>
+          <Segment secondary>
+            <FormattedMessage
+              id="Sign in to start session"
+              defaultMessage="Sign in to start session"
+            />
+          </Segment>
+
+          {/* Plone Login Form */}
+          <Segment className="form">
+            <Form method="post" onSubmit={onLogin}>
               <Form.Field inline className="help">
                 <Grid>
                   <Grid.Row stretched>
@@ -342,58 +326,67 @@ function Login({ intl }) {
                   </Grid.Row>
                 </Grid>
               </Form.Field>
-            </Segment>
-            <Segment className="actions" clearing>
-              <Button
-                basic
-                primary
-                icon
-                floated="right"
-                type="submit"
-                id="login-form-submit"
-                aria-label={intl.formatMessage(messages.login)}
-                title={intl.formatMessage(messages.login)}
-                loading={ploneLoading}
-              >
-                <Icon className="circled" name={aheadSVG} size="30px" />
-              </Button>
-
-              <Button
-                basic
-                secondary
-                icon
-                floated="right"
-                id="login-form-cancel"
-                as={Link}
-                to="/"
-                aria-label={intl.formatMessage(messages.cancel)}
-                title={intl.formatMessage(messages.cancel)}
-              >
-                <Icon className="circled" name={clearSVG} size="30px" />
-              </Button>
-            </Segment>
-          </Form>
-        </Tab.Pane>
-      ),
-    },
-  ];
-
-  return (
-    <div id="page-login">
-      <Helmet title={intl.formatMessage(messages.Login)} />
-      <Container text>
-        <Segment.Group raised>
-          <Segment className="primary">
-            <FormattedMessage id="Log In" defaultMessage="Login" />
+            </Form>
           </Segment>
-          <Segment secondary>
-            <FormattedMessage
-              id="Sign in to start session"
-              defaultMessage="Sign in to start session"
-            />
+
+          <Segment className="actions" clearing>
+            <Button
+              basic
+              primary
+              icon
+              floated="right"
+              type="submit"
+              form="login-form"
+              id="login-form-submit"
+              aria-label={intl.formatMessage(messages.login)}
+              title={intl.formatMessage(messages.login)}
+              loading={ploneLoading}
+              onClick={onLogin}
+            >
+              <Icon className="circled" name={aheadSVG} size="30px" />
+            </Button>
+
+            <Button
+              basic
+              secondary
+              icon
+              floated="right"
+              id="login-form-cancel"
+              as={Link}
+              to="/"
+              aria-label={intl.formatMessage(messages.cancel)}
+              title={intl.formatMessage(messages.cancel)}
+            >
+              <Icon className="circled" name={clearSVG} size="30px" />
+            </Button>
           </Segment>
-          <Tab panes={panes} />
         </Segment.Group>
+
+        {/* External Login Providers - Outside the main form */}
+        {validProviders && validProviders.length > 0 && (
+          <div style={{ marginTop: '2rem', width: '100%' }}>
+            <div style={{ textAlign: 'center', marginBottom: '1rem' }}>
+              <FormattedMessage
+                id="Or sign in with external provider:"
+                defaultMessage="Or sign in with external provider:"
+              />
+            </div>
+            <div style={{ width: '100%' }}>
+              {!loading && validProviders && (
+                <AuthProviders
+                  providers={validProviders}
+                  action="login"
+                  onSelectProvider={onSelectProvider}
+                />
+              )}
+              {(loading || validProviders.length === 0) && (
+                <div style={{ textAlign: 'center', padding: '1rem' }}>
+                  {intl.formatMessage(messages.loading)}
+                </div>
+              )}
+            </div>
+          </div>
+        )}
       </Container>
     </div>
   );
