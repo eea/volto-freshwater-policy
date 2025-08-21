@@ -32,7 +32,8 @@
     "@eeacms/volto-eea-website-theme",
     "@eeacms/volto-searchlib",
     "@eeacms/volto-globalsearch",
-    "@eeacms/volto-listing-block"
+    "@eeacms/volto-listing-block",
+    "@plone-collective/volto-authomatic"
   ],
   "dependencies": {
     "@eeacms/countup": "*",
