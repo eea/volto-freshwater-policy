@@ -17,7 +17,6 @@ import {
   FormattedMessage,
   defineMessages,
   injectIntl,
-  useIntl,
 } from 'react-intl';
 import qs from 'query-string';
 import { useCookies } from 'react-cookie';
@@ -272,7 +271,6 @@ function Login({ intl }) {
                         id="login"
                         name="login"
                         placeholder={intl.formatMessage(messages.loginName)}
-                        autoFocus
                       />
                     </Grid.Column>
                   </Grid.Row>
