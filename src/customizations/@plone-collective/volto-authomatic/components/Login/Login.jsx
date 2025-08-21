@@ -13,11 +13,7 @@ import {
   Segment,
   Grid,
 } from 'semantic-ui-react';
-import {
-  FormattedMessage,
-  defineMessages,
-  injectIntl,
-} from 'react-intl';
+import { FormattedMessage, defineMessages, injectIntl } from 'react-intl';
 import qs from 'query-string';
 import { useCookies } from 'react-cookie';
 
