@@ -1,9 +1,21 @@
 import { Input } from 'semantic-ui-react';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
+/**
+ * TODO: filter content based on type
+ * From accordion, filter by title
+ * Display data based on type
+ *
+ */
 function View() {
   const [pageDocumentHeight, setPageDocumentHeight] = useState(0);
   const [pageSearchInput, setPageSearchInput] = useState(0);
+
+  const content = useSelector((state) => state.content.data);
+  const blocks = content?.blocks || {};
+
+  console.log({ blocks });
 
   useEffect(() => {
     const pageDocument = document.getElementById('page-document');
