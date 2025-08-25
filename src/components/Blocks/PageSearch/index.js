@@ -2,6 +2,8 @@ import View from './View';
 import Edit from './Edit';
 import zoomSVG from '@plone/volto/icons/zoom.svg';
 
+import './styles.less';
+
 const install = (config) => {
   config.blocks.blocksConfig.pageSearchBlock = {
     id: 'pageSearchBlock',

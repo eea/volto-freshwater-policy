@@ -1,19 +1,49 @@
 import { Input } from 'semantic-ui-react';
+import { useEffect, useState } from 'react';
 
 function View() {
+  const [pageDocumentHeight, setPageDocumentHeight] = useState(0);
+  const [pageSearchInput, setPageSearchInput] = useState(0);
+
+  useEffect(() => {
+    const pageDocument = document.getElementById('page-document');
+    const pageSearchInput = document.getElementById('pageSearchInput');
+
+    if (!pageDocument) {
+      return;
+    }
+
+    if (pageDocument) {
+      const { height } = pageDocument.getBoundingClientRect();
+      console.log({ height });
+      setPageDocumentHeight(height);
+    }
+
+    if (pageSearchInput) {
+      const { height } = pageSearchInput.getBoundingClientRect();
+      setPageSearchInput(height);
+    }
+
+    const observer = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        const { height } = entry.contentRect;
+        setPageDocumentHeight(height);
+      }
+    });
+
+    observer.observe(pageDocument);
+
+    return () => observer.disconnect(); // cleanup
+  }, []);
+
   return (
-    <div style={{ position: 'relative' }}>
-      <Input fluid icon="search" placeholder="Search page content" />
+    <div className="pageSearch">
+      <div id="pageSearchInput">
+        <Input fluid icon="search" placeholder="Search page content" />
+      </div>
       <div
-        style={{
-          position: 'absolute',
-          top: '100%',
-          left: 0,
-          height: '100%',
-          border: '1px solid red',
-          width: '100%',
-          zIndex: 10,
-        }}
+        className="pageSearchContent"
+        style={{ height: pageDocumentHeight - pageSearchInput }}
       >
         Some content
       </div>
