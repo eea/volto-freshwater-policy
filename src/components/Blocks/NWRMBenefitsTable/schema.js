@@ -32,7 +32,7 @@ export const NWRMBenefitsTableBlockSchema = () => ({
     variation: {
       title: 'Variation',
       choices: [
-        ['circle', 'Circle'],
+        ['circle-table', 'Circle'],
         ['fill', 'Fill'],
       ],
       default: 'Circle',

@@ -21,7 +21,7 @@ describe('MeasureView', () => {
     items: [
       { '@type': 'File', '@id': 'testid' },
       { '@type': 'Image', '@id': 'testid', description: '' },
-      { '@type': 'Image', '@id': 'testid', description: 'http://test' },
+      { '@type': 'Image', '@id': 'testid', description: 'https://test' },
     ],
     ecosystem_services: {
       value: [{ code: 'test code', level: 'test level', name: 'test name' }],
