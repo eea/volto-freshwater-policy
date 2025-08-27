@@ -159,3 +159,39 @@ body.custom-page-header .breadcrumbs {
     margin: 0 !important;
   }
 }
+
+// DWD country profile custom classes
+.dwd-table .ui.table {
+  border: 1px solid #004b80;
+  border-collapse: separate;
+  border-spacing: 0;
+
+  thead {
+    tr th {
+      background-color: #004b80;
+      color: white;
+      border: none !important;
+    }
+  }
+
+  tbody {
+    tr {
+      background-color: white;
+      &:hover {
+        background-color: white;
+      }
+    }
+
+    tr:nth-child(2n) {
+      background-color: #f9f9f9;
+      &:hover {
+        background-color: #f9f9f9;
+      }
+    }
+
+    tr td {
+      border-left: none !important;
+      border-top: 1px solid #e5e5e5;
+    }
+  }
+}
