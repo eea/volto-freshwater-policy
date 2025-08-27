@@ -157,7 +157,15 @@ function VisualizationRelationships(props) {
                   {visualizations.items.map((item, index) => (
                     <Table.Row>
                       <Table.Cell>
-                        <strong>{item.title}</strong>
+                        <strong>
+                          <a
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            href={item.url}
+                          >
+                            {item.title}
+                          </a>
+                        </strong>
                       </Table.Cell>
                       <Table.Cell>
                         <strong>
