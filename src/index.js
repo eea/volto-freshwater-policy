@@ -140,6 +140,19 @@ const applyConfig = (config) => {
     /^\/login-oidc\/.*$/,
   ];
 
+  const notInEN =
+    /^(?!(#|\/freshwater\/login-authomatic|\/personal-information|\/azure_login|\/fallback_login|\/static|\/controlpanel|\/cypress|\/login|\/logout|\/contact-form|\/passwordreset)).*$/;
+  config.settings.externalRoutes = [
+    ...(config.settings.externalRoutes || []),
+    {
+      match: {
+        path: notInEN,
+        exact: false,
+        strict: false,
+      },
+    },
+  ];
+
   //In volto 17, we expand everyting by-default. Do not expand navigation, required for fat-menu to work
   (config.settings.apiExpanders || []).forEach((item) => {
     if (item.GET_CONTENT.includes('navigation')) {
