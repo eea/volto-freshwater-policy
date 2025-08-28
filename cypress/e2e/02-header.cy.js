@@ -5,6 +5,8 @@ describe('Blocks Tests', () => {
   afterEach(slateAfterEach);
 
   it('Check header', () => {
+    cy.clearSlateTitle();
+    cy.getSlateTitle().type('My Add-on Page');
     cy.get('.header .eea-logo')
       .should('have.attr', 'src')
       .and('include', "freshwater_logo");

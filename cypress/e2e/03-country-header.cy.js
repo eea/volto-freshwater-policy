@@ -5,12 +5,6 @@ describe('Blocks Tests', () => {
   afterEach(slateAfterEach);
 
   it('Check country header data block', () => {
-    cy.get('.ui.button.cancel').click();
-    cy.get('#toolbar-add').click();
-    cy.get('.toolbar-content #toolbar-add-discodataconnector').click();
-    cy.get('#field-title').click().type('country-discodata');
-    cy.get('#toolbar-save').click();
-    cy.visit('/cypress/my-page/edit');
     cy.clearSlateTitle();
     cy.getSlateTitle().type('My Add-on Page');
 
