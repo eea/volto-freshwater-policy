@@ -132,6 +132,14 @@ const applyConfig = (config) => {
     };
   }
 
+  //volto-authomatic
+  config.settings.nonContentRoutes = [
+    ...config.settings.nonContentRoutes,
+    /^\/login-authomatic\/.*$/,
+    /^\/freshwater\/login-authomatic\/.*$/,
+    /^\/login-oidc\/.*$/,
+  ];
+
   //In volto 17, we expand everyting by-default. Do not expand navigation, required for fat-menu to work
   (config.settings.apiExpanders || []).forEach((item) => {
     if (item.GET_CONTENT.includes('navigation')) {
