@@ -173,7 +173,7 @@ function VisualizationRelationships(props) {
                             <a
                               target="_blank"
                               rel="noopener noreferrer"
-                              href={item.connector.path}
+                              href={item.connector.url}
                             >
                               {item.connector.title}
                             </a>
@@ -188,7 +188,7 @@ function VisualizationRelationships(props) {
                             <a
                               target="_blank"
                               rel="noopener noreferrer"
-                              href={item.file.path}
+                              href={item.file.url}
                             >
                               {item.file.title}
                             </a>
