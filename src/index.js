@@ -1,4 +1,4 @@
-import { defineMessages } from "react-intl";
+import { defineMessages } from 'react-intl';
 import {
   DatabaseItemView,
   FavBoardView,
@@ -6,67 +6,67 @@ import {
   CaseStudyView,
   MeasureView,
   SourceView,
-} from "./components";
+} from './components';
 
 import {
   basket,
   boards,
   visualizationUssage,
   visualizationRelationships,
-} from "./reducers";
-import CopyrightWidget from "./components/Widgets/CopyrightWidget";
-import RightsWidget from "./components/Widgets/RightsWidget";
+} from './reducers';
+import CopyrightWidget from './components/Widgets/CopyrightWidget';
+import RightsWidget from './components/Widgets/RightsWidget';
 import {
   BiophysicalImpactWidget,
   EcosystemServiceWidget,
   PolicyObjectiveWidget,
-} from "./components/Widgets/NWRMObjectListWidget";
-import TokenWidget from "@plone/volto/components/manage/Widgets/TokenWidget";
+} from './components/Widgets/NWRMObjectListWidget';
+import TokenWidget from '@plone/volto/components/manage/Widgets/TokenWidget';
 
-import installCountryHeaderDataBlock from "./components/Blocks/CountryHeaderDataBlock";
-import installNWRMBenefitsTableBlock from "./components/Blocks/NWRMBenefitsTable";
-import installAppExtras from "./components/theme/AppExtras";
-import installSlatePopup from "./components/Blocks/SlatePopup";
-import installCaseStudyExplorer from "./components/Blocks/CaseStudyExplorer";
-import installSearchEngine from "./search";
-import { stripprefixPathTeaser } from "./utils";
+import installCountryHeaderDataBlock from './components/Blocks/CountryHeaderDataBlock';
+import installNWRMBenefitsTableBlock from './components/Blocks/NWRMBenefitsTable';
+import installAppExtras from './components/theme/AppExtras';
+import installSlatePopup from './components/Blocks/SlatePopup';
+import installCaseStudyExplorer from './components/Blocks/CaseStudyExplorer';
+import installSearchEngine from './search';
+import { stripprefixPathTeaser } from './utils';
 
-import { makeInlineElementPlugin } from "@plone/volto-slate/elementEditor";
-import { LINK } from "@plone/volto-slate/constants";
-import { LinkElement } from "@plone/volto-slate/editor/plugins/AdvancedLink/render";
-import { withLink } from "@plone/volto-slate/editor/plugins/AdvancedLink/extensions";
-import { linkDeserializer } from "@plone/volto-slate/editor/plugins/AdvancedLink/deserialize";
-import LinkEditSchema from "@plone/volto-slate/editor/plugins/AdvancedLink/schema";
-import { getBlocks } from "@plone/volto/helpers";
+import { makeInlineElementPlugin } from '@plone/volto-slate/elementEditor';
+import { LINK } from '@plone/volto-slate/constants';
+import { LinkElement } from '@plone/volto-slate/editor/plugins/AdvancedLink/render';
+import { withLink } from '@plone/volto-slate/editor/plugins/AdvancedLink/extensions';
+import { linkDeserializer } from '@plone/volto-slate/editor/plugins/AdvancedLink/deserialize';
+import LinkEditSchema from '@plone/volto-slate/editor/plugins/AdvancedLink/schema';
+import { getBlocks } from '@plone/volto/helpers';
 
-import linkSVG from "@plone/volto/icons/link.svg";
-import ecLogo from "@eeacms/volto-freshwater-policy/../theme/assets/images/Header/logo-ec.svg";
-import freshwaterLogo from "@eeacms/volto-freshwater-policy/../theme/assets/images/Header/freshwater_logo.svg";
-import freshwaterWhiteLogo from "@eeacms/volto-freshwater-policy/../theme/assets/images/Header/freshwater_logo_white.svg";
-import "./slate-styles.less";
+import linkSVG from '@plone/volto/icons/link.svg';
+import ecLogo from '@eeacms/volto-freshwater-policy/../theme/assets/images/Header/logo-ec.svg';
+import freshwaterLogo from '@eeacms/volto-freshwater-policy/../theme/assets/images/Header/freshwater_logo.svg';
+import freshwaterWhiteLogo from '@eeacms/volto-freshwater-policy/../theme/assets/images/Header/freshwater_logo_white.svg';
+import './slate-styles.less';
 
-import { AccordionEdit, AccordionView } from "./components";
-import VisualizationUssage from "./components/controlpanel/VisualizationUssage";
-import VisualizationRelationships from "./components/controlpanel/VisualizationRelationships";
+import { AccordionEdit, AccordionView } from './components';
+import VisualizationUssage from './components/controlpanel/VisualizationUssage';
+import VisualizationRelationships from './components/controlpanel/VisualizationRelationships';
 
 const messages = defineMessages({
   edit: {
-    id: "Edit link",
-    defaultMessage: "Edit link",
+    id: 'Edit link',
+    defaultMessage: 'Edit link',
   },
   delete: {
-    id: "Remove link",
-    defaultMessage: "Remove link",
+    id: 'Remove link',
+    defaultMessage: 'Remove link',
   },
 });
 
-const restrictedBlocks = ["imagecards"];
+const restrictedBlocks = ['imagecards'];
 
 const applyConfig = (config) => {
   // Multi-lingual
   config.settings.isMultilingual = false;
   config.settings.defaultLanguage =
-    config.settings.eea?.defaultLanguage || "en";
+    config.settings.eea?.defaultLanguage || 'en';
 
   config.settings.useQuantaToolbar = false;
 
@@ -82,25 +82,25 @@ const applyConfig = (config) => {
       {
         isDefault: true,
         path: config.settings.prefixPath
-          ? "/freshwater/advanced-search"
-          : "/advanced-search",
-        placeholder: "Search Freshwater...",
+          ? '/freshwater/advanced-search'
+          : '/advanced-search',
+        placeholder: 'Search Freshwater...',
         description:
-          "Looking for more information? Try searching the full EEA website content",
-        buttonTitle: "Go to advanced search",
-        buttonUrl: "https://www.eea.europa.eu/en/advanced-search",
+          'Looking for more information? Try searching the full EEA website content',
+        buttonTitle: 'Go to advanced search',
+        buttonUrl: 'https://www.eea.europa.eu/en/advanced-search',
       },
     ],
-    logoTargetUrl: "/",
-    organisationName: "Freshwater Information System for Europe",
+    logoTargetUrl: '/',
+    organisationName: 'Freshwater Information System for Europe',
   };
 
-  config.settings.eea.footerOpts.logosHeader = "Managed by";
+  config.settings.eea.footerOpts.logosHeader = 'Managed by';
   config.settings.eea.footerOpts.managedBy[1] = {
-    url: "https://commission.europa.eu",
+    url: 'https://commission.europa.eu',
     src: ecLogo,
-    alt: "European commission Logo",
-    className: "commission logo",
+    alt: 'European commission Logo',
+    className: 'commission logo',
     columnSize: {
       mobile: 6,
       tablet: 12,
@@ -115,7 +115,7 @@ const applyConfig = (config) => {
       tocData,
     ) => {
       // integration with volto-block-toc
-      const headlines = tocData.levels || ["h1", "h2", "h3", "h4", "h5", "h6"];
+      const headlines = tocData.levels || ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'];
       let entries = [];
       const sorted_column_blocks = getBlocks(block?.data || {});
       sorted_column_blocks.forEach((column_block) => {
@@ -134,8 +134,8 @@ const applyConfig = (config) => {
 
   //In volto 17, we expand everyting by-default. Do not expand navigation, required for fat-menu to work
   (config.settings.apiExpanders || []).forEach((item) => {
-    if (item.GET_CONTENT.includes("navigation")) {
-      item.GET_CONTENT.splice(item.GET_CONTENT.indexOf("navigation", 1));
+    if (item.GET_CONTENT.includes('navigation')) {
+      item.GET_CONTENT.splice(item.GET_CONTENT.indexOf('navigation', 1));
     }
   });
   if (config.blocks.blocksConfig.teaser) {
@@ -162,12 +162,12 @@ const applyConfig = (config) => {
   // Block chooser
   config.blocks.groupBlocksOrder = [
     ...config.blocks.groupBlocksOrder,
-    { id: "freshwater_addons", title: "Freshwater" },
+    { id: 'freshwater_addons', title: 'Freshwater' },
   ];
 
   // Move blocks to freshwater group
-  const blocksToUpdate = ["countryFlag", "tableau_block"];
-  const updatedGroup = { group: "freshwater_addons" };
+  const blocksToUpdate = ['countryFlag', 'tableau_block'];
+  const updatedGroup = { group: 'freshwater_addons' };
 
   blocksToUpdate.forEach((blockId) => {
     config.blocks.blocksConfig[blockId] = {
@@ -177,17 +177,17 @@ const applyConfig = (config) => {
   });
 
   // Move Tableau block to  Data Visualizations
-  config.blocks.blocksConfig["tableau_block"] = {
-    ...config.blocks.blocksConfig["tableau_block"],
-    group: "data_visualizations",
+  config.blocks.blocksConfig['tableau_block'] = {
+    ...config.blocks.blocksConfig['tableau_block'],
+    group: 'data_visualizations',
   };
 
   //new variation for tabs_block
-  config.blocks.blocksConfig["tabs_block"].variations = [
-    ...config.blocks.blocksConfig["tabs_block"].variations,
+  config.blocks.blocksConfig['tabs_block'].variations = [
+    ...config.blocks.blocksConfig['tabs_block'].variations,
     {
-      id: "freshwater_rounded",
-      title: "Freshwater top-rounded tab",
+      id: 'freshwater_rounded',
+      title: 'Freshwater top-rounded tab',
       edit: AccordionEdit,
       view: AccordionView,
       schemaEnhancer: AccordionEdit.schemaEnhancer,
@@ -199,8 +199,8 @@ const applyConfig = (config) => {
   config.settings.pluggableStyles = [
     ...(config.settings.pluggableStyles || []),
     {
-      id: "uiContainer",
-      title: "Container",
+      id: 'uiContainer',
+      title: 'Container',
       viewComponent: (props) => {
         return <div className="ui container">{props.children}</div>;
       },
@@ -211,39 +211,39 @@ const applyConfig = (config) => {
   config.settings.apiExpanders = [
     ...config.settings.apiExpanders,
     {
-      match: "/",
-      GET_CONTENT: ["siblings"],
+      match: '/',
+      GET_CONTENT: ['siblings'],
     },
   ];
 
   config.settings.openExternalLinkInNewTab = true;
 
   //this is required by volto-prefixpath
-  config.settings.blackListUrls = ["/marine"];
+  config.settings.blackListUrls = ['/marine'];
 
   // Routes
   config.addonRoutes = [
     ...config.addonRoutes,
     {
-      path: "/boards/boardview",
+      path: '/boards/boardview',
       component: FavBoardView,
     },
     {
-      path: "/boards",
+      path: '/boards',
       component: FavBoardListingView,
     },
   ];
 
   config.settings.nonContentRoutes = [
     ...config.settings.nonContentRoutes,
-    "/boards/boardview",
-    "/boards",
+    '/boards/boardview',
+    '/boards',
   ];
 
   // Persistent reducers
   config.settings.persistentReducers = [
     ...config.settings.persistentReducers,
-    "basket",
+    'basket',
   ];
 
   // Widgets
@@ -265,14 +265,14 @@ const applyConfig = (config) => {
   };
 
   if (__SERVER__) {
-    const installExpressMiddleware = require("./express-middleware").default;
+    const installExpressMiddleware = require('./express-middleware').default;
     config = installExpressMiddleware(config);
 
     const devsource = __DEVELOPMENT__
-      ? ` http://localhost:${parseInt(process.env.PORT || "3000") + 1}`
-      : "";
+      ? ` http://localhost:${parseInt(process.env.PORT || '3000') + 1}`
+      : '';
     config.settings.serverConfig.csp = {
-      "script-src": `'self' {nonce}${devsource}`,
+      'script-src': `'self' {nonce}${devsource}`,
     };
   }
 
@@ -281,42 +281,42 @@ const applyConfig = (config) => {
   config.settings.slate.styleMenu = config.settings.slate.styleMenu || {};
   config.settings.slate.styleMenu.inlineStyles = [
     ...(config.settings.slate.styleMenu?.inlineStyles || []),
-    { cssClass: "large-text", label: "Large text" },
-    { cssClass: "primary-big-text", label: "Big text" },
-    { cssClass: "medium-text", label: "Medium text" },
-    { cssClass: "small-text", label: "Small text" },
-    { cssClass: "blue-text", label: "Blue text" },
-    { cssClass: "blue-chart-text", label: "Blue plot-chart text" },
-    { cssClass: "green-chart-text", label: "Green plot-chart text" },
-    { cssClass: "yellow-chart-text", label: "Yellow plot-chart text" },
-    { cssClass: "orange-chart-text", label: "Orange plot-chart text" },
-    { cssClass: "red-chart-text", label: "Red plot-chart text" },
-    { cssClass: "blue-circle text-circle", label: "Blue circle" },
-    { cssClass: "green-circle text-circle", label: "Green circle" },
-    { cssClass: "orange-circle text-circle", label: "Orange circle" },
-    { cssClass: "yellow-circle text-circle", label: "Yellow circle" },
-    { cssClass: "grey-circle text-circle", label: "Grey circle" },
-    { cssClass: "black-text", label: "Black text" },
+    { cssClass: 'large-text', label: 'Large text' },
+    { cssClass: 'primary-big-text', label: 'Big text' },
+    { cssClass: 'medium-text', label: 'Medium text' },
+    { cssClass: 'small-text', label: 'Small text' },
+    { cssClass: 'blue-text', label: 'Blue text' },
+    { cssClass: 'blue-chart-text', label: 'Blue plot-chart text' },
+    { cssClass: 'green-chart-text', label: 'Green plot-chart text' },
+    { cssClass: 'yellow-chart-text', label: 'Yellow plot-chart text' },
+    { cssClass: 'orange-chart-text', label: 'Orange plot-chart text' },
+    { cssClass: 'red-chart-text', label: 'Red plot-chart text' },
+    { cssClass: 'blue-circle text-circle', label: 'Blue circle' },
+    { cssClass: 'green-circle text-circle', label: 'Green circle' },
+    { cssClass: 'orange-circle text-circle', label: 'Orange circle' },
+    { cssClass: 'yellow-circle text-circle', label: 'Yellow circle' },
+    { cssClass: 'grey-circle text-circle', label: 'Grey circle' },
+    { cssClass: 'black-text', label: 'Black text' },
 
     {
-      cssClass: "uwwt-empty-box blue-uwwt-background",
-      label: "UWWT blue empty box",
+      cssClass: 'uwwt-empty-box blue-uwwt-background',
+      label: 'UWWT blue empty box',
     },
     {
-      cssClass: "uwwt-empty-box green-uwwt-background",
-      label: "UWWT green empty box",
+      cssClass: 'uwwt-empty-box green-uwwt-background',
+      label: 'UWWT green empty box',
     },
     {
-      cssClass: "uwwt-empty-box yellow-uwwt-background",
-      label: "UWWT yellow empty box",
+      cssClass: 'uwwt-empty-box yellow-uwwt-background',
+      label: 'UWWT yellow empty box',
     },
     {
-      cssClass: "uwwt-empty-box orange-uwwt-background",
-      label: "UWWT orange empty box",
+      cssClass: 'uwwt-empty-box orange-uwwt-background',
+      label: 'UWWT orange empty box',
     },
     {
-      cssClass: "uwwt-empty-box red-uwwt-background",
-      label: "UWWT red empty box",
+      cssClass: 'uwwt-empty-box red-uwwt-background',
+      label: 'UWWT red empty box',
     },
   ];
 
@@ -332,7 +332,7 @@ const applyConfig = (config) => {
   slate.htmlTagsToSlate.A = linkDeserializer;
 
   const opts = {
-    title: "Link",
+    title: 'Link',
     pluginId: LINK,
     elementType: LINK,
     element: LinkElement,
@@ -357,34 +357,34 @@ const applyConfig = (config) => {
       const appExtraComponentName =
         appExtra.component?.name ||
         appExtra.component?.WrappedComponent?.name ||
-        "";
+        '';
 
-      return appExtraComponentName !== "RemoveSchema";
+      return appExtraComponentName !== 'RemoveSchema';
     }),
   ];
 
   config.settings.controlpanels = [
     ...config.settings.controlpanels,
     {
-      "@id": "/visualization-ussage",
-      group: "Visualizations",
-      title: "Visualization ussage",
+      '@id': '/visualization-ussage',
+      group: 'Visualizations',
+      title: 'Visualization ussage',
     },
     {
-      "@id": "/visualization-relationships",
-      group: "Visualizations",
-      title: "Visualization relationships",
+      '@id': '/visualization-relationships',
+      group: 'Visualizations',
+      title: 'Visualization relationships',
     },
   ];
 
   config.addonRoutes = [
     ...config.addonRoutes,
     {
-      path: "/controlpanel/visualization-ussage",
+      path: '/controlpanel/visualization-ussage',
       component: VisualizationUssage,
     },
     {
-      path: "/controlpanel/visualization-relationships",
+      path: '/controlpanel/visualization-relationships',
       component: VisualizationRelationships,
     },
   ];
