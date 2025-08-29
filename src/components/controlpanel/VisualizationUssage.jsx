@@ -177,7 +177,7 @@ function VisualizationUssage(props) {
                               <a
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                href={obj.path}
+                                href={obj.url}
                               >
                                 {obj.path}
                               </a>
