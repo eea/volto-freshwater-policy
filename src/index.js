@@ -235,6 +235,10 @@ const applyConfig = (config) => {
       path: '/boards',
       component: FavBoardListingView,
     },
+    {
+      path: '**/search',
+      component: PageSearch,
+    },
   ];
 
   config.settings.nonContentRoutes = [

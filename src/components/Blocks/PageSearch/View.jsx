@@ -1,65 +1,51 @@
-import { Input } from 'semantic-ui-react';
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useMemo } from 'react';
 
-/**
- * TODO: filter content based on type
- * From accordion, filter by title
- * Display data based on type
- *
- */
-function View() {
-  const [pageDocumentHeight, setPageDocumentHeight] = useState(0);
-  const [pageSearchInput, setPageSearchInput] = useState(0);
+import { useSelector, useDispatch } from 'react-redux';
+import { getContent } from '@plone/volto/actions';
+import RenderBlocks from '@plone/volto/components/theme/View/RenderBlocks';
+import config from '@plone/volto/registry';
+import { Container } from 'semantic-ui-react';
+import { AccordionBlockView } from '@plone/volto/components';
 
-  const content = useSelector((state) => state.content.data);
-  const blocks = content?.blocks || {};
+const SEARCHABLE_TYPES = ['accordion'];
 
-  console.log({ blocks });
+// Disply based on searchable type
+// Search items
+// Back option
+function View({ props }) {
+  const dispatch = useDispatch();
+  const pagePath = 'sandbox/search-faq'; // TODO: Make
 
   useEffect(() => {
-    const pageDocument = document.getElementById('page-document');
-    const pageSearchInput = document.getElementById('pageSearchInput');
+    dispatch(getContent(pagePath, null));
+  }, [dispatch, pagePath]);
 
-    if (!pageDocument) {
-      return;
-    }
+  const content = useSelector((state) => state?.content?.data);
+  const searchableBlocks = useMemo(
+    () =>
+      Object.fromEntries(
+        Object.entries(content.blocks).filter(([_, value]) =>
+          SEARCHABLE_TYPES.includes(value['@type']),
+        ),
+      ),
+    [content],
+  );
 
-    if (pageDocument) {
-      const { height } = pageDocument.getBoundingClientRect();
-      console.log({ height });
-      setPageDocumentHeight(height);
-    }
-
-    if (pageSearchInput) {
-      const { height } = pageSearchInput.getBoundingClientRect();
-      setPageSearchInput(height);
-    }
-
-    const observer = new ResizeObserver((entries) => {
-      for (let entry of entries) {
-        const { height } = entry.contentRect;
-        setPageDocumentHeight(height);
-      }
-    });
-
-    observer.observe(pageDocument);
-
-    return () => observer.disconnect(); // cleanup
-  }, []);
+  console.log({ searchableBlocks });
 
   return (
-    <div className="pageSearch">
-      <div id="pageSearchInput">
-        <Input fluid icon="search" placeholder="Search page content" />
-      </div>
-      <div
-        className="pageSearchContent"
-        style={{ height: pageDocumentHeight - pageSearchInput }}
-      >
-        Some content
-      </div>
-    </div>
+    <Container>
+      <div>Page search for previous page</div>
+      {content && content.blocks && content.blocks_layout ? (
+        <RenderBlocks
+          {...props}
+          content={content}
+          blocksConfig={config.blocks.blocksConfig} // makes sure block views are resolved correctly
+        />
+      ) : (
+        <p>Loading…</p>
+      )}
+    </Container>
   );
 }
 
