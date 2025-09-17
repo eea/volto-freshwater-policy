@@ -2,7 +2,11 @@ import { useEffect, useMemo, useState } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { getContent } from '@plone/volto/actions';
-import { Container, Input } from 'semantic-ui-react';
+import { Input } from 'semantic-ui-react';
+import { RenderBlocks } from '@plone/volto/components';
+import cx from 'classnames';
+import { useLocation } from 'react-router-dom';
+import { getColumns } from './utils';
 
 const SEARCHABLE_TYPES = ['accordion'];
 
@@ -46,12 +50,18 @@ function filterAccordionsByPanelTitle(data, searchString) {
   return result;
 }
 
-function View({ props }) {
+function View(props) {
+  console.log({ props });
   const [pageDocumentHeight, setPageDocumentHeight] = useState(0);
   const [pageSearchInput, setPageSearchInput] = useState(0);
   const [search, setSearch] = useState('');
   const dispatch = useDispatch();
   const pagePath = 'sandbox/search-faq'; // TODO: Make dynamic
+
+  const location = useLocation();
+  const metadata = props.metadata || props.properties;
+  const { data = {} } = props;
+  const columnList = getColumns(data);
 
   useEffect(() => {
     dispatch(getContent(pagePath, null));
@@ -89,10 +99,13 @@ function View({ props }) {
   const searchableBlocks = useMemo(() => {
     return filterAccordionsByPanelTitle(content.blocks, search);
   }, [(content, search)]);
+  const blocksLayout = useMemo(() => {
+    return {
+      items: Object.keys(searchableBlocks),
+    };
+  }, [searchableBlocks]);
 
-  // console.log({ searchableBlocks, content, blocksLayout });
-
-  console.log({ pageDocumentHeight });
+  console.log({ searchableBlocks, content, blocksLayout });
 
   return (
     <div className="pageSearch">
@@ -114,26 +127,16 @@ function View({ props }) {
             top: 0 + pageSearchInput,
           }}
         >
-          {content && content.blocks && content.blocks_layout ? (
-            <>
-              <ul>
-                {Object.entries(searchableBlocks).map(([_, item]) => (
-                  <>
-                    <li>{item.headline}</li>
-                    <ul>
-                      {Object.entries(item.data.blocks).map(
-                        ([_, childItem]) => (
-                          <li>{childItem.title}</li>
-                        ),
-                      )}
-                    </ul>
-                  </>
-                ))}
-              </ul>
-            </>
-          ) : (
-            <p>Loading…</p>
-          )}
+          <RenderBlocks
+            {...props}
+            location={location}
+            metadata={metadata}
+            content={{
+              ...content,
+              blocks: searchableBlocks,
+              blocks_layout: blocksLayout,
+            }}
+          />
         </div>
       )}
     </div>
