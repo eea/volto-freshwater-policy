@@ -47,6 +47,8 @@ function filterAccordionsByPanelTitle(data, searchString) {
 }
 
 function View({ props }) {
+  const [pageDocumentHeight, setPageDocumentHeight] = useState(0);
+  const [pageSearchInput, setPageSearchInput] = useState(0);
   const [search, setSearch] = useState('');
   const dispatch = useDispatch();
   const pagePath = 'sandbox/search-faq'; // TODO: Make dynamic
@@ -55,6 +57,34 @@ function View({ props }) {
     dispatch(getContent(pagePath, null));
   }, [dispatch, pagePath]);
 
+  useEffect(() => {
+    const pageDocument = document.getElementById('page-document');
+    const pageSearchInput = document.getElementById('pageSearchInput');
+    // if (!pageDocument) {
+    //   return;
+    // }
+    // if (pageDocument) {
+    //   const { height } = pageDocument.getBoundingClientRect();
+    //   console.log('h1', { height });
+    //   setPageDocumentHeight(height);
+    // }
+    if (pageSearchInput) {
+      const { height } = pageSearchInput.getBoundingClientRect();
+      setPageSearchInput(height);
+    }
+    const observer = new ResizeObserver((entries) => {
+      for (let entry of entries) {
+        const { height } = entry.contentRect;
+        console.log('h2', {
+          height,
+        });
+        setPageDocumentHeight(height);
+      }
+    });
+    observer.observe(pageDocument);
+    return () => observer.disconnect(); // cleanup
+  }, []);
+
   const content = useSelector((state) => state?.content?.data);
   const searchableBlocks = useMemo(() => {
     return filterAccordionsByPanelTitle(content.blocks, search);
@@ -62,38 +92,51 @@ function View({ props }) {
 
   // console.log({ searchableBlocks, content, blocksLayout });
 
+  console.log({ pageDocumentHeight });
+
   return (
-    <Container>
-      <div className="search-wrapper">
-        <div className="search-input">
-          <Input
-            id={`${pagePath}-searchtext`}
-            placeholder={'Search in the following items'}
-            fluid
-            onChange={(event) => {
-              setSearch(event.target.value);
-            }}
-          />
-        </div>
+    <div className="pageSearch">
+      <div id="pageSearchInput">
+        <Input
+          id={`${pagePath}-searchtext`}
+          placeholder={'Search in the following items'}
+          fluid
+          onChange={(event) => {
+            setSearch(event.target.value);
+          }}
+        />
       </div>
-      {/* TODO: Display as accordion block */}
-      {content && content.blocks && content.blocks_layout ? (
-        <ul>
-          {Object.entries(searchableBlocks).map(([_, item]) => (
+      {search && (
+        <div
+          className="pageSearchContent"
+          style={{
+            height: pageDocumentHeight - pageSearchInput,
+            top: 0 + pageSearchInput,
+          }}
+        >
+          {content && content.blocks && content.blocks_layout ? (
             <>
-              <li>{item.headline}</li>
               <ul>
-                {Object.entries(item.data.blocks).map(([_, childItem]) => (
-                  <li>{childItem.title}</li>
+                {Object.entries(searchableBlocks).map(([_, item]) => (
+                  <>
+                    <li>{item.headline}</li>
+                    <ul>
+                      {Object.entries(item.data.blocks).map(
+                        ([_, childItem]) => (
+                          <li>{childItem.title}</li>
+                        ),
+                      )}
+                    </ul>
+                  </>
                 ))}
               </ul>
             </>
-          ))}
-        </ul>
-      ) : (
-        <p>Loading…</p>
+          ) : (
+            <p>Loading…</p>
+          )}
+        </div>
       )}
-    </Container>
+    </div>
   );
 }
 
