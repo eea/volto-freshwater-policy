@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { getContent } from '@plone/volto/actions';
@@ -16,13 +16,19 @@ function View(props) {
   const metadata = props.metadata || props.properties;
   const pagePath = 'freshwater/sandbox/search-faq'; // TODO: Make dynamic
 
-  const searchQuery = useMemo(() => {
-    const query = new URLSearchParams(location.search);
-    return query.get('searchQuery') || '';
-  }, [location.search]);
+  const query = new URLSearchParams(location.search);
+  const searchQuery = query.get('searchQuery') || '';
 
-  const onChange = useDebouncedCallback((event) => {
+  const [searchInput, setSearchInput] = useState(searchQuery);
+
+  const handleChange = (event) => {
+    setSearchInput(event.target.value);
+    updateQuery(event);
+  };
+
+  const updateQuery = useDebouncedCallback((event) => {
     const { name, value } = event?.target;
+
     const params = new URLSearchParams({ [name]: value });
     history.replace({ pathname: location.pathname, search: params.toString() });
   }, 300);
@@ -65,16 +71,13 @@ function View(props) {
     <div>
       <Container>
         <div id="pageSearchInput">
-          <Input
-            id={`${pagePath}-searchtext`}
-            placeholder={'Search in the following items'}
-            fluid
-            onChange={onChange}
-            name="searchQuery"
-            defaultValue={searchQuery}
-            action
-          >
-            <input />
+          <Input id={`${pagePath}-searchtext`} fluid action>
+            <input
+              onChange={handleChange}
+              name="searchQuery"
+              value={searchInput}
+              placeholder={'Search in the following items'}
+            />
             <Button
               type="button"
               onClick={() => {
