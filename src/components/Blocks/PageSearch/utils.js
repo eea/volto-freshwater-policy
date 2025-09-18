@@ -1,50 +1,57 @@
-import { v4 as uuid } from 'uuid';
-import { emptyBlocksForm } from '@plone/volto/helpers';
-import config from '@plone/volto/registry';
+import { useRef, useCallback } from 'react';
 
-export const getColumns = (data) => {
-  console.log('DATA: ', data);
-  return (data?.blocks_layout?.items || []).map((id) => [
-    id,
-    data.blocks?.[id],
-  ]);
-};
+const SEARCHABLE_TYPES = ['accordion'];
 
-export const hasColumns = (data) => {
-  return data?.blocks_layout?.items?.length > 0;
-};
+export function useDebouncedCallback(callback, delay) {
+  const timeoutRef = useRef();
 
-export const forEachColumn = (data, callback) => {
-  getColumns(data).forEach(callback);
-};
+  return useCallback(
+    (...args) => {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = setTimeout(() => {
+        callback(...args);
+      }, delay);
+    },
+    [callback, delay],
+  );
+}
 
-export const columnIsEmpty = (colData) => {
-  return !(colData?.blocks_layout?.items?.length > 0);
-};
+export function filterAccordionsByPanelTitle(data, searchString) {
+  const result = {};
 
-export const empty = (count) => {
-  const blocks = {};
-  const items = [];
-  for (let x = 0; x < count; x++) {
-    const id = uuid();
-    blocks[id] = emptyBlocksForm();
-    items.push(id);
+  for (const [accordionId, accordion] of Object.entries(data)) {
+    if (!SEARCHABLE_TYPES.includes(accordion['@type'])) continue;
+
+    const filteredBlocks = {};
+    const filteredBlockOrder = [];
+
+    for (const [panelId, panel] of Object.entries(
+      accordion.data.blocks || {},
+    )) {
+      if (
+        panel['@type'] === 'accordionPanel' &&
+        panel.title &&
+        panel.title.toLowerCase().includes(searchString.toLowerCase())
+      ) {
+        filteredBlocks[panelId] = panel;
+        filteredBlockOrder.push(panelId);
+      }
+    }
+
+    if (filteredBlockOrder.length > 0) {
+      result[accordionId] = {
+        ...accordion,
+        data: {
+          ...accordion.data,
+          blocks: filteredBlocks,
+          blocks_layout: {
+            ...accordion.data.blocks_layout,
+            items: filteredBlockOrder,
+          },
+        },
+      };
+    }
   }
 
-  return {
-    blocks,
-    blocks_layout: {
-      items,
-    },
-  };
-};
-
-export const defaultNewColumn = () => {
-  const id = uuid();
-  return {
-    blocks: { [id]: { '@type': config.settings.defaultBlockType } },
-    blocks_layout: {
-      items: [id],
-    },
-  };
-};
+  return result;
+}

@@ -1,144 +1,92 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { getContent } from '@plone/volto/actions';
-import { Input } from 'semantic-ui-react';
+import { Input, Button } from 'semantic-ui-react';
 import { RenderBlocks } from '@plone/volto/components';
-import cx from 'classnames';
-import { useLocation } from 'react-router-dom';
-import { getColumns } from './utils';
+import { useLocation, useHistory } from 'react-router-dom';
+import { Container } from 'semantic-ui-react';
 
-const SEARCHABLE_TYPES = ['accordion'];
-
-function filterAccordionsByPanelTitle(data, searchString) {
-  const result = {};
-
-  for (const [accordionId, accordion] of Object.entries(data)) {
-    if (!SEARCHABLE_TYPES.includes(accordion['@type'])) continue;
-
-    const filteredBlocks = {};
-    const filteredBlockOrder = [];
-
-    for (const [panelId, panel] of Object.entries(
-      accordion.data.blocks || {},
-    )) {
-      if (
-        panel['@type'] === 'accordionPanel' &&
-        panel.title &&
-        panel.title.toLowerCase().includes(searchString.toLowerCase())
-      ) {
-        filteredBlocks[panelId] = panel;
-        filteredBlockOrder.push(panelId);
-      }
-    }
-
-    if (filteredBlockOrder.length > 0) {
-      result[accordionId] = {
-        ...accordion,
-        data: {
-          ...accordion.data,
-          blocks: filteredBlocks,
-          blocks_layout: {
-            ...accordion.data.blocks_layout,
-            items: filteredBlockOrder,
-          },
-        },
-      };
-    }
-  }
-
-  return result;
-}
+import { filterAccordionsByPanelTitle, useDebouncedCallback } from './utils';
 
 function View(props) {
-  console.log({ props });
-  const [pageDocumentHeight, setPageDocumentHeight] = useState(0);
-  const [pageSearchInput, setPageSearchInput] = useState(0);
-  const [search, setSearch] = useState('');
   const dispatch = useDispatch();
-  const pagePath = 'sandbox/search-faq'; // TODO: Make dynamic
-
+  const history = useHistory();
   const location = useLocation();
   const metadata = props.metadata || props.properties;
-  const { data = {} } = props;
-  const columnList = getColumns(data);
+  const pagePath = 'freshwater/sandbox/search-faq'; // TODO: Make dynamic
+
+  const searchQuery = useMemo(() => {
+    const query = new URLSearchParams(location.search);
+    return query.get('searchQuery') || '';
+  }, [location.search]);
+
+  const onChange = useDebouncedCallback((event) => {
+    const { name, value } = event?.target;
+    const params = new URLSearchParams({ [name]: value });
+    history.replace({ pathname: location.pathname, search: params.toString() });
+  }, 300);
 
   useEffect(() => {
     dispatch(getContent(pagePath, null));
   }, [dispatch, pagePath]);
 
-  useEffect(() => {
-    const pageDocument = document.getElementById('page-document');
-    const pageSearchInput = document.getElementById('pageSearchInput');
-    // if (!pageDocument) {
-    //   return;
-    // }
-    // if (pageDocument) {
-    //   const { height } = pageDocument.getBoundingClientRect();
-    //   console.log('h1', { height });
-    //   setPageDocumentHeight(height);
-    // }
-    if (pageSearchInput) {
-      const { height } = pageSearchInput.getBoundingClientRect();
-      setPageSearchInput(height);
-    }
-    const observer = new ResizeObserver((entries) => {
-      for (let entry of entries) {
-        const { height } = entry.contentRect;
-        console.log('h2', {
-          height,
-        });
-        setPageDocumentHeight(height);
-      }
-    });
-    observer.observe(pageDocument);
-    return () => observer.disconnect(); // cleanup
-  }, []);
-
   const content = useSelector((state) => state?.content?.data);
+
   const searchableBlocks = useMemo(() => {
-    return filterAccordionsByPanelTitle(content.blocks, search);
-  }, [(content, search)]);
-  const blocksLayout = useMemo(() => {
-    return {
-      items: Object.keys(searchableBlocks),
-    };
-  }, [searchableBlocks]);
+    return filterAccordionsByPanelTitle(content.blocks, searchQuery);
+  }, [(content, searchQuery)]);
 
-  console.log({ searchableBlocks, content, blocksLayout });
+  const renderSearchedBlocks = useCallback(() => {
+    const blocks = Object.entries(searchableBlocks);
 
-  return (
-    <div className="pageSearch">
-      <div id="pageSearchInput">
-        <Input
-          id={`${pagePath}-searchtext`}
-          placeholder={'Search in the following items'}
-          fluid
-          onChange={(event) => {
-            setSearch(event.target.value);
+    if (blocks.length === 0) {
+      return (
+        <div className="pageSearchBlock">
+          <p>No items found</p>
+        </div>
+      );
+    }
+    return blocks.map(([key, value]) => (
+      <div key={key} className="pageSearchBlock">
+        <RenderBlocks
+          location={location}
+          metadata={metadata}
+          content={{
+            blocks: { [key]: value },
+            blocks_layout: { items: [key] },
           }}
         />
       </div>
-      {search && (
-        <div
-          className="pageSearchContent"
-          style={{
-            height: pageDocumentHeight - pageSearchInput,
-            top: 0 + pageSearchInput,
-          }}
-        >
-          <RenderBlocks
-            {...props}
-            location={location}
-            metadata={metadata}
-            content={{
-              ...content,
-              blocks: searchableBlocks,
-              blocks_layout: blocksLayout,
-            }}
-          />
+    ));
+  }, [searchQuery]);
+
+  return (
+    <div>
+      <Container>
+        <div id="pageSearchInput">
+          <Input
+            id={`${pagePath}-searchtext`}
+            placeholder={'Search in the following items'}
+            fluid
+            onChange={onChange}
+            name="searchQuery"
+            defaultValue={searchQuery}
+            action
+          >
+            <input />
+            <Button
+              type="button"
+              onClick={() => {
+                alert('Go back');
+              }}
+            >
+              Back
+            </Button>
+          </Input>
         </div>
-      )}
+        {renderSearchedBlocks()}
+      </Container>
     </div>
   );
 }
