@@ -8,12 +8,7 @@ import {
   SourceView,
 } from './components';
 
-import {
-  basket,
-  boards,
-  visualizationUssage,
-  visualizationRelationships,
-} from './reducers';
+import { basket, boards } from './reducers';
 import CopyrightWidget from './components/Widgets/CopyrightWidget';
 import RightsWidget from './components/Widgets/RightsWidget';
 import {
@@ -46,8 +41,6 @@ import freshwaterWhiteLogo from '@eeacms/volto-freshwater-policy/../theme/assets
 import './slate-styles.less';
 
 import { AccordionEdit, AccordionView } from './components';
-import VisualizationUssage from './components/controlpanel/VisualizationUssage';
-import VisualizationRelationships from './components/controlpanel/VisualizationRelationships';
 
 const messages = defineMessages({
   edit: {
@@ -260,8 +253,6 @@ const applyConfig = (config) => {
     ...(config.addonReducers || {}),
     basket,
     boards,
-    visualizationUssage,
-    visualizationRelationships,
   };
 
   if (__SERVER__) {
@@ -361,32 +352,6 @@ const applyConfig = (config) => {
 
       return appExtraComponentName !== 'RemoveSchema';
     }),
-  ];
-
-  config.settings.controlpanels = [
-    ...config.settings.controlpanels,
-    {
-      '@id': '/visualization-ussage',
-      group: 'Visualizations',
-      title: 'Visualization ussage',
-    },
-    {
-      '@id': '/visualization-relationships',
-      group: 'Visualizations',
-      title: 'Visualization relationships',
-    },
-  ];
-
-  config.addonRoutes = [
-    ...config.addonRoutes,
-    {
-      path: '/controlpanel/visualization-ussage',
-      component: VisualizationUssage,
-    },
-    {
-      path: '/controlpanel/visualization-relationships',
-      component: VisualizationRelationships,
-    },
   ];
 
   // Disabled blocks
