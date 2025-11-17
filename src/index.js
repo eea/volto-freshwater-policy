@@ -8,10 +8,7 @@ import {
   SourceView,
 } from './components';
 
-import {
-  basket,
-  boards,
-} from './reducers';
+import { basket, boards } from './reducers';
 import CopyrightWidget from './components/Widgets/CopyrightWidget';
 import RightsWidget from './components/Widgets/RightsWidget';
 import {
