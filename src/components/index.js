@@ -23,4 +23,6 @@ export DatabaseItemView from './theme/DatabaseItemView/DatabaseItemView';
 
 export CaseStudyExplorer from './Blocks/CaseStudyExplorer/CaseStudyExplorerView';
 
+export PageSearch from './Blocks/PageSearch/View';
+
 export * from './theme/TabsBlock/variations/freshwaterRounded';

@@ -6,6 +6,7 @@ import {
   CaseStudyView,
   MeasureView,
   SourceView,
+  PageSearch,
 } from './components';
 
 import { basket, boards } from './reducers';
@@ -23,6 +24,7 @@ import installNWRMBenefitsTableBlock from './components/Blocks/NWRMBenefitsTable
 import installAppExtras from './components/theme/AppExtras';
 import installSlatePopup from './components/Blocks/SlatePopup';
 import installCaseStudyExplorer from './components/Blocks/CaseStudyExplorer';
+import installPageSearch from './components/Blocks/PageSearch';
 import installSearchEngine from './search';
 import { stripprefixPathTeaser } from './utils';
 
@@ -148,6 +150,7 @@ const applyConfig = (config) => {
     indicator: DatabaseItemView,
     briefing: DatabaseItemView,
     case_study: CaseStudyView,
+    page_search: PageSearch,
     measure: MeasureView,
     source: SourceView,
   };
@@ -224,6 +227,10 @@ const applyConfig = (config) => {
     {
       path: '/boards',
       component: FavBoardListingView,
+    },
+    {
+      path: '**/search',
+      component: PageSearch,
     },
   ];
 
@@ -368,6 +375,7 @@ const applyConfig = (config) => {
     installSlatePopup,
     installCaseStudyExplorer,
     installSearchEngine,
+    installPageSearch,
   ].reduce((acc, apply) => apply(acc), config);
 
   return final;
