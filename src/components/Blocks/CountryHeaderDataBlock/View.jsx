@@ -178,9 +178,7 @@ export const WRView = (props) => {
             <div
               className={
                 'uww-left ' +
-                (data_not_available
-                  ? 'grey-bg'
-                  : getClassNameWR(column_value))
+                (data_not_available ? 'grey-bg' : getClassNameWR(column_value))
               }
             >
               <div className="uww-data">
