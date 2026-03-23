@@ -97,6 +97,7 @@ export const UWWTView = (props) => {
     placeholder = '-',
     hide_data_section,
     column_value,
+    data_not_available,
   } = props;
 
   return (
@@ -104,7 +105,14 @@ export const UWWTView = (props) => {
       {hide_data_section ||
         (provider_url && (
           <div className="uww-country-block">
-            <div className={'uww-left ' + getClassNameUWWT(column_value)}>
+            <div
+              className={
+                'uww-left ' +
+                (data_not_available
+                  ? 'grey-bg'
+                  : getClassNameUWWT(column_value))
+              }
+            >
               <div className="uww-data">
                 <div>
                   {column_value[0] === 0 ? (
@@ -159,6 +167,7 @@ export const WRView = (props) => {
     placeholder = '-',
     hide_data_section,
     column_value,
+    data_not_available,
   } = props;
 
   return (
@@ -166,7 +175,12 @@ export const WRView = (props) => {
       {hide_data_section ||
         (provider_url && (
           <div className="uww-country-block">
-            <div className={'uww-left ' + getClassNameWR(column_value)}>
+            <div
+              className={
+                'uww-left ' +
+                (data_not_available ? 'grey-bg' : getClassNameWR(column_value))
+              }
+            >
               <div className="uww-data">
                 <div>
                   {column_value[0] === 0 ? (

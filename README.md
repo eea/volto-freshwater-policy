@@ -3,16 +3,16 @@
 [![Releases](https://img.shields.io/github/v/release/eea/volto-freshwater-policy)](https://github.com/eea/volto-freshwater-policy/releases)
 
 [![Pipeline](https://ci.eionet.europa.eu/buildStatus/icon?job=volto-addons%2Fvolto-freshwater-policy%2Fmaster&subject=master)](https://ci.eionet.europa.eu/view/Github/job/volto-addons/job/volto-freshwater-policy/job/master/display/redirect)
-[![Lines of Code](https://sonarqube.eea.europa.eu/api/project_badges/measure?project=volto-freshwater-policy-master&metric=ncloc)](https://sonarqube.eea.europa.eu/dashboard?id=volto-freshwater-policy-master)
-[![Coverage](https://sonarqube.eea.europa.eu/api/project_badges/measure?project=volto-freshwater-policy-master&metric=coverage)](https://sonarqube.eea.europa.eu/dashboard?id=volto-freshwater-policy-master)
-[![Bugs](https://sonarqube.eea.europa.eu/api/project_badges/measure?project=volto-freshwater-policy-master&metric=bugs)](https://sonarqube.eea.europa.eu/dashboard?id=volto-freshwater-policy-master)
-[![Duplicated Lines (%)](https://sonarqube.eea.europa.eu/api/project_badges/measure?project=volto-freshwater-policy-master&metric=duplicated_lines_density)](https://sonarqube.eea.europa.eu/dashboard?id=volto-freshwater-policy-master)
+[![Lines of Code](https://sonarqube.eea.europa.eu/api/project_badges/measure?project=volto-freshwater-policy&metric=ncloc)](https://sonarqube.eea.europa.eu/dashboard?id=volto-freshwater-policy)
+[![Coverage](https://sonarqube.eea.europa.eu/api/project_badges/measure?project=volto-freshwater-policy&metric=coverage)](https://sonarqube.eea.europa.eu/dashboard?id=volto-freshwater-policy)
+[![Bugs](https://sonarqube.eea.europa.eu/api/project_badges/measure?project=volto-freshwater-policy&metric=bugs)](https://sonarqube.eea.europa.eu/dashboard?id=volto-freshwater-policy)
+[![Duplicated Lines (%)](https://sonarqube.eea.europa.eu/api/project_badges/measure?project=volto-freshwater-policy&metric=duplicated_lines_density)](https://sonarqube.eea.europa.eu/dashboard?id=volto-freshwater-policy)
 
 [![Pipeline](https://ci.eionet.europa.eu/buildStatus/icon?job=volto-addons%2Fvolto-freshwater-policy%2Fdevelop&subject=develop)](https://ci.eionet.europa.eu/view/Github/job/volto-addons/job/volto-freshwater-policy/job/develop/display/redirect)
-[![Lines of Code](https://sonarqube.eea.europa.eu/api/project_badges/measure?project=volto-freshwater-policy-develop&metric=ncloc)](https://sonarqube.eea.europa.eu/dashboard?id=volto-freshwater-policy-develop)
-[![Coverage](https://sonarqube.eea.europa.eu/api/project_badges/measure?project=volto-freshwater-policy-develop&metric=coverage)](https://sonarqube.eea.europa.eu/dashboard?id=volto-freshwater-policy-develop)
-[![Bugs](https://sonarqube.eea.europa.eu/api/project_badges/measure?project=volto-freshwater-policy-develop&metric=bugs)](https://sonarqube.eea.europa.eu/dashboard?id=volto-freshwater-policy-develop)
-[![Duplicated Lines (%)](https://sonarqube.eea.europa.eu/api/project_badges/measure?project=volto-freshwater-policy-develop&metric=duplicated_lines_density)](https://sonarqube.eea.europa.eu/dashboard?id=volto-freshwater-policy-develop)
+[![Lines of Code](https://sonarqube.eea.europa.eu/api/project_badges/measure?project=volto-freshwater-policy&branch=develop&metric=ncloc)](https://sonarqube.eea.europa.eu/dashboard?id=volto-freshwater-policy&branch=develop)
+[![Coverage](https://sonarqube.eea.europa.eu/api/project_badges/measure?project=volto-freshwater-policy&branch=develop&metric=coverage)](https://sonarqube.eea.europa.eu/dashboard?id=volto-freshwater-policy&branch=develop)
+[![Bugs](https://sonarqube.eea.europa.eu/api/project_badges/measure?project=volto-freshwater-policy&branch=develop&metric=bugs)](https://sonarqube.eea.europa.eu/dashboard?id=volto-freshwater-policy&branch=develop)
+[![Duplicated Lines (%)](https://sonarqube.eea.europa.eu/api/project_badges/measure?project=volto-freshwater-policy&branch=develop&metric=duplicated_lines_density)](https://sonarqube.eea.europa.eu/dashboard?id=volto-freshwater-policy&branch=develop)
 
 [Volto](https://github.com/plone/volto) add-on
 
