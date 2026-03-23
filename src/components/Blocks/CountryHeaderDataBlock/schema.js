@@ -16,6 +16,7 @@ export const CountryHeaderDataBlockSchema = () => ({
         'column_data',
         'description',
         'hide_data_section',
+        'data_not_available',
         'show_actions',
       ],
     },
@@ -58,6 +59,10 @@ export const CountryHeaderDataBlockSchema = () => ({
     hide_data_section: {
       type: 'boolean',
       title: 'Hide data section',
+    },
+    data_not_available: {
+      type: 'boolean',
+      title: 'Data not available',
     },
     hideShareButton: {
       title: 'Hide share button',
