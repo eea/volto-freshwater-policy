@@ -1,6 +1,6 @@
 import React from 'react';
-import { BodyClass } from '@plone/volto/helpers';
-import { Icon } from '@plone/volto/components';
+import BodyClass from '@plone/volto/helpers/BodyClass/BodyClass';
+import Icon from '@plone/volto/components/theme/Icon/Icon';
 import { Accordion } from 'semantic-ui-react';
 
 import downSVG from '@plone/volto/icons/down-key.svg';

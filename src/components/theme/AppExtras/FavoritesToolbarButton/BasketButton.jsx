@@ -3,7 +3,7 @@ import { compose } from 'redux';
 import { Portal } from 'react-portal';
 import { connect, useSelector } from 'react-redux';
 import { Button } from 'semantic-ui-react';
-import { Icon } from '@plone/volto/components';
+import Icon from '@plone/volto/components/theme/Icon/Icon';
 import cx from 'classnames';
 
 import BasketPopup from './BasketPopup';

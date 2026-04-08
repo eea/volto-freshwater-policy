@@ -3,7 +3,7 @@ import { connect, useDispatch } from 'react-redux';
 import { compose } from 'redux';
 import { Portal } from 'react-portal';
 import { Button } from 'semantic-ui-react';
-import { Icon } from '@plone/volto/components';
+import Icon from '@plone/volto/components/theme/Icon/Icon';
 import { FavButton } from '@eeacms/volto-freshwater-policy/components';
 import starSVG from '@plone/volto/icons/half-star.svg';
 import starFullSVG from '@eeacms/volto-freshwater-policy/icons/star-full.svg';

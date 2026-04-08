@@ -1,7 +1,7 @@
 import React from 'react';
 import { Portal } from 'react-portal';
 import { Link } from 'react-router-dom';
-import { Icon } from '@plone/volto/components';
+import Icon from '@plone/volto/components/theme/Icon/Icon';
 import bookSVG from '@plone/volto/icons/book.svg';
 
 const FavoritesToolbarButton = (props) => {

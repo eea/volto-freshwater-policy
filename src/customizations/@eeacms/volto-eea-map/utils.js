@@ -1,5 +1,5 @@
 /* eslint-disable no-throw-literal */
-import { getBaseUrl } from '@plone/volto/helpers';
+import { getBaseUrl } from '@plone/volto/helpers/Url/Url';
 const setLegendColumns = (legendsNo, device) => {
   switch (device) {
     case 'widescreen':

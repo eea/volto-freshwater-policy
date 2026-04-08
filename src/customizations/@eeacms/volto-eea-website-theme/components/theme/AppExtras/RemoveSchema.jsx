@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { removeSchema } from '@eeacms/volto-eea-website-theme/actions';
-import { flattenToAppURL } from '@plone/volto/helpers';
+import { flattenToAppURL } from '@plone/volto/helpers/Url/Url';
 
 function addFreshwaterToPath(path) {
   if (!path.startsWith('/freshwater')) {

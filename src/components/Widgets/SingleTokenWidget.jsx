@@ -12,8 +12,8 @@ import {
   getVocabFromHint,
   getVocabFromField,
   getVocabFromItems,
-} from '@plone/volto/helpers';
-import { getVocabulary } from '@plone/volto/actions';
+} from '@plone/volto/helpers/Vocabularies/Vocabularies';
+import { getVocabulary } from '@plone/volto/actions/vocabularies/vocabularies';
 
 import {
   Option,
@@ -22,7 +22,7 @@ import {
   customSelectStyles,
 } from '@plone/volto/components/manage/Widgets/SelectStyling';
 
-import { FormFieldWrapper } from '@plone/volto/components';
+import FormFieldWrapper from '@plone/volto/components/manage/Widgets/FormFieldWrapper';
 import { injectLazyLibs } from '@plone/volto/helpers/Loadable/Loadable';
 
 export function isString(obj) {

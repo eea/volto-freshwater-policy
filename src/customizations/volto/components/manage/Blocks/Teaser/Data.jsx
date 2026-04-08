@@ -1,7 +1,8 @@
 import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 import { Button } from 'semantic-ui-react';
-import { BlockDataForm, Icon } from '@plone/volto/components';
+import BlockDataForm from '@plone/volto/components/manage/Form/BlockDataForm';
+import Icon from '@plone/volto/components/theme/Icon/Icon';
 import { isEmpty } from 'lodash';
 import config from '@plone/volto/registry';
 

@@ -4,7 +4,7 @@ import { compose } from 'redux';
 import { connect, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Dropdown, Loader } from 'semantic-ui-react';
-import { flattenToAppURL } from '@plone/volto/helpers';
+import { flattenToAppURL } from '@plone/volto/helpers/Url/Url';
 import { DataConnectedValue } from '@eeacms/volto-datablocks/Utils';
 import { connectToProviderData } from '@eeacms/volto-datablocks/hocs';
 import Popup from '@eeacms/volto-eea-design-system/ui/Popup/Popup';

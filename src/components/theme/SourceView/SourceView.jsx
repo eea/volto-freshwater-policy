@@ -1,5 +1,5 @@
 import React from 'react';
-import { BodyClass } from '@plone/volto/helpers';
+import BodyClass from '@plone/volto/helpers/BodyClass/BodyClass';
 import { ItemMetadataSnippet } from '@eeacms/volto-freshwater-policy/components';
 import './style.less';
 
