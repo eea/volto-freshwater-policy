@@ -17,12 +17,12 @@ const renderCircles = (effect) => {
     effect === 'High'
       ? 3
       : effect === 'Medium'
-      ? 2
-      : effect === 'Low'
-      ? 1
-      : effect === 'Negative'
-      ? 1
-      : 0;
+        ? 2
+        : effect === 'Low'
+          ? 1
+          : effect === 'Negative'
+            ? 1
+            : 0;
   const circleClass = effect; // 'high', 'medium', or 'low'
 
   return (
