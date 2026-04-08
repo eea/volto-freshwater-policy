@@ -11,7 +11,8 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { doesNodeContainClick } from 'semantic-ui-react/dist/commonjs/lib';
 import { withCookies } from 'react-cookie';
-import { filter, find } from 'lodash';
+import filter from 'lodash/filter';
+import find from 'lodash/find';
 import cx from 'classnames';
 import config from '@plone/volto/registry';
 
@@ -28,7 +29,8 @@ import { unlockContent } from '@plone/volto/actions/content/content';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
 import UniversalLink from '@plone/volto/components/manage/UniversalLink/UniversalLink';
 import BodyClass from '@plone/volto/helpers/BodyClass/BodyClass';
-import { getBaseUrl, getCookieOptions } from '@plone/volto/helpers/Url/Url';
+import { getBaseUrl } from '@plone/volto/helpers/Url/Url';
+import { getCookieOptions } from '@plone/volto/helpers/Cookies/cookies';
 import { hasApiExpander } from '@plone/volto/helpers/Utils/Utils';
 import { Pluggable } from '@plone/volto/components/manage/Pluggable';
 

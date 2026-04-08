@@ -10,6 +10,7 @@ import cx from 'classnames';
 import { FormattedMessage, injectIntl, defineMessages } from 'react-intl';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
 import UniversalLink from '@plone/volto/components/manage/UniversalLink/UniversalLink';
+import Image from '@plone/volto/components/theme/Image/Image';
 import { getUser } from '@plone/volto/actions/users/users';
 import { Pluggable } from '@plone/volto/components/manage/Pluggable';
 import { flattenToAppURL, getBaseUrl } from '@plone/volto/helpers/Url/Url';
@@ -131,7 +132,7 @@ class PersonalTools extends Component {
         </header>
         <div className={cx('avatar', { default: !this.props.user.portrait })}>
           {this.props.user.portrait ? (
-            <img
+            <Image
               src={flattenToAppURL(this.props.user.portrait)}
               alt={this.props.intl.formatMessage(messages.userAvatar)}
             />

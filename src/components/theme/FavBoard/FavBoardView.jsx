@@ -10,7 +10,7 @@ import Toolbar from '@plone/volto/components/manage/Toolbar/Toolbar';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
 import queryString from 'query-string';
 import jwtDecode from 'jwt-decode';
-import { groupBy } from 'lodash';
+import groupBy from 'lodash/groupBy';
 import {
   ItemMetadata,
   ItemTitle,

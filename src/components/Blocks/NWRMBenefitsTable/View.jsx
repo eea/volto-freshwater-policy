@@ -17,12 +17,12 @@ const renderCircles = (effect) => {
     effect === 'High'
       ? 3
       : effect === 'Medium'
-        ? 2
-        : effect === 'Low'
-          ? 1
-          : effect === 'Negative'
-            ? 1
-            : 0;
+      ? 2
+      : effect === 'Low'
+      ? 1
+      : effect === 'Negative'
+      ? 1
+      : 0;
   const circleClass = effect; // 'high', 'medium', or 'low'
 
   return (
@@ -230,7 +230,7 @@ const NWRMBenefitsTable = (props) => {
               {tableData[i].map(
                 (val, j) =>
                   variation === 'circle-table' ? (
-                    <td>{renderCircles(val)}</td>
+                    <td key={j}>{renderCircles(val)}</td>
                   ) : (
                     <td key={j} className={cx('cell', val)}></td>
                   ),

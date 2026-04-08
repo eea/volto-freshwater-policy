@@ -3,7 +3,7 @@ import { connect, useDispatch } from 'react-redux';
 import { compose } from 'redux';
 import { Button, Input } from 'semantic-ui-react';
 import Icon from '@plone/volto/components/theme/Icon/Icon';
-import { groupBy } from 'lodash';
+import groupBy from 'lodash/groupBy';
 import jwtDecode from 'jwt-decode';
 import {
   addBookmark,
@@ -125,7 +125,7 @@ const BasketPopup = (props) => {
 
             {Object.keys(groupedItems).map((user) => {
               return (
-                <ul className="boards-list">
+                <ul key={user} className="boards-list">
                   {Object.keys(groupedItems[user])
                     .sort((a, b) => a.localeCompare(b))
                     .map((group, index) => {

@@ -105,7 +105,7 @@ function CaseStudyList(props) {
                       </span>
                       {selectedCase.nwrms_implemented.map((measure, index) => {
                         return (
-                          <span>
+                          <span key={measure.path || index}>
                             <a
                               target="_blank"
                               rel="noopener noreferrer"

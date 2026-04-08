@@ -15,7 +15,7 @@ import { hasApiExpander } from '@plone/volto/helpers/Utils/Utils';
 import { getNavigation } from '@plone/volto/actions/navigation/navigation';
 import { Header, Logo } from '@eeacms/volto-eea-design-system/ui';
 import { usePrevious } from '@eeacms/volto-eea-design-system/helpers';
-import { find } from 'lodash';
+import find from 'lodash/find';
 import globeIcon from '@eeacms/volto-eea-design-system/../theme/themes/eea/assets/images/Header/global-line.svg';
 import eeaFlag from '@eeacms/volto-eea-design-system/../theme/themes/eea/assets/images/Header/eea.png';
 

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { compose } from 'redux';
-import { groupBy } from 'lodash';
+import groupBy from 'lodash/groupBy';
 import jwtDecode from 'jwt-decode';
 import { Link } from 'react-router-dom';
 import { Portal } from 'react-portal';

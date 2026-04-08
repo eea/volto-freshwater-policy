@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 import { defineMessages } from 'react-intl';
 import {
   DatabaseItemView,
