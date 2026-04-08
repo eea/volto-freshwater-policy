@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import { useCases } from './hooks';
 import CaseStudyExplorerView from './CaseStudyExplorerView';
 
-jest.mock('@plone/volto/helpers', () => ({
+jest.mock('@plone/volto/helpers/Url/Url', () => ({
   addAppURL: jest.fn((url) => url),
 }));
 
