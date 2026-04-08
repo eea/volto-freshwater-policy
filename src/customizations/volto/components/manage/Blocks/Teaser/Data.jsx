@@ -15,8 +15,15 @@ const messages = defineMessages({
 });
 
 const TeaserData = (props) => {
-  const { block, blocksConfig, data, onChangeBlock, navRoot, contentType } =
-    props;
+  const {
+    block,
+    blocksConfig,
+    data,
+    onChangeBlock,
+    navRoot,
+    contentType,
+    blocksErrors,
+  } = props;
   const intl = useIntl();
 
   const reset = () => {
@@ -68,6 +75,7 @@ const TeaserData = (props) => {
       headerActions={HeaderActions}
       navRoot={navRoot}
       contentType={contentType}
+      errors={blocksErrors}
     />
   );
 };
