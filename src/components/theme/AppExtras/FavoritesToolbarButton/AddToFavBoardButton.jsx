@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { compose } from 'redux';
 import { Portal } from 'react-portal';
@@ -15,12 +15,21 @@ import {
 const AddToFavBoardButton = (props) => {
   const { basket, content, location } = props;
   const dispatch = useDispatch();
+  const [isMounted, setIsMounted] = useState(false);
   const isSearchQuerySelected = basket.items.some(
     (item) => item.hash === location.hash,
   );
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
+
   return (
-    <Portal node={__CLIENT__ && document.querySelector('.toolbar-actions')}>
+    <Portal node={document.querySelector('.toolbar-actions')}>
       <div className="fav-toolbar-menu">
         {location.hash ? (
           <>
