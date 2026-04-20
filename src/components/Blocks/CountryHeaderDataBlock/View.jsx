@@ -252,7 +252,10 @@ const View = (props) => {
     'map-visualizations',
     'glossary',
   ];
-  const column_value = Array.from(new Set(provider_data?.[column_data])).sort();
+
+  const column_value = Array.from(new Set(provider_data?.[column_data])).sort(
+    (a, b) => a - b,
+  );
   const siblings = getContentSiblings(content?.['@components']?.siblings);
   const country_profiles = (siblings || []).filter(
     (item) => !excludeItems.includes(item.key),
