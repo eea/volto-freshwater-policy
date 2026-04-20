@@ -1,8 +1,9 @@
 import React from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 import { Button } from 'semantic-ui-react';
-import { BlockDataForm, Icon } from '@plone/volto/components';
-import { isEmpty } from 'lodash';
+import BlockDataForm from '@plone/volto/components/manage/Form/BlockDataForm';
+import Icon from '@plone/volto/components/theme/Icon/Icon';
+import isEmpty from 'lodash/isEmpty';
 import config from '@plone/volto/registry';
 
 import trashSVG from '@plone/volto/icons/delete.svg';
@@ -15,8 +16,15 @@ const messages = defineMessages({
 });
 
 const TeaserData = (props) => {
-  const { block, blocksConfig, data, onChangeBlock, navRoot, contentType } =
-    props;
+  const {
+    block,
+    blocksConfig,
+    data,
+    onChangeBlock,
+    navRoot,
+    contentType,
+    blocksErrors,
+  } = props;
   const intl = useIntl();
 
   const reset = () => {
@@ -68,6 +76,7 @@ const TeaserData = (props) => {
       headerActions={HeaderActions}
       navRoot={navRoot}
       contentType={contentType}
+      errors={blocksErrors}
     />
   );
 };

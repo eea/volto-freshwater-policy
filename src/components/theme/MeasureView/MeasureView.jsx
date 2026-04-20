@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Grid, Accordion } from 'semantic-ui-react';
-import { BodyClass } from '@plone/volto/helpers';
-import { Icon } from '@plone/volto/components';
+import BodyClass from '@plone/volto/helpers/BodyClass/BodyClass';
+import Icon from '@plone/volto/components/theme/Icon/Icon';
 import { CaseStudyExplorer } from '@eeacms/volto-freshwater-policy/components';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import './style.less';
@@ -142,12 +142,12 @@ const renderCircles = (effect) => {
     effect === 'High'
       ? 3
       : effect === 'Medium'
-      ? 2
-      : effect === 'Low'
-      ? 1
-      : effect === 'Negative'
-      ? 1
-      : 0;
+        ? 2
+        : effect === 'Low'
+          ? 1
+          : effect === 'Negative'
+            ? 1
+            : 0;
   const circleClass = effect; // 'high', 'medium', or 'low'
 
   return (

@@ -1,5 +1,5 @@
 import NWRMBenefitsTableBlockSchema from './schema';
-import { SidebarPortal } from '@plone/volto/components';
+import SidebarPortal from '@plone/volto/components/manage/Sidebar/SidebarPortal';
 import InlineForm from '@plone/volto/components/manage/Form/InlineForm';
 
 import NWRMBenefitsTableView from './View';

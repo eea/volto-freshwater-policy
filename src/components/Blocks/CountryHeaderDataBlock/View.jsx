@@ -4,7 +4,8 @@ import { compose } from 'redux';
 import { connect, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Dropdown, Loader } from 'semantic-ui-react';
-import { flattenToAppURL } from '@plone/volto/helpers';
+import { flattenToAppURL } from '@plone/volto/helpers/Url/Url';
+import Image from '@plone/volto/components/theme/Image/Image';
 import { DataConnectedValue } from '@eeacms/volto-datablocks/Utils';
 import { connectToProviderData } from '@eeacms/volto-datablocks/hocs';
 import Popup from '@eeacms/volto-eea-design-system/ui/Popup/Popup';
@@ -251,7 +252,10 @@ const View = (props) => {
     'map-visualizations',
     'glossary',
   ];
-  const column_value = Array.from(new Set(provider_data?.[column_data])).sort();
+
+  const column_value = Array.from(new Set(provider_data?.[column_data])).sort(
+    (a, b) => a - b,
+  );
   const siblings = getContentSiblings(content?.['@components']?.siblings);
   const country_profiles = (siblings || []).filter(
     (item) => !excludeItems.includes(item.key),
@@ -281,7 +285,7 @@ const View = (props) => {
             <div className="country-profile-wrapper">
               <div className="country-flag">
                 {data.country_flag && (
-                  <img alt={countryNames[data.country_flag]} src={flag} />
+                  <Image alt={countryNames[data.country_flag]} src={flag} />
                 )}
               </div>
               <Dropdown
