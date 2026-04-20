@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { connect, useDispatch } from 'react-redux';
 import { compose } from 'redux';
-import { groupBy } from 'lodash';
+import groupBy from 'lodash/groupBy';
 import jwtDecode from 'jwt-decode';
 import { Link } from 'react-router-dom';
 import { Portal } from 'react-portal';
-import { Toolbar, Icon } from '@plone/volto/components';
-import { BodyClass } from '@plone/volto/helpers';
+import Toolbar from '@plone/volto/components/manage/Toolbar/Toolbar';
+import Icon from '@plone/volto/components/theme/Icon/Icon';
+import BodyClass from '@plone/volto/helpers/BodyClass/BodyClass';
 import { Tab, Menu, Button } from 'semantic-ui-react';
 import { getAllBookmarks } from '@eeacms/volto-freshwater-policy/actions/boards';
 import backSVG from '@plone/volto/icons/back.svg';

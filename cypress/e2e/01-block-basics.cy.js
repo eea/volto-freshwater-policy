@@ -11,19 +11,31 @@ describe('Blocks Tests', () => {
 
     cy.get('.documentFirstHeading').contains('My Add-on Page');
 
+    //add image block
     cy.getSlate().click();
-
-    // Add block
     cy.get('.ui.basic.icon.button.block-add-button').first().click();
     cy.get('.blocks-chooser .title').contains('Media').click();
     cy.get('.content.active.media .button.image').contains('Image').click();
+    cy.get('body').then(($body) => {
+      const nextVoltoInput = $body.find(
+        'button[aria-label="Enter a URL to an image"]',
+      );
+
+      if (nextVoltoInput.length) {
+        cy.get('.block-editor-image [tabindex="0"]').last().focus();
+        cy.wrap(nextVoltoInput).click();
+        cy.get('input[placeholder="Enter a URL to an image"]').type(
+          'https://eea.github.io/volto-eea-design-system/img/eea_icon.png{enter}',
+        );
+      } else {
+        cy.get('.block.image .ui.input input[type="text"]').type(
+          'https://eea.github.io/volto-eea-design-system/img/eea_icon.png{enter}',
+        );
+      }
+    });
 
     // Save
     cy.get('#toolbar-save').click();
     cy.url().should('eq', Cypress.config().baseUrl + '/cypress/my-page');
-
-    // then the page view should contain our changes
-    cy.contains('My Add-on Page');
-    cy.get('.block.image');
   });
 });

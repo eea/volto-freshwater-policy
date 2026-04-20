@@ -11,7 +11,7 @@ jest.mock('superagent', () => ({
   })),
 }));
 
-jest.mock('@plone/volto/helpers', () => ({
+jest.mock('@plone/volto/helpers/Url/Url', () => ({
   addAppURL: jest.fn((url) => `/mocked${url}`),
 }));
 

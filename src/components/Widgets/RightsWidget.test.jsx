@@ -3,11 +3,9 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import Widget from './RightsWidget';
 import '@testing-library/jest-dom';
 
-jest.mock('@plone/volto/components', () => ({
-  FormFieldWrapper: ({ children }) => (
-    <div data-testid="wrapper">{children}</div>
-  ),
-}));
+jest.mock('@plone/volto/components/manage/Widgets/FormFieldWrapper', () => {
+  return ({ children }) => <div data-testid="wrapper">{children}</div>;
+});
 
 jest.mock('semantic-ui-react', () => {
   const Radio = ({ label, value, checked, onChange }) => (

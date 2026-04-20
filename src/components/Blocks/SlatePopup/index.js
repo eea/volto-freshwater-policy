@@ -1,5 +1,5 @@
 import { defineMessages } from 'react-intl';
-import { makeInlineElementPlugin } from '@plone/volto-slate/elementEditor';
+import { makeInlineElementPlugin } from '@plone/volto-slate/elementEditor/makeInlineElementPlugin';
 import popupSVG from '@eeacms/volto-freshwater-policy/icons/popup.svg';
 import { withSlatePupup } from './extensions';
 import { SLATEPOPUP } from './constants';

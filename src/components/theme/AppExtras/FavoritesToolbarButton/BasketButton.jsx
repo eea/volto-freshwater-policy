@@ -3,12 +3,10 @@ import { compose } from 'redux';
 import { Portal } from 'react-portal';
 import { connect, useSelector } from 'react-redux';
 import { Button } from 'semantic-ui-react';
-import { Icon } from '@plone/volto/components';
+import Icon from '@plone/volto/components/theme/Icon/Icon';
 import cx from 'classnames';
-
 import BasketPopup from './BasketPopup';
 import basketSVG from '@eeacms/volto-freshwater-policy/icons/basket.svg';
-
 import './style.less';
 
 const BasketButton = (props) => {
@@ -17,9 +15,13 @@ const BasketButton = (props) => {
     (state) =>
       state.userSession.token !== undefined && state.userSession.token !== null,
   );
-
   const [showMenu, setShowMenu] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
   const menuRef = useRef(null);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   useEffect(() => {
     const outsideClick = (e) => {
@@ -33,34 +35,32 @@ const BasketButton = (props) => {
     };
   }, [showMenu]);
 
+  if (!isMounted || !logedIn) {
+    return null;
+  }
+
   return (
-    <>
-      {logedIn && (
-        <Portal node={__CLIENT__ && document.querySelector('.basket')}>
-          <div className="fav-basket-menu" ref={menuRef} role={'listbox'}>
-            <Button
-              className={cx('basket-btn item', {
-                'full-basket': basket.items && basket.items.length > 0,
-              })}
-              onClick={() => {
-                setShowMenu(!showMenu);
-              }}
-              title="Boards basket"
-            >
-              <Icon name={basketSVG} size="30px" />
-
-              {basket.items && basket.items.length > 0 && (
-                <div className="basket-count">
-                  <span>{basket.items.length}</span>
-                </div>
-              )}
-            </Button>
-
-            {showMenu ? <BasketPopup /> : null}
-          </div>
-        </Portal>
-      )}
-    </>
+    <Portal node={document.querySelector('.basket')}>
+      <div className="fav-basket-menu" ref={menuRef} role={'listbox'}>
+        <Button
+          className={cx('basket-btn item', {
+            'full-basket': basket.items && basket.items.length > 0,
+          })}
+          onClick={() => {
+            setShowMenu(!showMenu);
+          }}
+          title="Boards basket"
+        >
+          <Icon name={basketSVG} size="30px" />
+          {basket.items && basket.items.length > 0 && (
+            <div className="basket-count">
+              <span>{basket.items.length}</span>
+            </div>
+          )}
+        </Button>
+        {showMenu ? <BasketPopup /> : null}
+      </div>
+    </Portal>
   );
 };
 

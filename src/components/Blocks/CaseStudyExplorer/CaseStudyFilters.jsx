@@ -282,7 +282,7 @@ function ActiveFiltersComponent(props) {
               {activeFilters.nwrms_implemented.map((filterCode) => {
                 const filterLabel = filters.nwrms_implemented[filterCode];
                 return (
-                  <div className="ui basic label filter-value">
+                  <div key={filterCode} className="ui basic label filter-value">
                     <span>{filterLabel}</span>
                     <i
                       tabIndex="0"
@@ -307,7 +307,7 @@ function ActiveFiltersComponent(props) {
               {activeFilters.sectors.map((filterCode) => {
                 const filterLabel = filters.sectors[filterCode];
                 return (
-                  <div className="ui basic label filter-value">
+                  <div key={filterCode} className="ui basic label filter-value">
                     <span>{filterLabel}</span>
                     <i
                       tabIndex="0"

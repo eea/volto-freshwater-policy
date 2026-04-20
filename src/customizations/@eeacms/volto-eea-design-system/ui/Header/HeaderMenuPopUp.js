@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-filename-extension */
 import React, { useState, useEffect } from 'react';
 import {
   Transition,
@@ -8,9 +9,8 @@ import {
   Accordion,
 } from 'semantic-ui-react';
 
-import { cloneDeep } from 'lodash';
-
 import { useClickOutside } from '@eeacms/volto-eea-design-system/helpers';
+import cloneDeep from 'lodash/cloneDeep';
 
 const createColumns = (item, renderMenuItem, item_id) => {
   const itemList = item.items.map((item, index) => (

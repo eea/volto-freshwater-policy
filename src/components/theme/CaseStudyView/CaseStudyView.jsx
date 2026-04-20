@@ -1,6 +1,6 @@
 import React from 'react';
-import { BodyClass } from '@plone/volto/helpers';
-import { Icon } from '@plone/volto/components';
+import BodyClass from '@plone/volto/helpers/BodyClass/BodyClass';
+import Icon from '@plone/volto/components/theme/Icon/Icon';
 import { Accordion } from 'semantic-ui-react';
 
 import downSVG from '@plone/volto/icons/down-key.svg';
@@ -218,7 +218,10 @@ const CaseStudyView = (props) => {
                 {content.items.map(
                   (item) =>
                     item['@type'] === 'File' && (
-                      <div className="field--label-inline field-with-margin">
+                      <div
+                        key={item['@id']}
+                        className="field--label-inline field-with-margin"
+                      >
                         <div className="field__label">
                           <a
                             href={item['@id'] + '/@@images/file'}
@@ -287,7 +290,7 @@ const CaseStudyView = (props) => {
 
                   if (sectionData) {
                     return (
-                      <div className="field--label-above">
+                      <div key={item.id} className="field--label-above">
                         <Accordion>
                           <Accordion.Title
                             active={activeIndices.includes(index + 1)}
