@@ -3,7 +3,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import { compose } from 'redux';
 import { connect, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Dropdown, Loader } from 'semantic-ui-react';
+import { Dropdown } from 'semantic-ui-react';
 import { flattenToAppURL } from '@plone/volto/helpers/Url/Url';
 import Image from '@plone/volto/components/theme/Image/Image';
 import { DataConnectedValue } from '@eeacms/volto-datablocks/Utils';
