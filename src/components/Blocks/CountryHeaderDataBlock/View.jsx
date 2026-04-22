@@ -3,7 +3,7 @@ import { defineMessages, injectIntl } from 'react-intl';
 import { compose } from 'redux';
 import { connect, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { Dropdown, Loader } from 'semantic-ui-react';
+import { Dropdown } from 'semantic-ui-react';
 import { flattenToAppURL } from '@plone/volto/helpers/Url/Url';
 import Image from '@plone/volto/components/theme/Image/Image';
 import { DataConnectedValue } from '@eeacms/volto-datablocks/Utils';
@@ -14,7 +14,8 @@ import Banner from '@eeacms/volto-eea-design-system/ui/Banner/Banner';
 import cx from 'classnames';
 import countryNames from './data/countries';
 import './style.less';
-import { setIsPrint } from '@eeacms/volto-eea-website-theme/actions/print';
+// import { setIsPrint } from '@eeacms/volto-eea-website-theme/actions/print';
+import { setupPrintView } from '@eeacms/volto-eea-website-theme/helpers/setupPrintView';
 
 const messages = defineMessages({
   share: {
@@ -355,94 +356,12 @@ const View = (props) => {
                     <>
                       <Banner.Action
                         icon="ri-download-2-fill"
-                        title="Download"
+                        title={intl.formatMessage(messages.download)}
                         className="download"
                         onClick={() => {
-                          // set tabs to be visible
-                          const tabs =
-                            document.getElementsByClassName('ui tab');
-                          Array.from(tabs).forEach((tab) => {
-                            tab.style.display = 'block';
-                          });
-
-                          dispatch(setIsPrint(true));
-                          // display loader
-                          const printLoader = document.getElementById(
-                            'download-print-loader',
-                          );
-                          printLoader.style.display = 'flex';
-
-                          let timeoutValue = 1000;
-                          // if we have plotlycharts increase timeout
-                          setTimeout(() => {
-                            const plotlyCharts =
-                              document.getElementsByClassName(
-                                'visualization-wrapper',
-                              );
-                            if (plotlyCharts.length > 0) {
-                              timeoutValue = timeoutValue + 1000;
-                            }
-                          }, timeoutValue);
-
-                          // scroll to iframes to make them be in the viewport
-                          // use timeout to wait for load
-                          setTimeout(() => {
-                            const iframes =
-                              document.getElementsByTagName('iframe');
-                            if (iframes.length > 0) {
-                              timeoutValue = timeoutValue + 2000;
-                              Array.from(iframes).forEach((element, index) => {
-                                setTimeout(() => {
-                                  element.scrollIntoView({
-                                    behavior: 'instant',
-                                    block: 'nearest',
-                                    inline: 'center',
-                                  });
-                                }, timeoutValue);
-                                timeoutValue = timeoutValue + 3000;
-                              });
-                              timeoutValue = timeoutValue + 1000;
-                            }
-
-                            setTimeout(() => {
-                              window.scrollTo({
-                                top: 0,
-                              });
-                              Array.from(tabs).forEach((tab) => {
-                                tab.style.display = '';
-                              });
-                              printLoader.style.display = 'none';
-                              dispatch(setIsPrint(false));
-                              window.print();
-                            }, timeoutValue);
-                          }, timeoutValue);
+                          setupPrintView(dispatch);
                         }}
                       />
-                      <div
-                        id="download-print-loader"
-                        className={cx('ui warning message')}
-                        style={{
-                          position: 'fixed',
-                          left: '40%',
-                          right: '40%',
-                          backgroundColor: '#fff',
-                          padding: '1em',
-                          display: 'none',
-                          flexDirection: 'column',
-                          alignItems: 'center',
-                          top: '40%',
-                          zIndex: '9999',
-                        }}
-                      >
-                        <Loader
-                          disabled={false}
-                          indeterminate
-                          active
-                          inline
-                          size="medium"
-                        ></Loader>
-                        <div>Preparing download</div>
-                      </div>
                     </>
                   )}
                 </>
