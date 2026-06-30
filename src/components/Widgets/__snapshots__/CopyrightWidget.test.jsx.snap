@@ -57,6 +57,10 @@ exports[`renders a copyright widget component basic 1`] = `
               Other
             </label>
           </div>
+          <div
+            aria-atomic="true"
+            aria-live="polite"
+          />
         </div>
       </div>
     </div>
