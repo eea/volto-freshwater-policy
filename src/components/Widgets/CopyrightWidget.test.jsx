@@ -15,7 +15,7 @@ describe('renders a copyright widget component', () => {
       },
     });
 
-    const { asFragment } = render(
+    const { asFragment, container } = render(
       <Provider store={store}>
         <CopyrightWidget
           id="copyright"
@@ -25,6 +25,14 @@ describe('renders a copyright widget component', () => {
         />
       </Provider>,
     );
+
+    // Some dependency versions inject an a11y live-announcer div
+    // (`<div aria-atomic="true" aria-live="polite" />`) into the rendered
+    // tree. It is unrelated to this widget and makes the snapshot flaky,
+    // so strip it before capturing the fragment.
+    container
+      .querySelectorAll('div[aria-live][aria-atomic]:empty')
+      .forEach((el) => el.remove());
 
     expect(asFragment()).toMatchSnapshot();
   });

@@ -53,7 +53,7 @@ const TeaserData = (props) => {
     </Button.Group>
   );
 
-  const schema = blocksConfig[data['@type']].blockSchema({ intl });
+  const schema = blocksConfig[data['@type']].blockSchema({ data, intl });
   const dataAdapter = config.blocks.blocksConfig[data['@type']].dataAdapter;
 
   return (
