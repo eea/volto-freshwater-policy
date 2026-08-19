@@ -15,7 +15,12 @@ import InfoOverlay from './InfoOverlay';
 import FeatureInteraction from './FeatureInteraction';
 import CaseStudyList from './CaseStudyListing';
 
-import { centerAndResetMapZoom, getFeatures, scrollToElement } from './utils';
+import {
+  centerAndResetMapZoom,
+  getFeatures,
+  getSelectInteraction,
+  scrollToElement,
+} from './utils';
 
 const styleCache = {};
 const MapContextGateway = ({ setMap }) => {
@@ -67,32 +72,43 @@ function CaseStudyMap(props) {
     }),
   );
 
+  // `ol` is a fresh object literal on every render (see withOpenLayers); keep
+  // the latest reference in a ref so effects can depend only on values that
+  // actually change. Refreshing the points source regenerates the cluster
+  // features, which drops the currently selected feature from the rendered set.
+  const olRef = React.useRef(ol);
+  olRef.current = ol;
+
   React.useEffect(() => {
     if (activeItems) {
       pointsSource.clear();
-      pointsSource.addFeatures(getFeatures({ cases: activeItems, ol }));
+      pointsSource.addFeatures(
+        getFeatures({ cases: activeItems, ol: olRef.current }),
+      );
     }
-  }, [activeItems, pointsSource, ol]);
+  }, [activeItems, pointsSource]);
 
   React.useEffect(() => {
     if (!map) return;
 
-    const moveendListener = (e) => {
-      // console.log('map.getView()', map.getView());
-      // console.log('selectedCase', selectedCase);
+    const moveendListener = () => {
       const mapZoom = Math.round(map.getView().getZoom() * 10) / 10;
       const mapCenter = map.getView().getCenter();
+      const selectInteraction = getSelectInteraction(map);
 
-      if (selectedCase) {
-        const coords = selectedCase.geometry.flatCoordinates;
-        const pixel = map.getPixelFromCoordinate(coords);
-        map.getInteractions().array_[9].getFeatures().clear();
-        map
-          .getInteractions()
-          .array_[9].getFeatures()
-          .push(map.getFeaturesAtPixel(pixel)[0]);
-      } else {
-        map.getInteractions().array_[9].getFeatures().clear();
+      if (selectInteraction) {
+        if (selectedCase) {
+          const coords = selectedCase.geometry.flatCoordinates;
+          const pixel = map.getPixelFromCoordinate(coords);
+          const selectedFeature = map.getFeaturesAtPixel(pixel)[0];
+
+          selectInteraction.getFeatures().clear();
+          if (selectedFeature) {
+            selectInteraction.getFeatures().push(selectedFeature);
+          }
+        } else {
+          selectInteraction.getFeatures().clear();
+        }
       }
 
       if (
@@ -111,12 +127,9 @@ function CaseStudyMap(props) {
     return () => {
       map.un('moveend', moveendListener);
     };
-  }, [map, selectedCase, resetMapButtonClass, setResetMapButtonClass, ol]);
+  }, [map, selectedCase, ol.proj, setResetMapButtonClass]);
 
-  const clusterStyle = React.useMemo(
-    () => selectedClusterStyle({ selectedCase, ol }),
-    [selectedCase, ol],
-  );
+  const clusterStyle = React.useMemo(() => selectedClusterStyle({ ol }), [ol]);
 
   const MapWithSelection = React.useMemo(() => Map, []);
   // console.log('render');
@@ -144,7 +157,7 @@ function CaseStudyMap(props) {
                 scrollToElement('search-input');
                 onSelectedCase(null);
                 centerAndResetMapZoom({ map, ol });
-                map.getInteractions().array_[9].getFeatures().clear();
+                getSelectInteraction(map)?.getFeatures().clear();
               }}
             >
               <span className="result-info-title">Reset map</span>
@@ -160,7 +173,6 @@ function CaseStudyMap(props) {
           <FeatureInteraction
             onFeatureSelect={onSelectedCase}
             hideFilters={hideFilters}
-            selectedCase={selectedCase}
           />
           <Layer.Tile source={tileWMSSources[0]} zIndex={0} />
           <Layer.Vector
@@ -185,7 +197,7 @@ function CaseStudyMap(props) {
   ) : null;
 }
 
-const selectedClusterStyle = ({ selectedFeature, ol }) => {
+const selectedClusterStyle = ({ ol }) => {
   function _clusterStyle(feature) {
     const size = feature.get('features').length;
     let style = styleCache[size];

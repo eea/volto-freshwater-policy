@@ -1,6 +1,11 @@
 import './mockJsdom';
 import '@testing-library/jest-dom';
-import { getFeatures, filterCases, getFilters } from './utils';
+import {
+  getFeatures,
+  filterCases,
+  getFilters,
+  getSelectInteraction,
+} from './utils';
 
 describe('utils.js', () => {
   const mockCases = [
@@ -53,6 +58,26 @@ describe('utils.js', () => {
     expect(() => {
       getFeatures({ cases: mockCases, ol });
     }).not.toThrowError();
+  });
+
+  test('getSelectInteraction finds the Select interaction by getFeatures', () => {
+    const selectInteraction = { getFeatures: jest.fn() };
+    const map = {
+      getInteractions: () => ({
+        array_: [{ getFeatures: null }, {}, selectInteraction],
+      }),
+    };
+
+    expect(getSelectInteraction(map)).toBe(selectInteraction);
+  });
+
+  test('getSelectInteraction returns undefined when no Select interaction', () => {
+    const map = {
+      getInteractions: () => ({ array_: [{}, {}] }),
+    };
+
+    expect(getSelectInteraction(map)).toBeUndefined();
+    expect(getSelectInteraction(undefined)).toBeUndefined();
   });
 
   test('filterCases', () => {

@@ -3,6 +3,7 @@ import { withOpenLayers } from '@eeacms/volto-openlayers-map';
 
 import {
   centerAndResetMapZoom,
+  getSelectInteraction,
   scrollToElement,
   zoomMapToFeatures,
 } from './utils';
@@ -132,7 +133,7 @@ function CaseStudyList(props) {
                         // reset map zoom
                         onSelectedCase(null);
                         centerAndResetMapZoom({ map, ol });
-                        map.getInteractions().array_[9].getFeatures().clear();
+                        getSelectInteraction(map)?.getFeatures().clear();
                       }}
                     >
                       <span
@@ -212,10 +213,9 @@ function CaseStudyList(props) {
                           role="button"
                           onKeyDown={() => {}}
                           onClick={() => {
-                            map
-                              .getInteractions()
-                              .array_[9].getFeatures()
-                              .clear();
+                            const selectInteraction = getSelectInteraction(map);
+                            selectInteraction?.getFeatures().clear();
+
                             // scroll to the map
                             scrollToElement('ol-map-container');
 
@@ -231,10 +231,13 @@ function CaseStudyList(props) {
                               const coords =
                                 item.values_.geometry.flatCoordinates;
                               const pixel = map.getPixelFromCoordinate(coords);
-                              map
-                                .getInteractions()
-                                .array_[9].getFeatures()
-                                .push(map.getFeaturesAtPixel(pixel)[0]);
+                              const selectedFeature =
+                                map.getFeaturesAtPixel(pixel)[0];
+                              if (selectedFeature) {
+                                selectInteraction
+                                  ?.getFeatures()
+                                  .push(selectedFeature);
+                              }
                             }, 1100);
                           }}
                         >
