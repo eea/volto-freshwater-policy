@@ -13,6 +13,16 @@ export function scrollToElement(elementId) {
   });
 }
 
+export function getSelectInteraction(map) {
+  const interactions = map?.getInteractions?.();
+  const interactionArray =
+    interactions?.getArray?.() || interactions?.array_ || [];
+
+  return interactionArray.find(
+    (interaction) => typeof interaction?.getFeatures === 'function',
+  );
+}
+
 export function getExtentOfFeatures({ features, ol }) {
   const points = features.map((f) => f.getGeometry().flatCoordinates);
   const point = new ol.geom.MultiPoint(points);

@@ -14,6 +14,9 @@ jest.mock('@eeacms/volto-openlayers-map', () => ({
 
 jest.mock('./utils', () => ({
   centerAndResetMapZoom: jest.fn(),
+  getSelectInteraction: jest.fn(() => ({
+    getFeatures: () => ({ clear: jest.fn(), push: jest.fn() }),
+  })),
   scrollToElement: jest.fn(),
   zoomMapToFeatures: jest.fn(),
 }));
