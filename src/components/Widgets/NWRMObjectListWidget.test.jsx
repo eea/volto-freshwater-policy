@@ -10,12 +10,16 @@ import {
 } from './NWRMObjectListWidget';
 import '@testing-library/jest-dom';
 
-jest.mock('uuid', () => {
-  let value = 0;
-  return {
-    v4: jest.fn(() => `uuid-${value++}`),
-  };
-});
+jest.mock(
+  'uuid',
+  () => {
+    let value = 0;
+    return {
+      v4: jest.fn(() => `uuid-${value++}`),
+    };
+  },
+  { virtual: true },
+);
 
 jest.mock('@plone/volto/components/manage/DragDropList/DragDropList', () => {
   // A functional component that mocks DragDropList behavior
