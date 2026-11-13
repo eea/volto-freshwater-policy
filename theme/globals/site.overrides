@@ -10,7 +10,6 @@
 
 .ui.button.primary.inverted:focus {
   background-color: @primaryColor !important;
-  ;
 }
 
 .grid .nine.wide.content-body {
@@ -54,15 +53,32 @@ body.searchlib-page .searchlib-block .back-link {
 .search-body-footer .ui.button.pagination-item.active,
 .searchlib-block .dropdown-facets-list .dropdown-facet .facet-title i.icon,
 .searchlib-block .dropdown-facets-list .ui.button.sui-button,
-.searchlib-block .dropdown-facets-list .dropdown-facet .ui.button.basic.facet-btn.active>.facet-title,
-body.searchlib-page .searchlib-block .above-results .sorting .inline.dropdown>span {
+.searchlib-block
+  .dropdown-facets-list
+  .dropdown-facet
+  .ui.button.basic.facet-btn.active
+  > .facet-title,
+body.searchlib-page
+  .searchlib-block
+  .above-results
+  .sorting
+  .inline.dropdown
+  > span {
   color: @secondaryColor !important;
 }
 
 .sui-search-box .search-input .input-controls i.close.icon:before,
 .sui-search-box .search-input .input-controls i.close.icon:after,
-body.searchlib-page .searchlib-block .ui.segment.active-filter-list .ui.label.filter-value i.close.icon:before,
-body.searchlib-page .searchlib-block .ui.segment.active-filter-list .ui.label.filter-value i.close.icon:after {
+body.searchlib-page
+  .searchlib-block
+  .ui.segment.active-filter-list
+  .ui.label.filter-value
+  i.close.icon:before,
+body.searchlib-page
+  .searchlib-block
+  .ui.segment.active-filter-list
+  .ui.label.filter-value
+  i.close.icon:after {
   background-color: @secondaryColor !important;
 }
 
@@ -95,7 +111,6 @@ ul.metadata.geolocation-widget {
 // Custom page header
 body.custom-page-header {
   #page-header {
-
     .column-blocks-wrapper,
     .content-box {
       margin-bottom: 0;
@@ -192,6 +207,115 @@ body.custom-page-header .breadcrumbs {
     tr td {
       border-left: none !important;
       border-top: 1px solid #e5e5e5;
+    }
+  }
+}
+
+@media print {
+  // Country profiles print styles
+  .contenttype-country_factsheet__wfd_ {
+    .gray-tab-background .RRT__panel.ui.attached.segment.tab.content.active {
+      background-color: none !important;
+    }
+
+    .tabs-block {
+      margin-top: 2em;
+
+      .RRT__container .ui.RRT__tabs .title {
+        display: none !important;
+      }
+
+      .tab-name::before {
+        font-size: 22px;
+      }
+    }
+
+    .ui.basic.segment.content-area .content-box {
+      background-color: white !important;
+    }
+
+    .six.wide.column.column-blocks-wrapper {
+      margin-top: 1.5em;
+    }
+
+    .RRT__container {
+      .ui.menu[class*='ary']:not(.vertical):before {
+        border: none;
+      }
+    }
+
+    .RRT__panel.ui.attached.segment.tab.content,
+    .RRT__panel.ui.attached.segment.tab.content > div,
+    .ui.statistic,
+    .six.wide.column {
+      break-inside: avoid;
+      page-break-inside: avoid;
+    }
+
+    .RRT__panel.ui.attached.segment.tab.content {
+      .block.call-to-action.align.left {
+        margin-top: 1em;
+      }
+
+      .tab-name {
+        font-weight: 500;
+      }
+    }
+    .ui.statistics {
+      margin-bottom: 0 !important;
+      background-color: #f9f9f9;
+    }
+
+    .ui.twelve.column.grid.column-grid {
+      > .six.wide.column:not(:last-child) {
+        margin-bottom: 0 !important;
+      }
+    }
+
+    .tabs-block .tab-name > div {
+      border-top: none !important;
+    }
+
+    .tabs-block .tab-name > div {
+      border-top: none;
+    }
+    .content-box {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+    }
+
+    .has--useAsPageHeader--true {
+      .content-box {
+        height: 600px;
+        .ui.twelve.column.grid.column-grid {
+          display: flex !important;
+          width: 100% !important;
+        }
+
+        .ui.twelve.column.grid.column-grid > .column {
+          width: 100% !important;
+          max-width: 100% !important;
+          margin: 0 0 1rem 0 !important;
+        }
+
+        .ui.twelve.column.grid.column-grid {
+          margin-bottom: 0 !important;
+          > .column-blocks-wrapper
+            > .columns-view
+            > .column-grid
+            > .column-blocks-wrapper
+            > .columns-view {
+            .six.wide.column {
+              width: 50% !important;
+              margin: 0 !important;
+
+              p {
+                margin: 0 !important;
+              }
+            }
+          }
+        }
+      }
     }
   }
 }
