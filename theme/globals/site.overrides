@@ -218,7 +218,6 @@ body.custom-page-header .breadcrumbs {
       break-inside: unset;
     }
 
-    .ui.breadcrumbs,
     a[title*='feedback'],
     .page-banner-actions-block,
     .styled-dividerBlock {
