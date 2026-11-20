@@ -218,10 +218,9 @@ body.custom-page-header .breadcrumbs {
       break-inside: unset;
     }
 
-    .page-banner-actions-block {
-      display: none;
-    }
-
+    .ui.breadcrumbs,
+    a[title*='feedback'],
+    .page-banner-actions-block,
     .styled-dividerBlock {
       display: none;
     }
@@ -268,10 +267,6 @@ body.custom-page-header .breadcrumbs {
         font-size: 22px;
       }
     }
-
-    // .six.wide.column.column-blocks-wrapper {
-    //   margin-top: 1.5em;
-    // }
 
     .RRT__container {
       .ui.menu[class*='ary']:not(.vertical):before {
