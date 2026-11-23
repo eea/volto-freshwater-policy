@@ -220,8 +220,13 @@ body.custom-page-header .breadcrumbs {
 
     a[title*='feedback'],
     .page-banner-actions-block,
-    .styled-dividerBlock {
+    .styled-dividerBlock,
+    .ui.breadcrumb {
       display: none;
+    }
+
+    .ui.basic.segment.content-area {
+      margin-top: 1em;
     }
 
     .block.maps iframe,
@@ -253,6 +258,11 @@ body.custom-page-header .breadcrumbs {
   .contenttype-country_factsheet__wfd_ {
     .gray-tab-background .RRT__panel.ui.attached.segment.tab.content.active {
       background-color: none !important;
+    }
+
+    .ui.small.statistics .statistic > .value,
+    .ui.small.statistic > .value {
+      font-size: 2rem !important;
     }
 
     .tabs-block {
