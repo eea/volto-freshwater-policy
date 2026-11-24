@@ -306,6 +306,7 @@ body.custom-page-header .breadcrumbs {
         font-weight: 500;
       }
     }
+
     .ui.statistics {
       margin: 0 !important;
       break-inside: avoid;
@@ -325,6 +326,7 @@ body.custom-page-header .breadcrumbs {
     .tabs-block .tab-name > div {
       border-top: none;
     }
+
     .content-box {
       margin-left: 0 !important;
       margin-right: 0 !important;
@@ -332,8 +334,6 @@ body.custom-page-header .breadcrumbs {
 
     .has--useAsPageHeader--true {
       .content-box {
-        // max-height: 600px;
-
         .columns-view > .ui.twelve.column {
           > .eight.wide.column,
           > .four.wide.column {
